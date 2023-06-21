@@ -1,30 +1,26 @@
-import { ChangeEvent, FC, PropsWithChildren, useCallback } from 'react';
+import { ChangeEvent, FC, PropsWithChildren, useCallback, useMemo, useState } from 'react';
+import { FormContextProvider, FormContextType } from './FormContext';
 
 export type FormProps<ValueType extends Record<any, any>> = PropsWithChildren & {
   name: string;
   value?: ValueType;
-  onChange?: (name: string, value: ValueType) => void;
   onSubmit?: (name: string, value: ValueType) => void;
 };
 
 export const Form: FC<FormProps<any>> = <ValueType extends Record<any, any>>({
   name,
   value,
-  onChange,
   onSubmit,
   children,
 }: FormProps<ValueType>) => {
-  const onChangeInternal = useCallback(
-    (event: ChangeEvent<HTMLFormElement>) => {
-      if (onChange) {
-        const { target } = event;
-        const { value: newValue } = target;
-
-        onChange(name, newValue);
-      }
-    },
-    [onChange, name]
-  );
+  const [internalValue, setInternalValue] = useState<ValueType>(value || ({} as ValueType));
+  const onChangeInternal = useCallback((newValue: ValueType) => setInternalValue(newValue), [setInternalValue]);
+  const formContext: FormContextType<ValueType> = useMemo(() => {
+    return {
+      value: internalValue,
+      onChange: onChangeInternal,
+    };
+  }, [internalValue, onChangeInternal]);
   const onSubmitInternal = useCallback(
     (event: ChangeEvent<HTMLFormElement>) => {
       if (onSubmit) {
@@ -39,8 +35,8 @@ export const Form: FC<FormProps<any>> = <ValueType extends Record<any, any>>({
   );
 
   return (
-    <form onSubmit={onSubmitInternal}>
-      {children}
-    </form>
+    <FormContextProvider value={formContext}>
+      <form onSubmit={onSubmitInternal}>{children}</form>
+    </FormContextProvider>
   );
 };
