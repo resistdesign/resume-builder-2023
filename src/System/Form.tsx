@@ -39,7 +39,7 @@ export const Form: FC<FormProps<any>> = <ValueType extends Record<any, any>>({
   );
 
   return (
-    <form onChange={onChangeInternal} onSubmit={onSubmitInternal}>
+    <form onSubmit={onSubmitInternal}>
       {children}
     </form>
   );
