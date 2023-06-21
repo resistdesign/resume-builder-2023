@@ -1,6 +1,7 @@
 export type Education = {
   establishment: string;
   program: string;
-  date: string;
+  startDate: string;
+  endDate: string;
   achievements: string[];
 };
