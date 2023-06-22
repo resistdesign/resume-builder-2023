@@ -1,10 +1,17 @@
 import { Address } from './Address';
 
 /**
- * @layout: name
- *   first, middle, last
+ * @layout:
+ *   name
+ *   description
+ *   phone email
+ *   address
  * */
 export type Person = {
+  /**
+   * @layout:
+   *   first middle last
+   * */
   name: {
     first: string;
     middle: string;
@@ -13,5 +20,13 @@ export type Person = {
   description: string;
   phone: string;
   email: string;
+  /**
+   * @inline
+   * @layout:
+   *   line1
+   *   line2
+   *   city state zip
+   *   country
+   * */
   address: Address;
 };

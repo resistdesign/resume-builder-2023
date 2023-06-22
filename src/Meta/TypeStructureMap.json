@@ -25,15 +25,6 @@
         "readonly": false
       },
       {
-        "name": "unit",
-        "type": "string",
-        "literal": true,
-        "comments": [],
-        "tags": {},
-        "optional": true,
-        "readonly": false
-      },
-      {
         "name": "city",
         "type": "string",
         "literal": true,
@@ -202,7 +193,7 @@
     "comments": [],
     "tags": {
       "layout": {
-        "value": ": name\nfirst, middle, last"
+        "value": ":\nname\ndescription\nphone email\naddress"
       }
     },
     "name": "Person",
@@ -211,7 +202,11 @@
     "content": [
       {
         "comments": [],
-        "tags": {},
+        "tags": {
+          "layout": {
+            "value": ":\nfirst middle last"
+          }
+        },
         "name": "name",
         "type": "Person.name",
         "literal": true,
@@ -276,7 +271,14 @@
       },
       {
         "comments": [],
-        "tags": {},
+        "tags": {
+          "inline": {
+            "value": true
+          },
+          "layout": {
+            "value": ":\nline1\nline2\ncity state zip\ncountry"
+          }
+        },
         "name": "address",
         "type": "Address",
         "optional": false,
