@@ -1,1 +1,453 @@
-{}
+{
+  "Address": {
+    "comments": [],
+    "tags": {},
+    "name": "Address",
+    "type": "Address",
+    "literal": true,
+    "content": [
+      {
+        "name": "line1",
+        "type": "string",
+        "literal": true,
+        "comments": [],
+        "tags": {},
+        "optional": false,
+        "readonly": false
+      },
+      {
+        "name": "line2",
+        "type": "string",
+        "literal": true,
+        "comments": [],
+        "tags": {},
+        "optional": true,
+        "readonly": false
+      },
+      {
+        "name": "unit",
+        "type": "string",
+        "literal": true,
+        "comments": [],
+        "tags": {},
+        "optional": true,
+        "readonly": false
+      },
+      {
+        "name": "city",
+        "type": "string",
+        "literal": true,
+        "comments": [],
+        "tags": {},
+        "optional": false,
+        "readonly": false
+      },
+      {
+        "name": "state",
+        "type": "string",
+        "literal": true,
+        "comments": [],
+        "tags": {},
+        "optional": false,
+        "readonly": false
+      },
+      {
+        "name": "country",
+        "type": "string",
+        "literal": true,
+        "comments": [],
+        "tags": {},
+        "optional": false,
+        "readonly": false
+      },
+      {
+        "name": "zip",
+        "type": "string",
+        "literal": true,
+        "comments": [],
+        "tags": {},
+        "optional": false,
+        "readonly": false
+      }
+    ]
+  },
+  "Education": {
+    "comments": [],
+    "tags": {},
+    "name": "Education",
+    "type": "Education",
+    "literal": true,
+    "content": [
+      {
+        "name": "establishment",
+        "type": "string",
+        "literal": true,
+        "comments": [],
+        "tags": {},
+        "optional": false,
+        "readonly": false
+      },
+      {
+        "name": "program",
+        "type": "string",
+        "literal": true,
+        "comments": [],
+        "tags": {},
+        "optional": false,
+        "readonly": false
+      },
+      {
+        "name": "startDate",
+        "type": "string",
+        "literal": true,
+        "comments": [],
+        "tags": {},
+        "optional": false,
+        "readonly": false
+      },
+      {
+        "name": "endDate",
+        "type": "string",
+        "literal": true,
+        "comments": [],
+        "tags": {},
+        "optional": false,
+        "readonly": false
+      },
+      {
+        "comments": [],
+        "tags": {},
+        "name": "achievements",
+        "type": "string",
+        "literal": true,
+        "multiple": 1,
+        "optional": false,
+        "readonly": false
+      }
+    ]
+  },
+  "Employment": {
+    "comments": [],
+    "tags": {},
+    "name": "Employment",
+    "type": "Employment",
+    "literal": true,
+    "content": [
+      {
+        "name": "company",
+        "type": "string",
+        "literal": true,
+        "comments": [],
+        "tags": {},
+        "optional": false,
+        "readonly": false
+      },
+      {
+        "name": "position",
+        "type": "string",
+        "literal": true,
+        "comments": [],
+        "tags": {},
+        "optional": false,
+        "readonly": false
+      },
+      {
+        "name": "startDate",
+        "type": "string",
+        "literal": true,
+        "comments": [],
+        "tags": {},
+        "optional": false,
+        "readonly": false
+      },
+      {
+        "name": "endDate",
+        "type": "string",
+        "literal": true,
+        "comments": [],
+        "tags": {},
+        "optional": false,
+        "readonly": false
+      },
+      {
+        "comments": [],
+        "tags": {},
+        "name": "projects",
+        "type": "Project",
+        "multiple": 1,
+        "optional": false,
+        "readonly": false
+      }
+    ]
+  },
+  "NotableConcept": {
+    "comments": [],
+    "tags": {},
+    "name": "NotableConcept",
+    "type": "NotableConcept",
+    "literal": true,
+    "content": [
+      {
+        "name": "description",
+        "type": "string",
+        "literal": true,
+        "comments": [],
+        "tags": {},
+        "optional": false,
+        "readonly": false
+      }
+    ]
+  },
+  "Person": {
+    "comments": [],
+    "tags": {},
+    "name": "Person",
+    "type": "Person",
+    "literal": true,
+    "content": [
+      {
+        "comments": [],
+        "tags": {},
+        "name": "name",
+        "type": "Person.name",
+        "literal": true,
+        "content": [
+          {
+            "name": "first",
+            "type": "string",
+            "literal": true,
+            "comments": [],
+            "tags": {},
+            "optional": false,
+            "readonly": false
+          },
+          {
+            "name": "middle",
+            "type": "string",
+            "literal": true,
+            "comments": [],
+            "tags": {},
+            "optional": false,
+            "readonly": false
+          },
+          {
+            "name": "last",
+            "type": "string",
+            "literal": true,
+            "comments": [],
+            "tags": {},
+            "optional": false,
+            "readonly": false
+          }
+        ],
+        "optional": false,
+        "readonly": false
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "literal": true,
+        "comments": [],
+        "tags": {},
+        "optional": false,
+        "readonly": false
+      },
+      {
+        "name": "phone",
+        "type": "string",
+        "literal": true,
+        "comments": [],
+        "tags": {},
+        "optional": false,
+        "readonly": false
+      },
+      {
+        "name": "email",
+        "type": "string",
+        "literal": true,
+        "comments": [],
+        "tags": {},
+        "optional": false,
+        "readonly": false
+      },
+      {
+        "comments": [],
+        "tags": {},
+        "name": "address",
+        "type": "Address",
+        "optional": false,
+        "readonly": false
+      }
+    ]
+  },
+  "Project": {
+    "comments": [],
+    "tags": {},
+    "name": "Project",
+    "type": "Project",
+    "literal": true,
+    "content": [
+      {
+        "name": "name",
+        "type": "string",
+        "literal": true,
+        "comments": [],
+        "tags": {},
+        "optional": false,
+        "readonly": false
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "literal": true,
+        "comments": [],
+        "tags": {},
+        "optional": false,
+        "readonly": false
+      },
+      {
+        "comments": [],
+        "tags": {},
+        "name": "skills",
+        "type": "Skill",
+        "multiple": 1,
+        "optional": false,
+        "readonly": false
+      },
+      {
+        "comments": [],
+        "tags": {},
+        "name": "notableConcepts",
+        "type": "NotableConcept",
+        "multiple": 1,
+        "optional": false,
+        "readonly": false
+      }
+    ]
+  },
+  "Resume": {
+    "comments": [],
+    "tags": {},
+    "name": "Resume",
+    "type": "Resume",
+    "literal": true,
+    "content": [
+      {
+        "comments": [],
+        "tags": {},
+        "name": "subject",
+        "type": "Person",
+        "optional": false,
+        "readonly": false
+      },
+      {
+        "name": "objective",
+        "type": "string",
+        "literal": true,
+        "comments": [],
+        "tags": {},
+        "optional": false,
+        "readonly": false
+      },
+      {
+        "comments": [],
+        "tags": {},
+        "name": "date",
+        "type": "Date",
+        "optional": false,
+        "readonly": false
+      },
+      {
+        "comments": [],
+        "tags": {},
+        "name": "employment",
+        "type": "Employment",
+        "multiple": 1,
+        "optional": false,
+        "readonly": false
+      },
+      {
+        "comments": [],
+        "tags": {},
+        "name": "education",
+        "type": "Education",
+        "multiple": 1,
+        "optional": false,
+        "readonly": false
+      },
+      {
+        "comments": [],
+        "tags": {},
+        "name": "references",
+        "type": "Person",
+        "multiple": 1,
+        "optional": false,
+        "readonly": false
+      }
+    ]
+  },
+  "Skill": {
+    "comments": [],
+    "tags": {},
+    "name": "Skill",
+    "type": "Skill",
+    "literal": true,
+    "content": [
+      {
+        "name": "description",
+        "type": "string",
+        "literal": true,
+        "comments": [],
+        "tags": {},
+        "optional": false,
+        "readonly": false
+      },
+      {
+        "comments": [],
+        "tags": {},
+        "name": "rating",
+        "type": "Skill.rating",
+        "varietyType": true,
+        "content": [
+          {
+            "name": "rating",
+            "type": "1",
+            "literal": true,
+            "comments": [],
+            "tags": {}
+          },
+          {
+            "name": "rating",
+            "type": "2",
+            "literal": true,
+            "comments": [],
+            "tags": {}
+          },
+          {
+            "name": "rating",
+            "type": "3",
+            "literal": true,
+            "comments": [],
+            "tags": {}
+          },
+          {
+            "name": "rating",
+            "type": "4",
+            "literal": true,
+            "comments": [],
+            "tags": {}
+          },
+          {
+            "name": "rating",
+            "type": "5",
+            "literal": true,
+            "comments": [],
+            "tags": {}
+          }
+        ],
+        "optional": false,
+        "readonly": false
+      }
+    ]
+  }
+}

@@ -5,8 +5,8 @@
   "author": "Ryanne Graff",
   "license": "MIT",
   "scripts": {
-    "start": "parcel",
-    "build": "parcel build",
+    "start": "yarn build-types-meta && parcel",
+    "build": "yarn build-types-meta && parcel build",
     "build-types-meta": "ts-node ./scripts/build-types-meta.ts"
   },
   "devDependencies": {
