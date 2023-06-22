@@ -1,21 +1,25 @@
 import { ChangeEvent, FC, PropsWithChildren, useCallback, useMemo, useState } from 'react';
-import { FormContextProvider, FormContextType } from './FormContext';
+import { FormContextProvider, FormContextType, useFormContext } from './FormContext';
 
 export type FormProps<ValueType extends Record<any, any>> = PropsWithChildren & {
   name: string;
-  value?: ValueType;
-  onSubmit?: (name: string, value: ValueType) => void;
+  onSubmit?: (outerFormValue: Record<any, any>) => void;
 };
 
 export const Form: FC<FormProps<any>> = <ValueType extends Record<any, any>>({
   name,
-  value,
-  onSubmit,
   children,
+  onSubmit,
 }: FormProps<ValueType>) => {
-  const [internalValue, setInternalValue] = useState<ValueType>(value || ({} as ValueType));
-  const onChangeInternal = useCallback((newValue: ValueType) => setInternalValue(newValue), [setInternalValue]);
-  const formContext: FormContextType<ValueType> = useMemo(() => {
+  const outerFormContext = useFormContext();
+  const { value: outerFormValue, onChange }: Partial<FormContextType<Record<any, any>>> = outerFormContext || {};
+  const formValue = useMemo(() => outerFormValue?.[name], [outerFormValue, name]);
+  const [internalValue, setInternalValue] = useState<Partial<ValueType>>(formValue || {});
+  const onChangeInternal = useCallback(
+    (newValue: Partial<ValueType>) => setInternalValue(newValue),
+    [setInternalValue]
+  );
+  const formContext: FormContextType<Partial<ValueType>> = useMemo(() => {
     return {
       value: internalValue,
       onChange: onChangeInternal,
@@ -23,15 +27,20 @@ export const Form: FC<FormProps<any>> = <ValueType extends Record<any, any>>({
   }, [internalValue, onChangeInternal]);
   const onSubmitInternal = useCallback(
     (event: ChangeEvent<HTMLFormElement>) => {
-      if (onSubmit) {
-        const { target } = event;
-        const { value: newValue } = target;
+      const newOuterFormValue = {
+        ...outerFormValue,
+        [name]: internalValue,
+      };
 
-        event.preventDefault();
-        onSubmit(name, newValue);
+      event.preventDefault();
+
+      if (onSubmit) {
+        onSubmit(newOuterFormValue);
+      } else if (onChange) {
+        onChange(newOuterFormValue);
       }
     },
-    [onSubmit, name]
+    [onSubmit, onChange, name, outerFormValue, internalValue]
   );
 
   return (
