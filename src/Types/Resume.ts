@@ -5,7 +5,7 @@ import { Education } from './Education';
 export type Resume = {
   subject: Person;
   objective: string;
-  date: string;
+  date: Date;
   employment: Employment[];
   education: Education[];
   references: Person[];
