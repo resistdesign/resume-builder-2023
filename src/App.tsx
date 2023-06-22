@@ -6,8 +6,10 @@ import { Input } from './System/Input';
 export const App: FC = () => {
   const [person, setPerson] = useState({});
 
+  console.log(person);
+
   return (
-    <Form name={'person'} onSubmit={setPerson}>
+    <Form name={'person'} value={person} onSubmit={setPerson}>
       <Input name={'description'} />
       <Input name={'email'} />
     </Form>
