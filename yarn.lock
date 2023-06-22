@@ -1655,6 +1655,13 @@
     "@parcel/workers" "2.9.2"
     nullthrows "^1.1.1"
 
+"@parcel/transformer-inline-string@2.9.2":
+  version "2.9.2"
+  resolved "https://registry.yarnpkg.com/@parcel/transformer-inline-string/-/transformer-inline-string-2.9.2.tgz#39d46d410dd10ae356fa4cce9b442854b8445ef9"
+  integrity sha512-Wp00m+PqUq0Iq3nJqhphHvHPZ2OeVTQNJQ0hTwUvdO1odkO2KMDtUPsMm0NYIzVkYyvloxpSKfj5kNh/ToVOQA==
+  dependencies:
+    "@parcel/plugin" "2.9.2"
+
 "@parcel/transformer-js@2.9.2":
   version "2.9.2"
   resolved "https://registry.yarnpkg.com/@parcel/transformer-js/-/transformer-js-2.9.2.tgz#14841a4a74a14b2a8dfc7a26b82d47b953cd3ce2"
