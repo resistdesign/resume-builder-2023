@@ -1,5 +1,9 @@
 import { Address } from './Address';
 
+/**
+ * @layout: name
+ *   first, middle, last
+ * */
 export type Person = {
   name: {
     first: string;

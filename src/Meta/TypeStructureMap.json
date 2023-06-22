@@ -200,7 +200,11 @@
   },
   "Person": {
     "comments": [],
-    "tags": {},
+    "tags": {
+      "layout": {
+        "value": ": name\nfirst, middle, last"
+      }
+    },
     "name": "Person",
     "type": "Person",
     "literal": true,
