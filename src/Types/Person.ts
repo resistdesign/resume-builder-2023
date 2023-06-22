@@ -13,14 +13,33 @@ export type Person = {
    *   first middle last
    * */
   name: {
+    /**
+     * @label: First Name
+     * */
     first: string;
+    /**
+     * @label: Middle Name
+     */
     middle: string;
+    /**
+     * @label: Last Name
+     */
     last: string;
   };
+  /**
+   * @label: Description
+   */
   description: string;
+  /**
+   * @label: Phone
+   */
   phone: string;
+  /**
+   * @label: Email
+   */
   email: string;
   /**
+   * @label: Address
    * @inline
    * @layout:
    *   line1
