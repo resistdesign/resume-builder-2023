@@ -3,17 +3,19 @@ import { FormContextProvider, FormContextType, useFormContext } from './FormCont
 
 export type FormProps<ValueType extends Record<any, any>> = PropsWithChildren & {
   name: string;
+  value?: any;
   onSubmit?: (outerFormValue: Record<any, any>) => void;
 };
 
 export const Form: FC<FormProps<any>> = <ValueType extends Record<any, any>>({
   name,
-  children,
+  value,
   onSubmit,
+  children,
 }: FormProps<ValueType>) => {
   const outerFormContext = useFormContext();
   const { value: outerFormValue, onChange }: Partial<FormContextType<Record<any, any>>> = outerFormContext || {};
-  const formValue = useMemo(() => outerFormValue?.[name], [outerFormValue, name]);
+  const formValue = useMemo(() => (value ? value : outerFormValue)?.[name], [value, outerFormValue, name]);
   const [internalValue, setInternalValue] = useState<Partial<ValueType>>(formValue || {});
   const onChangeInternal = useCallback(
     (newValue: Partial<ValueType>) => setInternalValue(newValue),
@@ -28,7 +30,7 @@ export const Form: FC<FormProps<any>> = <ValueType extends Record<any, any>>({
   const onSubmitInternal = useCallback(
     (event: ChangeEvent<HTMLFormElement>) => {
       const newOuterFormValue = {
-        ...outerFormValue,
+        ...(value ? value : outerFormValue),
         [name]: internalValue,
       };
 
@@ -40,7 +42,7 @@ export const Form: FC<FormProps<any>> = <ValueType extends Record<any, any>>({
         onChange(newOuterFormValue);
       }
     },
-    [onSubmit, onChange, name, outerFormValue, internalValue]
+    [onSubmit, onChange, name, value, outerFormValue, internalValue]
   );
 
   return (
