@@ -10,8 +10,9 @@ export const App: FC = () => {
 
   return (
     <Form name={'person'} value={person} onSubmit={setPerson}>
-      <Input name={'description'} />
-      <Input name={'email'} />
+      <Input name="description" />
+      <Input name="email" />
+      <button type="submit">Done</button>
     </Form>
   );
 };
