@@ -1,18 +1,20 @@
-import React, { ChangeEvent, FC, HTMLAttributes, useCallback } from 'react';
+import React, { ChangeEvent, FC, useCallback } from 'react';
 import { FormContextType, useFormContext } from './FormContext';
 
-export type InputProps = HTMLAttributes<HTMLInputElement> & {
+export type InputProps = {
   name: string;
+  type: string;
 };
 
-export const Input: FC<InputProps> = ({ name, ...props }: InputProps) => {
+export const Input: FC<InputProps> = ({ name, type }: InputProps) => {
   const outerFormContext = useFormContext();
   const { value, onChange }: Partial<FormContextType<Record<any, any>>> = outerFormContext || {};
   const onChangeInternal = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       if (onChange) {
         const { target } = event;
-        const newValue = target.type === 'checkbox' ? target.checked : target.value;
+        const { checked, value: inputValue } = target;
+        const newValue = type === 'checkbox' ? checked : inputValue;
 
         onChange({
           ...value,
@@ -20,8 +22,8 @@ export const Input: FC<InputProps> = ({ name, ...props }: InputProps) => {
         });
       }
     },
-    [value, onChange, name]
+    [name, type, value, onChange]
   );
 
-  return <input {...props} onChange={onChangeInternal} />;
+  return <input onChange={onChangeInternal} />;
 };
