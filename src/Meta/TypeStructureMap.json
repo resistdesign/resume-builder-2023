@@ -11,7 +11,11 @@
         "type": "string",
         "literal": true,
         "comments": [],
-        "tags": {},
+        "tags": {
+          "label": {
+            "value": ": Line 1"
+          }
+        },
         "optional": false,
         "readonly": false
       },
@@ -20,7 +24,11 @@
         "type": "string",
         "literal": true,
         "comments": [],
-        "tags": {},
+        "tags": {
+          "label": {
+            "value": ": Line 2"
+          }
+        },
         "optional": true,
         "readonly": false
       },
@@ -29,7 +37,11 @@
         "type": "string",
         "literal": true,
         "comments": [],
-        "tags": {},
+        "tags": {
+          "label": {
+            "value": ": City"
+          }
+        },
         "optional": false,
         "readonly": false
       },
@@ -38,7 +50,11 @@
         "type": "string",
         "literal": true,
         "comments": [],
-        "tags": {},
+        "tags": {
+          "label": {
+            "value": ": State"
+          }
+        },
         "optional": false,
         "readonly": false
       },
@@ -47,7 +63,11 @@
         "type": "string",
         "literal": true,
         "comments": [],
-        "tags": {},
+        "tags": {
+          "label": {
+            "value": ": Country"
+          }
+        },
         "optional": false,
         "readonly": false
       },
@@ -56,7 +76,11 @@
         "type": "string",
         "literal": true,
         "comments": [],
-        "tags": {},
+        "tags": {
+          "label": {
+            "value": ": Zip"
+          }
+        },
         "optional": false,
         "readonly": false
       }
@@ -173,7 +197,11 @@
   },
   "NotableConcept": {
     "comments": [],
-    "tags": {},
+    "tags": {
+      "label": {
+        "value": "Notable Concept"
+      }
+    },
     "name": "NotableConcept",
     "type": "NotableConcept",
     "literal": true,
@@ -194,6 +222,12 @@
     "tags": {
       "layout": {
         "value": ":\nname\ndescription\nphone email\naddress"
+      },
+      "label": {
+        "value": ": Person"
+      },
+      "itemName": {
+        "value": ": `name`"
       }
     },
     "name": "Person",
@@ -205,6 +239,9 @@
         "tags": {
           "layout": {
             "value": ":\nfirst middle last"
+          },
+          "itemName": {
+            "value": ": `first` `last`"
           }
         },
         "name": "name",
@@ -216,7 +253,11 @@
             "type": "string",
             "literal": true,
             "comments": [],
-            "tags": {},
+            "tags": {
+              "label": {
+                "value": ": First Name"
+              }
+            },
             "optional": false,
             "readonly": false
           },
@@ -225,7 +266,11 @@
             "type": "string",
             "literal": true,
             "comments": [],
-            "tags": {},
+            "tags": {
+              "label": {
+                "value": ": Middle Name"
+              }
+            },
             "optional": false,
             "readonly": false
           },
@@ -234,7 +279,11 @@
             "type": "string",
             "literal": true,
             "comments": [],
-            "tags": {},
+            "tags": {
+              "label": {
+                "value": ": Last Name"
+              }
+            },
             "optional": false,
             "readonly": false
           }
@@ -247,7 +296,11 @@
         "type": "string",
         "literal": true,
         "comments": [],
-        "tags": {},
+        "tags": {
+          "label": {
+            "value": ": Description"
+          }
+        },
         "optional": false,
         "readonly": false
       },
@@ -256,7 +309,11 @@
         "type": "string",
         "literal": true,
         "comments": [],
-        "tags": {},
+        "tags": {
+          "label": {
+            "value": ": Phone"
+          }
+        },
         "optional": false,
         "readonly": false
       },
@@ -265,13 +322,20 @@
         "type": "string",
         "literal": true,
         "comments": [],
-        "tags": {},
+        "tags": {
+          "label": {
+            "value": ": Email"
+          }
+        },
         "optional": false,
         "readonly": false
       },
       {
         "comments": [],
         "tags": {
+          "label": {
+            "value": ": Address"
+          },
           "inline": {
             "value": true
           },
