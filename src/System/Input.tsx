@@ -3,10 +3,11 @@ import { FormContextType, useFormContext } from './FormContext';
 
 export type InputProps = {
   name: string;
+  label?: string;
   type?: string;
 };
 
-export const Input: FC<InputProps> = ({ name, type = 'text' }: InputProps) => {
+export const Input: FC<InputProps> = ({ name, label = '', type = 'text' }: InputProps) => {
   const outerFormContext = useFormContext();
   const { value, onChange }: Partial<FormContextType<Record<any, any>>> = outerFormContext || {};
   const onChangeInternal = useCallback(
@@ -25,5 +26,5 @@ export const Input: FC<InputProps> = ({ name, type = 'text' }: InputProps) => {
     [name, type, value, onChange]
   );
 
-  return <input onChange={onChangeInternal} />;
+  return <input placeholder={label} onChange={onChangeInternal} />;
 };
