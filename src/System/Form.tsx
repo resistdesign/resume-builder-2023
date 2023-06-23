@@ -1,53 +1,34 @@
-import { ChangeEvent, FC, PropsWithChildren, useCallback, useMemo, useState } from 'react';
-import { FormContextProvider, FormContextType, useFormContext } from './FormContext';
+import { ChangeEvent, FC, useCallback, useMemo, useState } from 'react';
+import {TypeStructure, TypeStructureMap} from "./TypeParsing/TypeUtils";
 
-export type FormProps<ValueType extends Record<any, any>> = PropsWithChildren & {
+export type FormProps =  {
   name: string;
-  value?: any;
-  onSubmit?: (outerFormValue: Record<any, any>) => void;
+  value: Record<any, any>;
+  onSubmit: (name: string, newValue: any) => void;
+  typeStructure: TypeStructure;
+  typeStructureMap: TypeStructureMap;
 };
 
-export const Form: FC<FormProps<any>> = <ValueType extends Record<any, any>>({
+export const Form: FC<FormProps> = ({
   name,
   value,
   onSubmit,
-  children,
-}: FormProps<ValueType>) => {
-  const outerFormContext = useFormContext();
-  const { value: outerFormValue, onChange }: Partial<FormContextType<Record<any, any>>> = outerFormContext || {};
-  const formValue = useMemo(() => (value ? value : outerFormValue)?.[name], [value, outerFormValue, name]);
-  const [internalValue, setInternalValue] = useState<Partial<ValueType>>(formValue || {});
-  const onChangeInternal = useCallback(
-    (newValue: Partial<ValueType>) => setInternalValue(newValue),
-    [setInternalValue]
-  );
-  const formContext: FormContextType<Partial<ValueType>> = useMemo(() => {
-    return {
-      value: internalValue,
-      onChange: onChangeInternal,
-    };
-  }, [internalValue, onChangeInternal]);
+    typeStructure,
+    typeStructureMap,
+}: FormProps) => {
+  const [internalValue, setInternalValue] = useState(value || {});
   const onSubmitInternal = useCallback(
     (event: ChangeEvent<HTMLFormElement>) => {
-      const newOuterFormValue = {
-        ...(value ? value : outerFormValue),
-        [name]: internalValue,
-      };
-
       event.preventDefault();
 
-      if (onSubmit) {
-        onSubmit(newOuterFormValue);
-      } else if (onChange) {
-        onChange(newOuterFormValue);
-      }
+      onSubmit(name, internalValue);
     },
-    [onSubmit, onChange, name, value, outerFormValue, internalValue]
+    [onSubmit, name, value, internalValue]
   );
 
   return (
-    <FormContextProvider value={formContext}>
-      <form onSubmit={onSubmitInternal}>{children}</form>
-    </FormContextProvider>
+      <form onSubmit={onSubmitInternal}>
+
+      </form>
   );
 };
