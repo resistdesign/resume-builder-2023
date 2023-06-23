@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useCallback } from 'react';
+import React, { ChangeEvent, FC, useCallback, useMemo } from 'react';
 import { FormContextType, useFormContext } from './FormContext';
 
 export type InputProps = {
@@ -10,6 +10,11 @@ export type InputProps = {
 export const Input: FC<InputProps> = ({ name, label = '', type = 'text' }: InputProps) => {
   const outerFormContext = useFormContext();
   const { value, onChange }: Partial<FormContextType<Record<any, any>>> = outerFormContext || {};
+  const inputValue = useMemo(() => {
+    const inpV = value?.[name];
+
+    return inpV !== undefined && inpV !== null ? inpV : '';
+  }, [name, value]);
   const onChangeInternal = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       if (onChange) {
@@ -26,5 +31,5 @@ export const Input: FC<InputProps> = ({ name, label = '', type = 'text' }: Input
     [name, type, value, onChange]
   );
 
-  return <input placeholder={label} onChange={onChangeInternal} />;
+  return <input placeholder={label} value={inputValue} onChange={onChangeInternal} />;
 };

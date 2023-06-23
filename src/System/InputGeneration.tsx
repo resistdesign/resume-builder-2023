@@ -20,7 +20,8 @@ export enum TAG_TYPES {
 export const convertTypeStructureToInputs = (
     name: string,
     typeStructure: TypeStructure,
-    typeStructureMap: TypeStructureMap
+    typeStructureMap: TypeStructureMap,
+    value: any
 ) => {
     const {contentNames} = typeStructure;
     const {
