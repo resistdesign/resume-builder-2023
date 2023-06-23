@@ -13,7 +13,7 @@
         "comments": [],
         "tags": {
           "label": {
-            "value": ": Line 1"
+            "value": "Line 1"
           }
         },
         "optional": false,
@@ -26,7 +26,7 @@
         "comments": [],
         "tags": {
           "label": {
-            "value": ": Line 2"
+            "value": "Line 2"
           }
         },
         "optional": true,
@@ -39,7 +39,7 @@
         "comments": [],
         "tags": {
           "label": {
-            "value": ": City"
+            "value": "City"
           }
         },
         "optional": false,
@@ -52,7 +52,7 @@
         "comments": [],
         "tags": {
           "label": {
-            "value": ": State"
+            "value": "State"
           }
         },
         "optional": false,
@@ -65,7 +65,7 @@
         "comments": [],
         "tags": {
           "label": {
-            "value": ": Country"
+            "value": "Country"
           }
         },
         "optional": false,
@@ -78,7 +78,7 @@
         "comments": [],
         "tags": {
           "label": {
-            "value": ": Zip"
+            "value": "Zip"
           }
         },
         "optional": false,
@@ -221,13 +221,13 @@
     "comments": [],
     "tags": {
       "layout": {
-        "value": ":\nname\ndescription\nphone email\naddress"
+        "value": "  name\n  description\n  phone email\n  address"
       },
       "label": {
-        "value": ": Person"
+        "value": "Person"
       },
       "itemName": {
-        "value": ": `name`"
+        "value": "`name`"
       }
     },
     "name": "Person",
@@ -238,10 +238,10 @@
         "comments": [],
         "tags": {
           "layout": {
-            "value": ":\nfirst middle last"
+            "value": "  first middle last"
           },
           "itemName": {
-            "value": ": `first` `last`"
+            "value": "`first` `last`"
           }
         },
         "name": "name",
@@ -255,7 +255,7 @@
             "comments": [],
             "tags": {
               "label": {
-                "value": ": First Name"
+                "value": "First Name"
               }
             },
             "optional": false,
@@ -268,7 +268,7 @@
             "comments": [],
             "tags": {
               "label": {
-                "value": ": Middle Name"
+                "value": "Middle Name"
               }
             },
             "optional": false,
@@ -281,7 +281,7 @@
             "comments": [],
             "tags": {
               "label": {
-                "value": ": Last Name"
+                "value": "Last Name"
               }
             },
             "optional": false,
@@ -298,7 +298,7 @@
         "comments": [],
         "tags": {
           "label": {
-            "value": ": Description"
+            "value": "Description"
           }
         },
         "optional": false,
@@ -311,7 +311,7 @@
         "comments": [],
         "tags": {
           "label": {
-            "value": ": Phone"
+            "value": "Phone"
           }
         },
         "optional": false,
@@ -324,7 +324,7 @@
         "comments": [],
         "tags": {
           "label": {
-            "value": ": Email"
+            "value": "Email"
           }
         },
         "optional": false,
@@ -334,13 +334,13 @@
         "comments": [],
         "tags": {
           "label": {
-            "value": ": Address"
+            "value": "Address"
           },
           "inline": {
             "value": true
           },
           "layout": {
-            "value": ":\nline1\nline2\ncity state zip\ncountry"
+            "value": "  line1\n  line2\n  city state zip\n  country"
           }
         },
         "name": "address",

@@ -1,50 +1,50 @@
 import { Address } from './Address';
 
 /**
- * @layout:
+ * @layout
  *   name
  *   description
  *   phone email
  *   address
- * @label: Person
- * @itemName: `name`
+ * @label Person
+ * @itemName `name`
  * */
 export type Person = {
   /**
-   * @layout:
+   * @layout
    *   first middle last
-   * @itemName: `first` `last`
+   * @itemName `first` `last`
    * */
   name: {
     /**
-     * @label: First Name
+     * @label First Name
      * */
     first: string;
     /**
-     * @label: Middle Name
+     * @label Middle Name
      */
     middle: string;
     /**
-     * @label: Last Name
+     * @label Last Name
      */
     last: string;
   };
   /**
-   * @label: Description
+   * @label Description
    */
   description: string;
   /**
-   * @label: Phone
+   * @label Phone
    */
   phone: string;
   /**
-   * @label: Email
+   * @label Email
    */
   email: string;
   /**
-   * @label: Address
+   * @label Address
    * @inline
-   * @layout:
+   * @layout
    *   line1
    *   line2
    *   city state zip

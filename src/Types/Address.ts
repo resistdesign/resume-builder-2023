@@ -1,26 +1,26 @@
 export type Address = {
   /**
-   * @label: Line 1
+   * @label Line 1
    */
   line1: string;
   /**
-   * @label: Line 2
+   * @label Line 2
    */
   line2?: string;
   /**
-   * @label: City
+   * @label City
    */
   city: string;
   /**
-   * @label: State
+   * @label State
    */
   state: string;
   /**
-   * @label: Country
+   * @label Country
    */
   country: string;
   /**
-   * @label: Zip
+   * @label Zip
    */
   zip: string;
 };
