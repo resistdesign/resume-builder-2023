@@ -49,7 +49,7 @@ export const convertTypeStructureToInputs = (
         // TODO: Need a list component.
     } else {
         if (typeIsPrimitive) {
-            return <Input key={name} name={name} label={typeStructureLabelValue} type={inputType}/>;
+            return <Input key={name} name={name} label={`${typeStructureLabelValue}`} type={inputType}/>;
         } else if (typeStructureInlineValue) {
             return typeStructureContent.map((tS) => {
                 const {name: tSName,} = tS;
