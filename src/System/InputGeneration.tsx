@@ -28,8 +28,10 @@ export const convertTypeStructureToInputs = (
         multiple: typeStructureMultiple,
         tags: typeStructureTags = {},
         content: typeStructureContent = [],
+        // TODO: Consider literal.
+        literal: typeStructureLiteral,
     } = getTypeStructureWithFilteredContent(contentNames, typeStructure);
-    const typeIsPrimitive = !(typeStructureType in typeStructureMap);
+    const typeIsPrimitive = !typeStructureContent || typeStructureContent.length < 1;
     const inputType = TYPE_TO_INPUT_TYPE_MAP[typeStructureType];
     const {
         [TAG_TYPES.inline]: typeStructureInline,
