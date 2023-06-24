@@ -394,3 +394,11 @@ export const getTypeStructureController = (
     };
   }
 };
+
+export const getTypeStructureByName = <
+  TypeStructureMapType extends TypeStructureMap,
+  TypeStructureName extends keyof TypeStructureMapType
+>(
+  name: TypeStructureName,
+  map: TypeStructureMapType
+) => map[name];
