@@ -1,4 +1,4 @@
-import {getTypeStructureWithFilteredContent, TypeStructure, TypeStructureMap} from './TypeParsing/TypeUtils';
+import {getTypeStructureByName, getTypeStructureWithFilteredContent, TypeStructureMap} from './TypeParsing/TypeUtils';
 import {Input} from './Input';
 
 export const TYPE_TO_INPUT_TYPE_MAP: Record<string, string> = {
@@ -19,20 +19,19 @@ export enum TAG_TYPES {
 
 export const convertTypeStructureToInputs = (
     name: string,
-    typeStructure: TypeStructure,
+    typeStructureName: string,
     typeStructureMap: TypeStructureMap,
     value: any
 ) => {
+    const typeStructure = getTypeStructureByName(typeStructureName, typeStructureMap);
     const {contentNames} = typeStructure;
     const {
         type: typeStructureType,
         multiple: typeStructureMultiple,
         tags: typeStructureTags = {},
         content: typeStructureContent = [],
-        // TODO: Consider literal.
         literal: typeStructureLiteral,
     } = getTypeStructureWithFilteredContent(contentNames, typeStructure);
-    const typeIsPrimitive = !typeStructureContent || typeStructureContent.length < 1;
     const inputType = TYPE_TO_INPUT_TYPE_MAP[typeStructureType];
     const {
         [TAG_TYPES.inline]: typeStructureInline,
@@ -49,7 +48,7 @@ export const convertTypeStructureToInputs = (
     if (typeStructureMultiple) {
         // TODO: Need a list component.
     } else {
-        if (typeIsPrimitive) {
+        if (typeStructureLiteral) {
             return <Input key={name} name={name} label={`${typeStructureLabelValue}`} type={inputType}/>;
         } else if (typeStructureInlineValue) {
             return typeStructureContent.map((tS) => {
