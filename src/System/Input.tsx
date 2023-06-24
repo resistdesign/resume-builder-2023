@@ -1,35 +1,35 @@
 import React, { ChangeEvent, FC, useCallback, useMemo } from 'react';
-import { FormContextType, useFormContext } from './FormContext';
+
+enum InputType {
+  checkbox = 'checkbox',
+}
 
 export type InputProps = {
   name: string;
   label?: string;
   type?: string;
+  value: any;
+  onChange: (name: string, newValue: any) => void;
 };
 
-export const Input: FC<InputProps> = ({ name, label = '', type = 'text' }: InputProps) => {
-  const outerFormContext = useFormContext();
-  const { value, onChange }: Partial<FormContextType<Record<any, any>>> = outerFormContext || {};
-  const inputValue = useMemo(() => {
-    const inpV = value?.[name];
-
-    return inpV !== undefined && inpV !== null ? inpV : '';
-  }, [name, value]);
+export const Input: FC<InputProps> = ({ name, label = '', type = 'text', value, onChange }: InputProps) => {
   const onChangeInternal = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       if (onChange) {
         const { target } = event;
         const { checked, value: inputValue } = target;
-        const newValue = type === 'checkbox' ? checked : inputValue;
+        const newValue = type === InputType.checkbox ? checked ?? false : inputValue ?? '';
 
-        onChange({
-          ...value,
-          [name]: newValue,
-        });
+        onChange(name, newValue);
       }
     },
     [name, type, value, onChange]
   );
+  const cleanValue = useMemo(() => (type === InputType.checkbox ? value ?? false : value ?? ''), [type, value]);
 
-  return <input placeholder={label} value={inputValue} onChange={onChangeInternal} />;
+  return type === InputType.checkbox ? (
+    <input placeholder={label} type={type} checked={!!cleanValue} onChange={onChangeInternal} />
+  ) : (
+    <input placeholder={label} type={type} value={`${cleanValue}`} onChange={onChangeInternal} />
+  );
 };
