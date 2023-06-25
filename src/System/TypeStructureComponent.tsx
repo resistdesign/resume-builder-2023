@@ -1,6 +1,7 @@
 import React, {FC, useMemo} from 'react';
 import {getTypeStructureByName, getTypeStructureWithFilteredContent, TypeStructureMap} from './TypeParsing/TypeUtils';
-import {Input} from "./Input";
+import {Input} from './Input';
+import {Form} from "./Form";
 
 export const TYPE_TO_INPUT_TYPE_MAP: Record<string, string> = {
     string: 'text',
@@ -20,29 +21,30 @@ export enum TAG_TYPES {
 
 export type TypeStructureComponentProps = {
     typeStructureMap: TypeStructureMap;
-    typeStructureName: string;
+    typeStructureTypeName: string;
     value: any;
     onChange: (name: string, value: any) => void;
 };
 
 export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
                                                                             typeStructureMap,
-                                                                            typeStructureName,
+                                                                            typeStructureTypeName,
                                                                             value,
                                                                             onChange,
                                                                         }) => {
     const {
+        name: typeStructureName,
         type: typeStructureType,
         multiple: typeStructureMultiple,
         tags: typeStructureTags = {},
         content: typeStructureContent = [],
         literal: typeStructureLiteral,
     } = useMemo(() => {
-        const tS = getTypeStructureByName(typeStructureName, typeStructureMap);
+        const tS = getTypeStructureByName(typeStructureTypeName, typeStructureMap);
         const {contentNames} = tS;
 
         return getTypeStructureWithFilteredContent(contentNames, tS);
-    }, [typeStructureMap, typeStructureName]);
+    }, [typeStructureMap, typeStructureTypeName]);
     const inputType = TYPE_TO_INPUT_TYPE_MAP[typeStructureType];
     const {
         [TAG_TYPES.inline]: {value: typeStructureInline = undefined} = {},
@@ -53,22 +55,37 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
 
     if (typeStructureMultiple) {
         // TODO: Need a list component.
+        // TODO: Link to a list
     } else {
         if (typeStructureLiteral) {
-            return <Input
-                key={name}
-                name={name}
-                label={`${typeStructureLabel ?? ''}`}
-                value={value} type={inputType}
-                onChange={onInputChange}
-            />;
+            return (
+                <Input
+                    key={typeStructureName}
+                    name={typeStructureName}
+                    label={`${typeStructureLabel ?? ''}`}
+                    value={value}
+                    type={inputType}
+                    onChange={onChange}
+                />
+            );
         } else if (typeStructureInline) {
-            return typeStructureContent.map((tS) => {
-                const {name: tSName, type: tSType} = tS;
-                const tsValue = value?.[tSName];
+            return (
+                <Form name={typeStructureName} value={value} onSubmit={onChange} typeStructureName={typeStructureName}
+                      typeStructureMap={}>
+                    {typeStructureContent.map((tS) => {
+                        const {name: tSName, type: tSType} = tS;
+                        const tsValue = value?.[tSName];
 
-                return convertTypeStructureToInputs(tSName, tSType, typeStructureMap, tsValue, onInputChange);
-            };
+                        return (
+                            <TypeStructureComponent
+                                typeStructureMap={typeStructureMap}
+                                typeStructureTypeName={tSName}
+                                value={tsValue}
+                                onChange={onChange}
+                            />
+                    })}
+                </Form>
+            );
         } else {
             // TODO: Need link to new form.
         }
