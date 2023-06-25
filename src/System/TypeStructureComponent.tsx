@@ -74,7 +74,11 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
         />
       );
     } else if (typeStructureInline) {
-      return <Form onSubmit={onFormSubmit}>{/* TODO: Insert TypeStructureComponents */}</Form>;
+      return (
+        <Form key={name} onSubmit={onFormSubmit}>
+          {/* TODO: Insert TypeStructureComponents */}
+        </Form>
+      );
     } else {
       // TODO: Need link to new form.
     }
