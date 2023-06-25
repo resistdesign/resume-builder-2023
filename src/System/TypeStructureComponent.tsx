@@ -9,8 +9,6 @@ export const TYPE_TO_INPUT_TYPE_MAP: Record<string, string> = {
   boolean: 'checkbox',
   Date: 'date',
   any: 'text',
-  object: 'text',
-  array: 'text',
 };
 
 export enum TAG_TYPES {
@@ -67,9 +65,10 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
 
   if (typeStructureMultiple) {
     // TODO: Need a list component.
-    // TODO: Link to a list
+    // TODO: Link to a list.
   } else {
     if (typeStructureLiteral) {
+      // TODO: Literal Forms.
       return (
         <Input
           key={typeStructureName}
