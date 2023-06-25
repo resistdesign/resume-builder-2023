@@ -1,5 +1,5 @@
-import React, { FC, useCallback, useMemo } from 'react';
-import { getTypeStructureByName, getTypeStructureWithFilteredContent, TypeStructureMap } from './TypeParsing/TypeUtils';
+import React, { FC, useCallback, useMemo, useState } from 'react';
+import { getTypeStructureWithFilteredContent, TypeStructure, TypeStructureMap } from './TypeParsing/TypeUtils';
 import { Input } from './Input';
 import { Form } from './Form';
 
@@ -21,32 +21,29 @@ export enum TAG_TYPES {
 
 export type TypeStructureComponentProps = {
   typeStructureMap: TypeStructureMap;
-  typeStructureTypeName: string;
-  name: string;
+  typeStructure: TypeStructure;
   value: any;
   onChange: (name: string, value: any) => void;
 };
 
 export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
   typeStructureMap,
-  typeStructureTypeName,
-  name,
+  typeStructure,
   value,
   onChange,
 }) => {
   const {
-    name: typeStructureName,
+    name: typeStructureName = '',
     type: typeStructureType,
     multiple: typeStructureMultiple,
     tags: typeStructureTags = {},
     content: typeStructureContent = [],
     literal: typeStructureLiteral,
   } = useMemo(() => {
-    const tS = getTypeStructureByName(typeStructureTypeName, typeStructureMap);
-    const { contentNames } = tS;
+    const { contentNames } = typeStructure;
 
-    return getTypeStructureWithFilteredContent(contentNames, tS);
-  }, [typeStructureMap, typeStructureTypeName]);
+    return getTypeStructureWithFilteredContent(contentNames, typeStructure);
+  }, [typeStructureMap, typeStructure]);
   const inputType = TYPE_TO_INPUT_TYPE_MAP[typeStructureType];
   const {
     [TAG_TYPES.inline]: { value: typeStructureInline = undefined } = {},
@@ -54,9 +51,19 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     // TODO: Consider layout.
     [TAG_TYPES.layout]: { value: typeStructureLayout = undefined } = {},
   } = typeStructureTags;
+  const [internalValue, setInternalValue] = useState(value);
+  const onPropertyChange = useCallback(
+    (n: string, v: any) => {
+      setInternalValue({
+        ...internalValue,
+        [n]: v,
+      });
+    },
+    [internalValue, setInternalValue]
+  );
   const onFormSubmit = useCallback(() => {
-    // TODO: Call `onChange` with `internalValue`.
-  }, []);
+    onChange(typeStructureName, internalValue);
+  }, [typeStructureName, internalValue]);
 
   if (typeStructureMultiple) {
     // TODO: Need a list component.
@@ -66,7 +73,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
       return (
         <Input
           key={typeStructureName}
-          name={name}
+          name={typeStructureName}
           label={`${typeStructureLabel ?? ''}`}
           value={value}
           type={inputType}
@@ -74,9 +81,22 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
         />
       );
     } else if (typeStructureInline) {
+      // TODO: Submit buttons???
       return (
-        <Form key={name} onSubmit={onFormSubmit}>
-          {/* TODO: Insert TypeStructureComponents */}
+        <Form key={typeStructureName} onSubmit={onFormSubmit}>
+          {typeStructureContent.map((tS) => {
+            const { name: tSName = '' } = tS;
+
+            return (
+              <TypeStructureComponent
+                key={tSName}
+                typeStructureMap={typeStructureMap}
+                typeStructure={tS}
+                value={value?.[tSName]}
+                onChange={onPropertyChange}
+              />
+            );
+          })}
         </Form>
       );
     } else {
