@@ -1,8 +1,7 @@
-import React, { FC, useMemo } from 'react';
-import { getTypeStructureByName, getTypeStructureWithFilteredContent } from './TypeParsing/TypeUtils';
+import React, { FC, useCallback, useMemo } from 'react';
+import { getTypeStructureByName, getTypeStructureWithFilteredContent, TypeStructureMap } from './TypeParsing/TypeUtils';
 import { Input } from './Input';
 import { Form } from './Form';
-import { TypeStructureComponentProps } from './TypeStructureComponentProps';
 
 export const TYPE_TO_INPUT_TYPE_MAP: Record<string, string> = {
   string: 'text',
@@ -19,6 +18,14 @@ export enum TAG_TYPES {
   inline = 'inline',
   layout = 'layout',
 }
+
+export type TypeStructureComponentProps = {
+  typeStructureMap: TypeStructureMap;
+  typeStructureTypeName: string;
+  name: string;
+  value: any;
+  onChange: (name: string, value: any) => void;
+};
 
 export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
   typeStructureMap,
@@ -47,6 +54,9 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     // TODO: Consider layout.
     [TAG_TYPES.layout]: { value: typeStructureLayout = undefined } = {},
   } = typeStructureTags;
+  const onFormSubmit = useCallback(() => {
+    // TODO: Call `onChange` with `internalValue`.
+  }, []);
 
   if (typeStructureMultiple) {
     // TODO: Need a list component.
@@ -64,16 +74,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
         />
       );
     } else if (typeStructureInline) {
-      return (
-        <Form
-          typeStructureMap={typeStructureMap}
-          typeStructureTypeName={typeStructureTypeName}
-          name={name}
-          value={value}
-          onSubmit={onChange}
-          inline
-        />
-      );
+      return <Form onSubmit={onFormSubmit}>{/* TODO: Insert TypeStructureComponents */}</Form>;
     } else {
       // TODO: Need link to new form.
     }
