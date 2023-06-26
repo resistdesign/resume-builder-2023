@@ -5,6 +5,8 @@ import { TypeStructureComponent } from './TypeStructureComponent';
 export type NavigationItem = {
   value: any;
   typeStructure: TypeStructure;
+  // TODO: Handle showing Lists.
+  multiple?: boolean;
 };
 
 export type ApplicationProps<TypeStructureMapType extends TypeStructureMap> = PropsWithChildren & {
