@@ -30,13 +30,16 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
   value,
   onChange,
 }) => {
+  const isForm = useMemo(() => {
+    const { content = [] } = typeStructure;
+
+    return content.length > 0;
+  }, [typeStructure]);
   const {
     name: typeStructureName = '',
     type: typeStructureType,
-    multiple: typeStructureMultiple,
     tags: typeStructureTags = {},
     content: typeStructureContent = [],
-    literal: typeStructureLiteral,
   } = useMemo(() => {
     const { contentNames } = typeStructure;
 
@@ -44,7 +47,6 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
   }, [typeStructureMap, typeStructure]);
   const inputType = TYPE_TO_INPUT_TYPE_MAP[typeStructureType];
   const {
-    [TAG_TYPES.inline]: { value: typeStructureInline = undefined } = {},
     [TAG_TYPES.label]: { value: typeStructureLabel = undefined } = {},
     // TODO: Consider layout.
     [TAG_TYPES.layout]: { value: typeStructureLayout = undefined } = {},
@@ -63,29 +65,17 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     onChange(typeStructureName, internalValue);
   }, [typeStructureName, internalValue]);
 
-  if (typeStructureMultiple) {
-    // TODO: Need a list component.
-    // TODO: Link to a list.
-  } else {
-    if (typeStructureLiteral) {
-      // TODO: Literal Forms.
-      return (
-        <Input
-          key={typeStructureName}
-          name={typeStructureName}
-          label={`${typeStructureLabel ?? ''}`}
-          value={value}
-          type={inputType}
-          onChange={onChange}
-        />
-      );
-    } else if (typeStructureInline) {
-      // TODO: Submit buttons???
-      return (
-        <Form key={typeStructureName} onSubmit={onFormSubmit}>
-          {typeStructureContent.map((tS) => {
-            const { name: tSName = '' } = tS;
+  if (isForm) {
+    // TODO: Submit buttons???
+    // TODO: Reset buttons???
+    return (
+      <Form key={typeStructureName} onSubmit={onFormSubmit}>
+        {typeStructureContent.map((tS) => {
+          const { name: tSName, tags: tSTags = {}, literal: tSLiteral = false } = tS;
+          const { [TAG_TYPES.inline]: { value: tSInline = undefined } = {} } = tSTags;
+          // TODO: Handle opening arrays as Lists.
 
+          if (tSLiteral || tSInline) {
             return (
               <TypeStructureComponent
                 key={tSName}
@@ -95,11 +85,23 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
                 onChange={onPropertyChange}
               />
             );
-          })}
-        </Form>
-      );
-    } else {
-      // TODO: Need link to new form.
-    }
+          } else {
+            // TODO: Open a sub-form.
+            return <button>Open Form</button>;
+          }
+        })}
+      </Form>
+    );
+  } else {
+    return (
+      <Input
+        key={typeStructureName}
+        name={typeStructureName}
+        label={`${typeStructureLabel ?? ''}`}
+        value={value}
+        type={inputType}
+        onChange={onChange}
+      />
+    );
   }
 };
