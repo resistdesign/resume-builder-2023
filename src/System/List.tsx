@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useMemo } from 'react';
+import React, { FC, PropsWithChildren, useCallback, useMemo } from 'react';
 import { getDefaultItemForTypeStructure, getTypeStructureIsPrimitive, TypeStructure } from './TypeParsing/TypeUtils';
 import { TAG_TYPES } from './TypeStructureComponent';
 
@@ -10,21 +10,17 @@ export const getItemName = <ValueType extends Record<any, any>>(
   itemNameTemplate: string = ''
 ): string => itemNameTemplate.replace(/\`(\w+)\`/g, (match, key) => getCleanPrimitiveStringValue(item[key]));
 
-type OpenItemButtonProps = {
+type SelectItemButtonProps = PropsWithChildren<{
   index: number;
-  onOpenItem: (index: number) => void;
-};
+  onSelectItem: (index: number) => void;
+}>;
 
-const OpenItemButton: FC<OpenItemButtonProps> = ({ index, onOpenItem }: OpenItemButtonProps) => {
+const SelectItemButton: FC<SelectItemButtonProps> = ({ index, onSelectItem, children }: SelectItemButtonProps) => {
   const onOpenItemInternal = useCallback(() => {
-    onOpenItem(index);
-  }, [index, onOpenItem]);
+    onSelectItem(index);
+  }, [index, onSelectItem]);
 
-  return (
-    <button onClick={onOpenItemInternal} title="Open">
-      Open
-    </button>
-  );
+  return <button onClick={onOpenItemInternal}>{children}</button>;
 };
 
 export type ListProps = {
@@ -67,7 +63,12 @@ export const List: FC<ListProps> = ({
     },
     [name, onNavigateToPath]
   );
-  // TODO: Delete buttons.
+  const onDeleteItem = useCallback(
+    (index: number) => {
+      onChangeInternal([...items.slice(0, index), ...items.slice(index + 1)]);
+    },
+    [items, onChangeInternal]
+  );
   // TODO: Reordering.
 
   return (
@@ -76,7 +77,12 @@ export const List: FC<ListProps> = ({
         return (
           <li key={index}>
             {itemsArePrimitive ? getCleanPrimitiveStringValue(item) : getItemName(item, itemNameTemplate)}
-            <OpenItemButton index={index} onOpenItem={onOpenItem} />
+            <SelectItemButton index={index} onSelectItem={onOpenItem}>
+              Open
+            </SelectItemButton>
+            <SelectItemButton index={index} onSelectItem={onDeleteItem}>
+              Delete
+            </SelectItemButton>
           </li>
         );
       })}
