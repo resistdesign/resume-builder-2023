@@ -41,6 +41,7 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
   const onNavBack = useCallback(() => {
     setNav(nav.slice(0, nav.length - 1));
   }, [nav, setNav]);
+  // TODO: Handle opening arrays as Lists.
 
   return (
     <TypeStructureComponent

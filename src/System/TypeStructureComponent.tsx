@@ -90,8 +90,6 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
   );
 
   if (isForm) {
-    // TODO: Submit buttons???
-    // TODO: Reset buttons???
     return (
       <Form key={typeStructureName} onSubmit={onFormSubmit}>
         {typeStructureContent.map((tS) => {
@@ -101,7 +99,6 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
             [TAG_TYPES.label]: { value: tSLabel = tSName } = {},
           } = tSTags;
           const inputLabel = typeof tSLabel === 'string' ? tSLabel : tSName;
-          // TODO: Handle opening arrays as Lists.
 
           if (tSLiteral || tSInline) {
             return (
@@ -121,6 +118,10 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
             );
           }
         })}
+        <div>
+          <button type="reset">Reset</button>
+          <button type="submit">Submit</button>
+        </div>
       </Form>
     );
   } else {
