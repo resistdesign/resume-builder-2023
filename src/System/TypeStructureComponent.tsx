@@ -22,6 +22,7 @@ export type TypeStructureComponentProps = {
   typeStructure: TypeStructure;
   value: any;
   onChange: (name: string, value: any) => void;
+  onNavigateToPath: (path: string[]) => void;
 };
 
 export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
@@ -86,7 +87,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
               />
             );
           } else {
-            // TODO: Open a sub-form.
+            // TODO: Open a sub-form. (Use field label.)
             return <button>Open Form</button>;
           }
         })}

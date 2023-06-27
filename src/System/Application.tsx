@@ -31,6 +31,15 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
     },
     [hashMatrix, nav, onChange]
   );
+  const onNavToPath = useCallback(
+    (path: NavigationPath) => {
+      setNav(path);
+    },
+    [setNav]
+  );
+  const onNavBack = useCallback(() => {
+    setNav(nav.slice(0, nav.length - 1));
+  }, [nav, setNav]);
 
   return (
     <TypeStructureComponent
