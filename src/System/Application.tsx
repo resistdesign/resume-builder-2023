@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren, useMemo, useState } from 'react';
+import React, { FC, PropsWithChildren, useCallback, useMemo, useState } from 'react';
 import { getTypeStructureByPath, TypeStructureMap } from './TypeParsing/TypeUtils';
 import { TypeStructureComponent } from './TypeStructureComponent';
 import HashMatrix from './ValueProcessing/HashMatrix';
@@ -20,6 +20,16 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
   const currentTypeStructure = useMemo(
     () => getTypeStructureByPath(nav, typeStructure, typeStructureMap),
     [nav, typeStructure, typeStructureMap]
+  );
+  const onChangeInternal = useCallback(
+    (name: string, value: any) => {
+      hashMatrix.setPath(
+        nav.map((p) => `${p}`),
+        value
+      );
+      onChange(hashMatrix.getValue());
+    },
+    [hashMatrix, nav, onChange]
   );
 
   return (
