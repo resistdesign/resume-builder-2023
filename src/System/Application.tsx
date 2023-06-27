@@ -33,9 +33,10 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
   );
   const onNavToPath = useCallback(
     (path: NavigationPath) => {
-      setNav(path);
+      // TODO: Navigating back needs to remove entire path chunks that are added at once.
+      setNav([...nav, ...path]);
     },
-    [setNav]
+    [nav, setNav]
   );
   const onNavBack = useCallback(() => {
     setNav(nav.slice(0, nav.length - 1));
@@ -47,6 +48,7 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
       typeStructure={currentTypeStructure}
       value={currentValue}
       onChange={onChangeInternal}
+      onNavigateToPath={onNavToPath}
     />
   );
 };

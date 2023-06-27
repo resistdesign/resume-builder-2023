@@ -17,12 +17,27 @@ export enum TAG_TYPES {
   layout = 'layout',
 }
 
+type OpenFormButtonProps = {
+  name: string;
+  label: string;
+  onOpenForm: (name: string) => void;
+};
+
+const OpenFormButton: FC<OpenFormButtonProps> = ({ name, label, onOpenForm }) => {
+  const onOpenFormInternal = useCallback(() => {
+    onOpenForm(name);
+  }, [name, onOpenForm]);
+
+  return <button onClick={onOpenFormInternal}>Edit {label}</button>;
+};
+
 export type TypeStructureComponentProps = {
   typeStructureMap: TypeStructureMap;
   typeStructure: TypeStructure;
   value: any;
   onChange: (name: string, value: any) => void;
   onNavigateToPath: (path: string[]) => void;
+  navigationPathPrefix?: string[];
 };
 
 export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
@@ -30,6 +45,8 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
   typeStructure,
   value,
   onChange,
+  onNavigateToPath,
+  navigationPathPrefix = [],
 }) => {
   const isForm = useMemo(() => {
     const { content = [] } = typeStructure;
@@ -65,6 +82,12 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
   const onFormSubmit = useCallback(() => {
     onChange(typeStructureName, internalValue);
   }, [typeStructureName, internalValue]);
+  const onNavigateToPathInternal = useCallback(
+    (path: string[] = []) => {
+      onNavigateToPath([...navigationPathPrefix, ...path]);
+    },
+    [onNavigateToPath, navigationPathPrefix]
+  );
 
   if (isForm) {
     // TODO: Submit buttons???
@@ -73,7 +96,11 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
       <Form key={typeStructureName} onSubmit={onFormSubmit}>
         {typeStructureContent.map((tS) => {
           const { name: tSName, tags: tSTags = {}, literal: tSLiteral = false } = tS;
-          const { [TAG_TYPES.inline]: { value: tSInline = undefined } = {} } = tSTags;
+          const {
+            [TAG_TYPES.inline]: { value: tSInline = false } = {},
+            [TAG_TYPES.label]: { value: tSLabel = tSName } = {},
+          } = tSTags;
+          const inputLabel = typeof tSLabel === 'string' ? tSLabel : tSName;
           // TODO: Handle opening arrays as Lists.
 
           if (tSLiteral || tSInline) {
@@ -84,11 +111,14 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
                 typeStructure={tS}
                 value={value?.[tSName]}
                 onChange={onPropertyChange}
+                onNavigateToPath={onNavigateToPathInternal}
+                navigationPathPrefix={[tSName]}
               />
             );
           } else {
-            // TODO: Open a sub-form. (Use field label.)
-            return <button>Open Form</button>;
+            return (
+              <OpenFormButton key={tSName} name={tSName} label={inputLabel} onOpenForm={onNavigateToPathInternal} />
+            );
           }
         })}
       </Form>
