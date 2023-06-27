@@ -3,6 +3,8 @@ import React, { FC, useState } from 'react';
 import { Form } from './System/Form';
 import { Input } from './System/Input';
 
+// TODO: i18n.
+
 export const App: FC = () => {
   const [person, setPerson] = useState({});
 
