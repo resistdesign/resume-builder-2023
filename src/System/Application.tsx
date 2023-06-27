@@ -14,7 +14,11 @@ export type ApplicationProps<TypeStructureMapType extends TypeStructureMap> = Pr
 
 export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value, entryType, onChange, children }) => {
   const typeStructure = useMemo(() => typeStructureMap[entryType], [typeStructureMap, entryType]);
-  const [nav, setNav] = useState<NavigationPath>([]);
+  const [navCollection, setNavCollection] = useState<NavigationPath[]>([]);
+  const nav = useMemo<NavigationPath>(
+    () => navCollection.reduce((acc, navPathCluster) => [...acc, ...navPathCluster], [] as NavigationPath),
+    [navCollection]
+  );
   const hashMatrix = useMemo(() => new HashMatrix(value), [value]);
   const currentValue = useMemo(() => hashMatrix.getPath(nav.map((p) => `${p}`)), [hashMatrix, nav]);
   const currentTypeStructure = useMemo(
@@ -33,14 +37,13 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
   );
   const onNavToPath = useCallback(
     (path: NavigationPath) => {
-      // TODO: Navigating back needs to remove entire path chunks that are added at once.
-      setNav([...nav, ...path]);
+      setNavCollection([...navCollection, path]);
     },
-    [nav, setNav]
+    [navCollection, setNavCollection]
   );
   const onNavBack = useCallback(() => {
-    setNav(nav.slice(0, nav.length - 1));
-  }, [nav, setNav]);
+    setNavCollection(navCollection.slice(0, -1));
+  }, [navCollection, setNavCollection]);
   // TODO: Handle opening arrays as Lists.
 
   return (
