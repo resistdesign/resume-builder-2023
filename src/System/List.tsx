@@ -44,6 +44,10 @@ export const List: FC<ListProps> = ({
     return typeof value === 'string' ? value : '';
   }, [typeStructure]);
   const itemsArePrimitive = useMemo(() => getTypeStructureIsPrimitive(typeStructure), [typeStructure]);
+  const getItemLabel = useCallback(
+    (item: any) => (itemsArePrimitive ? getCleanPrimitiveStringValue(item) : getItemName(item, itemNameTemplate)),
+    [itemsArePrimitive, itemNameTemplate]
+  );
   const onChangeInternal = useCallback(
     (value: any) => {
       if (onChange) {
@@ -76,7 +80,7 @@ export const List: FC<ListProps> = ({
       {items.map((item, index) => {
         return (
           <li key={index}>
-            {itemsArePrimitive ? getCleanPrimitiveStringValue(item) : getItemName(item, itemNameTemplate)}
+            {getItemLabel(item)}
             <SelectItemButton index={index} onSelectItem={onOpenItem}>
               Open
             </SelectItemButton>
