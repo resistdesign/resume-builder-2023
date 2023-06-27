@@ -402,3 +402,26 @@ export const getTypeStructureByName = <
   name: TypeStructureName,
   map: TypeStructureMapType
 ) => map[name];
+
+export const getTypeStructureByPath = (
+  path: (string | number)[],
+  typeStructure: TypeStructure,
+  typeStructureMap: TypeStructureMap
+) => {
+  const { multiple = false, content = [], literal = false, type = '' } = typeStructure;
+  const [_numericPathPart, ...multiPath] = path;
+  const targetPath = multiple ? multiPath : path;
+
+  let tS = literal ? typeStructure : getTypeStructureByName(type, typeStructureMap);
+
+  if (targetPath.length > 0) {
+    const [targetPathPart, ...remainingPath] = targetPath;
+    const targetContent = content.find(({ name }) => name === targetPathPart);
+
+    if (targetContent) {
+      tS = getTypeStructureByPath(remainingPath, targetContent, typeStructureMap);
+    }
+  }
+
+  return tS;
+};

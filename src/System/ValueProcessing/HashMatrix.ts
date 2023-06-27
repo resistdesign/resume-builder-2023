@@ -27,9 +27,9 @@ export default class HashMatrix {
     return numeric;
   }
 
-  _changeHandlerMap: Record<any, Function[]> = {};
+  private _changeHandlerMap: Record<any, Function[]> = {};
 
-  _errorHandlerMap: Record<any, Function[]> = {};
+  private _errorHandlerMap: Record<any, Function[]> = {};
 
   name?: string;
 
@@ -53,7 +53,7 @@ export default class HashMatrix {
     this._setDefaultName();
   }
 
-  _setDefaultName() {
+  private _setDefaultName() {
     if (!this.hasOwnProperty('name')) {
       if (typeof (this.constructor as Record<any, any>).DEFAULT_NAME === 'string') {
         this.name = (this.constructor as Record<any, any>).DEFAULT_NAME;
@@ -240,7 +240,7 @@ export default class HashMatrix {
     this.onError(error, '', pathString);
   }
 
-  _setErrorInternal(path: HashMatrixPathPartType, error: any): void {
+  private _setErrorInternal(path: HashMatrixPathPartType, error: any): void {
     if (this.hashMatrix instanceof HashMatrix) {
       return this.hashMatrix.setError(this.getPathArray(path, this.targetPath), error);
     }
@@ -252,7 +252,7 @@ export default class HashMatrix {
     return this._setErrorInternal(path, error);
   }
 
-  _getPathInternal(path?: HashMatrixPathPartType): any {
+  private _getPathInternal(path?: HashMatrixPathPartType): any {
     if (this.hashMatrix instanceof HashMatrix) {
       return this.hashMatrix.getPath(this.getPathArray(path, this.targetPath));
     }
@@ -289,7 +289,7 @@ export default class HashMatrix {
     return this._getPathInternal(path);
   }
 
-  _setPathInternal(path?: HashMatrixPathPartType, value?: any): void {
+  private _setPathInternal(path?: HashMatrixPathPartType, value?: any): void {
     if (this.hashMatrix instanceof HashMatrix) {
       return this.hashMatrix.setPath(this.getPathArray(path, this.targetPath), value);
     }
@@ -356,7 +356,7 @@ export default class HashMatrix {
     return this.setPath([], value);
   }
 
-  _invalidationDebounceTimeout?: any;
+  private _invalidationDebounceTimeout?: any;
 
   invalidate() {
     if (!this.preventInvalidation) {
