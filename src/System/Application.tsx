@@ -1,6 +1,6 @@
 import React, { FC, PropsWithChildren, useCallback, useMemo, useState } from 'react';
-import { getTypeStructureByPath, getTypeStructureIsPrimitive, TypeStructureMap } from './TypeParsing/TypeUtils';
-import { TAG_TYPES, TypeStructureComponent } from './TypeStructureComponent';
+import { getTypeStructureByPath, TypeStructureMap } from './TypeParsing/TypeUtils';
+import { TypeStructureComponent } from './TypeStructureComponent';
 import HashMatrix from './ValueProcessing/HashMatrix';
 import { List } from './List';
 
@@ -26,15 +26,7 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
     () => getTypeStructureByPath(nav, typeStructure, typeStructureMap),
     [nav, typeStructure, typeStructureMap]
   );
-  const {
-    name: currentTypeStructureName = '',
-    multiple: currentTypeIsMultiple = false,
-    tags: { [TAG_TYPES.itemName]: { value: currentTypeStructureLabelTemplate = '' } = {} } = {},
-  } = currentTypeStructure;
-  const currentTypeStructureIsPrimitive = useMemo(
-    () => getTypeStructureIsPrimitive(currentTypeStructure),
-    [currentTypeStructure]
-  );
+  const { name: currentTypeStructureName = '', multiple: currentTypeIsMultiple = false } = currentTypeStructure;
   const onChangeInternal = useCallback(
     (name: string, value: any) => {
       hashMatrix.setPath(
@@ -58,11 +50,10 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
   return currentTypeIsMultiple ? (
     <List
       name={currentTypeStructureName}
+      typeStructure={currentTypeStructure}
       items={currentValue}
       onChange={onChangeInternal}
       onNavigateToPath={onNavToPath}
-      itemNameTemplate={currentTypeStructureLabelTemplate}
-      itemsArePrimitive={currentTypeStructureIsPrimitive}
     />
   ) : (
     <TypeStructureComponent
