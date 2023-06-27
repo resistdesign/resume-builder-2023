@@ -88,6 +88,12 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     },
     [onNavigateToPath, navigationPathPrefix]
   );
+  const onOpenForm = useCallback(
+    (name: string) => {
+      onNavigateToPathInternal([name]);
+    },
+    [onNavigateToPathInternal]
+  );
 
   if (isForm) {
     return (
@@ -113,9 +119,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
               />
             );
           } else {
-            return (
-              <OpenFormButton key={tSName} name={tSName} label={inputLabel} onOpenForm={onNavigateToPathInternal} />
-            );
+            return <OpenFormButton key={tSName} name={tSName} label={inputLabel} onOpenForm={onOpenForm} />;
           }
         })}
         <div>
