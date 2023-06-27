@@ -67,9 +67,8 @@ export const List: FC<ListProps> = ({
     },
     [name, onNavigateToPath]
   );
-  // TODO: Edit/View/Details/Delete buttons.
+  // TODO: Delete buttons.
   // TODO: Reordering.
-  // TODO: String label template.
 
   return (
     <ul>
