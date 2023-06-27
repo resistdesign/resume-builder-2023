@@ -191,3 +191,23 @@ export const getTypeStructureIsPrimitive = (typeStructure: TypeStructure) => {
 
   return literal && content.length === 0;
 };
+
+export const getDefaultItemForTypeStructure = (typeStructure: TypeStructure): any => {
+  const { type, multiple } = typeStructure;
+  const isPrimitive = getTypeStructureIsPrimitive(typeStructure);
+
+  if (isPrimitive) {
+    switch (type) {
+      case 'string':
+        return '';
+      case 'number':
+        return 0;
+      case 'boolean':
+        return false;
+      default:
+        return undefined;
+    }
+  } else {
+    return multiple ? [] : {};
+  }
+};

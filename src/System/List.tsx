@@ -45,6 +45,7 @@ export const List: FC<ListProps> = ({
         return (
           <li key={index}>
             {itemsArePrimitive ? getCleanPrimitiveStringValue(item) : getItemName(item, itemNameTemplate)}
+
           </li>
         );
       })}
