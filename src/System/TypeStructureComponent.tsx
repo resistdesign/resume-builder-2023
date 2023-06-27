@@ -15,6 +15,7 @@ export enum TAG_TYPES {
   label = 'label',
   inline = 'inline',
   layout = 'layout',
+  itemName = 'itemName',
 }
 
 type OpenFormButtonProps = {
@@ -62,7 +63,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     const { contentNames } = typeStructure;
 
     return getTypeStructureWithFilteredContent(contentNames, typeStructure);
-  }, [typeStructureMap, typeStructure]);
+  }, [typeStructure]);
   const inputType = TYPE_TO_INPUT_TYPE_MAP[typeStructureType];
   const {
     [TAG_TYPES.label]: { value: typeStructureLabel = undefined } = {},
