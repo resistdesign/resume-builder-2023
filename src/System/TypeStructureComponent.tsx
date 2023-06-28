@@ -21,6 +21,7 @@ export const TYPE_TO_INPUT_TYPE_MAP: Record<string, string> = {
   number: 'number',
   boolean: 'checkbox',
   Date: 'date',
+  DateTime: 'datetime-local',
   any: 'text',
 };
 
@@ -239,8 +240,10 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
           } = tSTags;
           const inputLabel = typeof tSLabel === 'string' ? tSLabel : tSName;
           const inpType = typeof tSType === 'string' ? TYPE_TO_INPUT_TYPE_MAP[tSType] : undefined;
+          const tSTypeIsTypeStructure = typeof tSType === 'string' && !!typeStructureMap[tSType];
+          const useInputType = inpType || !tSTypeIsTypeStructure;
 
-          if (tSLiteral || tSInline || inpType) {
+          if (tSLiteral || tSInline || useInputType) {
             return (
               <TypeStructureComponent
                 key={tSName}
