@@ -1,5 +1,10 @@
 import React, { FC, useCallback, useMemo, useState } from 'react';
-import { getTypeStructureWithFilteredContent, TypeStructure, TypeStructureMap } from './TypeParsing/TypeUtils';
+import {
+  getTypeStructureIsPrimitive,
+  getTypeStructureWithFilteredContent,
+  TypeStructure,
+  TypeStructureMap,
+} from './TypeParsing/TypeUtils';
 import { Input } from './Input';
 import { Form } from './Form';
 
@@ -113,18 +118,22 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     [onNavigateToPathInternal]
   );
 
+  if (typeStructureInline) {
+    console.log(typeStructure);
+  }
+
   if (isForm) {
     return (
       <Form key={typeStructureName} style={formStyle} onSubmit={onFormSubmit}>
         {typeStructureContent.map((tS) => {
-          const { name: tSName, tags: tSTags = {}, literal: tSLiteral = false } = tS;
+          const { name: tSName, tags: tSTags = {} } = tS;
           const {
             [TAG_TYPES.inline]: { value: tSInline = false } = {},
             [TAG_TYPES.label]: { value: tSLabel = tSName } = {},
           } = tSTags;
           const inputLabel = typeof tSLabel === 'string' ? tSLabel : tSName;
 
-          if (tSLiteral || tSInline) {
+          if (getTypeStructureIsPrimitive(tS) || tSInline) {
             return (
               <TypeStructureComponent
                 key={tSName}
