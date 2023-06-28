@@ -53,6 +53,9 @@
         "tags": {
           "label": {
             "value": "State"
+          },
+          "options": {
+            "value": "StateOptions"
           }
         },
         "optional": false,
@@ -66,6 +69,9 @@
         "tags": {
           "label": {
             "value": "Country"
+          },
+          "options": {
+            "value": "CountryOptions"
           }
         },
         "optional": false,
@@ -83,6 +89,1758 @@
         },
         "optional": false,
         "readonly": false
+      }
+    ]
+  },
+  "CountryOptions": {
+    "comments": [],
+    "tags": {},
+    "name": "CountryOptions",
+    "type": "CountryOptions",
+    "varietyType": true,
+    "content": [
+      {
+        "name": "CountryOptions",
+        "type": "'AF'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'AX'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'AL'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'DZ'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'AS'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'AD'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'AO'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'AI'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'AQ'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'AG'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'AR'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'AM'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'AW'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'AU'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'AT'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'AZ'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'BS'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'BH'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'BD'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'BB'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'BY'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'BE'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'BZ'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'BJ'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'BM'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'BT'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'BO'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'BQ'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'BA'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'BW'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'BV'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'BR'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'IO'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'BN'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'BG'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'BF'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'BI'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'KH'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'CM'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'CA'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'CV'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'KY'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'CF'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'TD'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'CL'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'CN'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'CX'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'CC'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'CO'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'KM'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'CG'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'CD'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'CK'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'CR'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'CI'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'HR'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'CU'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'CW'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'CY'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'CZ'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'DK'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'DJ'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'DM'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'DO'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'EC'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'EG'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'SV'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'GQ'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'ER'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'EE'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'ET'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'FK'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'FO'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'FJ'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'FI'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'FR'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'GF'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'PF'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'TF'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'GA'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'GM'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'GE'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'DE'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'GH'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'GI'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'GR'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'GL'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'GD'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'GP'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'GU'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'GT'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'GG'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'GN'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'GW'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'GY'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'HT'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'HM'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'VA'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'HN'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'HK'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'HU'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'IS'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'IN'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'ID'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'IR'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'IQ'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'IE'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'IM'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'IL'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'IT'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'JM'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'JP'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'JE'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'JO'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'KZ'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'KE'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'KI'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'KP'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'KR'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'KW'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'KG'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'LA'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'LV'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'LB'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'LS'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'LR'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'LY'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'LI'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'LT'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'LU'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'MO'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'MK'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'MG'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'MW'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'MY'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'MV'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'ML'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'MT'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'MH'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'MQ'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'MR'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'MU'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'YT'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'MX'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'FM'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'MD'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'MC'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'MN'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'ME'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'MS'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'MA'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'MZ'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'MM'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'NA'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'NR'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'NP'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'NL'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'NC'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'NZ'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'NI'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'NE'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'NG'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'NU'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'NF'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'MP'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'NO'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'OM'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'PK'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'PW'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'PS'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'PA'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'PG'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'PY'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'PE'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'PH'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'PN'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'PL'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'PT'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'PR'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'QA'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'RE'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'RO'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'RU'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'RW'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'BL'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'SH'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'KN'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'LC'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'MF'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'PM'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'VC'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'WS'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'SM'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'ST'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'SA'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'SN'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'RS'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'SC'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'SL'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'SG'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'SX'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'SK'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'SI'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'SB'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'SO'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'ZA'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'GS'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'SS'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'ES'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'LK'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'SD'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'SR'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'SJ'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'SZ'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'SE'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'CH'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'SY'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'TW'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'TJ'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'TZ'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'TH'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'TL'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'TG'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'TK'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'TO'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'TT'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'TN'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'TR'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'TM'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'TC'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'TV'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'UG'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'UA'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'AE'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'GB'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'US'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'UM'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'UY'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'UZ'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'VU'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'VE'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'VN'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'VG'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'VI'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'WF'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'EH'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'YE'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'ZM'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "CountryOptions",
+        "type": "'ZW'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
       }
     ]
   },
@@ -521,6 +2279,365 @@
         ],
         "optional": false,
         "readonly": false
+      }
+    ]
+  },
+  "StateOptions": {
+    "comments": [],
+    "tags": {},
+    "name": "StateOptions",
+    "type": "StateOptions",
+    "varietyType": true,
+    "content": [
+      {
+        "name": "StateOptions",
+        "type": "'AL'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'AK'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'AZ'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'AR'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'CA'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'CO'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'CT'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'DE'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'FL'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'GA'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'HI'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'ID'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'IL'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'IN'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'IA'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'KS'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'KY'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'LA'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'ME'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'MD'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'MA'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'MI'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'MN'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'MS'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'MO'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'MT'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'NE'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'NV'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'NH'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'NJ'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'NM'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'NY'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'NC'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'ND'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'OH'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'OK'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'OR'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'PA'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'RI'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'SC'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'SD'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'TN'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'TX'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'UT'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'VT'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'VA'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'WA'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'WV'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'WI'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
+      },
+      {
+        "name": "StateOptions",
+        "type": "'WY'",
+        "literal": true,
+        "comments": [],
+        "tags": {}
       }
     ]
   }

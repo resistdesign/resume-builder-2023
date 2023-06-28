@@ -13,10 +13,12 @@ export type Address = {
   city: string;
   /**
    * @label State
+   * @options StateOptions
    */
   state: string;
   /**
    * @label Country
+   * @options CountryOptions
    */
   country: string;
   /**
