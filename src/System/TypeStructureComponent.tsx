@@ -154,7 +154,19 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
   }, [topLevel, typeStructureName]);
   const onFormSubmit = useCallback(() => {
     onChange(submissionTypeName, internalValue);
-  }, [topLevel, submissionTypeName, internalValue]);
+
+    if (onNavigateBack) {
+      onNavigateBack();
+    }
+  }, [topLevel, submissionTypeName, internalValue, onNavigateBack]);
+  const onResetForm = useCallback(() => {
+    setInternalValue(value);
+  }, [value]);
+  const onCancelForm = useCallback(() => {
+    if (onNavigateBack) {
+      onNavigateBack();
+    }
+  }, [onNavigateBack]);
   const onPropertyChange = useCallback(
     (n: string, v: any) => {
       const newValue = {
@@ -194,7 +206,6 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
   const formProps = useMemo(() => {
     return isMainForm ? { onSubmit: onFormSubmit } : {};
   }, [isMainForm, onFormSubmit]);
-  // TODO: Add nav back.
 
   if (isForm) {
     return (
@@ -239,7 +250,18 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
                 flex: '1 0 auto',
                 width: 'auto',
               }}
-              type="reset"
+              type="button"
+              onClick={onCancelForm}
+            >
+              Cancel
+            </button>
+            <button
+              style={{
+                flex: '1 0 auto',
+                width: 'auto',
+              }}
+              type="button"
+              onClick={onResetForm}
             >
               Reset
             </button>

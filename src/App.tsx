@@ -4,11 +4,11 @@ import TSM from '././Meta/TypeStructureMap.json';
 import { Application } from './System/Application';
 import { createGlobalStyle } from 'styled-components';
 
-const GlobalStyle = createGlobalStyle`
+const GlobalStyle: FC = createGlobalStyle`
   html {
     margin: 1em;
   }
-`;
+` as any;
 
 // TODO: i18n.
 
