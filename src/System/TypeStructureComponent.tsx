@@ -87,7 +87,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
         ? {
             flex: '1 0 auto',
             display: 'grid',
-            gridTemplate: typeStructureLayout,
+            gridTemplate: typeStructureLayout.trim(),
           }
         : undefined,
     [typeStructureLayout]
