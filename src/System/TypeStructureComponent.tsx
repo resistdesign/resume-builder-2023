@@ -170,7 +170,13 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
       return baseStye;
     }
   }, [typeStructureLayout, typeStructureName, topLevel]);
-  const [internalValue, setInternalValue] = useState(value);
+  const [internalValueBase, setInternalValue] = useState(value);
+  const valueLastChanged = useMemo(() => new Date().getTime(), [value]);
+  const internalValueLastChanged = useMemo(() => new Date().getTime(), [internalValueBase]);
+  const internalValue = useMemo(
+    () => (valueLastChanged > internalValueLastChanged ? value : internalValueBase),
+    [value, internalValueBase, valueLastChanged, internalValueLastChanged]
+  );
   const submissionTypeName = useMemo(() => {
     return topLevel ? '' : typeStructureName;
   }, [topLevel, typeStructureName]);
