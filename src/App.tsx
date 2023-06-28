@@ -17,6 +17,7 @@ const GlobalStyle: FC = createGlobalStyle`
 ` as any;
 
 // TODO: i18n.
+// TODO: Printing.
 
 export const App: FC = () => {
   const [resume, setResume] = useState(DEFAULT_RESUME);
