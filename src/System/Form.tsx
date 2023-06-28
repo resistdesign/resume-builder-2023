@@ -1,10 +1,12 @@
-import { ChangeEvent, FC, PropsWithChildren, useCallback } from 'react';
+import { ChangeEvent, FC, HTMLAttributes, PropsWithChildren, useCallback } from 'react';
 
-export type FormProps = PropsWithChildren & {
-  onSubmit: () => void;
-};
+export type FormProps = PropsWithChildren<
+  HTMLAttributes<HTMLFormElement> & {
+    onSubmit: () => void;
+  }
+>;
 
-export const Form: FC<FormProps> = ({ onSubmit, children }) => {
+export const Form: FC<FormProps> = ({ onSubmit, children, ...otherProps }) => {
   const onSubmitInternal = useCallback(
     (event: ChangeEvent<HTMLFormElement>) => {
       event.preventDefault();
@@ -14,5 +16,9 @@ export const Form: FC<FormProps> = ({ onSubmit, children }) => {
     [onSubmit]
   );
 
-  return <form onSubmit={onSubmitInternal}>{children}</form>;
+  return (
+    <form {...otherProps} onSubmit={onSubmitInternal}>
+      {children}
+    </form>
+  );
 };

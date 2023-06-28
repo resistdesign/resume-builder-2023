@@ -70,6 +70,17 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     // TODO: Consider layout.
     [TAG_TYPES.layout]: { value: typeStructureLayout = undefined } = {},
   } = typeStructureTags;
+  const formStyle = useMemo(
+    () =>
+      typeof typeStructureLayout === 'string'
+        ? {
+            flex: '1 0 auto',
+            display: 'grid',
+            gridTemplate: typeStructureLayout,
+          }
+        : undefined,
+    [typeStructureLayout]
+  );
   const [internalValue, setInternalValue] = useState(value);
   const onPropertyChange = useCallback(
     (n: string, v: any) => {
@@ -98,7 +109,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
 
   if (isForm) {
     return (
-      <Form key={typeStructureName} onSubmit={onFormSubmit}>
+      <Form key={typeStructureName} style={formStyle} onSubmit={onFormSubmit}>
         {typeStructureContent.map((tS) => {
           const { name: tSName, tags: tSTags = {}, literal: tSLiteral = false } = tS;
           const {
