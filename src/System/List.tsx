@@ -85,9 +85,6 @@ export const List: FC<ListProps> = ({
     },
     [selectedIndices, setSelectedIndices]
   );
-  const onDeselectAllItems = useCallback(() => {
-    setSelectedIndices([]);
-  }, [setSelectedIndices]);
   const onSetItemsAreMoving = useCallback(() => {
     setItemsAreMoving(true);
   }, [setItemsAreMoving]);
@@ -154,7 +151,7 @@ export const List: FC<ListProps> = ({
             </SelectItemButton>
           </li>
           <li>
-            <button onClick={onDeselectAllItems}>Cancel</button>
+            <button onClick={onCleanupMovingItems}>Cancel</button>
           </li>
         </>
       ) : undefined}
