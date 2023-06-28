@@ -232,14 +232,15 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     return (
       <FormComp key={typeStructureName} style={formStyle} {...(formProps as any)}>
         {typeStructureContent.map((tS) => {
-          const { name: tSName, tags: tSTags = {}, literal: tSLiteral = false } = tS;
+          const { name: tSName, tags: tSTags = {}, literal: tSLiteral = false, type: tSType } = tS;
           const {
             [TAG_TYPES.inline]: { value: tSInline = false } = {},
             [TAG_TYPES.label]: { value: tSLabel = tSName } = {},
           } = tSTags;
           const inputLabel = typeof tSLabel === 'string' ? tSLabel : tSName;
+          const inpType = typeof tSType === 'string' ? TYPE_TO_INPUT_TYPE_MAP[tSType] : undefined;
 
-          if (tSLiteral || tSInline) {
+          if (tSLiteral || tSInline || inpType) {
             return (
               <TypeStructureComponent
                 key={tSName}
