@@ -187,11 +187,12 @@ export const getMergeTypeStructure = (...typeStructures: TypeStructure[]): TypeS
 export const getTypeStructureByPath = (
   path: (string | number)[],
   typeStructure: TypeStructure,
-  typeStructureMap: TypeStructureMap
+  typeStructureMap: TypeStructureMap,
+  isItemSubPath: boolean = false
 ): TypeStructure => {
   const { multiple = false, content = [], type = '' } = typeStructure;
   const [_numericPathPart, ...multiPath] = path;
-  const targetPath = multiple ? multiPath : path;
+  const targetPath = multiple && isItemSubPath ? multiPath : path;
 
   let tS = getMergeTypeStructure(getTypeStructureByName(type, typeStructureMap), typeStructure);
 
@@ -285,8 +286,6 @@ export const getValueLabel = (value: any, typeStructure: TypeStructure, typeStru
 
       templateValueItem[key] = getValueLabel(value?.[key], typeStructureItem, typeStructureMap);
     }
-
-    console.log(templateValueItem);
 
     return getItemName(templateValueItem, itemNameTemplate);
   } else {
