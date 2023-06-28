@@ -17,14 +17,28 @@ import { FORM_CONTROLS_GRID_AREA, getTypeStructureLayoutGridTemplate } from './L
 import styled from 'styled-components';
 
 type LayoutContainerProps = {
-  isGrid?: boolean;
+  $isGrid?: boolean;
 };
 
 const LayoutForm = styled(Form)<LayoutContainerProps>`
-  display: ${(p) => (p.isGrid ? 'grid' : 'flex')};
+  flex: 1 0 auto;
+  display: ${(p) => (p.$isGrid ? 'grid' : 'block')};
+
+  @media screen and (max-width: 768px) {
+    diplsay: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+  }
 `;
 const LayoutBox = styled.div<LayoutContainerProps>`
-  display: ${(p) => (p.isGrid ? 'grid' : 'flex')};
+  flex: 1 0 auto;
+  display: ${(p) => (p.$isGrid ? 'grid' : 'block')};
+
+  @media screen and (max-width: 768px) {
+    diplsay: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+  }
 `;
 
 export const TYPE_TO_INPUT_TYPE_MAP: Record<string, string> = {
@@ -143,7 +157,6 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
   const hasTypeStructureLayout = useMemo(() => typeof typeStructureLayout === 'string', [typeStructureLayout]);
   const formStyle = useMemo(() => {
     const baseStye = {
-      flex: '1 0 auto',
       gridArea: !topLevel ? typeStructureName : undefined,
     };
 
@@ -151,8 +164,6 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
       ? {
           ...baseStye,
           gridTemplate: getTypeStructureLayoutGridTemplate(typeStructureLayout, topLevel),
-          gap: '1em',
-          flexWrap: 'wrap',
         }
       : baseStye;
   }, [hasTypeStructureLayout, typeStructureLayout, typeStructureName, topLevel]);
@@ -220,7 +231,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
   const formProps = useMemo(() => {
     return {
       ...(isMainForm ? { onSubmit: onFormSubmit } : {}),
-      isGrid: hasTypeStructureLayout,
+      $isGrid: hasTypeStructureLayout,
     };
   }, [isMainForm, onFormSubmit, hasTypeStructureLayout]);
 
