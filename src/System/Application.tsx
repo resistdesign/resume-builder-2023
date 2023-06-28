@@ -3,8 +3,7 @@ import { getTypeStructureByPath, TypeStructureMap } from './TypeParsing/TypeUtil
 import { TypeStructureComponent } from './TypeStructureComponent';
 import HashMatrix from './ValueProcessing/HashMatrix';
 import { List } from './List';
-
-export type NavigationPath = (string | number)[];
+import {NavigationBreadcrumb, useNavigation} from './Navigation';
 
 export type ApplicationProps<TypeStructureMapType extends TypeStructureMap> = {
   typeStructureMap: TypeStructureMapType;
@@ -15,11 +14,7 @@ export type ApplicationProps<TypeStructureMapType extends TypeStructureMap> = {
 
 export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value, entryType, onChange }) => {
   const typeStructure = useMemo(() => typeStructureMap[entryType], [typeStructureMap, entryType]);
-  const [navCollection, setNavCollection] = useState<NavigationPath[]>([]);
-  const nav = useMemo<NavigationPath>(
-    () => navCollection.reduce((acc, navPathCluster) => [...acc, ...navPathCluster], [] as NavigationPath),
-    [navCollection]
-  );
+  const { trail, path, onNavigateTo, onNavigateBack } = useNavigation();
   const hashMatrix = useMemo(
     () =>
       new HashMatrix({
@@ -27,55 +22,46 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
       }),
     [value]
   );
-  const currentValue = useMemo(() => hashMatrix.getPath(nav.map((p) => `${p}`)), [hashMatrix, nav]);
+  const currentValue = useMemo(() => hashMatrix.getPath(path.map((p) => `${p}`)), [hashMatrix, path]);
   const currentTypeStructure = useMemo(
-    () => getTypeStructureByPath(nav, typeStructure, typeStructureMap),
-    [nav, typeStructure, typeStructureMap]
+    () => getTypeStructureByPath(path, typeStructure, typeStructureMap),
+    [path, typeStructure, typeStructureMap]
   );
   const { name: currentTypeName, multiple: currentTypeIsMultiple = false } = currentTypeStructure;
-  const currentValueIsItemInList = useMemo(
-    () =>
-      // TODO: This is a temporary hack.
-      currentTypeIsMultiple && nav[nav.length - 2] === currentTypeName && !isNaN(parseFloat(`${nav[nav.length - 1]}`)),
-    [nav, currentTypeName, currentTypeIsMultiple]
-  );
+  const currentValueIsItemInList = useMemo(() => {
+      const {
+          isListItem = false,
+      }: Partial<NavigationBreadcrumb> = trail[trail.length - 1] || {};
+
+      return isListItem;
+  }, [trail]);
   const onChangeInternal = useCallback(
     (name: string, value: any) => {
-      const stringNav = nav.map((p) => `${p}`);
+      const stringNav = path.map((p) => `${p}`);
 
       hashMatrix.setPath(!!name ? [...stringNav, name] : stringNav, value);
       onChange(hashMatrix.getValue());
     },
-    [hashMatrix, nav, onChange]
+    [hashMatrix, path, onChange]
   );
   const onListChange = useCallback(
     (value: any) => {
       hashMatrix.setPath(
-        nav.map((p) => `${p}`),
+          path.map((p) => `${p}`),
         value
       );
       onChange(hashMatrix.getValue());
     },
-    [hashMatrix, nav, onChange]
+    [hashMatrix, path, onChange]
   );
-  const onNavToPath = useCallback(
-    (path: NavigationPath) => {
-      setNavCollection([...navCollection, path]);
-    },
-    [navCollection, setNavCollection]
-  );
-  const onNavBack = useCallback(() => {
-    setNavCollection(navCollection.slice(0, -1));
-  }, [navCollection, setNavCollection]);
-  // TODO: Breadcrumbs.
-  // TODO: Fix up navigation entirely with nav item objects.
+  // TODO: Add nav back to List and TypeStructureComponent.
 
   return currentTypeIsMultiple && !currentValueIsItemInList ? (
     <List
       typeStructure={currentTypeStructure}
       items={currentValue}
       onChange={onListChange}
-      onNavigateToPath={onNavToPath}
+      onNavigateToPath={onNavigateTo}
     />
   ) : (
     <TypeStructureComponent
@@ -83,7 +69,7 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
       typeStructure={currentTypeStructure}
       value={currentValue}
       onChange={onChangeInternal}
-      onNavigateToPath={onNavToPath}
+      onNavigateToPath={onNavigateTo}
       topLevel
     />
   );

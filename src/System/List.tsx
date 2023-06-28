@@ -1,6 +1,7 @@
 import React, { FC, PropsWithChildren, useCallback, useMemo, useState } from 'react';
 import { getDefaultItemForTypeStructure, getTypeStructureIsPrimitive, TypeStructure } from './TypeParsing/TypeUtils';
 import { TAG_TYPES } from './TypeStructureComponent';
+import { NavigateBackHandler, NavigateToHandler } from './Navigation';
 
 export const getCleanPrimitiveStringValue = (value: any): string =>
   value !== undefined && value !== null ? `${value}` : '';
@@ -27,10 +28,17 @@ export type ListProps = {
   typeStructure: TypeStructure;
   items: any[];
   onChange?: (value: any) => void;
-  onNavigateToPath?: (path: (string | number)[]) => void;
+  onNavigateToPath?: NavigateToHandler;
+  onNavigateBack?: NavigateBackHandler;
 };
 
-export const List: FC<ListProps> = ({ typeStructure, items = [], onChange, onNavigateToPath }: ListProps) => {
+export const List: FC<ListProps> = ({
+  typeStructure,
+  items = [],
+  onChange,
+  onNavigateToPath,
+  onNavigateBack,
+}: ListProps) => {
   const [selectedIndices, setSelectedIndices] = useState<any[]>([]);
   const [itemsAreMoving, setItemsAreMoving] = useState(false);
   const itemNameTemplate = useMemo(() => {

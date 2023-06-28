@@ -7,6 +7,7 @@ import {
 } from './TypeParsing/TypeUtils';
 import { Input } from './Input';
 import { Form } from './Form';
+import { NavigateBackHandler, NavigateToHandler } from './Navigation';
 
 const FORM_CONTROLS_GRID_AREA = 'FORM_CONTROLS_GRID_AREA';
 
@@ -49,7 +50,8 @@ export type TypeStructureComponentProps = {
   typeStructure: TypeStructure;
   value: any;
   onChange: (name: string, value: any) => void;
-  onNavigateToPath: (path: string[]) => void;
+  onNavigateToPath?: NavigateToHandler;
+  onNavigateBack?: NavigateBackHandler;
   navigationPathPrefix?: string[];
   topLevel?: boolean;
 };
@@ -60,6 +62,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
   value,
   onChange,
   onNavigateToPath,
+  onNavigateBack,
   navigationPathPrefix = [],
   topLevel = false,
 }) => {
