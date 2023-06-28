@@ -20,7 +20,13 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
     () => navCollection.reduce((acc, navPathCluster) => [...acc, ...navPathCluster], [] as NavigationPath),
     [navCollection]
   );
-  const hashMatrix = useMemo(() => new HashMatrix(value), [value]);
+  const hashMatrix = useMemo(
+    () =>
+      new HashMatrix({
+        hashMatrix: value,
+      }),
+    [value]
+  );
   const currentValue = useMemo(() => hashMatrix.getPath(nav.map((p) => `${p}`)), [hashMatrix, nav]);
   const currentTypeStructure = useMemo(
     () => getTypeStructureByPath(nav, typeStructure, typeStructureMap),
@@ -43,7 +49,7 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
   const onNavBack = useCallback(() => {
     setNavCollection(navCollection.slice(0, -1));
   }, [navCollection, setNavCollection]);
-  // TODO: Bredcrumbs.
+  // TODO: Breadcrumbs.
 
   return currentTypeIsMultiple ? (
     <List
