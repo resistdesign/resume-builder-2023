@@ -415,7 +415,11 @@
         "type": "string",
         "literal": true,
         "comments": [],
-        "tags": {},
+        "tags": {
+          "label": {
+            "value": "Objective"
+          }
+        },
         "optional": false,
         "readonly": false
       },
