@@ -194,6 +194,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
   const formProps = useMemo(() => {
     return isMainForm ? { onSubmit: onFormSubmit } : {};
   }, [isMainForm, onFormSubmit]);
+  // TODO: Add nav back.
 
   if (isForm) {
     return (
