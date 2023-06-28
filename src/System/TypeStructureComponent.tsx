@@ -23,6 +23,7 @@ export enum TAG_TYPES {
   inline = 'inline',
   layout = 'layout',
   itemName = 'itemName',
+  options = 'options',
 }
 
 type OpenFormButtonProps = {
@@ -89,6 +90,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     [TAG_TYPES.label]: { value: typeStructureLabel = undefined } = {},
     [TAG_TYPES.inline]: { value: typeStructureInline = undefined } = {},
     [TAG_TYPES.layout]: { value: typeStructureLayout = undefined } = {},
+    [TAG_TYPES.options]: { value: typeStructureOptions = undefined } = {},
   } = typeStructureTags;
   const isMainForm = useMemo(
     () => (!typeStructureInline && !typeStructureLiteral) || topLevel,
@@ -244,6 +246,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
         value={value}
         type={inputType}
         onChange={onChange}
+        options={typeStructureOptions}
       />
     );
   }
