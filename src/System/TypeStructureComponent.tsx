@@ -45,7 +45,7 @@ const LayoutBox = styled.div<LayoutContainerProps>`
   ${LayoutMediaCSS}
 `;
 const LayoutControls = styled.div`
-  gridarea: ${FORM_CONTROLS_GRID_AREA};
+  grid-area: ${FORM_CONTROLS_GRID_AREA};
   flex: 1 0 auto;
   display: flex;
   flex-direction: row;
