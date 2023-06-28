@@ -1,10 +1,5 @@
 import React, { FC, useCallback, useMemo, useState } from 'react';
-import {
-  getTypeStructureIsPrimitive,
-  getTypeStructureWithFilteredContent,
-  TypeStructure,
-  TypeStructureMap,
-} from './TypeParsing/TypeUtils';
+import { getTypeStructureWithFilteredContent, TypeStructure, TypeStructureMap } from './TypeParsing/TypeUtils';
 import { Input } from './Input';
 import { Form } from './Form';
 
@@ -64,6 +59,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     type: typeStructureType,
     tags: typeStructureTags = {},
     content: typeStructureContent = [],
+    literal: typeStructureLiteral = false,
   } = useMemo(() => {
     const { contentNames } = typeStructure;
 
@@ -118,22 +114,18 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     [onNavigateToPathInternal]
   );
 
-  if (typeStructureInline) {
-    console.log(typeStructure);
-  }
-
   if (isForm) {
     return (
       <Form key={typeStructureName} style={formStyle} onSubmit={onFormSubmit}>
         {typeStructureContent.map((tS) => {
-          const { name: tSName, tags: tSTags = {} } = tS;
+          const { name: tSName, tags: tSTags = {}, literal: tSLiteral = false } = tS;
           const {
             [TAG_TYPES.inline]: { value: tSInline = false } = {},
             [TAG_TYPES.label]: { value: tSLabel = tSName } = {},
           } = tSTags;
           const inputLabel = typeof tSLabel === 'string' ? tSLabel : tSName;
 
-          if (getTypeStructureIsPrimitive(tS) || tSInline) {
+          if (tSLiteral || tSInline) {
             return (
               <TypeStructureComponent
                 key={tSName}
@@ -149,7 +141,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
             return <OpenFormButton key={tSName} name={tSName} label={inputLabel} onOpenForm={onOpenForm} />;
           }
         })}
-        {!typeStructureInline ? (
+        {!typeStructureInline && !typeStructureLiteral ? (
           <div>
             <button type="reset">Reset</button>
             <button type="submit">Submit</button>
