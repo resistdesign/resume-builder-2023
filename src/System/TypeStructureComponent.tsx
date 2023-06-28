@@ -29,7 +29,11 @@ const OpenFormButton: FC<OpenFormButtonProps> = ({ name, label, onOpenForm }) =>
     onOpenForm(name);
   }, [name, onOpenForm]);
 
-  return <button onClick={onOpenFormInternal}>Edit {label}</button>;
+  return (
+    <button type="button" onClick={onOpenFormInternal}>
+      Edit {label}
+    </button>
+  );
 };
 
 export type TypeStructureComponentProps = {
