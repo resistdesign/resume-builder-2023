@@ -14,31 +14,31 @@ import { Form } from './Form';
 import { NavigateBackHandler, NavigateToHandler } from './Navigation';
 import HashMatrix from './ValueProcessing/HashMatrix';
 import { FORM_CONTROLS_GRID_AREA, getTypeStructureLayoutGridTemplate } from './Layout';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
 type LayoutContainerProps = {
   $isGrid?: boolean;
 };
 
+const LayoutMediaCSS = css`
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+`;
 const LayoutForm = styled(Form)<LayoutContainerProps>`
   flex: 1 0 auto;
   display: ${(p) => (p.$isGrid ? 'grid' : 'block')};
-
-  @media screen and (max-width: 768px) {
-    diplsay: flex;
-    gap: 1em;
-    flex-wrap: wrap;
-  }
+  gap: 1em;
+  
+    ${LayoutMediaCSS}
 `;
 const LayoutBox = styled.div<LayoutContainerProps>`
   flex: 1 0 auto;
   display: ${(p) => (p.$isGrid ? 'grid' : 'block')};
+  gap: 1em;
 
-  @media screen and (max-width: 768px) {
-    diplsay: flex;
-    gap: 1em;
-    flex-wrap: wrap;
-  }
+  ${LayoutMediaCSS}
 `;
 
 export const TYPE_TO_INPUT_TYPE_MAP: Record<string, string> = {
