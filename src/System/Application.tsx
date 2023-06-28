@@ -35,6 +35,7 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
   const { name: currentTypeName, multiple: currentTypeIsMultiple = false } = currentTypeStructure;
   const currentValueIsItemInList = useMemo(
     () =>
+      // TODO: This is a temporary hack.
       currentTypeIsMultiple && nav[nav.length - 2] === currentTypeName && !isNaN(parseFloat(`${nav[nav.length - 1]}`)),
     [nav, currentTypeName, currentTypeIsMultiple]
   );
@@ -67,6 +68,7 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
     setNavCollection(navCollection.slice(0, -1));
   }, [navCollection, setNavCollection]);
   // TODO: Breadcrumbs.
+  // TODO: Fix up navigation entirely with nav item objects.
 
   return currentTypeIsMultiple && !currentValueIsItemInList ? (
     <List
