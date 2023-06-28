@@ -105,12 +105,14 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
         const colCount = existingCols.length;
         const ratio = maxColCount / colCount;
 
-        return existingCols.reduce((acc: string[], c: string, ind: number) => {
-          const intRatio = ind === existingCols.length - 1 ? Math.ceil(ratio) : Math.floor(ratio);
-          const newCols = new Array(intRatio).fill(c);
+        return existingCols
+          .reduce((acc: string[], c: string, ind: number) => {
+            const intRatio = ind === existingCols.length - 1 ? Math.ceil(ratio) : Math.floor(ratio);
+            const newCols = new Array(intRatio).fill(c);
 
-          return [...acc, ...newCols];
-        }, []);
+            return [...acc, ...newCols];
+          }, [])
+          .join(' ');
       });
 
       return {
