@@ -119,10 +119,14 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     },
     [onNavigateToPathInternal]
   );
+  const FormComp = isMainForm ? Form : 'div';
+  const formProps = useMemo(() => {
+    return isMainForm ? { onSubmit: onFormSubmit } : {};
+  }, [isMainForm, onFormSubmit]);
 
   if (isForm) {
     return (
-      <Form key={typeStructureName} style={formStyle} onSubmit={onFormSubmit}>
+      <FormComp key={typeStructureName} style={formStyle} {...(formProps as any)}>
         {typeStructureContent.map((tS) => {
           const { name: tSName, tags: tSTags = {}, literal: tSLiteral = false } = tS;
           const {
@@ -153,7 +157,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
             <button type="submit">Submit</button>
           </div>
         ) : undefined}
-      </Form>
+      </FormComp>
     );
   } else {
     return (
