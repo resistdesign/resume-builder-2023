@@ -54,8 +54,11 @@
           "label": {
             "value": "State / Province"
           },
-          "options": {
+          "optionsType": {
             "value": "StateOptions"
+          },
+          "allowCustomValue": {
+            "value": true
           }
         },
         "optional": false,
@@ -70,8 +73,11 @@
           "label": {
             "value": "Country"
           },
-          "options": {
+          "optionsType": {
             "value": "CountryOptions"
+          },
+          "allowCustomValue": {
+            "value": true
           }
         },
         "optional": false,
@@ -1856,7 +1862,11 @@
         "type": "string",
         "literal": true,
         "comments": [],
-        "tags": {},
+        "tags": {
+          "label": {
+            "value": "Establishment"
+          }
+        },
         "optional": false,
         "readonly": false
       },
@@ -1865,31 +1875,64 @@
         "type": "string",
         "literal": true,
         "comments": [],
-        "tags": {},
+        "tags": {
+          "label": {
+            "value": "Program"
+          }
+        },
         "optional": false,
         "readonly": false
       },
       {
+        "comments": [],
+        "tags": {
+          "label": {
+            "value": "Start Date"
+          }
+        },
         "name": "startDate",
-        "type": "string",
-        "literal": true,
-        "comments": [],
-        "tags": {},
+        "type": "Date",
         "optional": false,
         "readonly": false
       },
       {
+        "comments": [],
+        "tags": {
+          "label": {
+            "value": "End Date"
+          }
+        },
         "name": "endDate",
+        "type": "Date",
+        "optional": false,
+        "readonly": false
+      },
+      {
+        "name": "credentialType",
         "type": "string",
         "literal": true,
         "comments": [],
-        "tags": {},
+        "tags": {
+          "label": {
+            "value": "Credential Type"
+          },
+          "options": {
+            "value": " Individual Courses\n Certificate\n Associate\n Bachelors\n Masters\n Doctorate\n Professional\n PHD"
+          },
+          "allowCustomValue": {
+            "value": true
+          }
+        },
         "optional": false,
         "readonly": false
       },
       {
         "comments": [],
-        "tags": {},
+        "tags": {
+          "label": {
+            "value": "Achievements"
+          }
+        },
         "name": "achievements",
         "type": "string",
         "literal": true,
