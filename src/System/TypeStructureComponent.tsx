@@ -14,6 +14,18 @@ import { Form } from './Form';
 import { NavigateBackHandler, NavigateToHandler } from './Navigation';
 import HashMatrix from './ValueProcessing/HashMatrix';
 import { FORM_CONTROLS_GRID_AREA, getTypeStructureLayoutGridTemplate } from './Layout';
+import styled from 'styled-components';
+
+type LayoutContainerProps = {
+  isGrid?: boolean;
+};
+
+const LayoutForm = styled(Form)<LayoutContainerProps>`
+  display: ${(p) => (p.isGrid ? 'grid' : 'flex')};
+`;
+const LayoutBox = styled.div<LayoutContainerProps>`
+  display: ${(p) => (p.isGrid ? 'grid' : 'flex')};
+`;
 
 export const TYPE_TO_INPUT_TYPE_MAP: Record<string, string> = {
   string: 'text',
@@ -128,21 +140,22 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     () => (!typeStructureInline && !typeStructureLiteral) || topLevel,
     [typeStructureInline, typeStructureLiteral, topLevel]
   );
+  const hasTypeStructureLayout = useMemo(() => typeof typeStructureLayout === 'string', [typeStructureLayout]);
   const formStyle = useMemo(() => {
     const baseStye = {
       flex: '1 0 auto',
       gridArea: !topLevel ? typeStructureName : undefined,
     };
 
-    return typeof typeStructureLayout === 'string'
+    return hasTypeStructureLayout
       ? {
           ...baseStye,
-          display: 'grid',
           gridTemplate: getTypeStructureLayoutGridTemplate(typeStructureLayout, topLevel),
           gap: '1em',
+          flexWrap: 'wrap',
         }
       : baseStye;
-  }, [typeStructureLayout, typeStructureName, topLevel]);
+  }, [hasTypeStructureLayout, typeStructureLayout, typeStructureName, topLevel]);
   const [internalValueBase, setInternalValue] = useState(value);
   const valueLastChanged = useMemo(() => new Date().getTime(), [value]);
   const internalValueLastChanged = useMemo(() => new Date().getTime(), [internalValueBase]);
@@ -203,10 +216,13 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     },
     [onNavigateToPathInternal]
   );
-  const FormComp = isMainForm ? Form : 'div';
+  const FormComp: FC = (isMainForm ? LayoutForm : LayoutBox) as any;
   const formProps = useMemo(() => {
-    return isMainForm ? { onSubmit: onFormSubmit } : {};
-  }, [isMainForm, onFormSubmit]);
+    return {
+      ...(isMainForm ? { onSubmit: onFormSubmit } : {}),
+      isGrid: hasTypeStructureLayout,
+    };
+  }, [isMainForm, onFormSubmit, hasTypeStructureLayout]);
 
   if (isForm) {
     return (
