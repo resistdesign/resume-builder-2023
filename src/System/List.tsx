@@ -1,6 +1,11 @@
 import React, { FC, PropsWithChildren, useCallback, useMemo, useState } from 'react';
-import { getDefaultItemForTypeStructure, getTypeStructureIsPrimitive, TypeStructure } from './TypeParsing/TypeUtils';
-import { TAG_TYPES } from './TypeStructureComponent';
+import {
+  getDefaultItemForTypeStructure,
+  getTypeStructureIsPrimitive,
+  getValueLabel,
+  TypeStructure,
+  TypeStructureMap,
+} from './TypeParsing/TypeUtils';
 import { NavigateBackHandler, NavigateToHandler } from './Navigation';
 
 type SelectItemButtonProps = PropsWithChildren<{
@@ -18,6 +23,7 @@ const SelectItemButton: FC<SelectItemButtonProps> = ({ index, onSelectItem, chil
 
 export type ListProps = {
   typeStructure: TypeStructure;
+  typeStructureMap: TypeStructureMap;
   items: any[];
   onChange?: (value: any) => void;
   onNavigateToPath?: NavigateToHandler;
@@ -26,6 +32,7 @@ export type ListProps = {
 
 export const List: FC<ListProps> = ({
   typeStructure,
+  typeStructureMap,
   items = [],
   onChange,
   onNavigateToPath,
@@ -33,15 +40,10 @@ export const List: FC<ListProps> = ({
 }: ListProps) => {
   const [selectedIndices, setSelectedIndices] = useState<any[]>([]);
   const [itemsAreMoving, setItemsAreMoving] = useState(false);
-  const itemNameTemplate = useMemo(() => {
-    const { tags: { [TAG_TYPES.itemName]: { value = '' } = {} } = {} } = typeStructure;
-
-    return typeof value === 'string' ? value : '';
-  }, [typeStructure]);
   const itemsArePrimitive = useMemo(() => getTypeStructureIsPrimitive(typeStructure), [typeStructure]);
   const getItemLabel = useCallback(
-    (item: any) => (itemsArePrimitive ? getCleanPrimitiveStringValue(item) : getItemName(item, itemNameTemplate)),
-    [itemsArePrimitive, itemNameTemplate]
+    (item: any) => getValueLabel(item, typeStructure, typeStructureMap),
+    [itemsArePrimitive, typeStructure, typeStructureMap]
   );
   const onChangeInternal = useCallback(
     (value: any) => {
@@ -57,10 +59,16 @@ export const List: FC<ListProps> = ({
   const onOpenItem = useCallback(
     (index: number) => {
       if (onNavigateToPath) {
-        onNavigateToPath([index]);
+        const item = items?.[index];
+
+        onNavigateToPath({
+          label: getItemLabel(item),
+          path: [index],
+          isListItem: true,
+        });
       }
     },
-    [name, onNavigateToPath]
+    [onNavigateToPath, items, getItemLabel]
   );
   const onDeleteItem = useCallback(
     (index: number) => {
@@ -128,9 +136,16 @@ export const List: FC<ListProps> = ({
           </li>
         );
       })}
-      <li>
-        <button onClick={onAddItem}>+ Add Item</button>
-      </li>
+      {itemsAreMoving ? undefined : (
+        <>
+          <li>
+            <button onClick={onAddItem}>+ Add Item</button>
+          </li>
+          <li>
+            <button onClick={onNavigateBack}>Done</button>
+          </li>
+        </>
+      )}
       {selectedIndices.length > 0 ? (
         <li>
           <button onClick={onSetItemsAreMoving}>Move Item(s)</button>
