@@ -90,8 +90,13 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     [TAG_TYPES.label]: { value: typeStructureLabel = undefined } = {},
     [TAG_TYPES.inline]: { value: typeStructureInline = undefined } = {},
     [TAG_TYPES.layout]: { value: typeStructureLayout = undefined } = {},
-    [TAG_TYPES.options]: { value: typeStructureOptions = undefined } = {},
+    [TAG_TYPES.options]: { value: typeStructureOptionsTypeName = undefined } = {},
   } = typeStructureTags;
+  const typeStructureOptions = useMemo(
+    () =>
+      typeStructureOptionsTypeName ? getTypeStructureByName(typeStructureOptionsTypeName, typeStructureMap) : undefined,
+    [typeStructureOptionsTypeName, typeStructureMap]
+  );
   const isMainForm = useMemo(
     () => (!typeStructureInline && !typeStructureLiteral) || topLevel,
     [typeStructureInline, typeStructureLiteral, topLevel]

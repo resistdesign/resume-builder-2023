@@ -39,8 +39,9 @@ export const Input: FC<InputProps> = ({ name, label = '', type = 'text', value, 
     <input placeholder={label} type={type} checked={!!cleanValue} onChange={onChangeInternal} style={styleObj} />
   ) : options ? (
     <select value={cleanValue} onChange={onChangeInternal} style={styleObj}>
-      {optionsList.map((option) => (
-        <option value={option}>{option}</option>
+      <option value="">{label}</option>
+      {optionsList.map((o) => (
+        <option value={o}>{o}</option>
       ))}
     </select>
   ) : (
