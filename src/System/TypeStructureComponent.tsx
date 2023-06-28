@@ -3,6 +3,8 @@ import { getTypeStructureWithFilteredContent, TypeStructure, TypeStructureMap } 
 import { Input } from './Input';
 import { Form } from './Form';
 
+const FORM_CONTROLS_GRID_AREA = 'FORM_CONTROLS_GRID_AREA';
+
 export const TYPE_TO_INPUT_TYPE_MAP: Record<string, string> = {
   string: 'text',
   number: 'number',
@@ -87,17 +89,38 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
       gridArea: !topLevel ? typeStructureName : undefined,
     };
 
-    return typeof typeStructureLayout === 'string'
-      ? {
-          ...baseStye,
-          display: 'grid',
-          gridTemplate: typeStructureLayout
-            .split('\n')
-            .filter((l) => l.trim() !== '')
-            .map((l) => `"${l}"`)
-            .join('\n'),
-        }
-      : baseStye;
+    if (typeof typeStructureLayout === 'string') {
+      const gridTemplateRows = typeStructureLayout
+        .split('\n')
+        .map((l) => l.trim())
+        .filter((l) => !!l);
+      const maxColCount = gridTemplateRows.reduce((acc, row) => {
+        const colCount = row.split(' ').length;
+
+        return Math.max(acc, colCount);
+      }, 1);
+      const rowsWithControls = topLevel ? [...gridTemplateRows, FORM_CONTROLS_GRID_AREA] : gridTemplateRows;
+      const filledGridTemplateRows = rowsWithControls.map((row) => {
+        const existingCols = row.split(' ');
+        const colCount = existingCols.length;
+        const ratio = maxColCount / colCount;
+
+        return existingCols.reduce((acc, c, ind) => {
+          const intRatio = ind === existingCols.length - 1 ? Math.ceil(ratio) : Math.floor(ratio);
+          const newCols = new Array(intRatio).fill(c);
+
+          return [...acc, ...newCols];
+        }, []);
+      });
+
+      return {
+        ...baseStye,
+        display: 'grid',
+        gridTemplate: filledGridTemplateRows.map((l) => `"${l}"`).join('\n'),
+      };
+    } else {
+      return baseStye;
+    }
   }, [typeStructureLayout, typeStructureName, topLevel]);
   const [internalValue, setInternalValue] = useState(value);
   const submissionTypeName = useMemo(() => {
@@ -138,6 +161,8 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     return isMainForm ? { onSubmit: onFormSubmit } : {};
   }, [isMainForm, onFormSubmit]);
 
+  console.log(formStyle);
+
   if (isForm) {
     return (
       <FormComp key={typeStructureName} style={formStyle} {...(formProps as any)}>
@@ -166,7 +191,11 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
           }
         })}
         {isMainForm ? (
-          <div>
+          <div
+            style={{
+              gridArea: FORM_CONTROLS_GRID_AREA,
+            }}
+          >
             <button type="reset">Reset</button>
             <button type="submit">Submit</button>
           </div>
