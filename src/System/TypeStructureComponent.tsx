@@ -87,6 +87,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     type: typeStructureType,
     content: typeStructureContent = [],
     literal: typeStructureLiteral = false,
+    readonly = false,
   } = cleanTypeStructure;
   const inputType = TYPE_TO_INPUT_TYPE_MAP[typeStructureType];
   const {
@@ -239,11 +240,11 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     return (
       <FormComp key={typeStructureName} style={formStyle} {...(formProps as any)}>
         {typeStructureContent.map((tS) => {
-          const { name: tSName, tags: tSTags = {}, literal: tSLiteral = false, type: tSType } = tS;
-          const {
-            [TAG_TYPES.inline]: { value: tSInline = false } = {},
-            [TAG_TYPES.label]: { value: tSLabel = tSName } = {},
-          } = tSTags;
+          const { name: tSName, literal: tSLiteral = false, type: tSType } = tS;
+          const { [TAG_TYPES.inline]: tSInline, [TAG_TYPES.label]: tSLabel } = getTagValues(
+            [TAG_TYPES.inline, TAG_TYPES.label],
+            tS
+          );
           const inputLabel = typeof tSLabel === 'string' ? tSLabel : tSName;
           const inpType = typeof tSType === 'string' ? TYPE_TO_INPUT_TYPE_MAP[tSType] : undefined;
           const tSTypeIsTypeStructure = typeof tSType === 'string' && !!typeStructureMap[tSType];
@@ -320,6 +321,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
         onChange={onChange}
         options={typeStructureOptions}
         allowCustomValue={!!typeStructureAllowCustomValue}
+        readonly={readonly}
       />
     );
   }

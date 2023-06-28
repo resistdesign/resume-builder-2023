@@ -14,6 +14,7 @@ export type InputProps = {
   onChange: (name: string, newValue: any) => void;
   options?: TypeStructure | string[];
   allowCustomValue?: boolean;
+  readonly?: boolean;
 };
 
 export const Input: FC<InputProps> = ({
@@ -24,6 +25,7 @@ export const Input: FC<InputProps> = ({
   onChange,
   options,
   allowCustomValue,
+  readonly = false,
 }: InputProps) => {
   const inputUUID = useMemo(() => getUUID(), []);
   const optionsList = useMemo(() => {
@@ -51,9 +53,16 @@ export const Input: FC<InputProps> = ({
   const styleObj = useMemo(() => ({ gridArea: name }), [name]);
 
   return type === InputType.checkbox ? (
-    <input placeholder={label} type={type} checked={!!cleanValue} onChange={onChangeInternal} style={styleObj} />
+    <input
+      readOnly={readonly}
+      placeholder={label}
+      type={type}
+      checked={!!cleanValue}
+      onChange={onChangeInternal}
+      style={styleObj}
+    />
   ) : options && !allowCustomValue ? (
-    <select value={cleanValue} onChange={onChangeInternal} style={styleObj}>
+    <select disabled={readonly} value={cleanValue} onChange={onChangeInternal} style={styleObj}>
       <option value="">{label}</option>
       {optionsList.map((o, index) => (
         <option key={index} value={o}>
@@ -64,6 +73,7 @@ export const Input: FC<InputProps> = ({
   ) : (
     <>
       <input
+        readOnly={readonly}
         placeholder={label}
         type={type}
         value={`${cleanValue}`}
