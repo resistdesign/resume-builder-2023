@@ -23,7 +23,11 @@ type LayoutContainerProps = {
 const LayoutMediaCSS = css`
   @media screen and (max-width: 768px) {
     display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: flex-start;
     flex-wrap: wrap;
+    width: 100%;
   }
 `;
 const LayoutForm = styled(Form)<LayoutContainerProps>`
@@ -39,6 +43,15 @@ const LayoutBox = styled.div<LayoutContainerProps>`
   gap: 1em;
 
   ${LayoutMediaCSS}
+`;
+const LayoutControls = styled.div`
+  gridArea: ${FORM_CONTROLS_GRID_AREA};
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
 `;
 
 export const TYPE_TO_INPUT_TYPE_MAP: Record<string, string> = {
@@ -266,16 +279,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
           }
         })}
         {isMainForm && !isEntryPoint ? (
-          <div
-            style={{
-              gridArea: FORM_CONTROLS_GRID_AREA,
-              flex: '1 0 auto',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              gap: '1em',
-            }}
-          >
+          <LayoutControls>
             <button
               style={{
                 flex: '1 0 auto',
@@ -305,7 +309,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
             >
               Submit
             </button>
-          </div>
+          </LayoutControls>
         ) : undefined}
       </FormComp>
     );
