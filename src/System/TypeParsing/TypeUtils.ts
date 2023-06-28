@@ -187,11 +187,13 @@ export const getMergeTypeStructure = (...typeStructures: TypeStructure[]): TypeS
 export const getTypeStructureByPath = (
   path: (string | number)[],
   typeStructure: TypeStructure,
-  typeStructureMap: TypeStructureMap,
-  isItemSubPath: boolean
+  typeStructureMap: TypeStructureMap
 ): TypeStructure => {
   const { multiple = false, content = [], type = '' } = typeStructure;
-  const [_numericPathPart, ...multiPath] = path;
+  const [firstPathPart, ...multiPath] = path;
+  const firstPathPartIsNumber = !isNaN(Number(firstPathPart));
+  const firstPathPartIsInContent = !!content.find(({ name }) => name === firstPathPart);
+  const isItemSubPath = firstPathPartIsNumber || !firstPathPartIsInContent;
   const targetPath = multiple && isItemSubPath ? multiPath : path;
 
   let tS = getMergeTypeStructure(getTypeStructureByName(type, typeStructureMap), typeStructure);
