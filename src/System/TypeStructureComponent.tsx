@@ -13,8 +13,7 @@ import { Input } from './Input';
 import { Form } from './Form';
 import { NavigateBackHandler, NavigateToHandler } from './Navigation';
 import HashMatrix from './ValueProcessing/HashMatrix';
-
-const FORM_CONTROLS_GRID_AREA = 'FORM_CONTROLS_GRID_AREA';
+import { FORM_CONTROLS_GRID_AREA, getTypeStructureLayoutGridTemplate } from './Layout';
 
 export const TYPE_TO_INPUT_TYPE_MAP: Record<string, string> = {
   string: 'text',
@@ -135,41 +134,14 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
       gridArea: !topLevel ? typeStructureName : undefined,
     };
 
-    if (typeof typeStructureLayout === 'string') {
-      const gridTemplateRows = typeStructureLayout
-        .split('\n')
-        .map((l) => l.trim())
-        .filter((l) => !!l);
-      const maxColCount = gridTemplateRows.reduce((acc, row) => {
-        const colCount = row.split(' ').length;
-
-        return Math.max(acc, colCount);
-      }, 1);
-      const rowsWithControls = topLevel ? [...gridTemplateRows, FORM_CONTROLS_GRID_AREA] : gridTemplateRows;
-      const filledGridTemplateRows = rowsWithControls.map((row) => {
-        const existingCols = row.split(' ');
-        const colCount = existingCols.length;
-        const ratio = maxColCount / colCount;
-
-        return existingCols
-          .reduce((acc: string[], c: string, ind: number) => {
-            const intRatio = ind === existingCols.length - 1 ? Math.ceil(ratio) : Math.floor(ratio);
-            const newCols = new Array(intRatio).fill(c);
-
-            return [...acc, ...newCols];
-          }, [])
-          .join(' ');
-      });
-
-      return {
-        ...baseStye,
-        display: 'grid',
-        gridTemplate: filledGridTemplateRows.map((l) => `"${l}"`).join('\n'),
-        gap: '1em',
-      };
-    } else {
-      return baseStye;
-    }
+    return typeof typeStructureLayout === 'string'
+      ? {
+          ...baseStye,
+          display: 'grid',
+          gridTemplate: getTypeStructureLayoutGridTemplate(typeStructureLayout, topLevel),
+          gap: '1em',
+        }
+      : baseStye;
   }, [typeStructureLayout, typeStructureName, topLevel]);
   const [internalValueBase, setInternalValue] = useState(value);
   const valueLastChanged = useMemo(() => new Date().getTime(), [value]);
