@@ -46,6 +46,7 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
   const onNavBack = useCallback(() => {
     setNavCollection(navCollection.slice(0, -1));
   }, [navCollection, setNavCollection]);
+  // TODO: Bredcrumbs.
 
   return currentTypeIsMultiple ? (
     <List
