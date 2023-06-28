@@ -191,7 +191,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
               <TypeStructureComponent
                 key={tSName}
                 typeStructureMap={typeStructureMap}
-                baseTypeStructure={tS}
+                typeStructure={tS}
                 value={internalValue?.[tSName]}
                 onChange={onPropertyChange}
                 onNavigateToPath={onNavigateToPathInternal}
