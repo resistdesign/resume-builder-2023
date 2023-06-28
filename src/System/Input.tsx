@@ -11,14 +11,19 @@ export type InputProps = {
   type?: string;
   value: any;
   onChange: (name: string, newValue: any) => void;
-  options?: TypeStructure;
+  options?: TypeStructure | string[];
+  allowCustomValue?: boolean;
 };
 
-export const Input: FC<InputProps> = ({ name, label = '', type = 'text', value, onChange, options }: InputProps) => {
+export const Input: FC<InputProps> = ({ name, label = '', type = 'text', value, onChange, options, allowCustomValue }: InputProps) => {
   const optionsList = useMemo(() => {
-    const { content = [] } = options || {};
+    if (Array.isArray(options)) {
+      return options;
+    } else {
+      const { content = [] } = options || {};
 
-    return content.map(({ type }) => type.replace(/['"]/gim, () => ''));
+      return content.map(({ type }) => type.replace(/['"]/gim, () => ''));
+    }
   }, [options]);
   const onChangeInternal = useCallback(
     (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -37,14 +42,25 @@ export const Input: FC<InputProps> = ({ name, label = '', type = 'text', value, 
 
   return type === InputType.checkbox ? (
     <input placeholder={label} type={type} checked={!!cleanValue} onChange={onChangeInternal} style={styleObj} />
-  ) : options ? (
+  ) : options && !allowCustomValue ? (
     <select value={cleanValue} onChange={onChangeInternal} style={styleObj}>
       <option value="">{label}</option>
-      {optionsList.map((o) => (
-        <option value={o}>{o}</option>
+      {optionsList.map((o, index) => (
+        <option key={index} value={o}>
+          {o}
+        </option>
       ))}
     </select>
   ) : (
-    <input placeholder={label} type={type} value={`${cleanValue}`} onChange={onChangeInternal} style={styleObj} />
+    <>
+      <input placeholder={label} type={type} value={`${cleanValue}`} onChange={onChangeInternal} style={styleObj} />
+      {options && allowCustomValue ? (
+          <datalist id={}>
+            {optionsList.map((o, index) => (
+              <option key={index} value={o} />
+            ))}
+            </datalist>
+      ) : undefined}
+    </>
   );
 };
