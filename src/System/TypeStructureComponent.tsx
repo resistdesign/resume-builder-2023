@@ -14,7 +14,7 @@ import { Form } from './Form';
 import { NavigateBackHandler, NavigateToHandler } from './Navigation';
 import HashMatrix from './ValueProcessing/HashMatrix';
 import { FORM_CONTROLS_GRID_AREA, getTypeStructureLayoutGridTemplate } from './Layout';
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 
 type LayoutContainerProps = {
   $isGrid?: boolean;
@@ -24,8 +24,8 @@ const LayoutMediaCSS = css`
   @media screen and (max-width: 768px) {
     display: flex;
     flex-direction: column;
-    justify-content: stretch;
-    align-items: flex-start;
+    justify-content: flex-start;
+    align-items: stretch;
     flex-wrap: wrap;
     width: 100%;
   }
@@ -34,8 +34,8 @@ const LayoutForm = styled(Form)<LayoutContainerProps>`
   flex: 1 0 auto;
   display: ${(p) => (p.$isGrid ? 'grid' : 'block')};
   gap: 1em;
-  
-    ${LayoutMediaCSS}
+
+  ${LayoutMediaCSS}
 `;
 const LayoutBox = styled.div<LayoutContainerProps>`
   flex: 1 0 auto;
@@ -45,13 +45,16 @@ const LayoutBox = styled.div<LayoutContainerProps>`
   ${LayoutMediaCSS}
 `;
 const LayoutControls = styled.div`
-  gridArea: ${FORM_CONTROLS_GRID_AREA};
+  gridarea: ${FORM_CONTROLS_GRID_AREA};
   flex: 1 0 auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   gap: 1em;
+  width: 100%;
+
+  ${LayoutMediaCSS}
 `;
 
 export const TYPE_TO_INPUT_TYPE_MAP: Record<string, string> = {
