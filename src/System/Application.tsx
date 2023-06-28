@@ -1,9 +1,9 @@
-import React, { FC, useCallback, useMemo, useState } from 'react';
+import React, { FC, useCallback, useMemo } from 'react';
 import { getTypeStructureByPath, TypeStructureMap } from './TypeParsing/TypeUtils';
 import { TypeStructureComponent } from './TypeStructureComponent';
 import HashMatrix from './ValueProcessing/HashMatrix';
 import { List } from './List';
-import {NavigationBreadcrumb, useNavigation} from './Navigation';
+import { NavigationBreadcrumb, useNavigation } from './Navigation';
 
 export type ApplicationProps<TypeStructureMapType extends TypeStructureMap> = {
   typeStructureMap: TypeStructureMapType;
@@ -29,11 +29,9 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
   );
   const { name: currentTypeName, multiple: currentTypeIsMultiple = false } = currentTypeStructure;
   const currentValueIsItemInList = useMemo(() => {
-      const {
-          isListItem = false,
-      }: Partial<NavigationBreadcrumb> = trail[trail.length - 1] || {};
+    const { isListItem = false }: Partial<NavigationBreadcrumb> = trail[trail.length - 1] || {};
 
-      return isListItem;
+    return isListItem;
   }, [trail]);
   const onChangeInternal = useCallback(
     (name: string, value: any) => {
@@ -47,21 +45,22 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
   const onListChange = useCallback(
     (value: any) => {
       hashMatrix.setPath(
-          path.map((p) => `${p}`),
+        path.map((p) => `${p}`),
         value
       );
       onChange(hashMatrix.getValue());
     },
     [hashMatrix, path, onChange]
   );
-  // TODO: Add nav back to List and TypeStructureComponent.
 
   return currentTypeIsMultiple && !currentValueIsItemInList ? (
     <List
       typeStructure={currentTypeStructure}
+      typeStructureMap={typeStructureMap}
       items={currentValue}
       onChange={onListChange}
       onNavigateToPath={onNavigateTo}
+      onNavigateBack={onNavigateBack}
     />
   ) : (
     <TypeStructureComponent
@@ -70,6 +69,7 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
       value={currentValue}
       onChange={onChangeInternal}
       onNavigateToPath={onNavigateTo}
+      onNavigateBack={onNavigateBack}
       topLevel
     />
   );
