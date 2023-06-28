@@ -71,6 +71,7 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
       onNavigateToPath={onNavigateTo}
       onNavigateBack={onNavigateBack}
       topLevel
+      isEntryPoint={trail.length === 0}
     />
   );
 };

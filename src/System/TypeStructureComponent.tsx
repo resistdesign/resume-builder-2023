@@ -51,6 +51,7 @@ export type TypeStructureComponentProps = {
   onNavigateBack?: NavigateBackHandler;
   navigationPathPrefix?: string[];
   topLevel?: boolean;
+  isEntryPoint?: boolean;
 };
 
 export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
@@ -62,6 +63,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
   onNavigateBack,
   navigationPathPrefix = [],
   topLevel = false,
+  isEntryPoint = false,
 }) => {
   const baseTypeStructure = useMemo(() => {
     const { type: typeStructureType = '' } = typeStructure;
@@ -195,11 +197,11 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
 
       setInternalValue(newValue);
 
-      if (!isMainForm) {
+      if (!isMainForm || isEntryPoint) {
         onChange(submissionTypeName, newValue);
       }
     },
-    [internalValue, setInternalValue, isMainForm, onChange, submissionTypeName]
+    [internalValue, setInternalValue, isMainForm, isEntryPoint, onChange, submissionTypeName]
   );
   const onNavigateToPathInternal = useCallback(
     (path: string[] = []) => {
@@ -253,7 +255,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
             return <OpenFormButton key={tSName} name={tSName} label={inputLabel} onOpenForm={onOpenForm} />;
           }
         })}
-        {isMainForm ? (
+        {isMainForm && !isEntryPoint ? (
           <div
             style={{
               gridArea: FORM_CONTROLS_GRID_AREA,
