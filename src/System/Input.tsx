@@ -26,10 +26,11 @@ export const Input: FC<InputProps> = ({ name, label = '', type = 'text', value, 
     [name, type, value, onChange]
   );
   const cleanValue = useMemo(() => (type === InputType.checkbox ? value ?? false : value ?? ''), [type, value]);
+  const styleObj = useMemo(() => ({ gridArea: name }), [name]);
 
   return type === InputType.checkbox ? (
-    <input placeholder={label} type={type} checked={!!cleanValue} onChange={onChangeInternal} />
+    <input placeholder={label} type={type} checked={!!cleanValue} onChange={onChangeInternal} style={styleObj} />
   ) : (
-    <input placeholder={label} type={type} value={`${cleanValue}`} onChange={onChangeInternal} />
+    <input placeholder={label} type={type} value={`${cleanValue}`} onChange={onChangeInternal} style={styleObj} />
   );
 };
