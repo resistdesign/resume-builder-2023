@@ -84,13 +84,13 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
   const formStyle = useMemo(() => {
     const baseStye = {
       flex: '1 0 auto',
-      display: 'grid',
       gridArea: typeStructureName,
     };
 
     return typeof typeStructureLayout === 'string'
       ? {
           ...baseStye,
+          display: 'grid',
           gridTemplate: typeStructureLayout
             .split('\n')
             .map((l) => `"${l}"`)
