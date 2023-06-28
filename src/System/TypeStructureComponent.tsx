@@ -206,10 +206,31 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
           <div
             style={{
               gridArea: FORM_CONTROLS_GRID_AREA,
+              flex: '1 0 auto',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              gap: '1em',
             }}
           >
-            <button type="reset">Reset</button>
-            <button type="submit">Submit</button>
+            <button
+              style={{
+                flex: '1 0 auto',
+                width: 'auto',
+              }}
+              type="reset"
+            >
+              Reset
+            </button>
+            <button
+              style={{
+                flex: '1 0 auto',
+                width: 'auto',
+              }}
+              type="submit"
+            >
+              Submit
+            </button>
           </div>
         ) : undefined}
       </FormComp>
