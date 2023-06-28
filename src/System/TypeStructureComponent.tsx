@@ -19,14 +19,6 @@ export const TYPE_TO_INPUT_TYPE_MAP: Record<string, string> = {
   any: 'text',
 };
 
-export enum TAG_TYPES {
-  label = 'label',
-  inline = 'inline',
-  layout = 'layout',
-  itemName = 'itemName',
-  options = 'options',
-}
-
 type OpenFormButtonProps = {
   name: string;
   label: string;

@@ -214,3 +214,47 @@ export const getDefaultItemForTypeStructure = (typeStructure: TypeStructure): an
     return multiple ? [] : {};
   }
 };
+
+export enum TAG_TYPES {
+  label = 'label',
+  inline = 'inline',
+  layout = 'layout',
+  itemName = 'itemName',
+  options = 'options',
+}
+
+export const getCleanPrimitiveStringValue = (value: any): string =>
+  value !== undefined && value !== null ? `${value}` : '';
+
+export const getItemName = <ValueType extends Record<any, any>>(
+  item: ValueType = {} as any,
+  itemNameTemplate: string = ''
+): string => itemNameTemplate.replace(/\`(\w+)\`/g, (match, key) => getCleanPrimitiveStringValue(item[key]));
+
+export const getTagValue = (tagName: string, typeStructure: TypeStructure): string | boolean | undefined => {
+  const { tags: { [tagName]: { value: tagValue = undefined } = {} } = {} } = typeStructure;
+
+  return tagValue;
+};
+
+export const getItemNameKeys = (itemNameTemplate: string = ''): string[] => itemNameTemplate.match(/\`(\w+)\`/g) ?? [];
+
+export const getValueLabel = (value: any, typeStructure: TypeStructure, typeStructureMap: TypeStructureMap): string => {
+  const itemNameTemplate = getTagValue(TAG_TYPES.itemName, typeStructure);
+
+  if (typeof itemNameTemplate === 'string' && itemNameTemplate.trim() !== '') {
+    const itemNameKeys = getItemNameKeys(itemNameTemplate);
+    const templateValueItem: Record<string, any> = {};
+
+    for (const itemNameKey of itemNameKeys) {
+      const key = itemNameKey.replace(/\`/g, '');
+      const typeStructureItem = getTypeStructureByPath([key], typeStructure, typeStructureMap);
+
+      templateValueItem[key] = getValueLabel(value?.[key], typeStructureItem, typeStructureMap);
+    }
+
+    return getItemName(templateValueItem, itemNameTemplate);
+  } else {
+    return value === undefined || value === null ? '' : `${value}`;
+  }
+};

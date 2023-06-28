@@ -3,14 +3,6 @@ import { getDefaultItemForTypeStructure, getTypeStructureIsPrimitive, TypeStruct
 import { TAG_TYPES } from './TypeStructureComponent';
 import { NavigateBackHandler, NavigateToHandler } from './Navigation';
 
-export const getCleanPrimitiveStringValue = (value: any): string =>
-  value !== undefined && value !== null ? `${value}` : '';
-
-export const getItemName = <ValueType extends Record<any, any>>(
-  item: ValueType = {} as any,
-  itemNameTemplate: string = ''
-): string => itemNameTemplate.replace(/\`(\w+)\`/g, (match, key) => getCleanPrimitiveStringValue(item[key]));
-
 type SelectItemButtonProps = PropsWithChildren<{
   index: number;
   onSelectItem: (index: number) => void;
