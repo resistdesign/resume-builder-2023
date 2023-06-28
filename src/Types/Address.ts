@@ -12,7 +12,7 @@ export type Address = {
    */
   city: string;
   /**
-   * @label State
+   * @label State / Province
    * @options StateOptions
    */
   state: string;
