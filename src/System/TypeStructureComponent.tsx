@@ -84,7 +84,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
   const formStyle = useMemo(() => {
     const baseStye = {
       flex: '1 0 auto',
-      gridArea: typeStructureName,
+      gridArea: !topLevel ? typeStructureName : undefined,
     };
 
     return typeof typeStructureLayout === 'string'
@@ -93,11 +93,11 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
           display: 'grid',
           gridTemplate: typeStructureLayout
             .split('\n')
-            .map((l) => `"${l}"`)
+            .map((l) => `"${l.trim()}"`)
             .join('\n'),
         }
       : baseStye;
-  }, [typeStructureLayout, typeStructureName]);
+  }, [typeStructureLayout, typeStructureName, topLevel]);
   const [internalValue, setInternalValue] = useState(value);
   const submissionTypeName = useMemo(() => {
     return topLevel ? '' : typeStructureName;
