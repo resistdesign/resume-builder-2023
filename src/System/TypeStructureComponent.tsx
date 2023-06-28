@@ -81,20 +81,23 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     () => (!typeStructureInline && !typeStructureLiteral) || topLevel,
     [typeStructureInline, typeStructureLiteral, topLevel]
   );
-  const formStyle = useMemo(
-    () =>
-      typeof typeStructureLayout === 'string'
-        ? {
-            flex: '1 0 auto',
-            display: 'grid',
-            gridTemplate: typeStructureLayout
-              .split('\n')
-              .map((l) => l.trim())
-              .join('\n'),
-          }
-        : undefined,
-    [typeStructureLayout]
-  );
+  const formStyle = useMemo(() => {
+    const baseStye = {
+      flex: '1 0 auto',
+      display: 'grid',
+      gridArea: typeStructureName,
+    };
+
+    return typeof typeStructureLayout === 'string'
+      ? {
+          ...baseStye,
+          gridTemplate: typeStructureLayout
+            .split('\n')
+            .map((l) => `"${l}"`)
+            .join('\n'),
+        }
+      : baseStye;
+  }, [typeStructureLayout, typeStructureName]);
   const [internalValue, setInternalValue] = useState(value);
   const submissionTypeName = useMemo(() => {
     return topLevel ? '' : typeStructureName;
