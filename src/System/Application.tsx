@@ -32,12 +32,22 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
     () => getTypeStructureByPath(nav, typeStructure, typeStructureMap),
     [nav, typeStructure, typeStructureMap]
   );
-  const { name: currentTypeStructureName = '', multiple: currentTypeIsMultiple = false } = currentTypeStructure;
+  const { multiple: currentTypeIsMultiple = false } = currentTypeStructure;
   const onChangeInternal = useCallback(
     (name: string, value: any) => {
       const stringNav = nav.map((p) => `${p}`);
 
       hashMatrix.setPath(!!name ? [...stringNav, name] : stringNav, value);
+      onChange(hashMatrix.getValue());
+    },
+    [hashMatrix, nav, onChange]
+  );
+  const onListChange = useCallback(
+    (value: any) => {
+      hashMatrix.setPath(
+        nav.map((p) => `${p}`),
+        value
+      );
       onChange(hashMatrix.getValue());
     },
     [hashMatrix, nav, onChange]
@@ -55,10 +65,9 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
 
   return currentTypeIsMultiple ? (
     <List
-      name={currentTypeStructureName}
       typeStructure={currentTypeStructure}
       items={currentValue}
-      onChange={onChangeInternal}
+      onChange={onListChange}
       onNavigateToPath={onNavToPath}
     />
   ) : (

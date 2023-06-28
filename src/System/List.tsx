@@ -24,20 +24,13 @@ const SelectItemButton: FC<SelectItemButtonProps> = ({ index, onSelectItem, chil
 };
 
 export type ListProps = {
-  name: string;
   typeStructure: TypeStructure;
   items: any[];
-  onChange?: (name: string, value: any) => void;
+  onChange?: (value: any) => void;
   onNavigateToPath?: (path: (string | number)[]) => void;
 };
 
-export const List: FC<ListProps> = ({
-  name = '',
-  typeStructure,
-  items = [],
-  onChange,
-  onNavigateToPath,
-}: ListProps) => {
+export const List: FC<ListProps> = ({ typeStructure, items = [], onChange, onNavigateToPath }: ListProps) => {
   const [selectedIndices, setSelectedIndices] = useState<any[]>([]);
   const [itemsAreMoving, setItemsAreMoving] = useState(false);
   const itemNameTemplate = useMemo(() => {
@@ -53,10 +46,10 @@ export const List: FC<ListProps> = ({
   const onChangeInternal = useCallback(
     (value: any) => {
       if (onChange) {
-        onChange(name, value);
+        onChange(value);
       }
     },
-    [name, onChange]
+    [onChange]
   );
   const onAddItem = useCallback(() => {
     onChangeInternal([...items, getDefaultItemForTypeStructure(typeStructure)]);

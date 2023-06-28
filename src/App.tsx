@@ -15,8 +15,6 @@ const GlobalStyle = createGlobalStyle`
 export const App: FC = () => {
   const [resume, setResume] = useState({});
 
-  console.log(resume);
-
   return (
     <>
       <GlobalStyle />
