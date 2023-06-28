@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren, useCallback, useMemo, useState } from 'react';
+import React, { FC, useCallback, useMemo, useState } from 'react';
 import { getTypeStructureByPath, TypeStructureMap } from './TypeParsing/TypeUtils';
 import { TypeStructureComponent } from './TypeStructureComponent';
 import HashMatrix from './ValueProcessing/HashMatrix';
@@ -6,14 +6,14 @@ import { List } from './List';
 
 export type NavigationPath = (string | number)[];
 
-export type ApplicationProps<TypeStructureMapType extends TypeStructureMap> = PropsWithChildren & {
+export type ApplicationProps<TypeStructureMapType extends TypeStructureMap> = {
   typeStructureMap: TypeStructureMapType;
   value: any;
   entryType: keyof TypeStructureMapType;
   onChange: (value: any) => void;
 };
 
-export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value, entryType, onChange, children }) => {
+export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value, entryType, onChange }) => {
   const typeStructure = useMemo(() => typeStructureMap[entryType], [typeStructureMap, entryType]);
   const [navCollection, setNavCollection] = useState<NavigationPath[]>([]);
   const nav = useMemo<NavigationPath>(
