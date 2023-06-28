@@ -105,7 +105,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
         const colCount = existingCols.length;
         const ratio = maxColCount / colCount;
 
-        return existingCols.reduce((acc, c, ind) => {
+        return existingCols.reduce((acc: string[], c: string, ind: number) => {
           const intRatio = ind === existingCols.length - 1 ? Math.ceil(ratio) : Math.floor(ratio);
           const newCols = new Array(intRatio).fill(c);
 
@@ -160,8 +160,6 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
   const formProps = useMemo(() => {
     return isMainForm ? { onSubmit: onFormSubmit } : {};
   }, [isMainForm, onFormSubmit]);
-
-  console.log(formStyle);
 
   if (isForm) {
     return (
