@@ -67,7 +67,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
   const inputType = TYPE_TO_INPUT_TYPE_MAP[typeStructureType];
   const {
     [TAG_TYPES.label]: { value: typeStructureLabel = undefined } = {},
-    // TODO: Consider layout.
+    [TAG_TYPES.inline]: { value: typeStructureInline = undefined } = {},
     [TAG_TYPES.layout]: { value: typeStructureLayout = undefined } = {},
   } = typeStructureTags;
   const formStyle = useMemo(
@@ -82,18 +82,24 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     [typeStructureLayout]
   );
   const [internalValue, setInternalValue] = useState(value);
-  const onPropertyChange = useCallback(
-    (n: string, v: any) => {
-      setInternalValue({
-        ...internalValue,
-        [n]: v,
-      });
-    },
-    [internalValue, setInternalValue]
-  );
   const onFormSubmit = useCallback(() => {
     onChange(typeStructureName, internalValue);
   }, [typeStructureName, internalValue]);
+  const onPropertyChange = useCallback(
+    (n: string, v: any) => {
+      const newValue = {
+        ...internalValue,
+        [n]: v,
+      };
+
+      setInternalValue(newValue);
+
+      if (typeStructureInline) {
+        onChange(typeStructureName, newValue);
+      }
+    },
+    [internalValue, setInternalValue, typeStructureInline, onChange, typeStructureName]
+  );
   const onNavigateToPathInternal = useCallback(
     (path: string[] = []) => {
       onNavigateToPath([...navigationPathPrefix, ...path]);
@@ -134,10 +140,12 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
             return <OpenFormButton key={tSName} name={tSName} label={inputLabel} onOpenForm={onOpenForm} />;
           }
         })}
-        <div>
-          <button type="reset">Reset</button>
-          <button type="submit">Submit</button>
-        </div>
+        {!typeStructureInline ? (
+          <div>
+            <button type="reset">Reset</button>
+            <button type="submit">Submit</button>
+          </div>
+        ) : undefined}
       </Form>
     );
   } else {
