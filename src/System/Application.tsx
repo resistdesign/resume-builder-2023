@@ -35,7 +35,9 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
   const { name: currentTypeStructureName = '', multiple: currentTypeIsMultiple = false } = currentTypeStructure;
   const onChangeInternal = useCallback(
     (name: string, value: any) => {
-      hashMatrix.setPath([...nav.map((p) => `${p}`), name], value);
+      const stringNav = nav.map((p) => `${p}`);
+
+      hashMatrix.setPath(!!name ? [...stringNav, name] : stringNav, value);
       onChange(hashMatrix.getValue());
     },
     [hashMatrix, nav, onChange]

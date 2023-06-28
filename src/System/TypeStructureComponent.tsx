@@ -93,9 +93,12 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     [typeStructureLayout]
   );
   const [internalValue, setInternalValue] = useState(value);
+  const submissionTypeName = useMemo(() => {
+    return topLevel ? '' : typeStructureName;
+  }, [topLevel, typeStructureName]);
   const onFormSubmit = useCallback(() => {
-    onChange(typeStructureName, internalValue);
-  }, [typeStructureName, internalValue]);
+    onChange(submissionTypeName, internalValue);
+  }, [topLevel, submissionTypeName, internalValue]);
   const onPropertyChange = useCallback(
     (n: string, v: any) => {
       const newValue = {
@@ -106,10 +109,10 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
       setInternalValue(newValue);
 
       if (!isMainForm) {
-        onChange(typeStructureName, newValue);
+        onChange(submissionTypeName, newValue);
       }
     },
-    [internalValue, setInternalValue, isMainForm, onChange, typeStructureName]
+    [internalValue, setInternalValue, isMainForm, onChange, submissionTypeName]
   );
   const onNavigateToPathInternal = useCallback(
     (path: string[] = []) => {
