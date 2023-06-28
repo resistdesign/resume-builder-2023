@@ -66,6 +66,7 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
       value={currentValue}
       onChange={onChangeInternal}
       onNavigateToPath={onNavToPath}
+      topLevel
     />
   );
 };
