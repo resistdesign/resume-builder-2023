@@ -93,7 +93,8 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
           display: 'grid',
           gridTemplate: typeStructureLayout
             .split('\n')
-            .map((l) => `"${l.trim()}"`)
+            .filter((l) => l.trim() !== '')
+            .map((l) => `"${l}"`)
             .join('\n'),
         }
       : baseStye;
