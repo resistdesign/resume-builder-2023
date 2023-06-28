@@ -32,7 +32,12 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
     () => getTypeStructureByPath(nav, typeStructure, typeStructureMap),
     [nav, typeStructure, typeStructureMap]
   );
-  const { multiple: currentTypeIsMultiple = false } = currentTypeStructure;
+  const { name: currentTypeName, multiple: currentTypeIsMultiple = false } = currentTypeStructure;
+  const currentValueIsItemInList = useMemo(
+    () =>
+      currentTypeIsMultiple && nav[nav.length - 2] === currentTypeName && !isNaN(parseFloat(`${nav[nav.length - 1]}`)),
+    [nav, currentTypeName, currentTypeIsMultiple]
+  );
   const onChangeInternal = useCallback(
     (name: string, value: any) => {
       const stringNav = nav.map((p) => `${p}`);
@@ -63,7 +68,7 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
   }, [navCollection, setNavCollection]);
   // TODO: Breadcrumbs.
 
-  return currentTypeIsMultiple ? (
+  return currentTypeIsMultiple && !currentValueIsItemInList ? (
     <List
       typeStructure={currentTypeStructure}
       items={currentValue}
