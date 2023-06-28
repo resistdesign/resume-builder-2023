@@ -167,11 +167,12 @@ export const getMergeTypeStructure = (...typeStructures: TypeStructure[]): TypeS
   let mergedTypeStructure: TypeStructure | undefined = undefined;
 
   for (const tS of typeStructures) {
-    const { tags: mergedTags = {} } = mergedTypeStructure || {};
+    const partialMergedTS: Partial<TypeStructure> = mergedTypeStructure || {};
+    const { tags: mergedTags = {} } = partialMergedTS;
     const { tags: tSTags = {} } = tS;
 
     mergedTypeStructure = {
-      ...(mergedTypeStructure || {}),
+      ...partialMergedTS,
       ...tS,
       tags: {
         ...mergedTags,
@@ -187,7 +188,7 @@ export const getTypeStructureByPath = (
   path: (string | number)[],
   typeStructure: TypeStructure,
   typeStructureMap: TypeStructureMap
-) => {
+): TypeStructure => {
   const { multiple = false, content = [], type = '' } = typeStructure;
   const [_numericPathPart, ...multiPath] = path;
   const targetPath = multiple ? multiPath : path;
