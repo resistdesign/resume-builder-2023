@@ -18,6 +18,7 @@ const GlobalStyle: FC = createGlobalStyle`
 
 // TODO: i18n.
 // TODO: Printing.
+// TODO: Form titles and sub-sections.
 
 export const App: FC = () => {
   const [resume, setResume] = useState(DEFAULT_RESUME);
