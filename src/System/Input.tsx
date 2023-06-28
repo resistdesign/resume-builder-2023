@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FC, useCallback, useMemo } from 'react';
 import { TypeStructure } from './TypeParsing/TypeUtils';
+import { getUUID } from './IdUtils';
 
 enum InputType {
   checkbox = 'checkbox',
@@ -15,7 +16,16 @@ export type InputProps = {
   allowCustomValue?: boolean;
 };
 
-export const Input: FC<InputProps> = ({ name, label = '', type = 'text', value, onChange, options, allowCustomValue }: InputProps) => {
+export const Input: FC<InputProps> = ({
+  name,
+  label = '',
+  type = 'text',
+  value,
+  onChange,
+  options,
+  allowCustomValue,
+}: InputProps) => {
+  const inputUUID = useMemo(() => getUUID(), []);
   const optionsList = useMemo(() => {
     if (Array.isArray(options)) {
       return options;
@@ -53,13 +63,20 @@ export const Input: FC<InputProps> = ({ name, label = '', type = 'text', value, 
     </select>
   ) : (
     <>
-      <input placeholder={label} type={type} value={`${cleanValue}`} onChange={onChangeInternal} style={styleObj} />
+      <input
+        placeholder={label}
+        type={type}
+        value={`${cleanValue}`}
+        onChange={onChangeInternal}
+        style={styleObj}
+        list={options && allowCustomValue ? inputUUID : undefined}
+      />
       {options && allowCustomValue ? (
-          <datalist id={}>
-            {optionsList.map((o, index) => (
-              <option key={index} value={o} />
-            ))}
-            </datalist>
+        <datalist id={inputUUID}>
+          {optionsList.map((o, index) => (
+            <option key={index} value={o} />
+          ))}
+        </datalist>
       ) : undefined}
     </>
   );
