@@ -39,6 +39,7 @@ export type TypeStructureComponentProps = {
   onChange: (name: string, value: any) => void;
   onNavigateToPath: (path: string[]) => void;
   navigationPathPrefix?: string[];
+  topLevel?: boolean;
 };
 
 export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
@@ -48,6 +49,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
   onChange,
   onNavigateToPath,
   navigationPathPrefix = [],
+  topLevel = false,
 }) => {
   const isForm = useMemo(() => {
     const { content = [] } = typeStructure;
@@ -71,6 +73,10 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     [TAG_TYPES.inline]: { value: typeStructureInline = undefined } = {},
     [TAG_TYPES.layout]: { value: typeStructureLayout = undefined } = {},
   } = typeStructureTags;
+  const isMainForm = useMemo(
+    () => (!typeStructureInline && !typeStructureLiteral) || topLevel,
+    [typeStructureInline, typeStructureLiteral, topLevel]
+  );
   const formStyle = useMemo(
     () =>
       typeof typeStructureLayout === 'string'
@@ -95,11 +101,11 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
 
       setInternalValue(newValue);
 
-      if (typeStructureInline) {
+      if (!isMainForm) {
         onChange(typeStructureName, newValue);
       }
     },
-    [internalValue, setInternalValue, typeStructureInline, onChange, typeStructureName]
+    [internalValue, setInternalValue, isMainForm, onChange, typeStructureName]
   );
   const onNavigateToPathInternal = useCallback(
     (path: string[] = []) => {
@@ -141,7 +147,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
             return <OpenFormButton key={tSName} name={tSName} label={inputLabel} onOpenForm={onOpenForm} />;
           }
         })}
-        {!typeStructureInline && !typeStructureLiteral ? (
+        {isMainForm ? (
           <div>
             <button type="reset">Reset</button>
             <button type="submit">Submit</button>
