@@ -268,6 +268,8 @@ export const getValueLabel = (value: any, typeStructure: TypeStructure, typeStru
       templateValueItem[key] = getValueLabel(value?.[key], typeStructureItem, typeStructureMap);
     }
 
+    console.log(templateValueItem);
+
     return getItemName(templateValueItem, itemNameTemplate);
   } else {
     return value === undefined || value === null ? '' : `${value}`;

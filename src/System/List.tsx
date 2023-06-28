@@ -1,7 +1,6 @@
-import React, { FC, PropsWithChildren, useCallback, useMemo, useState } from 'react';
+import React, { FC, PropsWithChildren, useCallback, useState } from 'react';
 import {
   getDefaultItemForTypeStructure,
-  getTypeStructureIsPrimitive,
   getValueLabel,
   TypeStructure,
   TypeStructureMap,
@@ -40,10 +39,9 @@ export const List: FC<ListProps> = ({
 }: ListProps) => {
   const [selectedIndices, setSelectedIndices] = useState<any[]>([]);
   const [itemsAreMoving, setItemsAreMoving] = useState(false);
-  const itemsArePrimitive = useMemo(() => getTypeStructureIsPrimitive(typeStructure), [typeStructure]);
   const getItemLabel = useCallback(
     (item: any) => getValueLabel(item, typeStructure, typeStructureMap),
-    [itemsArePrimitive, typeStructure, typeStructureMap]
+    [typeStructure, typeStructureMap]
   );
   const onChangeInternal = useCallback(
     (value: any) => {
