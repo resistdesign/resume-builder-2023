@@ -119,6 +119,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
         ...baseStye,
         display: 'grid',
         gridTemplate: filledGridTemplateRows.map((l) => `"${l}"`).join('\n'),
+        gap: '1em',
       };
     } else {
       return baseStye;
