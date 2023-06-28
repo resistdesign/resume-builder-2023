@@ -1,5 +1,10 @@
 import React, { FC, useCallback, useMemo, useState } from 'react';
-import { getTypeStructureWithFilteredContent, TypeStructure, TypeStructureMap } from './TypeParsing/TypeUtils';
+import {
+  getTypeStructureByName,
+  getTypeStructureWithFilteredContent,
+  TypeStructure,
+  TypeStructureMap,
+} from './TypeParsing/TypeUtils';
 import { Input } from './Input';
 import { Form } from './Form';
 
@@ -57,11 +62,17 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
   navigationPathPrefix = [],
   topLevel = false,
 }) => {
+  const baseTypeStructure = useMemo(() => {
+    const { type: typeStructureType = '' } = typeStructure;
+    const topLevelTypeStructure = getTypeStructureByName(typeStructureType, typeStructureMap);
+
+    return { ...topLevelTypeStructure, ...typeStructure };
+  }, [typeStructureMap, typeStructure]);
   const isForm = useMemo(() => {
-    const { content = [] } = typeStructure;
+    const { content = [] } = baseTypeStructure;
 
     return content.length > 0;
-  }, [typeStructure]);
+  }, [baseTypeStructure]);
   const {
     name: typeStructureName = '',
     type: typeStructureType,
@@ -69,10 +80,10 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     content: typeStructureContent = [],
     literal: typeStructureLiteral = false,
   } = useMemo(() => {
-    const { contentNames } = typeStructure;
+    const { contentNames } = baseTypeStructure;
 
-    return getTypeStructureWithFilteredContent(contentNames, typeStructure);
-  }, [typeStructure]);
+    return getTypeStructureWithFilteredContent(contentNames, baseTypeStructure);
+  }, [baseTypeStructure]);
   const inputType = TYPE_TO_INPUT_TYPE_MAP[typeStructureType];
   const {
     [TAG_TYPES.label]: { value: typeStructureLabel = undefined } = {},
@@ -180,7 +191,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
               <TypeStructureComponent
                 key={tSName}
                 typeStructureMap={typeStructureMap}
-                typeStructure={tS}
+                baseTypeStructure={tS}
                 value={internalValue?.[tSName]}
                 onChange={onPropertyChange}
                 onNavigateToPath={onNavigateToPathInternal}
