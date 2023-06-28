@@ -1,7 +1,9 @@
 import React, { FC, useCallback, useMemo, useState } from 'react';
 import {
+  getTagValues,
   getTypeStructureByName,
   getTypeStructureWithFilteredContent,
+  TAG_TYPES,
   TypeStructure,
   TypeStructureMap,
 } from './TypeParsing/TypeUtils';
@@ -69,24 +71,27 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
 
     return content.length > 0;
   }, [baseTypeStructure]);
-  const {
-    name: typeStructureName = '',
-    type: typeStructureType,
-    tags: typeStructureTags = {},
-    content: typeStructureContent = [],
-    literal: typeStructureLiteral = false,
-  } = useMemo(() => {
+  const cleanTypeStructure = useMemo(() => {
     const { contentNames } = baseTypeStructure;
 
     return getTypeStructureWithFilteredContent(contentNames, baseTypeStructure);
   }, [baseTypeStructure]);
+  const {
+    name: typeStructureName = '',
+    type: typeStructureType,
+    content: typeStructureContent = [],
+    literal: typeStructureLiteral = false,
+  } = cleanTypeStructure;
   const inputType = TYPE_TO_INPUT_TYPE_MAP[typeStructureType];
   const {
-    [TAG_TYPES.label]: { value: typeStructureLabel = undefined } = {},
-    [TAG_TYPES.inline]: { value: typeStructureInline = undefined } = {},
-    [TAG_TYPES.layout]: { value: typeStructureLayout = undefined } = {},
-    [TAG_TYPES.options]: { value: typeStructureOptionsTypeName = undefined } = {},
-  } = typeStructureTags;
+    [TAG_TYPES.label]: typeStructureLabel = undefined,
+    [TAG_TYPES.inline]: typeStructureInline = undefined,
+    [TAG_TYPES.layout]: typeStructureLayout = undefined,
+    [TAG_TYPES.options]: typeStructureOptionsTypeName = undefined,
+  } = useMemo(
+    () => getTagValues([TAG_TYPES.label, TAG_TYPES.inline, TAG_TYPES.layout, TAG_TYPES.options], cleanTypeStructure),
+    [cleanTypeStructure]
+  );
   const typeStructureOptions = useMemo(
     () =>
       typeStructureOptionsTypeName && typeof typeStructureOptionsTypeName === 'string'
@@ -164,7 +169,11 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
   );
   const onNavigateToPathInternal = useCallback(
     (path: string[] = []) => {
-      onNavigateToPath([...navigationPathPrefix, ...path]);
+      onNavigateToPath({
+        // TODO: How to get this?
+        label: '',
+        path: [...navigationPathPrefix, ...path],
+      });
     },
     [onNavigateToPath, navigationPathPrefix]
   );

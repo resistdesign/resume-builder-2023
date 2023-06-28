@@ -237,6 +237,19 @@ export const getTagValue = (tagName: string, typeStructure: TypeStructure): stri
   return tagValue;
 };
 
+export const getTagValues = <TagName extends string>(
+  tagNames: TagName[] = [],
+  typeStructure: TypeStructure
+): Record<TagName, any> => {
+  const tagValues: Partial<Record<TagName, any>> = {};
+
+  for (const tagName of tagNames) {
+    tagValues[tagName] = getTagValue(tagName, typeStructure);
+  }
+
+  return tagValues as any;
+};
+
 export const getItemNameKeys = (itemNameTemplate: string = ''): string[] => itemNameTemplate.match(/\`(\w+)\`/g) ?? [];
 
 export const getValueLabel = (value: any, typeStructure: TypeStructure, typeStructureMap: TypeStructureMap): string => {
