@@ -87,7 +87,10 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
         ? {
             flex: '1 0 auto',
             display: 'grid',
-            gridTemplate: typeStructureLayout.trim(),
+            gridTemplate: typeStructureLayout
+              .split('\n')
+              .map((l) => l.trim())
+              .join('\n'),
           }
         : undefined,
     [typeStructureLayout]
