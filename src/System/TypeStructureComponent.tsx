@@ -2,7 +2,9 @@ import React, { FC, useCallback, useMemo, useState } from 'react';
 import {
   getTagValues,
   getTypeStructureByName,
+  getTypeStructureByPath,
   getTypeStructureWithFilteredContent,
+  getValueLabel,
   TAG_TYPES,
   TypeStructure,
   TypeStructureMap,
@@ -10,6 +12,7 @@ import {
 import { Input } from './Input';
 import { Form } from './Form';
 import { NavigateBackHandler, NavigateToHandler } from './Navigation';
+import HashMatrix from './ValueProcessing/HashMatrix';
 
 const FORM_CONTROLS_GRID_AREA = 'FORM_CONTROLS_GRID_AREA';
 
@@ -169,13 +172,17 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
   );
   const onNavigateToPathInternal = useCallback(
     (path: string[] = []) => {
-      onNavigateToPath({
-        // TODO: How to get this?
-        label: '',
-        path: [...navigationPathPrefix, ...path],
-      });
+      if (onNavigateToPath) {
+        const targetValue = new HashMatrix({ hashMatrix: internalValue }).getPath(path);
+        const targetTypeStructure = getTypeStructureByPath(path, cleanTypeStructure, typeStructureMap);
+
+        onNavigateToPath({
+          label: getValueLabel(targetValue, targetTypeStructure, typeStructureMap),
+          path: [...navigationPathPrefix, ...path],
+        });
+      }
     },
-    [onNavigateToPath, navigationPathPrefix]
+    [onNavigateToPath, navigationPathPrefix, internalValue, cleanTypeStructure, typeStructureMap]
   );
   const onOpenForm = useCallback(
     (name: string) => {
@@ -207,7 +214,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
                 typeStructure={tS}
                 value={internalValue?.[tSName]}
                 onChange={onPropertyChange}
-                onNavigateToPath={onNavigateToPathInternal}
+                onNavigateToPath={onNavigateToPath}
                 navigationPathPrefix={[tSName]}
               />
             );
