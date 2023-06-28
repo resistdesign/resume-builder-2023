@@ -188,7 +188,7 @@ export const getTypeStructureByPath = (
   path: (string | number)[],
   typeStructure: TypeStructure,
   typeStructureMap: TypeStructureMap,
-  isItemSubPath: boolean = false
+  isItemSubPath: boolean
 ): TypeStructure => {
   const { multiple = false, content = [], type = '' } = typeStructure;
   const [_numericPathPart, ...multiPath] = path;
