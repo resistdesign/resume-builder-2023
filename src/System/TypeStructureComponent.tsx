@@ -94,7 +94,9 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
   } = typeStructureTags;
   const typeStructureOptions = useMemo(
     () =>
-      typeStructureOptionsTypeName ? getTypeStructureByName(typeStructureOptionsTypeName, typeStructureMap) : undefined,
+      typeStructureOptionsTypeName && typeof typeStructureOptionsTypeName === 'string'
+        ? getTypeStructureByName(typeStructureOptionsTypeName, typeStructureMap)
+        : undefined,
     [typeStructureOptionsTypeName, typeStructureMap]
   );
   const isMainForm = useMemo(
