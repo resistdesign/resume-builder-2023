@@ -90,18 +90,37 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     [TAG_TYPES.label]: typeStructureLabel = undefined,
     [TAG_TYPES.inline]: typeStructureInline = undefined,
     [TAG_TYPES.layout]: typeStructureLayout = undefined,
-    [TAG_TYPES.options]: typeStructureOptionsTypeName = undefined,
+    [TAG_TYPES.options]: typeStructureOptionsString = undefined,
+    [TAG_TYPES.optionsType]: typeStructureOptionsTypeName = undefined,
+    [TAG_TYPES.allowCustomValue]: typeStructureAllowCustomValue = undefined,
   } = useMemo(
-    () => getTagValues([TAG_TYPES.label, TAG_TYPES.inline, TAG_TYPES.layout, TAG_TYPES.options], cleanTypeStructure),
+    () =>
+      getTagValues(
+        [
+          TAG_TYPES.label,
+          TAG_TYPES.inline,
+          TAG_TYPES.layout,
+          TAG_TYPES.options,
+          TAG_TYPES.optionsType,
+          TAG_TYPES.allowCustomValue,
+        ],
+        cleanTypeStructure
+      ),
     [cleanTypeStructure]
   );
-  const typeStructureOptions = useMemo(
-    () =>
-      typeStructureOptionsTypeName && typeof typeStructureOptionsTypeName === 'string'
+  const typeStructureOptions = useMemo(() => {
+    if (typeof typeStructureOptionsString === 'string') {
+      return typeStructureOptionsString
+        .split('\n')
+        .map((l) => l.split(','))
+        .flat()
+        .map((l) => l.trim());
+    } else {
+      return typeStructureOptionsTypeName && typeof typeStructureOptionsTypeName === 'string'
         ? getTypeStructureByName(typeStructureOptionsTypeName, typeStructureMap)
-        : undefined,
-    [typeStructureOptionsTypeName, typeStructureMap]
-  );
+        : undefined;
+    }
+  }, [typeStructureOptionsString, typeStructureOptionsTypeName, typeStructureMap]);
   const isMainForm = useMemo(
     () => (!typeStructureInline && !typeStructureLiteral) || topLevel,
     [typeStructureInline, typeStructureLiteral, topLevel]
@@ -288,6 +307,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
         type={inputType}
         onChange={onChange}
         options={typeStructureOptions}
+        allowCustomValue={!!typeStructureAllowCustomValue}
       />
     );
   }

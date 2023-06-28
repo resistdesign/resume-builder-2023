@@ -221,6 +221,8 @@ export enum TAG_TYPES {
   layout = 'layout',
   itemName = 'itemName',
   options = 'options',
+  optionsType = 'optionsType',
+  allowCustomValue = 'allowCustomValue',
 }
 
 export const getCleanPrimitiveStringValue = (value: any): string =>
