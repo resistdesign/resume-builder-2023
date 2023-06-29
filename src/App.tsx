@@ -1,5 +1,5 @@
 import '@picocss/pico/css/pico.min.css';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import TSM from '././Meta/TypeStructureMap.json';
 import { Application } from './System/Application';
 import styled, { createGlobalStyle } from 'styled-components';
@@ -56,7 +56,14 @@ const HeaderBox = styled.div`
 `;
 
 export const App: FC = () => {
+  const [printing, setPrinting] = useState(false);
   const [resume, setResume] = useState(DEFAULT_RESUME);
+  const onSelectBuildMode = useCallback(() => {
+    setPrinting(false);
+  }, []);
+  const onSelectPrintMode = useCallback(() => {
+    setPrinting(true);
+  }, []);
 
   useEffect(() => {
     RESUME_SERVICE.update(MAIN_RESUME_ITEM, resume);
@@ -66,8 +73,8 @@ export const App: FC = () => {
     <AppBase>
       <GlobalStyle />
       <HeaderBox>
-        <button>Build</button>
-        <button>Print</button>
+        <button onClick={onSelectBuildMode}>Build</button>
+        <button onClick={onSelectPrintMode}>Print</button>
       </HeaderBox>
       <Application typeStructureMap={TSM} value={resume} entryType="Resume" onChange={setResume} />
     </AppBase>
