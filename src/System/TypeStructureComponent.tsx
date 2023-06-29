@@ -17,15 +17,13 @@ import HashMatrix from './ValueProcessing/HashMatrix';
 import {
   getLayoutContainerCSS,
   getTypeStructureLayoutGridTemplate,
+  LayoutBox,
   LayoutContainerProps,
   LayoutControls,
 } from './Layout';
 import styled from 'styled-components';
 
 const LayoutForm = styled(Form)<LayoutContainerProps>`
-  ${(p) => getLayoutContainerCSS(p)}
-`;
-const LayoutBox = styled.div<LayoutContainerProps>`
   ${(p) => getLayoutContainerCSS(p)}
 `;
 

@@ -7,7 +7,7 @@ import {
 } from './TypeParsing/TypeUtils';
 import { NavigateBackHandler, NavigateToHandler } from './Navigation';
 import styled from 'styled-components';
-import { LayoutControls } from './Layout';
+import { LayoutBox, LayoutControls } from './Layout';
 
 const ITEM_PLACEHOLDER = {};
 
@@ -51,14 +51,6 @@ const SelectItemCheckbox: FC<SelectItemCheckboxProps> = ({ index, onSelectItem, 
   );
 };
 
-const ListBase = styled.div`
-  flex: 1 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
-  gap: 1em;
-`;
 const ItemBase = styled.div`
   flex: 1 1 auto;
   display: flex;
@@ -184,28 +176,30 @@ export const List: FC<ListProps> = ({
   );
 
   return (
-    <ListBase>
-      {items.map((item, index) => {
-        return itemsAreMoving && selectedIndices.includes(index) ? undefined : (
-          <ItemBase key={index}>
-            {itemsAreMoving ? (
-              <SelectItemButton index={index} onSelectItem={onMoveItems}>
-                Move Here
+    <LayoutBox $allowShrink>
+      <LayoutBox $allowShrink>
+        {items.map((item, index) => {
+          return itemsAreMoving && selectedIndices.includes(index) ? undefined : (
+            <ItemBase key={index}>
+              {itemsAreMoving ? (
+                <SelectItemButton index={index} onSelectItem={onMoveItems}>
+                  Move Here
+                </SelectItemButton>
+              ) : (
+                <SelectItemCheckbox
+                  index={index}
+                  onSelectItem={onToggleItemSelected}
+                  selected={selectedIndices.includes(index)}
+                />
+              )}
+              <ItemLabelBase>{getItemLabel(item)}</ItemLabelBase>
+              <SelectItemButton index={index} onSelectItem={onOpenItem}>
+                Open
               </SelectItemButton>
-            ) : (
-              <SelectItemCheckbox
-                index={index}
-                onSelectItem={onToggleItemSelected}
-                selected={selectedIndices.includes(index)}
-              />
-            )}
-            <ItemLabelBase>{getItemLabel(item)}</ItemLabelBase>
-            <SelectItemButton index={index} onSelectItem={onOpenItem}>
-              Open
-            </SelectItemButton>
-          </ItemBase>
-        );
-      })}
+            </ItemBase>
+          );
+        })}
+      </LayoutBox>
       <LayoutControls>
         {selectedIndices.length > 0 ? (
           <>
@@ -236,6 +230,6 @@ export const List: FC<ListProps> = ({
           </>
         )}
       </LayoutControls>
-    </ListBase>
+    </LayoutBox>
   );
 };
