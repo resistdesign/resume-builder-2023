@@ -60,7 +60,7 @@ export const List: FC<ListProps> = ({
         const item = items?.[index];
 
         onNavigateToPath({
-          label: getItemLabel(item),
+          label: getItemLabel(item) || `${index + 1}`,
           path: [index],
           isListItem: true,
         });

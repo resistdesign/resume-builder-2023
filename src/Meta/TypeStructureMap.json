@@ -2252,7 +2252,11 @@
       },
       {
         "comments": [],
-        "tags": {},
+        "tags": {
+          "label": {
+            "value": "References"
+          }
+        },
         "name": "references",
         "type": "Person",
         "multiple": 1,
