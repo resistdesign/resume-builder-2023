@@ -35,7 +35,7 @@ const AppBase = styled.div`
   gap: 1em;
 
   width: 100vw;
-  height: 100vh;
+  height: 100%;
 
   box-sizing: border-box;
   padding: 1em;
