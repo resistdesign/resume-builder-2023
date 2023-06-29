@@ -63,6 +63,7 @@ export const useNavigation = (): Navigation => {
 };
 
 const BreadcrumbBox = styled.div`
+  flex: 1 0 auto;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;

@@ -14,6 +14,14 @@ const ApplicationBase = styled.div`
   align-items: stretch;
   gap: 1em;
 `;
+const HeaderBase = styled.div`
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: center;
+  gap: 1em;
+`;
 
 export type ApplicationProps<TypeStructureMapType extends TypeStructureMap> = {
   typeStructureMap: TypeStructureMapType;
@@ -65,7 +73,9 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
 
   return (
     <ApplicationBase>
-      <NavigationBreadcrumbs trail={trail} onChange={onSetTrail} />
+        <HeaderBase>
+            <NavigationBreadcrumbs trail={trail} onChange={onSetTrail} />
+        </HeaderBase>
       {currentTypeIsMultiple && !currentValueIsItemInList ? (
         <List
           typeStructure={currentTypeStructure}
