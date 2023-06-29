@@ -19,6 +19,7 @@ export type Employment = {
   endDate: string;
   /**
    * @label Projects
+   * @itemName `name`
    * */
   projects: Project[];
 };

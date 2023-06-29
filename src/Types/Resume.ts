@@ -23,6 +23,7 @@ export type Resume = {
   employment: Employment[];
   /**
    * @label Education
+   * @itemName `establishment`
    * */
   education: Education[];
   /**

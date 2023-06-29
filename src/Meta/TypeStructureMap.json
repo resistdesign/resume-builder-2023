@@ -2006,6 +2006,9 @@
         "tags": {
           "label": {
             "value": "Projects"
+          },
+          "itemName": {
+            "value": "`name`"
           }
         },
         "name": "projects",
@@ -2280,6 +2283,9 @@
         "tags": {
           "label": {
             "value": "Education"
+          },
+          "itemName": {
+            "value": "`establishment`"
           }
         },
         "name": "education",
