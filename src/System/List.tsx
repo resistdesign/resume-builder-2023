@@ -10,17 +10,44 @@ import styled from 'styled-components';
 
 const ITEM_PLACEHOLDER = {};
 
-type SelectItemButtonProps = PropsWithChildren<{
+const SelectItemButtonBase = styled.button`
+  flex: 0 0 auto;
+  width: revert;
+`;
+
+type SelectItemButtonBaseProps = {
   index: number;
   onSelectItem: (index: number) => void;
-}>;
+};
+
+type SelectItemButtonProps = PropsWithChildren<SelectItemButtonBaseProps>;
 
 const SelectItemButton: FC<SelectItemButtonProps> = ({ index, onSelectItem, children }: SelectItemButtonProps) => {
   const onOpenItemInternal = useCallback(() => {
     onSelectItem(index);
   }, [index, onSelectItem]);
 
-  return <button onClick={onOpenItemInternal}>{children}</button>;
+  return <SelectItemButtonBase onClick={onOpenItemInternal}>{children}</SelectItemButtonBase>;
+};
+
+type SelectItemCheckboxProps = SelectItemButtonBaseProps & {
+  selected: boolean;
+};
+
+const SelectItemCheckbox: FC<SelectItemCheckboxProps> = ({
+  index,
+  onSelectItem,
+  selected = false,
+}: SelectItemButtonProps) => {
+  const onOpenItemInternal = useCallback(() => {
+    onSelectItem(index);
+  }, [index, onSelectItem]);
+
+  return (
+    <label>
+      <input type="checkbox" checked={selected} onChange={onOpenItemInternal} />
+    </label>
+  );
 };
 
 const ListBase = styled.div`
@@ -146,9 +173,11 @@ export const List: FC<ListProps> = ({
                 Move Here
               </SelectItemButton>
             ) : (
-              <SelectItemButton index={index} onSelectItem={onToggleItemSelected}>
-                Select
-              </SelectItemButton>
+              <SelectItemCheckbox
+                index={index}
+                onSelectItem={onToggleItemSelected}
+                selected={selectedIndices.includes(index)}
+              />
             )}
             {getItemLabel(item)}
             <SelectItemButton index={index} onSelectItem={onOpenItem}>
