@@ -24,15 +24,15 @@ type LayoutContainerProps = {
 const LayoutMediaCSS = css`
   @media screen and (max-width: 768px) {
     display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
     width: 100%;
   }
 `;
 const LayoutForm = styled(Form)<LayoutContainerProps>`
   flex: 1 0 auto;
   display: ${(p) => (p.$isGrid ? 'grid' : 'flex')};
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
   gap: 1em;
 
   ${LayoutMediaCSS}
@@ -40,12 +40,19 @@ const LayoutForm = styled(Form)<LayoutContainerProps>`
 const LayoutBox = styled.div<LayoutContainerProps>`
   flex: 1 0 auto;
   display: ${(p) => (p.$isGrid ? 'grid' : 'flex')};
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
   gap: 1em;
 
   ${LayoutMediaCSS}
+`;
+const ControlOutlet = styled.div`
+  flex: 1 0 auto;
+  grid-area: ${FORM_CONTROLS_GRID_AREA};
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: center;
+  gap: 1em;
+  padding-top: 1em;
 `;
 const LayoutControls = styled.div`
   // grid-area: ${FORM_CONTROLS_GRID_AREA};
@@ -293,12 +300,8 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
             return <OpenFormButton key={tSName} name={tSName} label={inputLabel} onOpenForm={onOpenForm} />;
           }
         })}
-        <div
-          style={{
-            gridArea: FORM_CONTROLS_GRID_AREA,
-          }}
-        >
-          {isMainForm && !isEntryPoint && hasChanges ? (
+        {isMainForm && !isEntryPoint && hasChanges ? (
+          <ControlOutlet>
             <LayoutControls>
               <button
                 style={{
@@ -330,8 +333,10 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
                 Submit
               </button>
             </LayoutControls>
-          ) : undefined}
-          {isMainForm && !isEntryPoint && !hasChanges ? (
+          </ControlOutlet>
+        ) : undefined}
+        {isMainForm && !isEntryPoint && !hasChanges ? (
+          <ControlOutlet>
             <LayoutControls>
               <button
                 style={{
@@ -344,8 +349,8 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
                 Done
               </button>
             </LayoutControls>
-          ) : undefined}
-        </div>
+          </ControlOutlet>
+        ) : undefined}
       </FormComp>
     );
   } else {
