@@ -66,6 +66,7 @@ export const TYPE_TO_INPUT_TYPE_MAP: Record<string, string> = {
   boolean: 'checkbox',
   Date: 'date',
   DateTime: 'datetime-local',
+  LongText: 'textarea',
   any: 'text',
 };
 

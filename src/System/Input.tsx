@@ -4,6 +4,7 @@ import { getUUID } from './IdUtils';
 
 enum InputType {
   checkbox = 'checkbox',
+  textarea = 'textarea',
 }
 
 export type InputProps = {
@@ -38,7 +39,7 @@ export const Input: FC<InputProps> = ({
     }
   }, [options]);
   const onChangeInternal = useCallback(
-    (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    (event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
       if (onChange) {
         const { target } = event;
         const { checked, value: inputValue } = target as any;
@@ -61,6 +62,8 @@ export const Input: FC<InputProps> = ({
       onChange={onChangeInternal}
       style={styleObj}
     />
+  ) : type === InputType.textarea ? (
+    <textarea readOnly={readonly} placeholder={label} value={cleanValue} onChange={onChangeInternal} style={styleObj} />
   ) : options && !allowCustomValue ? (
     <select disabled={readonly} value={cleanValue} onChange={onChangeInternal} style={styleObj}>
       <option value="">{label}</option>
