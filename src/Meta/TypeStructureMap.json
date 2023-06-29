@@ -2216,15 +2216,14 @@
         "readonly": false
       },
       {
-        "name": "objective",
-        "type": "string",
-        "literal": true,
         "comments": [],
         "tags": {
           "label": {
             "value": "Objective"
           }
         },
+        "name": "objective",
+        "type": "LongText",
         "optional": false,
         "readonly": false
       },

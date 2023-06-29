@@ -1,6 +1,7 @@
 import { Person } from './Person';
 import { Employment } from './Employment';
 import { Education } from './Education';
+import { LongText } from '../System/HelperTypes';
 
 export type Resume = {
   /**
@@ -10,7 +11,7 @@ export type Resume = {
   /**
    * @label Objective
    * */
-  objective: string;
+  objective: LongText;
   /**
    * @label Date
    * */
