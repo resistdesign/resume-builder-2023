@@ -6,6 +6,7 @@ import {
   TypeStructureMap,
 } from './TypeParsing/TypeUtils';
 import { NavigateBackHandler, NavigateToHandler } from './Navigation';
+import styled from 'styled-components';
 
 const ITEM_PLACEHOLDER = {};
 
@@ -21,6 +22,23 @@ const SelectItemButton: FC<SelectItemButtonProps> = ({ index, onSelectItem, chil
 
   return <button onClick={onOpenItemInternal}>{children}</button>;
 };
+
+const ListBase = styled.div`
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 1em;
+`;
+const ItemBase = styled.div`
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: center;
+  gap: 1em;
+`;
 
 export type ListProps = {
   typeStructure: TypeStructure;
@@ -119,10 +137,10 @@ export const List: FC<ListProps> = ({
   );
 
   return (
-    <ul>
+    <ListBase>
       {items.map((item, index) => {
         return itemsAreMoving && selectedIndices.includes(index) ? undefined : (
-          <li key={index}>
+          <ItemBase key={index}>
             {itemsAreMoving ? (
               <SelectItemButton index={index} onSelectItem={onMoveItems}>
                 Move Here
@@ -139,36 +157,31 @@ export const List: FC<ListProps> = ({
             <SelectItemButton index={index} onSelectItem={onDeleteItem}>
               Delete
             </SelectItemButton>
-          </li>
+          </ItemBase>
         );
       })}
-      {itemsAreMoving ? undefined : (
-        <>
-          <li>
+      <ItemBase>
+        {selectedIndices.length > 0 ? (
+          <>
+            {itemsAreMoving ? (
+              <>
+                <SelectItemButton index={items.length} onSelectItem={onMoveItems}>
+                  Move Here
+                </SelectItemButton>
+                <button onClick={onCleanupMovingItems}>Cancel</button>
+              </>
+            ) : (
+              <button onClick={onSetItemsAreMoving}>Move Item(s)</button>
+            )}
+          </>
+        ) : undefined}
+        {itemsAreMoving ? undefined : (
+          <>
             <button onClick={onAddItem}>+ Add Item</button>
-          </li>
-          <li>
             <button onClick={onNavigateBack}>Done</button>
-          </li>
-        </>
-      )}
-      {selectedIndices.length > 0 ? (
-        <li>
-          <button onClick={onSetItemsAreMoving}>Move Item(s)</button>
-        </li>
-      ) : undefined}
-      {itemsAreMoving ? (
-        <>
-          <li>
-            <SelectItemButton index={items.length} onSelectItem={onMoveItems}>
-              Move Here
-            </SelectItemButton>
-          </li>
-          <li>
-            <button onClick={onCleanupMovingItems}>Cancel</button>
-          </li>
-        </>
-      ) : undefined}
-    </ul>
+          </>
+        )}
+      </ItemBase>
+    </ListBase>
   );
 };
