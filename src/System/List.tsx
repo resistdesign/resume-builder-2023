@@ -67,6 +67,12 @@ const ItemBase = styled.div`
   gap: 1em;
 `;
 const ControlBase = styled(ItemBase)`
+  position: fixed;
+  bottom: 0;
+  padding: 1em;
+  margin: 0 -1em 0 -1em;
+  background-color: var(--background-color);
+
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: stretch;
