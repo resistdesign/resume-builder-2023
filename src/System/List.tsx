@@ -100,8 +100,8 @@ export const List: FC<ListProps> = ({
   }, [setTryingToDeleteSelectedItems]);
   const [itemsAreMoving, setItemsAreMoving] = useState(false);
   const getItemLabel = useCallback(
-    (item: any) => getValueLabel(item, typeStructure, typeStructureMap),
-    [typeStructure, typeStructureMap]
+    (item: any) => (getValueLabel(item, typeStructure, typeStructureMap) || '').trim() || items.indexOf(item) + 1,
+    [typeStructure, typeStructureMap, items]
   );
   const onChangeInternal = useCallback(
     (value: any) => {
