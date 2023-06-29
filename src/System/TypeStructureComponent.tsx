@@ -208,22 +208,23 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     },
     [onNavigateToPathInternal]
   );
+  const FormComp: FC = isMainForm ? LayoutForm : LayoutBox;
   const formProps = useMemo(() => {
     return {
       ...(isMainForm ? { onSubmit: onFormSubmit } : {}),
+      $gridArea: !topLevel ? typeStructureName : undefined,
     };
-  }, [isMainForm, onFormSubmit]);
+  }, [isMainForm, onFormSubmit, topLevel, typeStructureName]);
   const layoutBoxProps = useMemo(() => {
     return {
       $isGrid: hasTypeStructureLayout,
       $gridTemplate: getTypeStructureLayoutGridTemplate(typeStructureLayout, topLevel),
-      $gridArea: !topLevel ? typeStructureName : undefined,
     };
-  }, [hasTypeStructureLayout, typeStructureLayout, topLevel, typeStructureName]);
+  }, [hasTypeStructureLayout, typeStructureLayout, topLevel]);
 
   if (isForm) {
     return (
-      <LayoutForm {...(formProps as any)} $allowShrink={isMainForm}>
+      <FormComp {...(formProps as any)} $allowShrink={isMainForm}>
         <LayoutBox {...(layoutBoxProps as any)} $allowShrink={isMainForm}>
           {typeStructureContent.map((tS) => {
             const { name: tSName, literal: tSLiteral = false, type: tSType } = tS;
@@ -300,7 +301,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
             </button>
           </LayoutControls>
         ) : undefined}
-      </LayoutForm>
+      </FormComp>
     );
   } else {
     return (
