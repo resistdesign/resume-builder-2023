@@ -66,7 +66,6 @@ export const App: FC = () => {
     <AppBase>
       <GlobalStyle />
       <HeaderBox>
-        <button>Select</button>
         <button>Build</button>
         <button>Print</button>
       </HeaderBox>
