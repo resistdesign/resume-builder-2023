@@ -66,6 +66,12 @@ const ItemBase = styled.div`
   align-items: center;
   gap: 1em;
 `;
+const ControlBase = styled(ItemBase)`
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+`;
 const ItemLabelBase = styled.div`
   flex: 1 0 auto;
   display: flex;
@@ -203,7 +209,7 @@ export const List: FC<ListProps> = ({
           </ItemBase>
         );
       })}
-      <ItemBase>
+      <ControlBase>
         {selectedIndices.length > 0 ? (
           <>
             {itemsAreMoving ? (
@@ -232,7 +238,7 @@ export const List: FC<ListProps> = ({
             <button onClick={onNavigateBack}>Done</button>
           </>
         )}
-      </ItemBase>
+      </ControlBase>
     </ListBase>
   );
 };
