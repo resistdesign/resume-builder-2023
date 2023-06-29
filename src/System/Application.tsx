@@ -3,7 +3,7 @@ import { getTypeStructureByPath, TypeStructureMap } from './TypeParsing/TypeUtil
 import { TypeStructureComponent } from './TypeStructureComponent';
 import HashMatrix from './ValueProcessing/HashMatrix';
 import { List } from './List';
-import { NavigationBreadcrumb, useNavigation } from './Navigation';
+import { NavigationBreadcrumb, NavigationBreadcrumbs, useNavigation } from './Navigation';
 
 export type ApplicationProps<TypeStructureMapType extends TypeStructureMap> = {
   typeStructureMap: TypeStructureMapType;
@@ -14,7 +14,7 @@ export type ApplicationProps<TypeStructureMapType extends TypeStructureMap> = {
 
 export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value, entryType, onChange }) => {
   const typeStructure = useMemo(() => typeStructureMap[entryType], [typeStructureMap, entryType]);
-  const { trail, path, onNavigateTo, onNavigateBack } = useNavigation();
+  const { trail, path, onNavigateTo, onNavigateBack, onSetTrail } = useNavigation();
   const hashMatrix = useMemo(
     () =>
       new HashMatrix({
@@ -27,7 +27,7 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
     () => getTypeStructureByPath(path, typeStructure, typeStructureMap),
     [path, typeStructure, typeStructureMap]
   );
-  const { name: currentTypeName, multiple: currentTypeIsMultiple = false } = currentTypeStructure;
+  const { multiple: currentTypeIsMultiple = false } = currentTypeStructure;
   const currentValueIsItemInList = useMemo(() => {
     const { isListItem = false }: Partial<NavigationBreadcrumb> = trail[trail.length - 1] || {};
 
@@ -53,25 +53,30 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
     [hashMatrix, path, onChange]
   );
 
-  return currentTypeIsMultiple && !currentValueIsItemInList ? (
-    <List
-      typeStructure={currentTypeStructure}
-      typeStructureMap={typeStructureMap}
-      items={currentValue}
-      onChange={onListChange}
-      onNavigateToPath={onNavigateTo}
-      onNavigateBack={onNavigateBack}
-    />
-  ) : (
-    <TypeStructureComponent
-      typeStructureMap={typeStructureMap}
-      typeStructure={currentTypeStructure}
-      value={currentValue}
-      onChange={onChangeInternal}
-      onNavigateToPath={onNavigateTo}
-      onNavigateBack={onNavigateBack}
-      topLevel
-      isEntryPoint={trail.length === 0}
-    />
+  return (
+    <>
+      <NavigationBreadcrumbs trail={trail} onChange={onSetTrail} />
+      {currentTypeIsMultiple && !currentValueIsItemInList ? (
+        <List
+          typeStructure={currentTypeStructure}
+          typeStructureMap={typeStructureMap}
+          items={currentValue}
+          onChange={onListChange}
+          onNavigateToPath={onNavigateTo}
+          onNavigateBack={onNavigateBack}
+        />
+      ) : (
+        <TypeStructureComponent
+          typeStructureMap={typeStructureMap}
+          typeStructure={currentTypeStructure}
+          value={currentValue}
+          onChange={onChangeInternal}
+          onNavigateToPath={onNavigateTo}
+          onNavigateBack={onNavigateBack}
+          topLevel
+          isEntryPoint={trail.length === 0}
+        />
+      )}
+    </>
   );
 };
