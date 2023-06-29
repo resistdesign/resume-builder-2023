@@ -1,4 +1,10 @@
 export type Skill = {
-    description: string;
-    rating: 1 | 2 | 3 | 4 | 5;
+  /**
+   * @label Description
+   * */
+  description: string;
+  /**
+   * @label Rating
+   */
+  rating: 1 | 2 | 3 | 4 | 5;
 };
