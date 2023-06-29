@@ -193,6 +193,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     () => (valueLastChanged > internalValueLastChanged ? value : internalValueBase),
     [value, internalValueBase, valueLastChanged, internalValueLastChanged]
   );
+  const hasChanges = useMemo(() => internalValue !== value, [internalValue, value]);
   const submissionTypeName = useMemo(() => {
     return topLevel ? '' : typeStructureName;
   }, [topLevel, typeStructureName]);
@@ -287,7 +288,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
             return <OpenFormButton key={tSName} name={tSName} label={inputLabel} onOpenForm={onOpenForm} />;
           }
         })}
-        {isMainForm && !isEntryPoint ? (
+        {isMainForm && !isEntryPoint && hasChanges ? (
           <LayoutControls>
             <button
               style={{
@@ -317,6 +318,20 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
               type="submit"
             >
               Submit
+            </button>
+          </LayoutControls>
+        ) : undefined}
+        {isMainForm && !isEntryPoint && !hasChanges ? (
+          <LayoutControls>
+            <button
+              style={{
+                flex: '1 0 auto',
+                width: 'auto',
+              }}
+              type="button"
+              onClick={onCancelForm}
+            >
+              Done
             </button>
           </LayoutControls>
         ) : undefined}
