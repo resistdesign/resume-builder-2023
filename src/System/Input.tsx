@@ -63,7 +63,14 @@ export const Input: FC<InputProps> = ({
       style={styleObj}
     />
   ) : type === InputType.textarea ? (
-    <textarea readOnly={readonly} placeholder={label} value={cleanValue} onChange={onChangeInternal} style={styleObj} />
+    <textarea
+      readOnly={readonly}
+      placeholder={label}
+      value={cleanValue}
+      onChange={onChangeInternal}
+      style={styleObj}
+      rows={5}
+    />
   ) : options && !allowCustomValue ? (
     <select disabled={readonly} value={cleanValue} onChange={onChangeInternal} style={styleObj}>
       <option value="">{label}</option>
