@@ -1,5 +1,6 @@
 import React, { FC, useCallback, useMemo, useState } from 'react';
 import {
+  getTagValue,
   getTagValues,
   getTypeStructureByName,
   getTypeStructureByPath,
@@ -228,9 +229,12 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
       if (onNavigateToPath) {
         const targetValue = new HashMatrix({ hashMatrix: internalValue }).getPath(path);
         const targetTypeStructure = getTypeStructureByPath(path, cleanTypeStructure, typeStructureMap);
+        const { multiple: ttsMultiple } = targetTypeStructure;
+        const targetLabel = getTagValue(TAG_TYPES.label, targetTypeStructure);
+        const cleanTargetLabel = typeof targetLabel === 'string' ? targetLabel : undefined;
 
         onNavigateToPath({
-          label: getValueLabel(targetValue, targetTypeStructure, typeStructureMap),
+          label: getValueLabel(targetValue, targetTypeStructure, typeStructureMap) || cleanTargetLabel || '',
           path: [...navigationPathPrefix, ...path],
         });
       }
