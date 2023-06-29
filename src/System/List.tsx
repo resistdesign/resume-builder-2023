@@ -52,7 +52,7 @@ const SelectItemCheckbox: FC<SelectItemCheckboxProps> = ({ index, onSelectItem, 
 };
 
 const ItemBase = styled.div`
-  flex: 1 1 auto;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: row;
   justify-content: stretch;
