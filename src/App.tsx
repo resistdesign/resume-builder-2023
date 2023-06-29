@@ -18,6 +18,10 @@ const GlobalStyle: FC = createGlobalStyle`
   button {
     margin-bottom: 0;
   }
+
+  input {
+    margin-bottom: 0;
+  }
 ` as any;
 
 // TODO: i18n.

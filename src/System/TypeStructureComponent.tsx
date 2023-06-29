@@ -33,14 +33,16 @@ const LayoutMediaCSS = css`
 `;
 const LayoutForm = styled(Form)<LayoutContainerProps>`
   flex: 1 0 auto;
-  display: ${(p) => (p.$isGrid ? 'grid' : 'block')};
+  display: ${(p) => (p.$isGrid ? 'grid' : 'flex')};
+  flex-direction: column;
   gap: 1em;
 
   ${LayoutMediaCSS}
 `;
 const LayoutBox = styled.div<LayoutContainerProps>`
   flex: 1 0 auto;
-  display: ${(p) => (p.$isGrid ? 'grid' : 'block')};
+  display: ${(p) => (p.$isGrid ? 'grid' : 'flex')};
+  flex-direction: column;
   gap: 1em;
 
   ${LayoutMediaCSS}
