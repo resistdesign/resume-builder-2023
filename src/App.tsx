@@ -11,6 +11,10 @@ const RESUME_SERVICE: LocalJSON = getLocalJSON(RESUME_ITEM_PREFIX);
 const DEFAULT_RESUME = RESUME_SERVICE.read(MAIN_RESUME_ITEM) || {};
 
 const GlobalStyle: FC = createGlobalStyle`
+  body {
+    overflow: hidden;
+  }
+
   input,
   label,
   button {
