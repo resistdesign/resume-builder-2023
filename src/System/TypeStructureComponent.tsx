@@ -55,15 +55,13 @@ const LayoutBox = styled.div<LayoutContainerProps>`
 const ControlOutlet = styled.div`
   flex: 1 0 auto;
   grid-area: ${FORM_CONTROLS_GRID_AREA};
-  display: flex;
-  flex-direction: row;
-  justify-content: stretch;
-  align-items: center;
   gap: 1em;
   padding-top: 1em;
+
+  ${LayoutDefaultColumnCSS}
 `;
 const LayoutControls = styled.div`
-  // grid-area: ${FORM_CONTROLS_GRID_AREA};
+    // grid-area: ${FORM_CONTROLS_GRID_AREA};
   flex: 1 0 auto;
   display: flex;
   flex-direction: row;
@@ -72,6 +70,8 @@ const LayoutControls = styled.div`
   gap: 1em;
   position: fixed;
   bottom: 0;
+  left: 1em;
+  right: 1em;
   padding: 1em;
   margin: 0 -1em 0 -1em;
   background-color: var(--background-color);
