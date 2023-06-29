@@ -44,6 +44,7 @@ export type LayoutContainerProps = {
   $isGrid?: boolean;
   $gridTemplate?: string;
   $gridArea?: string;
+  $allowShrink?: boolean;
 };
 
 export const LayoutDefaultColumnCSS = css`
@@ -58,9 +59,14 @@ export const LayoutMediaCSS = css`
     ${LayoutDefaultColumnCSS}
   }
 `;
-export const getLayoutContainerCSS = ({ $isGrid = false, $gridTemplate, $gridArea }: LayoutContainerProps) => css`
+export const getLayoutContainerCSS = ({
+  $isGrid = false,
+  $gridTemplate,
+  $gridArea,
+  $allowShrink = false,
+}: LayoutContainerProps) => css`
   grid-area: ${$gridArea ? $gridArea : 'auto'};
-  flex: 1 1 auto;
+  flex: ${$allowShrink ? '1 1' : '1 0'} auto;
   display: ${$isGrid ? 'grid' : 'flex'};
   grid-template: ${$gridTemplate ? $gridTemplate : 'auto'};
   gap: 1em;
