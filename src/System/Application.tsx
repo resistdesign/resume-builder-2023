@@ -21,12 +21,10 @@ const HeaderBase = styled.div`
   justify-content: stretch;
   align-items: center;
   gap: 1em;
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
   padding: 1em;
-  margoin: 0 0 -1em 0;
+  margin: -1em -1em 0 -1em;
   background-color: var(--background-color);
 `;
 

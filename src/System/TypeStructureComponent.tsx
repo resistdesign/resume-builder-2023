@@ -24,10 +24,6 @@ type LayoutContainerProps = {
 const LayoutMediaCSS = css`
   @media screen and (max-width: 768px) {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
-    flex-wrap: wrap;
     width: 100%;
   }
 `;
@@ -35,6 +31,8 @@ const LayoutForm = styled(Form)<LayoutContainerProps>`
   flex: 1 0 auto;
   display: ${(p) => (p.$isGrid ? 'grid' : 'flex')};
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
   gap: 1em;
 
   ${LayoutMediaCSS}
@@ -43,19 +41,25 @@ const LayoutBox = styled.div<LayoutContainerProps>`
   flex: 1 0 auto;
   display: ${(p) => (p.$isGrid ? 'grid' : 'flex')};
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
   gap: 1em;
 
   ${LayoutMediaCSS}
 `;
 const LayoutControls = styled.div`
-  grid-area: ${FORM_CONTROLS_GRID_AREA};
+  // grid-area: ${FORM_CONTROLS_GRID_AREA};
   flex: 1 0 auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   gap: 1em;
-  width: 100%;
+  position: fixed;
+  bottom: 0;
+  padding: 1em;
+  margin: 0 -1em 0 -1em;
+  background-color: var(--background-color);
 
   ${LayoutMediaCSS}
 `;
@@ -289,53 +293,59 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
             return <OpenFormButton key={tSName} name={tSName} label={inputLabel} onOpenForm={onOpenForm} />;
           }
         })}
-        {isMainForm && !isEntryPoint && hasChanges ? (
-          <LayoutControls>
-            <button
-              style={{
-                flex: '1 0 auto',
-                width: 'auto',
-              }}
-              type="button"
-              onClick={onCancelForm}
-            >
-              Cancel
-            </button>
-            <button
-              style={{
-                flex: '1 0 auto',
-                width: 'auto',
-              }}
-              type="button"
-              onClick={onResetForm}
-            >
-              Reset
-            </button>
-            <button
-              style={{
-                flex: '1 0 auto',
-                width: 'auto',
-              }}
-              type="submit"
-            >
-              Submit
-            </button>
-          </LayoutControls>
-        ) : undefined}
-        {isMainForm && !isEntryPoint && !hasChanges ? (
-          <LayoutControls>
-            <button
-              style={{
-                flex: '1 0 auto',
-                width: 'auto',
-              }}
-              type="button"
-              onClick={onCancelForm}
-            >
-              Done
-            </button>
-          </LayoutControls>
-        ) : undefined}
+        <div
+          style={{
+            gridArea: FORM_CONTROLS_GRID_AREA,
+          }}
+        >
+          {isMainForm && !isEntryPoint && hasChanges ? (
+            <LayoutControls>
+              <button
+                style={{
+                  flex: '1 0 auto',
+                  width: 'auto',
+                }}
+                type="button"
+                onClick={onCancelForm}
+              >
+                Cancel
+              </button>
+              <button
+                style={{
+                  flex: '1 0 auto',
+                  width: 'auto',
+                }}
+                type="button"
+                onClick={onResetForm}
+              >
+                Reset
+              </button>
+              <button
+                style={{
+                  flex: '1 0 auto',
+                  width: 'auto',
+                }}
+                type="submit"
+              >
+                Submit
+              </button>
+            </LayoutControls>
+          ) : undefined}
+          {isMainForm && !isEntryPoint && !hasChanges ? (
+            <LayoutControls>
+              <button
+                style={{
+                  flex: '1 0 auto',
+                  width: 'auto',
+                }}
+                type="button"
+                onClick={onCancelForm}
+              >
+                Done
+              </button>
+            </LayoutControls>
+          ) : undefined}
+        </div>
       </FormComp>
     );
   } else {
