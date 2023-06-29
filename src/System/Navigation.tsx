@@ -67,6 +67,7 @@ const BreadcrumbBox = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  gap: 1em;
 `;
 
 export type NavigationBreadcrumbsProps = {
@@ -90,11 +91,22 @@ export const NavigationBreadcrumbs: FC<NavigationBreadcrumbsProps> = ({ trail, o
 
   return (
     <BreadcrumbBox>
+      {trail.length > 0 ? (
+        <button type="button" value={-1} onClick={onGoToBreadcrumb}>
+          Home
+        </button>
+      ) : undefined}
       {trail.map((bc, index) => {
         const { label } = bc;
 
         return (
-          <button type="button" key={index} value={index} onClick={onGoToBreadcrumb}>
+          <button
+            disabled={index === trail.length - 1}
+            type="button"
+            key={index}
+            value={index}
+            onClick={onGoToBreadcrumb}
+          >
             {label}
           </button>
         );
