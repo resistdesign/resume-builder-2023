@@ -60,7 +60,7 @@ export const LayoutMediaCSS = css`
 `;
 export const getLayoutContainerCSS = ({ $isGrid = false, $gridTemplate, $gridArea }: LayoutContainerProps) => css`
   grid-area: ${$gridArea ? $gridArea : 'auto'};
-  flex: 0 0 auto;
+  flex: 1 1 auto;
   display: ${$isGrid ? 'grid' : 'flex'};
   grid-template: ${$gridTemplate ? $gridTemplate : 'auto'};
   gap: 1em;

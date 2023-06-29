@@ -7,12 +7,13 @@ import { NavigationBreadcrumb, NavigationBreadcrumbs, useNavigation } from './Na
 import styled from 'styled-components';
 
 const ApplicationBase = styled.div`
-  flex: 1 0 auto;
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: stretch;
   align-items: stretch;
   gap: 1em;
+  overflow: hidden;
 `;
 const HeaderBase = styled.div`
   flex: 1 0 auto;
@@ -21,11 +22,6 @@ const HeaderBase = styled.div`
   justify-content: stretch;
   align-items: center;
   gap: 1em;
-  position: sticky;
-  top: 0;
-  padding: 1em;
-  margin: -1em -1em 0 -1em;
-  background-color: var(--background-color);
 `;
 
 export type ApplicationProps<TypeStructureMapType extends TypeStructureMap> = {
