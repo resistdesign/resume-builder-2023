@@ -59,12 +59,13 @@ const ListBase = styled.div`
   gap: 1em;
 `;
 const ItemBase = styled.div`
-  flex: 1 0 auto;
+  flex: 1 1 auto;
   display: flex;
   flex-direction: row;
   justify-content: stretch;
   align-items: center;
   gap: 1em;
+  max-width: 100%;
 `;
 const ControlBase = styled(ItemBase)`
   position: fixed;
@@ -79,13 +80,14 @@ const ControlBase = styled(ItemBase)`
   }
 `;
 const ItemLabelBase = styled.div`
-  flex: 1 0 auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
+  flex: 1 1 auto;
   gap: 1em;
-  width: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 3em;
+  padding: 1em 0;
+  box-sizing: border-box;
 `;
 
 export type ListProps = {

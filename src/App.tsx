@@ -20,6 +20,10 @@ const GlobalStyle: FC = createGlobalStyle`
   button {
     margin-bottom: 0;
   }
+
+  input[type="checkbox"] {
+    margin-bottom: -0.5em;
+  }
 ` as any;
 
 // TODO: i18n.
