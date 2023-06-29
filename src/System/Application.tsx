@@ -21,6 +21,13 @@ const HeaderBase = styled.div`
   justify-content: stretch;
   align-items: center;
   gap: 1em;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1em;
+  margoin: 0 0 -1em 0;
+  background-color: var(--background-color);
 `;
 
 export type ApplicationProps<TypeStructureMapType extends TypeStructureMap> = {
@@ -73,9 +80,11 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
 
   return (
     <ApplicationBase>
+      {trail.length > 0 ? (
         <HeaderBase>
-            <NavigationBreadcrumbs trail={trail} onChange={onSetTrail} />
+          <NavigationBreadcrumbs trail={trail} onChange={onSetTrail} />
         </HeaderBase>
+      ) : undefined}
       {currentTypeIsMultiple && !currentValueIsItemInList ? (
         <List
           typeStructure={currentTypeStructure}
