@@ -122,7 +122,7 @@ export const List: FC<ListProps> = ({
           }
 
           if (ind === moveItemsToIndex) {
-            return [...acc, itm, ...selectedIndices.map((i) => items[i])];
+            return [...acc, ...selectedIndices.map((i) => items[i]), itm];
           }
 
           return [...acc, itm];
