@@ -231,10 +231,10 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
         const targetTypeStructure = getTypeStructureByPath(path, cleanTypeStructure, typeStructureMap);
         const { multiple: ttsMultiple } = targetTypeStructure;
         const targetLabel = getTagValue(TAG_TYPES.label, targetTypeStructure);
-        const cleanTargetLabel = typeof targetLabel === 'string' ? targetLabel : undefined;
+        const cleanTargetLabel = typeof targetLabel === 'string' ? targetLabel : '';
 
         onNavigateToPath({
-          label: getValueLabel(targetValue, targetTypeStructure, typeStructureMap) || cleanTargetLabel || '',
+          label: ttsMultiple ? cleanTargetLabel : getValueLabel(targetValue, targetTypeStructure, typeStructureMap),
           path: [...navigationPathPrefix, ...path],
         });
       }
