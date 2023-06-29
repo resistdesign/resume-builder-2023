@@ -60,38 +60,13 @@ export const LayoutMediaCSS = css`
 `;
 export const getLayoutContainerCSS = ({ $isGrid = false, $gridTemplate, $gridArea }: LayoutContainerProps) => css`
   grid-area: ${$gridArea ? $gridArea : 'auto'};
-  flex: 1 0 auto;
+  flex: 0 0 auto;
   display: ${$isGrid ? 'grid' : 'flex'};
   grid-template: ${$gridTemplate ? $gridTemplate : 'auto'};
   gap: 1em;
+  overflow: auto;
 
   ${!$gridTemplate ? LayoutDefaultColumnCSS : ''}
-
-  ${LayoutMediaCSS}
-`;
-export const ControlOutlet = styled.div`
-  flex: 1 0 auto;
-  grid-area: ${FORM_CONTROLS_GRID_AREA};
-  gap: 1em;
-  padding-top: 1em;
-
-  ${LayoutDefaultColumnCSS}
-`;
-export const LayoutControls = styled.div`
-  // grid-area: ${FORM_CONTROLS_GRID_AREA};
-  flex: 1 0 auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1em;
-  position: fixed;
-  bottom: 0;
-  left: 1em;
-  right: 1em;
-  padding: 1em;
-  margin: 0 -1em 0 -1em;
-  background-color: var(--background-color);
 
   ${LayoutMediaCSS}
 `;
