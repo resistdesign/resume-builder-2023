@@ -14,69 +14,20 @@ import { Input } from './Input';
 import { Form } from './Form';
 import { NavigateBackHandler, NavigateToHandler } from './Navigation';
 import HashMatrix from './ValueProcessing/HashMatrix';
-import { FORM_CONTROLS_GRID_AREA, getTypeStructureLayoutGridTemplate } from './Layout';
-import styled, { css } from 'styled-components';
+import {
+  ControlOutlet,
+  getLayoutContainerCSS,
+  getTypeStructureLayoutGridTemplate,
+  LayoutContainerProps,
+  LayoutControls,
+} from './Layout';
+import styled from 'styled-components';
 
-type LayoutContainerProps = {
-  $isGrid?: boolean;
-  $gridTemplate?: string;
-  $gridArea?: string;
-};
-
-const LayoutDefaultColumnCSS = css`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
-  width: 100%;
-`;
-const LayoutMediaCSS = css`
-  @media screen and (max-width: 768px) {
-    ${LayoutDefaultColumnCSS}
-  }
-`;
-const getLayoutContainerCSS = ({ $isGrid = false, $gridTemplate, $gridArea }: LayoutContainerProps) => css`
-  grid-area: ${$gridArea ? $gridArea : 'auto'};
-  flex: 1 0 auto;
-  display: ${$isGrid ? 'grid' : 'flex'};
-  grid-template: ${$gridTemplate ? $gridTemplate : 'auto'};
-  gap: 1em;
-
-  ${!$gridTemplate ? LayoutDefaultColumnCSS : ''}
-
-  ${LayoutMediaCSS}
-`;
 const LayoutForm = styled(Form)<LayoutContainerProps>`
   ${(p) => getLayoutContainerCSS(p)}
 `;
 const LayoutBox = styled.div<LayoutContainerProps>`
   ${(p) => getLayoutContainerCSS(p)}
-`;
-const ControlOutlet = styled.div`
-  flex: 1 0 auto;
-  grid-area: ${FORM_CONTROLS_GRID_AREA};
-  gap: 1em;
-  padding-top: 1em;
-
-  ${LayoutDefaultColumnCSS}
-`;
-const LayoutControls = styled.div`
-    // grid-area: ${FORM_CONTROLS_GRID_AREA};
-  flex: 1 0 auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1em;
-  position: fixed;
-  bottom: 0;
-  left: 1em;
-  right: 1em;
-  padding: 1em;
-  margin: 0 -1em 0 -1em;
-  background-color: var(--background-color);
-
-  ${LayoutMediaCSS}
 `;
 
 export const TYPE_TO_INPUT_TYPE_MAP: Record<string, string> = {
