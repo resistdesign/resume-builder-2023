@@ -22,7 +22,7 @@ type SelectItemButtonBaseProps = {
 
 type SelectItemButtonProps = PropsWithChildren<SelectItemButtonBaseProps>;
 
-const SelectItemButton: FC<SelectItemButtonProps> = ({ index, onSelectItem, children }: SelectItemButtonProps) => {
+const SelectItemButton: FC<SelectItemButtonProps> = ({ index, onSelectItem, children }) => {
   const onOpenItemInternal = useCallback(() => {
     onSelectItem(index);
   }, [index, onSelectItem]);
@@ -34,11 +34,7 @@ type SelectItemCheckboxProps = SelectItemButtonBaseProps & {
   selected: boolean;
 };
 
-const SelectItemCheckbox: FC<SelectItemCheckboxProps> = ({
-  index,
-  onSelectItem,
-  selected = false,
-}: SelectItemButtonProps) => {
+const SelectItemCheckbox: FC<SelectItemCheckboxProps> = ({ index, onSelectItem, selected = false }) => {
   const onOpenItemInternal = useCallback(() => {
     onSelectItem(index);
   }, [index, onSelectItem]);

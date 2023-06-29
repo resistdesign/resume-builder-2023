@@ -14,6 +14,10 @@ const GlobalStyle: FC = createGlobalStyle`
   html {
     margin: 1em;
   }
+
+  button {
+    margin-bottom: 0;
+  }
 ` as any;
 
 // TODO: i18n.

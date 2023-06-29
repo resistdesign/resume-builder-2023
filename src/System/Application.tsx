@@ -4,6 +4,16 @@ import { TypeStructureComponent } from './TypeStructureComponent';
 import HashMatrix from './ValueProcessing/HashMatrix';
 import { List } from './List';
 import { NavigationBreadcrumb, NavigationBreadcrumbs, useNavigation } from './Navigation';
+import styled from 'styled-components';
+
+const ApplicationBase = styled.div`
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 1em;
+`;
 
 export type ApplicationProps<TypeStructureMapType extends TypeStructureMap> = {
   typeStructureMap: TypeStructureMapType;
@@ -54,7 +64,7 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
   );
 
   return (
-    <>
+    <ApplicationBase>
       <NavigationBreadcrumbs trail={trail} onChange={onSetTrail} />
       {currentTypeIsMultiple && !currentValueIsItemInList ? (
         <List
@@ -77,6 +87,6 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
           isEntryPoint={trail.length === 0}
         />
       )}
-    </>
+    </ApplicationBase>
   );
 };
