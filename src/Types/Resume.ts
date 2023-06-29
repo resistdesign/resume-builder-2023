@@ -18,6 +18,7 @@ export type Resume = {
   date: Date;
   /**
    * @label Employment
+   * @itemName `company`
    * */
   employment: Employment[];
   /**

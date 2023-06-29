@@ -1954,7 +1954,11 @@
         "type": "string",
         "literal": true,
         "comments": [],
-        "tags": {},
+        "tags": {
+          "label": {
+            "value": "Company"
+          }
+        },
         "optional": false,
         "readonly": false
       },
@@ -1963,7 +1967,11 @@
         "type": "string",
         "literal": true,
         "comments": [],
-        "tags": {},
+        "tags": {
+          "label": {
+            "value": "Position"
+          }
+        },
         "optional": false,
         "readonly": false
       },
@@ -1972,7 +1980,11 @@
         "type": "string",
         "literal": true,
         "comments": [],
-        "tags": {},
+        "tags": {
+          "label": {
+            "value": "Start Date"
+          }
+        },
         "optional": false,
         "readonly": false
       },
@@ -1981,13 +1993,21 @@
         "type": "string",
         "literal": true,
         "comments": [],
-        "tags": {},
+        "tags": {
+          "label": {
+            "value": "End Date"
+          }
+        },
         "optional": false,
         "readonly": false
       },
       {
         "comments": [],
-        "tags": {},
+        "tags": {
+          "label": {
+            "value": "Projects"
+          }
+        },
         "name": "projects",
         "type": "Project",
         "multiple": 1,
@@ -2244,6 +2264,9 @@
         "tags": {
           "label": {
             "value": "Employment"
+          },
+          "itemName": {
+            "value": "`company`"
           }
         },
         "name": "employment",
