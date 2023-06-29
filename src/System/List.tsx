@@ -129,11 +129,9 @@ export const List: FC<ListProps> = ({
     (index: number) => {
       if (onNavigateToPath) {
         const item = items?.[index];
-        const labelFromItem = (getItemLabel(item) || '').trim();
-        const itemLabel = labelFromItem || `${index + 1}`;
 
         onNavigateToPath({
-          label: itemLabel,
+          label: getItemLabel(item),
           path: [index],
           isListItem: true,
         });
