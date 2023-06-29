@@ -7,6 +7,8 @@ import {
 } from './TypeParsing/TypeUtils';
 import { NavigateBackHandler, NavigateToHandler } from './Navigation';
 
+const ITEM_PLACEHOLDER = {};
+
 type SelectItemButtonProps = PropsWithChildren<{
   index: number;
   onSelectItem: (index: number) => void;
@@ -95,17 +97,19 @@ export const List: FC<ListProps> = ({
   }, [setItemsAreMoving, setSelectedIndices]);
   const onMoveItems = useCallback(
     (moveItemsToIndex: number) => {
-      const newItems = [...items].reduce((acc, item, index) => {
-        if (selectedIndices.includes(index)) {
-          return acc;
-        }
+      const newItems = [...items, ITEM_PLACEHOLDER]
+        .reduce((acc, itm, ind) => {
+          if (selectedIndices.includes(ind)) {
+            return [...acc, ITEM_PLACEHOLDER];
+          }
 
-        if (index === moveItemsToIndex) {
-          return [...acc, item, ...selectedIndices.map((ind) => items[ind])];
-        }
+          if (ind === moveItemsToIndex) {
+            return [...acc, itm, ...selectedIndices.map((i) => items[i])];
+          }
 
-        return [...acc, item];
-      }, []);
+          return [...acc, itm];
+        }, [])
+        .filter((i: any) => i !== ITEM_PLACEHOLDER);
 
       onChangeInternal(newItems);
 
