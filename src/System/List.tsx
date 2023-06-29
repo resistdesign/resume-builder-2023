@@ -66,6 +66,15 @@ const ItemBase = styled.div`
   align-items: center;
   gap: 1em;
 `;
+const ItemLabelBase = styled.div`
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1em;
+  width: auto;
+`;
 
 export type ListProps = {
   typeStructure: TypeStructure;
@@ -179,7 +188,7 @@ export const List: FC<ListProps> = ({
                 selected={selectedIndices.includes(index)}
               />
             )}
-            {getItemLabel(item)}
+            <ItemLabelBase>{getItemLabel(item)}</ItemLabelBase>
             <SelectItemButton index={index} onSelectItem={onOpenItem}>
               Open
             </SelectItemButton>
