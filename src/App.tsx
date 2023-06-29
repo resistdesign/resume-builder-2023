@@ -15,11 +15,9 @@ const GlobalStyle: FC = createGlobalStyle`
     margin: 1em;
   }
 
+  input,
+  label,
   button {
-    margin-bottom: 0;
-  }
-
-  input {
     margin-bottom: 0;
   }
 ` as any;

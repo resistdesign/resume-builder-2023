@@ -10,6 +10,10 @@ import styled from 'styled-components';
 
 const ITEM_PLACEHOLDER = {};
 
+const DeleteButton = styled.button`
+  background-color: #a41e1e;
+`;
+
 const SelectItemButtonBase = styled.button`
   flex: 0 0 auto;
   width: revert;
@@ -90,6 +94,10 @@ export const List: FC<ListProps> = ({
   onNavigateBack,
 }: ListProps) => {
   const [selectedIndices, setSelectedIndices] = useState<any[]>([]);
+  const [tryingToDeleteSelectedItems, setTryingToDeleteSelectedItems] = useState(false);
+  const onBegineDelete = useCallback(() => {
+    setTryingToDeleteSelectedItems(true);
+  }, [setTryingToDeleteSelectedItems]);
   const [itemsAreMoving, setItemsAreMoving] = useState(false);
   const getItemLabel = useCallback(
     (item: any) => getValueLabel(item, typeStructure, typeStructureMap),
@@ -103,6 +111,17 @@ export const List: FC<ListProps> = ({
     },
     [onChange]
   );
+  const onCancelDelete = useCallback(() => {
+    setTryingToDeleteSelectedItems(false);
+  }, [setTryingToDeleteSelectedItems]);
+  const onConfirmDelete = useCallback(() => {
+    const newItems = items.filter((_, index) => !selectedIndices.includes(index));
+
+    onChangeInternal(newItems);
+
+    setTryingToDeleteSelectedItems(false);
+    setSelectedIndices([]);
+  }, [items, onChangeInternal, selectedIndices, setTryingToDeleteSelectedItems, setSelectedIndices]);
   const onAddItem = useCallback(() => {
     onChangeInternal([...items, getDefaultItemForTypeStructure(typeStructure)]);
   }, [items, onChangeInternal, typeStructure]);
@@ -121,12 +140,6 @@ export const List: FC<ListProps> = ({
       }
     },
     [onNavigateToPath, items, getItemLabel]
-  );
-  const onDeleteItem = useCallback(
-    (index: number) => {
-      onChangeInternal([...items.slice(0, index), ...items.slice(index + 1)]);
-    },
-    [items, onChangeInternal]
   );
   const onToggleItemSelected = useCallback(
     (index: number) => {
@@ -188,9 +201,6 @@ export const List: FC<ListProps> = ({
             <SelectItemButton index={index} onSelectItem={onOpenItem}>
               Open
             </SelectItemButton>
-            <SelectItemButton index={index} onSelectItem={onDeleteItem}>
-              Delete
-            </SelectItemButton>
           </ItemBase>
         );
       })}
@@ -204,8 +214,16 @@ export const List: FC<ListProps> = ({
                 </SelectItemButton>
                 <button onClick={onCleanupMovingItems}>Cancel</button>
               </>
+            ) : tryingToDeleteSelectedItems ? (
+              <>
+                <button onClick={onCancelDelete}>Cancel Delete</button>
+                <DeleteButton onClick={onConfirmDelete}>Confirm Delete</DeleteButton>
+              </>
             ) : (
-              <button onClick={onSetItemsAreMoving}>Move Item(s)</button>
+              <>
+                <button onClick={onSetItemsAreMoving}>Move Item(s)</button>
+                <button onClick={onBegineDelete}>Delete Item(s)</button>
+              </>
             )}
           </>
         ) : undefined}
