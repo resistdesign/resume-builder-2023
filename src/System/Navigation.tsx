@@ -70,6 +70,12 @@ const BreadcrumbBox = styled.div`
   align-items: center;
   gap: 1em;
   overflow: auto;
+  width: 100%;
+`;
+const BreadcrumbButton = styled.button`
+  flex: 1 0 auto;
+  text-wrap: none;
+  width: auto;
 `;
 
 export type NavigationBreadcrumbsProps = {
@@ -94,15 +100,15 @@ export const NavigationBreadcrumbs: FC<NavigationBreadcrumbsProps> = ({ trail, o
   return (
     <BreadcrumbBox>
       {trail.length > 0 ? (
-        <button type="button" value={-1} onClick={onGoToBreadcrumb}>
+        <BreadcrumbButton type="button" value={-1} onClick={onGoToBreadcrumb}>
           Home
-        </button>
+        </BreadcrumbButton>
       ) : undefined}
       {trail.map((bc, index) => {
         const { label } = bc;
 
         return (
-          <button
+          <BreadcrumbButton
             disabled={index === trail.length - 1}
             type="button"
             key={index}
@@ -110,7 +116,7 @@ export const NavigationBreadcrumbs: FC<NavigationBreadcrumbsProps> = ({ trail, o
             onClick={onGoToBreadcrumb}
           >
             {label}
-          </button>
+          </BreadcrumbButton>
         );
       })}
     </BreadcrumbBox>
