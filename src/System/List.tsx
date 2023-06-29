@@ -95,13 +95,17 @@ export const List: FC<ListProps> = ({
   }, [setItemsAreMoving, setSelectedIndices]);
   const onMoveItems = useCallback(
     (moveItemsToIndex: number) => {
-      const itemsWithoutSelected = [...items].filter((_itm, ind) => !selectedIndices.includes(ind));
-      const selectedItems = [...items].filter((_itm, ind) => selectedIndices.includes(ind));
-      const targetItem = items[moveItemsToIndex];
-      const newItems = itemsWithoutSelected.reduce(
-        (acc, itm) => (itm === targetItem ? [...acc, itm, ...selectedItems] : [...acc, itm]),
-        []
-      );
+      const newItems = [...items].reduce((acc, item, index) => {
+        if (selectedIndices.includes(index)) {
+          return acc;
+        }
+
+        if (index === moveItemsToIndex) {
+          return [...acc, item, ...selectedIndices.map((ind) => items[ind])];
+        }
+
+        return [...acc, item];
+      }, []);
 
       onChangeInternal(newItems);
 
