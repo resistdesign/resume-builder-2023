@@ -76,7 +76,11 @@ export const App: FC = () => {
         <button onClick={onSelectBuildMode}>Build</button>
         <button onClick={onSelectPrintMode}>Print</button>
       </HeaderBox>
-      <Application typeStructureMap={TSM} value={resume} entryType="Resume" onChange={setResume} />
+      {!printing ? (
+        <Application typeStructureMap={TSM} value={resume} entryType="Resume" onChange={setResume} />
+      ) : (
+        <div>Printing...</div>
+      )}
     </AppBase>
   );
 };
