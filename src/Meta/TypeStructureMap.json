@@ -2205,7 +2205,11 @@
     "content": [
       {
         "comments": [],
-        "tags": {},
+        "tags": {
+          "label": {
+            "value": "Subject"
+          }
+        },
         "name": "subject",
         "type": "Person",
         "optional": false,
@@ -2226,7 +2230,11 @@
       },
       {
         "comments": [],
-        "tags": {},
+        "tags": {
+          "label": {
+            "value": "Date"
+          }
+        },
         "name": "date",
         "type": "Date",
         "optional": false,
@@ -2234,7 +2242,11 @@
       },
       {
         "comments": [],
-        "tags": {},
+        "tags": {
+          "label": {
+            "value": "Employment"
+          }
+        },
         "name": "employment",
         "type": "Employment",
         "multiple": 1,
@@ -2243,7 +2255,11 @@
       },
       {
         "comments": [],
-        "tags": {},
+        "tags": {
+          "label": {
+            "value": "Education"
+          }
+        },
         "name": "education",
         "type": "Education",
         "multiple": 1,
