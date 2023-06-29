@@ -225,34 +225,36 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
   if (isForm) {
     return (
       <FormComp {...(formProps as any)} $allowShrink={isMainForm}>
-        <LayoutBox {...(layoutBoxProps as any)} $allowShrink={isMainForm}>
-          {typeStructureContent.map((tS) => {
-            const { name: tSName, literal: tSLiteral = false, type: tSType } = tS;
-            const { [TAG_TYPES.inline]: tSInline, [TAG_TYPES.label]: tSLabel } = getTagValues(
-              [TAG_TYPES.inline, TAG_TYPES.label],
-              tS
-            );
-            const inputLabel = typeof tSLabel === 'string' ? tSLabel : tSName;
-            const inpType = typeof tSType === 'string' ? TYPE_TO_INPUT_TYPE_MAP[tSType] : undefined;
-            const tSTypeIsTypeStructure = typeof tSType === 'string' && !!typeStructureMap[tSType];
-            const useInputType = inpType || !tSTypeIsTypeStructure;
-
-            if (tSLiteral || tSInline || useInputType) {
-              return (
-                <TypeStructureComponent
-                  key={tSName}
-                  typeStructureMap={typeStructureMap}
-                  typeStructure={tS}
-                  value={internalValue?.[tSName]}
-                  onChange={onPropertyChange}
-                  onNavigateToPath={onNavigateToPath}
-                  navigationPathPrefix={[tSName]}
-                />
+        <LayoutBox $allowShrink={isMainForm}>
+          <LayoutBox {...(layoutBoxProps as any)} $allowShrink={false}>
+            {typeStructureContent.map((tS) => {
+              const { name: tSName, literal: tSLiteral = false, type: tSType } = tS;
+              const { [TAG_TYPES.inline]: tSInline, [TAG_TYPES.label]: tSLabel } = getTagValues(
+                [TAG_TYPES.inline, TAG_TYPES.label],
+                tS
               );
-            } else {
-              return <OpenFormButton key={tSName} name={tSName} label={inputLabel} onOpenForm={onOpenForm} />;
-            }
-          })}
+              const inputLabel = typeof tSLabel === 'string' ? tSLabel : tSName;
+              const inpType = typeof tSType === 'string' ? TYPE_TO_INPUT_TYPE_MAP[tSType] : undefined;
+              const tSTypeIsTypeStructure = typeof tSType === 'string' && !!typeStructureMap[tSType];
+              const useInputType = inpType || !tSTypeIsTypeStructure;
+
+              if (tSLiteral || tSInline || useInputType) {
+                return (
+                  <TypeStructureComponent
+                    key={tSName}
+                    typeStructureMap={typeStructureMap}
+                    typeStructure={tS}
+                    value={internalValue?.[tSName]}
+                    onChange={onPropertyChange}
+                    onNavigateToPath={onNavigateToPath}
+                    navigationPathPrefix={[tSName]}
+                  />
+                );
+              } else {
+                return <OpenFormButton key={tSName} name={tSName} label={inputLabel} onOpenForm={onOpenForm} />;
+              }
+            })}
+          </LayoutBox>
         </LayoutBox>
         {isMainForm && !isEntryPoint && hasChanges ? (
           <LayoutControls>
