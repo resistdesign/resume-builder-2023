@@ -7,7 +7,7 @@ import {
 } from './TypeParsing/TypeUtils';
 import { NavigateBackHandler, NavigateToHandler } from './Navigation';
 import styled from 'styled-components';
-import { ControlOutlet, LayoutControls } from './Layout';
+import { LayoutControls } from './Layout';
 
 const ITEM_PLACEHOLDER = {};
 
@@ -206,38 +206,36 @@ export const List: FC<ListProps> = ({
           </ItemBase>
         );
       })}
-      <ControlOutlet>
-        <LayoutControls>
-          {selectedIndices.length > 0 ? (
-            <>
-              {itemsAreMoving ? (
-                <>
-                  <SelectItemButton index={items.length} onSelectItem={onMoveItems}>
-                    Move Here
-                  </SelectItemButton>
-                  <button onClick={onCleanupMovingItems}>Cancel</button>
-                </>
-              ) : tryingToDeleteSelectedItems ? (
-                <>
-                  <button onClick={onCancelDelete}>Cancel Delete</button>
-                  <DeleteButton onClick={onConfirmDelete}>Confirm Delete</DeleteButton>
-                </>
-              ) : (
-                <>
-                  <button onClick={onSetItemsAreMoving}>Move Item(s)</button>
-                  <button onClick={onBegineDelete}>Delete Item(s)</button>
-                </>
-              )}
-            </>
-          ) : undefined}
-          {itemsAreMoving ? undefined : (
-            <>
-              <button onClick={onAddItem}>+ Add Item</button>
-              <button onClick={onNavigateBack}>Done</button>
-            </>
-          )}
-        </LayoutControls>
-      </ControlOutlet>
+      <LayoutControls>
+        {selectedIndices.length > 0 ? (
+          <>
+            {itemsAreMoving ? (
+              <>
+                <SelectItemButton index={items.length} onSelectItem={onMoveItems}>
+                  Move Here
+                </SelectItemButton>
+                <button onClick={onCleanupMovingItems}>Cancel</button>
+              </>
+            ) : tryingToDeleteSelectedItems ? (
+              <>
+                <button onClick={onCancelDelete}>Cancel Delete</button>
+                <DeleteButton onClick={onConfirmDelete}>Confirm Delete</DeleteButton>
+              </>
+            ) : (
+              <>
+                <button onClick={onSetItemsAreMoving}>Move Item(s)</button>
+                <button onClick={onBegineDelete}>Delete Item(s)</button>
+              </>
+            )}
+          </>
+        ) : undefined}
+        {itemsAreMoving ? undefined : (
+          <>
+            <button onClick={onAddItem}>+ Add Item</button>
+            <button onClick={onNavigateBack}>Done</button>
+          </>
+        )}
+      </LayoutControls>
     </ListBase>
   );
 };

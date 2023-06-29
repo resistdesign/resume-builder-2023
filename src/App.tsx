@@ -40,7 +40,7 @@ const AppBase = styled.div`
   overflow: hidden;
 `;
 const HeaderBox = styled.div`
-  flex: 1 0 auto;
+  flex: 0 0 auto;
   display: flex;
   flex-direction: row;
   justify-content: stretch;
@@ -56,7 +56,7 @@ export const App: FC = () => {
   }, [resume]);
 
   return (
-    <>
+    <AppBase>
       <GlobalStyle />
       <HeaderBox>
         <button>Select</button>
@@ -64,6 +64,6 @@ export const App: FC = () => {
         <button>Print</button>
       </HeaderBox>
       <Application typeStructureMap={TSM} value={resume} entryType="Resume" onChange={setResume} />
-    </>
+    </AppBase>
   );
 };

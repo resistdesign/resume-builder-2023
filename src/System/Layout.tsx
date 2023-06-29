@@ -70,3 +70,13 @@ export const getLayoutContainerCSS = ({ $isGrid = false, $gridTemplate, $gridAre
 
   ${LayoutMediaCSS}
 `;
+export const LayoutControls = styled.div`
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: center;
+  gap: 1em;
+
+  ${LayoutMediaCSS}
+`;

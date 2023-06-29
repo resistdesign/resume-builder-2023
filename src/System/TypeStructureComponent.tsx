@@ -15,7 +15,6 @@ import { Form } from './Form';
 import { NavigateBackHandler, NavigateToHandler } from './Navigation';
 import HashMatrix from './ValueProcessing/HashMatrix';
 import {
-  ControlOutlet,
   getLayoutContainerCSS,
   getTypeStructureLayoutGridTemplate,
   LayoutContainerProps,
@@ -250,55 +249,51 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
           }
         })}
         {isMainForm && !isEntryPoint && hasChanges ? (
-          <ControlOutlet>
-            <LayoutControls>
-              <button
-                style={{
-                  flex: '1 0 auto',
-                  width: 'auto',
-                }}
-                type="button"
-                onClick={onCancelForm}
-              >
-                Cancel
-              </button>
-              <button
-                style={{
-                  flex: '1 0 auto',
-                  width: 'auto',
-                }}
-                type="button"
-                onClick={onResetForm}
-              >
-                Reset
-              </button>
-              <button
-                style={{
-                  flex: '1 0 auto',
-                  width: 'auto',
-                }}
-                type="submit"
-              >
-                Submit
-              </button>
-            </LayoutControls>
-          </ControlOutlet>
+          <LayoutControls>
+            <button
+              style={{
+                flex: '1 0 auto',
+                width: 'auto',
+              }}
+              type="button"
+              onClick={onCancelForm}
+            >
+              Cancel
+            </button>
+            <button
+              style={{
+                flex: '1 0 auto',
+                width: 'auto',
+              }}
+              type="button"
+              onClick={onResetForm}
+            >
+              Reset
+            </button>
+            <button
+              style={{
+                flex: '1 0 auto',
+                width: 'auto',
+              }}
+              type="submit"
+            >
+              Submit
+            </button>
+          </LayoutControls>
         ) : undefined}
         {isMainForm && !isEntryPoint && !hasChanges ? (
-          <ControlOutlet>
-            <LayoutControls>
-              <button
-                style={{
-                  flex: '1 0 auto',
-                  width: 'auto',
-                }}
-                type="button"
-                onClick={onCancelForm}
-              >
-                Done
-              </button>
-            </LayoutControls>
-          </ControlOutlet>
+          <LayoutControls>
+            <button
+              style={{
+                flex: '1 0 auto',
+                width: 'auto',
+              }}
+              type="button"
+              onClick={onCancelForm}
+            >
+              Done
+            </button>
+          </LayoutControls>
         ) : undefined}
       </FormComp>
     );
