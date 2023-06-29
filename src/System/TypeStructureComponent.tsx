@@ -19,30 +19,38 @@ import styled, { css } from 'styled-components';
 
 type LayoutContainerProps = {
   $isGrid?: boolean;
+  $gridTemplate?: string;
+  $gridArea?: string;
 };
 
+const LayoutDefaultColumnCSS = css`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  width: 100%;
+`;
 const LayoutMediaCSS = css`
   @media screen and (max-width: 768px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
-    width: 100%;
+    ${LayoutDefaultColumnCSS}
   }
 `;
-const LayoutForm = styled(Form)<LayoutContainerProps>`
+const getLayoutContainerCSS = ({ $isGrid = false, $gridTemplate, $gridArea }: LayoutContainerProps) => css`
+  grid-area: ${$gridArea ? $gridArea : 'auto'};
   flex: 1 0 auto;
-  display: ${(p) => (p.$isGrid ? 'grid' : 'flex')};
+  display: ${$isGrid ? 'grid' : 'flex'};
+  grid-template: ${$gridTemplate ? $gridTemplate : 'auto'};
   gap: 1em;
+
+  ${!$gridTemplate ? LayoutDefaultColumnCSS : ''}
 
   ${LayoutMediaCSS}
 `;
+const LayoutForm = styled(Form)<LayoutContainerProps>`
+  ${(p) => getLayoutContainerCSS(p)}
+`;
 const LayoutBox = styled.div<LayoutContainerProps>`
-  flex: 1 0 auto;
-  display: ${(p) => (p.$isGrid ? 'grid' : 'flex')};
-  gap: 1em;
-
-  ${LayoutMediaCSS}
+  ${(p) => getLayoutContainerCSS(p)}
 `;
 const ControlOutlet = styled.div`
   flex: 1 0 auto;
@@ -186,18 +194,6 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     [typeStructureInline, typeStructureLiteral, topLevel]
   );
   const hasTypeStructureLayout = useMemo(() => typeof typeStructureLayout === 'string', [typeStructureLayout]);
-  const formStyle = useMemo(() => {
-    const baseStye = {
-      gridArea: !topLevel ? typeStructureName : undefined,
-    };
-
-    return hasTypeStructureLayout
-      ? {
-          ...baseStye,
-          gridTemplate: getTypeStructureLayoutGridTemplate(typeStructureLayout, topLevel),
-        }
-      : baseStye;
-  }, [hasTypeStructureLayout, typeStructureLayout, typeStructureName, topLevel]);
   const [internalValueBase, setInternalValue] = useState(value);
   const valueLastChanged = useMemo(() => new Date().getTime(), [value]);
   const internalValueLastChanged = useMemo(() => new Date().getTime(), [internalValueBase]);
@@ -267,12 +263,14 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     return {
       ...(isMainForm ? { onSubmit: onFormSubmit } : {}),
       $isGrid: hasTypeStructureLayout,
+      $gridTemplate: getTypeStructureLayoutGridTemplate(typeStructureLayout, topLevel),
+      $gridArea: !topLevel ? typeStructureName : undefined,
     };
-  }, [isMainForm, onFormSubmit, hasTypeStructureLayout]);
+  }, [isMainForm, onFormSubmit, hasTypeStructureLayout, typeStructureLayout, topLevel, typeStructureName]);
 
   if (isForm) {
     return (
-      <FormComp key={typeStructureName} style={formStyle} {...(formProps as any)}>
+      <FormComp key={typeStructureName} {...(formProps as any)}>
         {typeStructureContent.map((tS) => {
           const { name: tSName, literal: tSLiteral = false, type: tSType } = tS;
           const { [TAG_TYPES.inline]: tSInline, [TAG_TYPES.label]: tSLabel } = getTagValues(
