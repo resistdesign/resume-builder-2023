@@ -36,13 +36,7 @@ export const DisplayArray: FC<DisplayProps> = ({ typeStructure, typeStructureMap
   return (
     <DisplayArrayBase>
       {value.map((item: any, index: number) => (
-        <Display
-          key={index}
-          typeStructure={typeStructure}
-          typeStructureMap={typeStructureMap}
-          value={item}
-          isItem={true}
-        />
+        <Display key={index} typeStructure={typeStructure} typeStructureMap={typeStructureMap} value={item} isItem />
       ))}
     </DisplayArrayBase>
   );
