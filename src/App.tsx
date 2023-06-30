@@ -70,6 +70,10 @@ const HeaderBox = styled.div`
   }
 `;
 const FileButton = styled.button``;
+const PrintLayoutBox = styled(LayoutBox)`
+  flex: 1 1 auto;
+  overflow: hidden;
+`;
 
 export const App: FC = () => {
   const [printing, setPrinting] = useState(DEFAULT_MODE);
@@ -182,11 +186,11 @@ export const App: FC = () => {
               <option value={2}>200%</option>
             </select>
           </HeaderBox>
-          <LayoutBox $allowShrink>
-            <LayoutBox $allowShrink={false}>
+          <PrintLayoutBox $allowShrink>
+            <PrintLayoutBox $allowShrink={false}>
               <ResumeDisplay resume={resume} zoomScale={zoomScale} />
-            </LayoutBox>
-          </LayoutBox>
+            </PrintLayoutBox>
+          </PrintLayoutBox>
         </>
       )}
     </AppBase>
