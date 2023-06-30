@@ -127,8 +127,9 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({
           <Title>{getValue('objective')}</Title>
           <Quad>
             <QuadName>
-              {getValue('subject/name/first')}
+              {getValue('subject/name/first')}&nbsp;
               {getValue('subject/name/middle')}
+              {getValue('subject/name/middle') && <>&nbsp;</>}
               {getValue('subject/name/last')}
               <br />
               {getValue('subject/email')}
