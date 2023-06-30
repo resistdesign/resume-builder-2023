@@ -1,5 +1,12 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import { Display } from '../System/Display';
+
+const DisplayResetCSS = css`
+  display: block;
+  flex-direction: unset;
+  justify-content: unset;
+  align-items: unset;
+`;
 
 export const ResumeDisplay = styled(Display)`
   display: grid;
@@ -10,6 +17,11 @@ export const ResumeDisplay = styled(Display)`
     'employment employment education education'
     'references references references references';
   gap: 1em;
+
+  ${DisplayResetCSS}
+  & div {
+    ${DisplayResetCSS}
+  }
 
   & > .display-object-subject {
     display: grid;
