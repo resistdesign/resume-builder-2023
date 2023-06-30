@@ -1,12 +1,7 @@
-import React, { FC, useCallback, useMemo } from 'react';
+import React, { FC, ReactNode, useCallback, useMemo } from 'react';
 import { Resume } from '../Types/Resume';
 import styled from 'styled-components';
 import HashMatrix, { HashMatrixPathPartType } from '../System/ValueProcessing/HashMatrix';
-
-const getFormattedDate = (isoDateString: string): string => {
-  const date = new Date(isoDateString);
-  return new Intl.DateTimeFormat('en-US').format(date);
-};
 
 const ResumeDisplayBase = styled.div`
   flex: 1 1 auto;
@@ -105,6 +100,21 @@ const References = styled.div`
   align-items: center;
   font-size: 9pt;
 `;
+
+const getFormattedDate = (isoDateString: string): ReactNode => {
+  const date = new Date(isoDateString);
+  const year = date.getFullYear();
+  const month = date.toLocaleString('default', { month: 'long' });
+  const day = date.getDate();
+
+  return (
+    <>
+      <div>{year}</div>
+      <div>{month}</div>
+      <div>{day}</div>
+    </>
+  );
+};
 
 export type ResumeDisplayProps = {
   resume: Resume;
