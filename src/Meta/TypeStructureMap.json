@@ -2051,6 +2051,9 @@
       "layout": {
         "value": "  name\n  description\n  phone email\n  address"
       },
+      "displayLayout": {
+        "value": "  name\n  description\n  phone email\n  address"
+      },
       "label": {
         "value": "Person"
       },
@@ -2066,6 +2069,9 @@
         "comments": [],
         "tags": {
           "layout": {
+            "value": "  first middle last"
+          },
+          "displayLayout": {
             "value": "  first middle last"
           },
           "itemName": {

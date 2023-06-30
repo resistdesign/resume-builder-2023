@@ -1,6 +1,7 @@
 import React, { FC, useMemo } from 'react';
 import styled from 'styled-components';
 import {
+  getMergedTypeStructure,
   getTagValue,
   getTypeStructureByPath,
   getTypeStructureIsPrimitive,
@@ -74,8 +75,9 @@ export const DisplayPrimitive: FC<DisplayProps> = ({ typeStructure, typeStructur
 export const Display: FC<DisplayProps> = ({ typeStructure, typeStructureMap, value, isItem = false }) => {
   const cleanTypeStructure = useMemo(() => {
     const { name } = typeStructure;
+    const tS = getTypeStructureByPath([name], typeStructure, typeStructureMap);
 
-    return getTypeStructureByPath([name], typeStructure, typeStructureMap);
+    return getMergedTypeStructure(tS, typeStructure) || tS;
   }, [typeStructure]);
   const { multiple = false } = cleanTypeStructure;
   const typeStructureIsPrimitive = useMemo(() => getTypeStructureIsPrimitive(cleanTypeStructure), [cleanTypeStructure]);

@@ -6,12 +6,19 @@ import { Address } from './Address';
  *   description
  *   phone email
  *   address
+ * @displayLayout
+ *   name
+ *   description
+ *   phone email
+ *   address
  * @label Person
  * @itemName `name`
  * */
 export type Person = {
   /**
    * @layout
+   *   first middle last
+   * @displayLayout
    *   first middle last
    * @itemName `first` `last`
    * */
