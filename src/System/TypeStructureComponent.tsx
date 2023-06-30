@@ -88,12 +88,10 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     name: typeStructureName = '',
     type: typeStructureType,
     content: typeStructureContent = [],
-    literal: typeStructureLiteral = false,
     readonly = false,
   } = cleanTypeStructure;
   const {
     [TAG_TYPES.label]: typeStructureLabel = undefined,
-    [TAG_TYPES.inline]: typeStructureInline = undefined,
     [TAG_TYPES.layout]: typeStructureLayout = undefined,
     [TAG_TYPES.options]: typeStructureOptionsString = undefined,
     [TAG_TYPES.optionsType]: typeStructureOptionsTypeName = undefined,
@@ -126,10 +124,6 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
         : undefined;
     }
   }, [typeStructureOptionsString, typeStructureOptionsTypeName, typeStructureMap]);
-  const isMainForm = useMemo(
-    () => (!typeStructureInline && !typeStructureLiteral) || topLevel,
-    [typeStructureInline, typeStructureLiteral, topLevel]
-  );
   const hasTypeStructureLayout = useMemo(() => typeof typeStructureLayout === 'string', [typeStructureLayout]);
   const [internalValueBase, setInternalValue] = useState(value);
   const valueLastChanged = useMemo(() => new Date().getTime(), [value]);
@@ -157,6 +151,12 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
       onNavigateBack();
     }
   }, [onNavigateBack]);
+  const onPrimitiveChangeInternal = useCallback(
+    (_n: string, v: any) => {
+      setInternalValue(v);
+    },
+    [setInternalValue]
+  );
   const onPropertyChange = useCallback(
     (n: string, v: any) => {
       const newValue = {
@@ -166,11 +166,11 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
 
       setInternalValue(newValue);
 
-      if (!isMainForm || isEntryPoint) {
+      if (!topLevel || isEntryPoint) {
         onChange(submissionTypeName, newValue);
       }
     },
-    [internalValue, setInternalValue, isMainForm, isEntryPoint, onChange, submissionTypeName]
+    [internalValue, setInternalValue, topLevel, isEntryPoint, onChange, submissionTypeName]
   );
   const onNavigateToPathInternal = useCallback(
     (path: string[] = []) => {
@@ -195,13 +195,13 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     },
     [onNavigateToPathInternal]
   );
-  const FormComp: FC = isMainForm ? LayoutForm : LayoutBox;
+  const FormComp: FC = topLevel ? LayoutForm : LayoutBox;
   const formProps = useMemo(() => {
     return {
-      ...(isMainForm ? { onSubmit: onFormSubmit } : {}),
+      ...(topLevel ? { onSubmit: onFormSubmit } : {}),
       $gridArea: !topLevel ? typeStructureName : undefined,
     };
-  }, [isMainForm, onFormSubmit, topLevel, typeStructureName]);
+  }, [topLevel, onFormSubmit, topLevel, typeStructureName]);
   const layoutBoxProps = useMemo(() => {
     return {
       $isGrid: hasTypeStructureLayout,
@@ -211,7 +211,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
   const controls = useMemo(() => {
     return (
       <>
-        {isMainForm && !isEntryPoint && hasChanges ? (
+        {topLevel && !isEntryPoint && hasChanges ? (
           <LayoutControls>
             <button
               style={{
@@ -244,7 +244,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
             </button>
           </LayoutControls>
         ) : undefined}
-        {isMainForm && !isEntryPoint && !hasChanges ? (
+        {topLevel && !isEntryPoint && !hasChanges ? (
           <LayoutControls>
             <button
               style={{
@@ -260,12 +260,12 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
         ) : undefined}
       </>
     );
-  }, [isMainForm, isEntryPoint, hasChanges, onCancelForm, onResetForm, onFormSubmit]);
+  }, [topLevel, isEntryPoint, hasChanges, onCancelForm, onResetForm, onFormSubmit]);
 
   if (isForm) {
     return (
-      <FormComp {...(formProps as any)} $allowShrink={isMainForm}>
-        <LayoutBox $allowShrink={isMainForm}>
+      <FormComp {...(formProps as any)} $allowShrink={topLevel}>
+        <LayoutBox $allowShrink={topLevel}>
           <LayoutBox {...(layoutBoxProps as any)} $allowShrink={false}>
             {typeStructureContent.map((tS) => {
               const { name: tSName, literal: tSLiteral = false, type: tSType, multiple: tSMultiple } = tS;
@@ -304,9 +304,9 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
         key={typeStructureName}
         name={typeStructureName}
         label={`${typeStructureLabel ?? ''}`}
-        value={value}
+        value={topLevel ? internalValue : value}
         type={typeStructureType}
-        onChange={onChange}
+        onChange={topLevel ? onPrimitiveChangeInternal : onChange}
         options={typeStructureOptions}
         allowCustomValue={!!typeStructureAllowCustomValue}
         readonly={readonly}
@@ -314,10 +314,10 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     );
 
     return topLevel ? (
-      <LayoutBox $allowShrink>
+      <LayoutForm $allowShrink={false} onSubmit={onFormSubmit}>
         {inputComp}
         {controls}
-      </LayoutBox>
+      </LayoutForm>
     ) : (
       inputComp
     );
