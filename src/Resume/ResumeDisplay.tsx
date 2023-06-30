@@ -29,6 +29,7 @@ export const ResumeDisplay = styled(Display)`
     grid-template: 'first middle last';
   }
 
+  & .display-object-references,
   & > .display-object-subject {
     display: grid;
     grid-template:
@@ -37,5 +38,14 @@ export const ResumeDisplay = styled(Display)`
       'phone phone email email'
       'socialNetworks socialNetworks socialNetworks socialNetworks';
     gap: 1em;
+  }
+
+  & .display-object-address {
+    display: grid;
+    grid-template:
+      'line1 line1 line1'
+      'line2 line2 line2'
+      'city state zip'
+      'country country country';
   }
 `;
