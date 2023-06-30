@@ -61,6 +61,10 @@ const QuadName = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
+  text-align: right;
+  padding: 0.5em;
+  border-right: 0.05em solid black;
+  border-bottom: 0.05em solid black;
 `;
 const QuadDate = styled.div`
   flex: 0 0 auto;
@@ -68,6 +72,8 @@ const QuadDate = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
+  padding: 0.5em;
+  border-bottom: 0.05em solid black;
 `;
 const QuadDetails = styled.div``;
 const QuadSkills = styled.div``;
