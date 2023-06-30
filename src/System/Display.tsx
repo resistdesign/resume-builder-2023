@@ -7,9 +7,18 @@ import {
   TypeStructureMap,
 } from './TypeParsing/TypeUtils';
 
-const DisplayObjectBase = styled.div``;
-const DisplayArrayBase = styled.div``;
-const DisplayPrimitiveBase = styled.div``;
+const DisplayBase = styled.div`
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1em;
+  padding: 1rem;
+`;
+const DisplayObjectBase = styled(DisplayBase)``;
+const DisplayArrayBase = styled(DisplayBase)``;
+const DisplayPrimitiveBase = styled(DisplayBase)``;
 
 type DisplayProps = {
   typeStructure: TypeStructure;
@@ -19,10 +28,10 @@ type DisplayProps = {
 };
 
 export const DisplayObject: FC<DisplayProps> = ({ typeStructure, typeStructureMap, value = {} }) => {
-  const { content = [] } = typeStructure;
+  const { name = '', content = [] } = typeStructure;
 
   return (
-    <DisplayObjectBase>
+    <DisplayObjectBase className={`display-object-${name}`}>
       {content.map((item: any, index: number) => {
         const { name } = item;
 
@@ -33,8 +42,10 @@ export const DisplayObject: FC<DisplayProps> = ({ typeStructure, typeStructureMa
 };
 
 export const DisplayArray: FC<DisplayProps> = ({ typeStructure, typeStructureMap, value = [] }) => {
+  const { name = '' } = typeStructure;
+
   return (
-    <DisplayArrayBase>
+    <DisplayArrayBase className={`display-array-${name}`}>
       {value.map((item: any, index: number) => (
         <Display key={index} typeStructure={typeStructure} typeStructureMap={typeStructureMap} value={item} isItem />
       ))}
@@ -43,7 +54,9 @@ export const DisplayArray: FC<DisplayProps> = ({ typeStructure, typeStructureMap
 };
 
 export const DisplayPrimitive: FC<DisplayProps> = ({ typeStructure, typeStructureMap, value }) => {
-  return <DisplayPrimitiveBase>{value}</DisplayPrimitiveBase>;
+  const { name = '' } = typeStructure;
+
+  return <DisplayPrimitiveBase className={`display-primitive-${name}`}>{value}</DisplayPrimitiveBase>;
 };
 
 export const Display: FC<DisplayProps> = ({ typeStructure, typeStructureMap, value, isItem = false }) => {
