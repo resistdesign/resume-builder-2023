@@ -12,11 +12,11 @@ export type Employment = {
   /**
    * @label Start Date
    * */
-  startDate: string;
+  startDate: Date;
   /**
    * @label End Date
    * */
-  endDate: string;
+  endDate: Date;
   /**
    * @label Projects
    * @itemName `name`

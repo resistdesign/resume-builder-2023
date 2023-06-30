@@ -1976,28 +1976,26 @@
         "readonly": false
       },
       {
-        "name": "startDate",
-        "type": "string",
-        "literal": true,
         "comments": [],
         "tags": {
           "label": {
             "value": "Start Date"
           }
         },
+        "name": "startDate",
+        "type": "Date",
         "optional": false,
         "readonly": false
       },
       {
-        "name": "endDate",
-        "type": "string",
-        "literal": true,
         "comments": [],
         "tags": {
           "label": {
             "value": "End Date"
           }
         },
+        "name": "endDate",
+        "type": "Date",
         "optional": false,
         "readonly": false
       },

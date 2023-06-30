@@ -6,6 +6,18 @@ import { DataTypeMap } from './HelperTypes';
 
 const getInputTypeForTypeStructureType = (type: string) => DataTypeMap[type as keyof typeof DataTypeMap] || 'text';
 
+const InputBase = styled.input`
+  &[type='date']:before {
+    content: attr(placeholder) !important;
+    color: var(--form-element-placeholder-color);
+    margin-right: 0.5em;
+  }
+
+  &[type='date']:focus:before,
+  &[type='date']:valid:before {
+    content: '';
+  }
+`;
 const RatingBase = styled.fieldset`
   flex: 0 0 auto;
   display: flex;
@@ -109,7 +121,7 @@ export const Input: FC<InputProps> = ({
       </RatingStarContainer>
     </RatingBase>
   ) : convertedType === DataTypeMap.boolean ? (
-    <input
+    <InputBase
       readOnly={readonly}
       placeholder={label}
       type={convertedType}
@@ -137,7 +149,7 @@ export const Input: FC<InputProps> = ({
     </select>
   ) : (
     <>
-      <input
+      <InputBase
         readOnly={readonly}
         placeholder={label}
         type={convertedType}
