@@ -76,7 +76,7 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({
   resume = {} as Resume,
   zoomScale = 1,
 }) => {
-  const r = useMemo(() => new HashMatrix({ hashMatrix: resume }), [resume]);
+  const r = useMemo(() => new HashMatrix({ hashMatrix: resume, pathDelimiter: '/' }), [resume]);
   const getValue = useCallback(
     (path: HashMatrixPathPartType, fallbackValue?: any) => r.getPath(path) ?? fallbackValue,
     [r]
