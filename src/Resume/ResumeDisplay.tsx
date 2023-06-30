@@ -6,11 +6,12 @@ const ResumeDisplayBase = styled.div`
   flex: 1 1 auto;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  justify-content: stretch;
+  align-items: stretch;
   overflow: auto;
+  object-fit: contain;
 `;
-const ResumeDocument = styled.div`
+const ResumeDocument = styled.div<{ $zoomScale?: number }>`
   flex: 0 0 auto;
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
@@ -21,8 +22,14 @@ const ResumeDocument = styled.div`
   height: 11in;
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
   padding: 0;
-  margin: 0;
+  margin: auto;
   gap: 0;
+  transform-origin: center center;
+  transform: scale(${(p) => p.$zoomScale ?? 1});
+
+  @media screen and (max-width: 768px) {
+    transform-origin: top left;
+  }
 
   & > div {
     border: 1px solid black;
@@ -31,15 +38,17 @@ const ResumeDocument = styled.div`
 
 export type ResumeDisplayProps = {
   resume: Resume;
+  zoomScale?: number;
 };
 
 export const ResumeDisplay: FC<ResumeDisplayProps> = ({
   // TOSO: Stuff.
   resume = {} as Resume,
+  zoomScale = 1,
 }) => {
   return (
     <ResumeDisplayBase>
-      <ResumeDocument>
+      <ResumeDocument $zoomScale={zoomScale}>
         <div>Header</div>
         <div>Header</div>
         <div>Header</div>
