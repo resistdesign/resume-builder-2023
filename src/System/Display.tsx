@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, HTMLAttributes, useMemo } from 'react';
 import styled from 'styled-components';
 import {
   getMergedTypeStructure,
@@ -21,15 +21,15 @@ const DisplayObjectBase = styled(DisplayBase)``;
 const DisplayArrayBase = styled(DisplayBase)``;
 const DisplayPrimitiveBase = styled(DisplayBase)``;
 
-type DisplayProps = {
+type DisplayProps = HTMLAttributes<HTMLDivElement> & {
   typeStructure: TypeStructure;
   typeStructureMap: TypeStructureMap;
   value: any;
   isItem?: boolean;
 };
 
-export const DisplayObject: FC<DisplayProps> = ({ typeStructure, typeStructureMap, value = {} }) => {
-  const { name = '', type, content = [] } = typeStructure;
+export const DisplayObject: FC<DisplayProps> = ({ typeStructure, typeStructureMap, value = {}, ...elementProps }) => {
+  const { name = '', content = [] } = typeStructure;
   const displayLayout = useMemo(() => {
     const dL = getTagValue(TAG_TYPES.displayLayout, typeStructure);
 
@@ -42,6 +42,7 @@ export const DisplayObject: FC<DisplayProps> = ({ typeStructure, typeStructureMa
       $isGrid={!!displayLayout}
       $gridTemplate={displayLayout}
       $gridArea={name}
+      {...elementProps}
     >
       {content.map((item: any, index: number) => {
         const { name } = item;
@@ -52,11 +53,11 @@ export const DisplayObject: FC<DisplayProps> = ({ typeStructure, typeStructureMa
   );
 };
 
-export const DisplayArray: FC<DisplayProps> = ({ typeStructure, typeStructureMap, value = [] }) => {
+export const DisplayArray: FC<DisplayProps> = ({ typeStructure, typeStructureMap, value = [], ...elementProps }) => {
   const { name = '' } = typeStructure;
 
   return (
-    <DisplayArrayBase className={`display-array-${name}`} $gridArea={name}>
+    <DisplayArrayBase className={`display-array-${name}`} $gridArea={name} {...elementProps}>
       {value.map((item: any, index: number) => (
         <Display key={index} typeStructure={typeStructure} typeStructureMap={typeStructureMap} value={item} isItem />
       ))}
@@ -64,17 +65,23 @@ export const DisplayArray: FC<DisplayProps> = ({ typeStructure, typeStructureMap
   );
 };
 
-export const DisplayPrimitive: FC<DisplayProps> = ({ typeStructure, typeStructureMap, value }) => {
+export const DisplayPrimitive: FC<DisplayProps> = ({ typeStructure, typeStructureMap, value, ...elementProps }) => {
   const { name = '' } = typeStructure;
 
   return (
-    <DisplayPrimitiveBase className={`display-primitive-${name}`} $gridArea={name}>
+    <DisplayPrimitiveBase className={`display-primitive-${name}`} $gridArea={name} {...elementProps}>
       {value}
     </DisplayPrimitiveBase>
   );
 };
 
-export const Display: FC<DisplayProps> = ({ typeStructure, typeStructureMap, value, isItem = false }) => {
+export const Display: FC<DisplayProps> = ({
+  typeStructure,
+  typeStructureMap,
+  value,
+  isItem = false,
+  ...elementProps
+}) => {
   const cleanTypeStructure = useMemo(() => {
     const { name } = typeStructure;
     const tS = getTypeStructureByPath([name], typeStructure, typeStructureMap);
@@ -88,10 +95,25 @@ export const Display: FC<DisplayProps> = ({ typeStructure, typeStructureMap, val
   );
 
   return multiple && !isItem ? (
-    <DisplayArray typeStructure={cleanTypeStructure} typeStructureMap={typeStructureMap} value={value} />
+    <DisplayArray
+      typeStructure={cleanTypeStructure}
+      typeStructureMap={typeStructureMap}
+      value={value}
+      {...elementProps}
+    />
   ) : typeStructureIsPrimitive ? (
-    <DisplayPrimitive typeStructure={cleanTypeStructure} typeStructureMap={typeStructureMap} value={value} />
+    <DisplayPrimitive
+      typeStructure={cleanTypeStructure}
+      typeStructureMap={typeStructureMap}
+      value={value}
+      {...elementProps}
+    />
   ) : (
-    <DisplayObject typeStructure={cleanTypeStructure} typeStructureMap={typeStructureMap} value={value} />
+    <DisplayObject
+      typeStructure={cleanTypeStructure}
+      typeStructureMap={typeStructureMap}
+      value={value}
+      {...elementProps}
+    />
   );
 };
