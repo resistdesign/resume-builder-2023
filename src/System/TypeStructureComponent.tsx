@@ -299,21 +299,27 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
       </FormComp>
     );
   } else {
-    return (
+    const inputComp = (
+      <Input
+        key={typeStructureName}
+        name={typeStructureName}
+        label={`${typeStructureLabel ?? ''}`}
+        value={value}
+        type={typeStructureType}
+        onChange={onChange}
+        options={typeStructureOptions}
+        allowCustomValue={!!typeStructureAllowCustomValue}
+        readonly={readonly}
+      />
+    );
+
+    return topLevel ? (
       <LayoutBox $allowShrink>
-        <Input
-          key={typeStructureName}
-          name={typeStructureName}
-          label={`${typeStructureLabel ?? ''}`}
-          value={value}
-          type={typeStructureType}
-          onChange={onChange}
-          options={typeStructureOptions}
-          allowCustomValue={!!typeStructureAllowCustomValue}
-          readonly={readonly}
-        />
-        {isMainForm ? controls : undefined}
+        {inputComp}
+        {controls}
       </LayoutBox>
+    ) : (
+      inputComp
     );
   }
 };
