@@ -208,40 +208,9 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
       $gridTemplate: getTypeStructureLayoutGridTemplate(typeStructureLayout, topLevel),
     };
   }, [hasTypeStructureLayout, typeStructureLayout, topLevel]);
-
-  if (isForm) {
+  const controls = useMemo(() => {
     return (
-      <FormComp {...(formProps as any)} $allowShrink={isMainForm}>
-        <LayoutBox $allowShrink={isMainForm}>
-          <LayoutBox {...(layoutBoxProps as any)} $allowShrink={false}>
-            {typeStructureContent.map((tS) => {
-              const { name: tSName, literal: tSLiteral = false, type: tSType, multiple: tSMultiple } = tS;
-              const { [TAG_TYPES.inline]: tSInline, [TAG_TYPES.label]: tSLabel } = getTagValues(
-                [TAG_TYPES.inline, TAG_TYPES.label],
-                tS
-              );
-              const inputLabel = typeof tSLabel === 'string' ? tSLabel : tSName;
-              const tSTypeIsTypeStructure = typeof tSType === 'string' && !!typeStructureMap[tSType];
-              const useInputType = !tSTypeIsTypeStructure;
-
-              if (!tSMultiple && (tSLiteral || tSInline || useInputType)) {
-                return (
-                  <TypeStructureComponent
-                    key={tSName}
-                    typeStructureMap={typeStructureMap}
-                    typeStructure={tS}
-                    value={internalValue?.[tSName]}
-                    onChange={onPropertyChange}
-                    onNavigateToPath={onNavigateToPath}
-                    navigationPathPrefix={[tSName]}
-                  />
-                );
-              } else {
-                return <OpenFormButton key={tSName} name={tSName} label={inputLabel} onOpenForm={onOpenForm} />;
-              }
-            })}
-          </LayoutBox>
-        </LayoutBox>
+      <>
         {isMainForm && !isEntryPoint && hasChanges ? (
           <LayoutControls>
             <button
@@ -289,21 +258,62 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
             </button>
           </LayoutControls>
         ) : undefined}
+      </>
+    );
+  }, [isMainForm, isEntryPoint, hasChanges, onCancelForm, onResetForm, onFormSubmit]);
+
+  if (isForm) {
+    return (
+      <FormComp {...(formProps as any)} $allowShrink={isMainForm}>
+        <LayoutBox $allowShrink={isMainForm}>
+          <LayoutBox {...(layoutBoxProps as any)} $allowShrink={false}>
+            {typeStructureContent.map((tS) => {
+              const { name: tSName, literal: tSLiteral = false, type: tSType, multiple: tSMultiple } = tS;
+              const { [TAG_TYPES.inline]: tSInline, [TAG_TYPES.label]: tSLabel } = getTagValues(
+                [TAG_TYPES.inline, TAG_TYPES.label],
+                tS
+              );
+              const inputLabel = typeof tSLabel === 'string' ? tSLabel : tSName;
+              const tSTypeIsTypeStructure = typeof tSType === 'string' && !!typeStructureMap[tSType];
+              const useInputType = !tSTypeIsTypeStructure;
+
+              if (!tSMultiple && (tSLiteral || tSInline || useInputType)) {
+                return (
+                  <TypeStructureComponent
+                    key={tSName}
+                    typeStructureMap={typeStructureMap}
+                    typeStructure={tS}
+                    value={internalValue?.[tSName]}
+                    onChange={onPropertyChange}
+                    onNavigateToPath={onNavigateToPath}
+                    navigationPathPrefix={[tSName]}
+                  />
+                );
+              } else {
+                return <OpenFormButton key={tSName} name={tSName} label={inputLabel} onOpenForm={onOpenForm} />;
+              }
+            })}
+          </LayoutBox>
+        </LayoutBox>
+        {controls}
       </FormComp>
     );
   } else {
     return (
-      <Input
-        key={typeStructureName}
-        name={typeStructureName}
-        label={`${typeStructureLabel ?? ''}`}
-        value={value}
-        type={typeStructureType}
-        onChange={onChange}
-        options={typeStructureOptions}
-        allowCustomValue={!!typeStructureAllowCustomValue}
-        readonly={readonly}
-      />
+      <LayoutBox $allowShrink>
+        <Input
+          key={typeStructureName}
+          name={typeStructureName}
+          label={`${typeStructureLabel ?? ''}`}
+          value={value}
+          type={typeStructureType}
+          onChange={onChange}
+          options={typeStructureOptions}
+          allowCustomValue={!!typeStructureAllowCustomValue}
+          readonly={readonly}
+        />
+        {isMainForm ? controls : undefined}
+      </LayoutBox>
     );
   }
 };

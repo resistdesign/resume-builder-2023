@@ -46,6 +46,7 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
     () => getTypeStructureByPath(path, typeStructure, typeStructureMap),
     [path, typeStructure, typeStructureMap]
   );
+  const tStructIsPrimitive = useMemo(() => getTypeStructureIsPrimitive(currentTypeStructure), [currentTypeStructure]);
   const { multiple: currentTypeIsMultiple = false } = currentTypeStructure;
   const currentValueIsItemInList = useMemo(() => {
     const { isListItem = false }: Partial<NavigationBreadcrumb> = trail[trail.length - 1] || {};
@@ -55,13 +56,12 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
   const onChangeInternal = useCallback(
     (name: string, value: any) => {
       const stringNav = path.map((p) => `${p}`);
-      const tStructIsPrimitive = getTypeStructureIsPrimitive(currentTypeStructure);
       const targetPath = !!name && !tStructIsPrimitive ? [...stringNav, name] : stringNav;
 
       hashMatrix.setPath(targetPath, value);
       onChange(hashMatrix.getValue());
     },
-    [hashMatrix, path, onChange, currentTypeStructure]
+    [hashMatrix, path, onChange, tStructIsPrimitive]
   );
   const onListChange = useCallback(
     (value: any) => {
