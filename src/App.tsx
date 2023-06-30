@@ -91,7 +91,7 @@ export const App: FC = () => {
       const jsonBlob = new Blob([json], { type: 'application/json' });
 
       await fileSave(jsonBlob, {
-        fileName: 'resume.rdresume',
+        fileName: 'Resume.rdresume',
         extensions: ['.rdresume'],
       });
     } catch (e) {
