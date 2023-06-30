@@ -1,5 +1,11 @@
-import React, { FC, MouseEvent as ReactMouseEvent, useCallback, useMemo, useState } from 'react';
+import React, { FC, MouseEvent as ReactMouseEvent, useCallback, useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
+import { getLocalJSON, LocalJSON } from './Storage/LocalJSON';
+
+const TRAIL_PREFIX = 'Trail';
+const MAIN_TRAIL = 'Default';
+const TRAIL_SERVICE: LocalJSON = getLocalJSON(TRAIL_PREFIX);
+const DEFAULT_TRAIL: NavigationTrail = (TRAIL_SERVICE.read(MAIN_TRAIL) || []) as any;
 
 export type NavigationPath = (string | number)[];
 
@@ -40,8 +46,8 @@ export type Navigation = {
   onSetTrail: NavigationTrailSetter;
 };
 
-export const useNavigation = (): Navigation => {
-  const [trail, setTrail] = useState<NavigationTrail>([]);
+export const useNavigation = (storeTrail: boolean = false): Navigation => {
+  const [trail, setTrail] = useState<NavigationTrail>(storeTrail ? DEFAULT_TRAIL : []);
   const path = useMemo(() => getNavigationPath(trail), [trail]);
   const onNavigateTo = useCallback(
     (breadcrumb: NavigationBreadcrumb) => setTrail(navigateTo(breadcrumb, trail)),
@@ -58,6 +64,12 @@ export const useNavigation = (): Navigation => {
     }),
     [trail, path, onNavigateTo, onNavigateBack]
   );
+
+  useEffect(() => {
+    if (storeTrail) {
+      TRAIL_SERVICE.update(MAIN_TRAIL, trail);
+    }
+  }, [trail, storeTrail]);
 
   return navigation;
 };

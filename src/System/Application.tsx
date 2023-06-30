@@ -29,11 +29,18 @@ export type ApplicationProps<TypeStructureMapType extends TypeStructureMap> = {
   value: any;
   entryType: keyof TypeStructureMapType;
   onChange: (value: any) => void;
+  keepNavigationHistory?: boolean;
 };
 
-export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value, entryType, onChange }) => {
+export const Application: FC<ApplicationProps<any>> = ({
+  typeStructureMap,
+  value,
+  entryType,
+  onChange,
+  keepNavigationHistory = false,
+}) => {
   const typeStructure = useMemo(() => typeStructureMap[entryType], [typeStructureMap, entryType]);
-  const { trail, path, onNavigateTo, onNavigateBack, onSetTrail } = useNavigation();
+  const { trail, path, onNavigateTo, onNavigateBack, onSetTrail } = useNavigation(keepNavigationHistory);
   const hashMatrix = useMemo(
     () =>
       new HashMatrix({

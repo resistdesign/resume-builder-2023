@@ -15,6 +15,10 @@ const RESUME_ITEM_PREFIX = 'Resume';
 const MAIN_RESUME_ITEM = 'Default';
 const RESUME_SERVICE: LocalJSON = getLocalJSON(RESUME_ITEM_PREFIX);
 const DEFAULT_RESUME = RESUME_SERVICE.read(MAIN_RESUME_ITEM) || {};
+const MODE_PREFIX = 'Mode';
+const MAIN_MODE = 'Default';
+const MODE_SERVICE: LocalJSON = getLocalJSON(MODE_PREFIX);
+const DEFAULT_MODE = MODE_SERVICE.read(MAIN_MODE) || false;
 
 const GlobalStyle: FC = createGlobalStyle`
   body {
@@ -67,7 +71,7 @@ const HeaderBox = styled.div`
 const FileButton = styled.button``;
 
 export const App: FC = () => {
-  const [printing, setPrinting] = useState(false);
+  const [printing, setPrinting] = useState(DEFAULT_MODE);
   const [resume, setResume] = useState(DEFAULT_RESUME);
   const onSelectBuildMode = useCallback(() => {
     setPrinting(false);
@@ -108,6 +112,10 @@ export const App: FC = () => {
   }, [resume]);
 
   useEffect(() => {
+    MODE_SERVICE.update(MAIN_MODE, printing);
+  }, [printing]);
+
+  useEffect(() => {
     let metaKey = false;
 
     const handleMetaKeyDown = (event: KeyboardEvent) => {
@@ -146,6 +154,7 @@ export const App: FC = () => {
           value={resume}
           entryType={RESUME_ENTRY_TYPE_NAME}
           onChange={setResume}
+          keepNavigationHistory
         />
       ) : (
         <LayoutBox $allowShrink>
