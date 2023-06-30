@@ -26,12 +26,21 @@ const RatingBase = styled.fieldset`
   border: 0.05em solid var(--form-element-border-color);
   box-sizing: border-box;
 `;
-const RatingStar = styled.input`
-  color: var(--form-element-color);
-
-  &:checked {
-    color: var(--primary);
+const RatingStarContainer = styled.label`
+  &:before {
+    content: '★';
+    color: var(--form-element-color);
+    cursor: pointer;
   }
+
+  &:has(input:checked) {
+    &:before {
+      color: var(--primary);
+    }
+  }
+`;
+const RatingStar = styled.input`
+  display: none;
 `;
 
 export type InputProps = {
@@ -91,11 +100,11 @@ export const Input: FC<InputProps> = ({
   return type === TYPE_TO_INPUT_TYPE_MAP.Rating ? (
     <RatingBase disabled={readonly}>
       <legend>{label}</legend>
-      <RatingStar type="radio" readOnly value={1} checked={cleanValue >= 1} onClick={onChangeInternal} />
-      <RatingStar type="radio" readOnly value={2} checked={cleanValue >= 2} onClick={onChangeInternal} />
-      <RatingStar type="radio" readOnly value={3} checked={cleanValue >= 3} onClick={onChangeInternal} />
-      <RatingStar type="radio" readOnly value={4} checked={cleanValue >= 4} onClick={onChangeInternal} />
-      <RatingStar type="radio" readOnly value={5} checked={cleanValue >= 5} onClick={onChangeInternal} />
+      <RatingStarContainer><RatingStar type="radio" readOnly value={1} checked={cleanValue >= 1} onClick={onChangeInternal} /></RatingStarContainer>
+      <RatingStarContainer><RatingStar type="radio" readOnly value={2} checked={cleanValue >= 2} onClick={onChangeInternal} /></RatingStarContainer>
+      <RatingStarContainer><RatingStar type="radio" readOnly value={3} checked={cleanValue >= 3} onClick={onChangeInternal} /></RatingStarContainer>
+      <RatingStarContainer><RatingStar type="radio" readOnly value={4} checked={cleanValue >= 4} onClick={onChangeInternal} /></RatingStarContainer>
+      <RatingStarContainer><RatingStar type="radio" readOnly value={5} checked={cleanValue >= 5} onClick={onChangeInternal} /></RatingStarContainer>
     </RatingBase>
   ) : type === TYPE_TO_INPUT_TYPE_MAP.boolean ? (
     <input
