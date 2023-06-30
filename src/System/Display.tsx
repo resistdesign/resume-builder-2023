@@ -15,6 +15,7 @@ import { DataTypeMap } from './HelperTypes';
 const DisplayBase = styled(LayoutBox)`
   flex: 1 1 auto;
   overflow: hidden;
+  border: 1px solid #ccc;
 `;
 const DisplayObjectBase = styled(DisplayBase)``;
 const DisplayArrayBase = styled(DisplayBase)``;

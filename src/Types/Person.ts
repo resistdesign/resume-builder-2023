@@ -9,19 +9,12 @@ import { SocialNetwork } from './SocialNetwork';
  *   phone email
  *   address
  *   socialNetworks
- * @displayLayout
- *   name name address address
- *   description description address address
- *   phone email address address
- *   socialNetworks socialNetworks address address
  * @label Person
  * @itemName `name`
  * */
 export type Person = {
   /**
    * @layout
-   *   first middle last
-   * @displayLayout
    *   first middle last
    * @itemName `first` `last`
    * */
@@ -59,11 +52,6 @@ export type Person = {
    * @label Address
    * @inline
    * @layout
-   *   line1
-   *   line2
-   *   city state zip
-   *   country
-   * @displayLayout
    *   line1
    *   line2
    *   city state zip
