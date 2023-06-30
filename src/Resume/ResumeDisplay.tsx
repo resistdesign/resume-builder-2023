@@ -4,15 +4,20 @@ import { Display } from '../System/Display';
 export const ResumeDisplay = styled(Display)`
   display: grid;
   grid-template:
-   "subject subject subject date" auto
-   "objective objective objective objective" auto
-   "employment employment education education" auto
-   "references references references references" auto;
+    'subject subject subject date'
+    'subject subject subject date'
+    'objective objective objective objective'
+    'employment employment education education'
+    'references references references references';
   gap: 1em;
 
-  border: 1px solid #ccc;
-
-  & div {
-    border: 1px solid #ccc;
+  & > .display-object-subject {
+    display: grid;
+    grid-template:
+      'name name name address'
+      'description description description address'
+      'phone phone email email'
+      'socialNetworks socialNetworks socialNetworks socialNetworks';
+    gap: 1em;
   }
 `;
