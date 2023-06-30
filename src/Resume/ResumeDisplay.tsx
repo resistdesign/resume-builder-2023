@@ -1,7 +1,7 @@
-import React, {FC, useMemo} from 'react';
+import React, { FC, useMemo } from 'react';
 import { Resume } from '../Types/Resume';
 import styled from 'styled-components';
-import HashMatrix from "../System/ValueProcessing/HashMatrix";
+import HashMatrix from '../System/ValueProcessing/HashMatrix';
 
 const ResumeDisplayBase = styled.div`
   flex: 1 1 auto;
@@ -27,7 +27,7 @@ const ResumeDocument = styled.div<{ $zoomScale?: number }>`
   gap: 0;
   transform-origin: ${(p) => (typeof p.$zoomScale === 'number' && p.$zoomScale > 1 ? 'top left' : 'center center')};
   transform: scale(${(p) => p.$zoomScale ?? 1});
-  
+
   color: black;
 
   @media screen and (max-width: 768px) {
@@ -44,9 +44,9 @@ const Title = styled.div`
   flex: 0 0 auto;
   display: flex;
   flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-  font-size: 48pt;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-size: 36pt;
 `;
 const Quad = styled.div`
   flex: 0 0 auto;
@@ -58,8 +58,8 @@ const References = styled.div`
   flex: 0 0 auto;
   display: flex;
   flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
+  justify-content: flex-start;
+  align-items: center;
 `;
 
 export type ResumeDisplayProps = {
@@ -72,7 +72,7 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({
   resume = {} as Resume,
   zoomScale = 1,
 }) => {
-  const r = useMemo(() => new HashMatrix({hashMatrix: resume}), [resume]);
+  const r = useMemo(() => new HashMatrix({ hashMatrix: resume }), [resume]);
 
   return (
     <ResumeDisplayBase>
@@ -82,14 +82,14 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({
         <div>&nbsp;</div>
         <div>&nbsp;</div>
         <CenterBody>
-            <Title>{r.getPath('objective')}</Title>
-            <Quad>
-                <div>Name</div>
-                <div>Date</div>
-                <div>Details</div>
-                <div>Skills</div>
-            </Quad>
-            <References>{r.getPath('references')}</References>
+          <Title>{r.getPath('objective')}</Title>
+          <Quad>
+            <div>Name</div>
+            <div>Date</div>
+            <div>Details</div>
+            <div>Skills</div>
+          </Quad>
+          <References>{r.getPath('references').toString()}</References>
         </CenterBody>
         <div>&nbsp;</div>
         <div>&nbsp;</div>
