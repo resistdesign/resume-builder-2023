@@ -1,7 +1,7 @@
 import React, { FC, useMemo } from 'react';
 import styled from 'styled-components';
 import {
-  getCleanTypeStructure,
+  getTypeStructureByPath,
   getTypeStructureIsPrimitive,
   TypeStructure,
   TypeStructureMap,
@@ -60,7 +60,11 @@ export const DisplayPrimitive: FC<DisplayProps> = ({ typeStructure, typeStructur
 };
 
 export const Display: FC<DisplayProps> = ({ typeStructure, typeStructureMap, value, isItem = false }) => {
-  const cleanTypeStructure = useMemo(() => getCleanTypeStructure(typeStructure), [typeStructure]);
+  const cleanTypeStructure = useMemo(() => {
+    const { name } = typeStructure;
+
+    return getTypeStructureByPath([name], typeStructure, typeStructureMap);
+  }, [typeStructure]);
   const { multiple = false } = cleanTypeStructure;
   const typeStructureIsPrimitive = useMemo(() => getTypeStructureIsPrimitive(cleanTypeStructure), [cleanTypeStructure]);
 
