@@ -1,5 +1,5 @@
 import React, { FC, useCallback, useMemo } from 'react';
-import { getTypeStructureByPath, TypeStructureMap } from './TypeParsing/TypeUtils';
+import { getTypeStructureByPath, getTypeStructureIsPrimitive, TypeStructureMap } from './TypeParsing/TypeUtils';
 import { TypeStructureComponent } from './TypeStructureComponent';
 import HashMatrix from './ValueProcessing/HashMatrix';
 import { List } from './List';
@@ -55,11 +55,13 @@ export const Application: FC<ApplicationProps<any>> = ({ typeStructureMap, value
   const onChangeInternal = useCallback(
     (name: string, value: any) => {
       const stringNav = path.map((p) => `${p}`);
+      const tStructIsPrimitive = getTypeStructureIsPrimitive(currentTypeStructure);
+      const targetPath = !!name && !tStructIsPrimitive ? [...stringNav, name] : stringNav;
 
-      hashMatrix.setPath(!!name ? [...stringNav, name] : stringNav, value);
+      hashMatrix.setPath(targetPath, value);
       onChange(hashMatrix.getValue());
     },
-    [hashMatrix, path, onChange]
+    [hashMatrix, path, onChange, currentTypeStructure]
   );
   const onListChange = useCallback(
     (value: any) => {
