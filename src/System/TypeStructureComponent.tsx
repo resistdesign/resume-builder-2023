@@ -215,7 +215,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
         <LayoutBox $allowShrink={isMainForm}>
           <LayoutBox {...(layoutBoxProps as any)} $allowShrink={false}>
             {typeStructureContent.map((tS) => {
-              const { name: tSName, literal: tSLiteral = false, type: tSType } = tS;
+              const { name: tSName, literal: tSLiteral = false, type: tSType, multiple: tSMultiple } = tS;
               const { [TAG_TYPES.inline]: tSInline, [TAG_TYPES.label]: tSLabel } = getTagValues(
                 [TAG_TYPES.inline, TAG_TYPES.label],
                 tS
@@ -224,7 +224,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
               const tSTypeIsTypeStructure = typeof tSType === 'string' && !!typeStructureMap[tSType];
               const useInputType = !tSTypeIsTypeStructure;
 
-              if (tSLiteral || tSInline || useInputType) {
+              if (!tSMultiple && (tSLiteral || tSInline || useInputType)) {
                 return (
                   <TypeStructureComponent
                     key={tSName}
