@@ -1,11 +1,38 @@
 import React, { ChangeEvent, FC, useCallback, useMemo } from 'react';
 import { TypeStructure } from './TypeParsing/TypeUtils';
 import { getUUID } from './IdUtils';
+import styled from 'styled-components';
 
-enum InputType {
-  checkbox = 'checkbox',
-  textarea = 'textarea',
-}
+export const TYPE_TO_INPUT_TYPE_MAP = {
+  string: 'text',
+  number: 'number',
+  boolean: 'checkbox',
+  Date: 'date',
+  DateTime: 'datetime-local',
+  LongText: 'textarea',
+  Rating: 'number',
+  any: 'text',
+};
+
+const RatingBase = styled.fieldset`
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1em;
+  padding: 1em;
+  border: 0.05em solid var(--form-element-border-color);
+  box-sizing: border-box;
+`;
+
+const RatingStar = styled.input`
+  color: var(--form-element-color);
+
+  &:checked {
+    color: var(--primary);
+  }
+`;
 
 export type InputProps = {
   name: string;
@@ -43,17 +70,34 @@ export const Input: FC<InputProps> = ({
       if (onChange) {
         const { target } = event;
         const { checked, value: inputValue } = target as any;
-        const newValue = type === InputType.checkbox ? checked ?? false : inputValue ?? '';
+        const newValue =
+          type === TYPE_TO_INPUT_TYPE_MAP.boolean
+            ? checked ?? false
+            : type === TYPE_TO_INPUT_TYPE_MAP.Rating
+            ? parseInt(inputValue, 10)
+            : inputValue;
 
         onChange(name, newValue);
       }
     },
     [name, type, value, onChange]
   );
-  const cleanValue = useMemo(() => (type === InputType.checkbox ? value ?? false : value ?? ''), [type, value]);
+  const cleanValue = useMemo(
+    () => (type === TYPE_TO_INPUT_TYPE_MAP.boolean ? value ?? false : value ?? ''),
+    [type, value]
+  );
   const styleObj = useMemo(() => ({ gridArea: name }), [name]);
 
-  return type === InputType.checkbox ? (
+  return type === TYPE_TO_INPUT_TYPE_MAP.Rating ? (
+    <RatingBase>
+      <legend>{label}</legend>
+      <RatingStar type="radio" name={name} value={1} checked={cleanValue >= 1} onChange={onChangeInternal} />
+      <RatingStar type="radio" name={name} value={2} checked={cleanValue >= 2} onChange={onChangeInternal} />
+      <RatingStar type="radio" name={name} value={3} checked={cleanValue >= 3} onChange={onChangeInternal} />
+      <RatingStar type="radio" name={name} value={4} checked={cleanValue >= 4} onChange={onChangeInternal} />
+      <RatingStar type="radio" name={name} value={5} checked={cleanValue >= 5} onChange={onChangeInternal} />
+    </RatingBase>
+  ) : type === TYPE_TO_INPUT_TYPE_MAP.boolean ? (
     <input
       readOnly={readonly}
       placeholder={label}
@@ -62,7 +106,7 @@ export const Input: FC<InputProps> = ({
       onChange={onChangeInternal}
       style={styleObj}
     />
-  ) : type === InputType.textarea ? (
+  ) : type === TYPE_TO_INPUT_TYPE_MAP.LongText ? (
     <textarea
       readOnly={readonly}
       placeholder={label}

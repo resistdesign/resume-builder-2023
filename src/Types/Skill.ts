@@ -1,3 +1,5 @@
+import { Rating } from '../System/HelperTypes';
+
 export type Skill = {
   /**
    * @label Description
@@ -6,5 +8,5 @@ export type Skill = {
   /**
    * @label Rating
    */
-  rating: 1 | 2 | 3 | 4 | 5;
+  rating: Rating;
 };

@@ -10,7 +10,7 @@ import {
   TypeStructure,
   TypeStructureMap,
 } from './TypeParsing/TypeUtils';
-import { Input } from './Input';
+import { Input, TYPE_TO_INPUT_TYPE_MAP } from './Input';
 import { Form } from './Form';
 import { NavigateBackHandler, NavigateToHandler } from './Navigation';
 import HashMatrix from './ValueProcessing/HashMatrix';
@@ -26,16 +26,6 @@ import styled from 'styled-components';
 const LayoutForm = styled(Form)<LayoutContainerProps>`
   ${(p) => getLayoutContainerCSS(p)}
 `;
-
-export const TYPE_TO_INPUT_TYPE_MAP: Record<string, string> = {
-  string: 'text',
-  number: 'number',
-  boolean: 'checkbox',
-  Date: 'date',
-  DateTime: 'datetime-local',
-  LongText: 'textarea',
-  any: 'text',
-};
 
 type OpenFormButtonProps = {
   name: string;

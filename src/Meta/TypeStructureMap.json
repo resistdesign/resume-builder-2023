@@ -2366,45 +2366,7 @@
           }
         },
         "name": "rating",
-        "type": "Skill.rating",
-        "varietyType": true,
-        "content": [
-          {
-            "name": "rating",
-            "type": "1",
-            "literal": true,
-            "comments": [],
-            "tags": {}
-          },
-          {
-            "name": "rating",
-            "type": "2",
-            "literal": true,
-            "comments": [],
-            "tags": {}
-          },
-          {
-            "name": "rating",
-            "type": "3",
-            "literal": true,
-            "comments": [],
-            "tags": {}
-          },
-          {
-            "name": "rating",
-            "type": "4",
-            "literal": true,
-            "comments": [],
-            "tags": {}
-          },
-          {
-            "name": "rating",
-            "type": "5",
-            "literal": true,
-            "comments": [],
-            "tags": {}
-          }
-        ],
+        "type": "Rating",
         "optional": false,
         "readonly": false
       }

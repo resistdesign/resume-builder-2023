@@ -185,23 +185,64 @@ export const getMergedTypeStructure = (...typeStructures: TypeStructure[]): Type
   return mergedTypeStructure;
 };
 
+export const getCleanTypeStructure = (
+  typeStructure: TypeStructure,
+  typeStructureMap?: TypeStructureMap
+): TypeStructure => {
+  const { namespace, name, type, typeAlias, literal, comments = [], tags = {} }: TypeStructure = typeStructure;
+
+  if (literal) {
+    return typeStructure;
+  } else {
+    const cleanType = getCleanType(type);
+    const cleanTypeWithNamespace = getCleanType(type, namespace);
+    const { [cleanTypeWithNamespace]: mappedTypeStructureWithNamespace, [cleanType]: mappedTypeStructureNoNamespace } =
+      typeStructureMap || {};
+    const useMappedWithNamespace = !!mappedTypeStructureWithNamespace;
+    const mappedTypeStructure = useMappedWithNamespace
+      ? mappedTypeStructureWithNamespace
+      : mappedTypeStructureNoNamespace;
+    const { comments: mappedTypeStructureComments = [], tags: mappedTypeStructureTags = {} } =
+      mappedTypeStructure || {};
+    const mergedTypeStructure: TypeStructure = {
+      ...typeStructure,
+      ...mappedTypeStructure,
+      name,
+      typeAlias: mappedTypeStructure ? type : typeAlias,
+      comments: [...comments, ...mappedTypeStructureComments],
+      tags: { ...tags, ...mappedTypeStructureTags },
+    };
+    const typeForMatching = useMappedWithNamespace ? cleanTypeWithNamespace : cleanType;
+    const cleanMappedType = getCleanType(mappedTypeStructure?.type || '', mappedTypeStructure?.namespace);
+
+    if (mappedTypeStructure && cleanMappedType !== typeForMatching) {
+      return getCleanTypeStructure(mergedTypeStructure, typeStructureMap);
+    }
+
+    return mergedTypeStructure;
+  }
+};
+
 export const getTypeStructureByPath = (
   path: (string | number)[],
   typeStructure: TypeStructure,
   typeStructureMap: TypeStructureMap
 ): TypeStructure => {
-  const { multiple = false, content = [], type = '' } = typeStructure;
+  const { multiple = false, type = '' } = typeStructure;
+  const baseTS = getCleanTypeStructure(typeStructure, typeStructureMap);
+  const { content = [] }: Partial<TypeStructure> = baseTS || {};
   const [firstPathPart, ...multiPath] = path;
   const firstPathPartIsNumber = !isNaN(Number(firstPathPart));
   const firstPathPartIsInContent = !!content.find(({ name }) => name === firstPathPart);
   const isItemSubPath = firstPathPartIsNumber || !firstPathPartIsInContent;
   const targetPath = multiple && isItemSubPath ? multiPath : path;
 
-  let tS = getMergedTypeStructure(getTypeStructureByName(type, typeStructureMap), typeStructure);
+  let tS = baseTS;
 
-  if (targetPath.length > 0) {
+  if (tS && targetPath.length > 0) {
     const [targetPathPart, ...remainingPath] = targetPath;
-    const targetContent = content.find(({ name }) => name === targetPathPart);
+    const { content: currentContentList = [] } = tS;
+    const targetContent = currentContentList.find(({ name }) => name === targetPathPart);
 
     if (targetContent) {
       tS = getTypeStructureByPath(remainingPath, targetContent, typeStructureMap);
