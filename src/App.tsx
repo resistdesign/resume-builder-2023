@@ -21,10 +21,6 @@ const MODE_SERVICE: LocalJSON = getLocalJSON(MODE_PREFIX);
 const DEFAULT_MODE = MODE_SERVICE.read(MAIN_MODE) || false;
 
 const GlobalStyle: FC = createGlobalStyle`
-  body {
-    overflow: hidden;
-  }
-
   input,
   label,
   button {
