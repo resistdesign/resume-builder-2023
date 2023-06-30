@@ -98,6 +98,7 @@ const References = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  font-size: 9pt;
 `;
 
 export type ResumeDisplayProps = {
