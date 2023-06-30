@@ -2139,28 +2139,26 @@
         "readonly": false
       },
       {
-        "name": "phone",
-        "type": "string",
-        "literal": true,
         "comments": [],
         "tags": {
           "label": {
             "value": "Phone"
           }
         },
+        "name": "phone",
+        "type": "TelephoneNumber",
         "optional": false,
         "readonly": false
       },
       {
-        "name": "email",
-        "type": "string",
-        "literal": true,
         "comments": [],
         "tags": {
           "label": {
             "value": "Email"
           }
         },
+        "name": "email",
+        "type": "EmailAddress",
         "optional": false,
         "readonly": false
       },

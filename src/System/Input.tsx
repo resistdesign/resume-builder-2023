@@ -2,21 +2,9 @@ import React, { ChangeEvent, FC, FormEvent, useCallback, useMemo } from 'react';
 import { TypeStructure } from './TypeParsing/TypeUtils';
 import { getUUID } from './IdUtils';
 import styled from 'styled-components';
+import { DataTypeMap } from './HelperTypes';
 
-const TYPE_TO_INPUT_TYPE_MAP = {
-  string: 'text',
-  number: 'number',
-  boolean: 'checkbox',
-  Date: 'date',
-  DateTime: 'datetime-local',
-  LongText: 'textarea',
-  Rating: 'number',
-  Color: 'color',
-  any: 'text',
-};
-
-const getInputTypeForTypeStructureType = (type: string) =>
-  TYPE_TO_INPUT_TYPE_MAP[type as keyof typeof TYPE_TO_INPUT_TYPE_MAP] || 'text';
+const getInputTypeForTypeStructureType = (type: string) => DataTypeMap[type as keyof typeof DataTypeMap] || 'text';
 
 const RatingBase = styled.fieldset`
   flex: 0 0 auto;
@@ -84,9 +72,9 @@ export const Input: FC<InputProps> = ({
         const { target } = event;
         const { checked, value: inputValue } = target as any;
         const newValue =
-          convertedType === TYPE_TO_INPUT_TYPE_MAP.boolean
+          convertedType === DataTypeMap.boolean
             ? checked ?? false
-            : convertedType === TYPE_TO_INPUT_TYPE_MAP.Rating
+            : convertedType === DataTypeMap.Rating
             ? parseInt(inputValue, 10)
             : inputValue;
 
@@ -96,12 +84,12 @@ export const Input: FC<InputProps> = ({
     [name, convertedType, value, onChange]
   );
   const cleanValue = useMemo(
-    () => (convertedType === TYPE_TO_INPUT_TYPE_MAP.boolean ? value ?? false : value ?? ''),
+    () => (convertedType === DataTypeMap.boolean ? value ?? false : value ?? ''),
     [convertedType, value]
   );
   const styleObj = useMemo(() => ({ gridArea: name }), [name]);
 
-  return convertedType === TYPE_TO_INPUT_TYPE_MAP.Rating ? (
+  return convertedType === DataTypeMap.Rating ? (
     <RatingBase disabled={readonly}>
       <legend>{label}</legend>
       <RatingStarContainer>
@@ -120,7 +108,7 @@ export const Input: FC<InputProps> = ({
         <RatingStar type="radio" readOnly value={5} checked={cleanValue >= 5} onClick={onChangeInternal} />
       </RatingStarContainer>
     </RatingBase>
-  ) : convertedType === TYPE_TO_INPUT_TYPE_MAP.boolean ? (
+  ) : convertedType === DataTypeMap.boolean ? (
     <input
       readOnly={readonly}
       placeholder={label}
@@ -129,7 +117,7 @@ export const Input: FC<InputProps> = ({
       onChange={onChangeInternal}
       style={styleObj}
     />
-  ) : convertedType === TYPE_TO_INPUT_TYPE_MAP.LongText ? (
+  ) : convertedType === DataTypeMap.LongText ? (
     <textarea
       readOnly={readonly}
       placeholder={label}

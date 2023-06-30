@@ -1,4 +1,5 @@
 import { Address } from './Address';
+import { EmailAddress, TelephoneNumber } from '../System/HelperTypes';
 
 /**
  * @layout
@@ -42,11 +43,11 @@ export type Person = {
   /**
    * @label Phone
    */
-  phone: string;
+  phone: TelephoneNumber;
   /**
    * @label Email
    */
-  email: string;
+  email: EmailAddress;
   /**
    * @label Address
    * @inline
