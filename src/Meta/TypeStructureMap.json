@@ -1934,8 +1934,7 @@
           }
         },
         "name": "achievements",
-        "type": "string",
-        "literal": true,
+        "type": "LongText",
         "multiple": 1,
         "optional": false,
         "readonly": false
