@@ -7,6 +7,7 @@ import { getLocalJSON, LocalJSON } from './System/Storage/LocalJSON';
 import { Display } from './System/Display';
 import { getTypeStructureByName, TypeStructureMap } from './System/TypeParsing/TypeUtils';
 import { LayoutBox } from './System/Layout';
+import { fileOpen, fileSave } from 'browser-fs-access';
 
 const TYPE_STRUCTURE_MAP: TypeStructureMap = TSM as any;
 const RESUME_ENTRY_TYPE_NAME = 'Resume';
@@ -72,38 +73,27 @@ export const App: FC = () => {
   }, []);
   const onImportFile = useCallback(async () => {
     try {
-      // @ts-ignore
-      const [newHandle] = await window.showOpenFilePicker({
-        types: [
-          {
-            description: 'Resume File',
-            accept: { 'application/json': ['.rdresume'] },
-          },
-        ],
+      const file = await fileOpen({
+        mimeTypes: ['application/json'],
+        extensions: ['.rdresume'],
       });
-      const file = await newHandle.getFile();
       const json = await file.text();
+      const res = JSON.parse(json);
 
-      setResume(JSON.parse(json));
+      setResume(res);
     } catch (e) {
       // Ignore.
     }
   }, [setResume]);
   const onExportFile = useCallback(async () => {
     try {
-      // @ts-ignore
-      const newHandle = await window.showSaveFilePicker({
-        suggestedName: 'Resume.rdresume',
-        types: [
-          {
-            description: 'Resume File',
-            accept: { 'application/json': ['.rdresume'] },
-          },
-        ],
+      const json = JSON.stringify(resume, null, 2);
+      const jsonBlob = new Blob([json], { type: 'application/json' });
+
+      await fileSave(jsonBlob, {
+        fileName: 'resume.rdresume',
+        extensions: ['.rdresume'],
       });
-      const writableStream = await newHandle.createWritable();
-      await writableStream.write(JSON.stringify(resume));
-      await writableStream.close();
     } catch (e) {
       // Ignore.
     }

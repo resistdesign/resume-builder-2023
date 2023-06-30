@@ -2088,6 +2088,11 @@ braces@^3.0.2, braces@~3.0.2:
   dependencies:
     fill-range "^7.0.1"
 
+browser-fs-access@^0.34.1:
+  version "0.34.1"
+  resolved "https://registry.yarnpkg.com/browser-fs-access/-/browser-fs-access-0.34.1.tgz#76c14def4e664c4862c562fc51522def830a6b97"
+  integrity sha512-HPaRf2yimp8kWSuWJXc8Mi78dPbDzfduA+Gyq14H4jlMvd6XNfIRm36Y2yRLaa4x0gwcGuepj4zf14oiTlxrxQ==
+
 browserslist@^4.21.3, browserslist@^4.21.5, browserslist@^4.6.6:
   version "4.21.9"
   resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.21.9.tgz#e11bdd3c313d7e2a9e87e8b4b0c7872b13897635"
