@@ -71,34 +71,42 @@ export const App: FC = () => {
     setPrinting(true);
   }, []);
   const onImportFile = useCallback(async () => {
-    // @ts-ignore
-    const [newHandle] = await window.showOpenFilePicker({
-      types: [
-        {
-          description: 'Resume File',
-          accept: { 'application/json': ['.rdresume'] },
-        },
-      ],
-    });
-    const file = await newHandle.getFile();
-    const json = await file.text();
+    try {
+      // @ts-ignore
+      const [newHandle] = await window.showOpenFilePicker({
+        types: [
+          {
+            description: 'Resume File',
+            accept: { 'application/json': ['.rdresume'] },
+          },
+        ],
+      });
+      const file = await newHandle.getFile();
+      const json = await file.text();
 
-    setResume(JSON.parse(json));
+      setResume(JSON.parse(json));
+    } catch (e) {
+      // Ignore.
+    }
   }, [setResume]);
   const onExportFile = useCallback(async () => {
-    // @ts-ignore
-    const newHandle = await window.showSaveFilePicker({
-      suggestedName: 'Resume.rdresume',
-      types: [
-        {
-          description: 'Resume File',
-          accept: { 'application/json': ['.rdresume'] },
-        },
-      ],
-    });
-    const writableStream = await newHandle.createWritable();
-    await writableStream.write(JSON.stringify(resume));
-    await writableStream.close();
+    try {
+      // @ts-ignore
+      const newHandle = await window.showSaveFilePicker({
+        suggestedName: 'Resume.rdresume',
+        types: [
+          {
+            description: 'Resume File',
+            accept: { 'application/json': ['.rdresume'] },
+          },
+        ],
+      });
+      const writableStream = await newHandle.createWritable();
+      await writableStream.write(JSON.stringify(resume));
+      await writableStream.close();
+    } catch (e) {
+      // Ignore.
+    }
   }, [resume]);
 
   useEffect(() => {
@@ -110,6 +118,10 @@ export const App: FC = () => {
 
     const handleMetaKeyDown = (event: KeyboardEvent) => {
       metaKey = metaKey || event.key === 'Meta';
+
+      if ((event.ctrlKey || metaKey) && event.key === 's') {
+        event.preventDefault();
+      }
     };
     const handleMetaKeyUp = (event: KeyboardEvent) => {
       if ((event.ctrlKey || metaKey) && event.key === 's') {
