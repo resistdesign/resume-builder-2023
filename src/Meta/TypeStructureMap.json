@@ -2164,6 +2164,19 @@
         "comments": [],
         "tags": {
           "label": {
+            "value": "Social Networks"
+          }
+        },
+        "name": "socialNetworks",
+        "type": "SocialNetwork",
+        "multiple": 1,
+        "optional": false,
+        "readonly": false
+      },
+      {
+        "comments": [],
+        "tags": {
+          "label": {
             "value": "Address"
           },
           "inline": {
@@ -2379,6 +2392,50 @@
         },
         "name": "rating",
         "type": "Rating",
+        "optional": false,
+        "readonly": false
+      }
+    ]
+  },
+  "SocialNetwork": {
+    "comments": [],
+    "tags": {
+      "label": {
+        "value": "Social"
+      },
+      "itemName": {
+        "value": "`name`"
+      },
+      "displayLayout": {
+        "value": "name\nurl"
+      }
+    },
+    "name": "SocialNetwork",
+    "type": "SocialNetwork",
+    "literal": true,
+    "content": [
+      {
+        "name": "name",
+        "type": "string",
+        "literal": true,
+        "comments": [],
+        "tags": {
+          "label": {
+            "value": "Name"
+          }
+        },
+        "optional": false,
+        "readonly": false
+      },
+      {
+        "comments": [],
+        "tags": {
+          "label": {
+            "value": "URL"
+          }
+        },
+        "name": "url",
+        "type": "URL",
         "optional": false,
         "readonly": false
       }

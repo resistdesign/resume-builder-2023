@@ -1,5 +1,6 @@
 import { Address } from './Address';
 import { EmailAddress, TelephoneNumber } from '../System/HelperTypes';
+import { SocialNetwork } from './SocialNetwork';
 
 /**
  * @layout
@@ -48,6 +49,10 @@ export type Person = {
    * @label Email
    */
   email: EmailAddress;
+  /**
+   * @label Social Networks
+   */
+  socialNetworks: SocialNetwork[];
   /**
    * @label Address
    * @inline
