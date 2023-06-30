@@ -24,6 +24,13 @@ export const ResumeDisplay = styled(Display)`
     ${DisplayResetCSS}
   }
 
+  & .display-primitive-date {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+
   & .display-object-name {
     display: grid;
     grid-template: 'first middle last';
