@@ -2407,7 +2407,7 @@
         "value": "`name`"
       },
       "displayLayout": {
-        "value": "name\nurl"
+        "value": "name url"
       }
     },
     "name": "SocialNetwork",

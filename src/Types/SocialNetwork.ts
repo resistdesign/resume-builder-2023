@@ -4,8 +4,7 @@ import { URL } from '../System/HelperTypes';
  * @label Social
  * @itemName `name`
  * @displayLayout
- * name
- * url
+ * name url
  */
 export type SocialNetwork = {
   /**
