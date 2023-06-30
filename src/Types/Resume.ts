@@ -6,7 +6,8 @@ import { LongText } from '../System/HelperTypes';
 /**
  * @label Resume
  * @displayLayout
- * subject date
+ * subject subject
+ * date
  * objective
  * employment education
  * references

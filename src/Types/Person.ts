@@ -7,10 +7,9 @@ import { Address } from './Address';
  *   phone email
  *   address
  * @displayLayout
- *   name
- *   description
- *   phone email
- *   address
+ *   name name address address
+ *   description description address address
+ *   phone email address address
  * @label Person
  * @itemName `name`
  * */
@@ -52,6 +51,11 @@ export type Person = {
    * @label Address
    * @inline
    * @layout
+   *   line1
+   *   line2
+   *   city state zip
+   *   country
+   * @displayLayout
    *   line1
    *   line2
    *   city state zip
