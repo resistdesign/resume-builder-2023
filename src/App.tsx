@@ -59,6 +59,7 @@ const HeaderBox = styled.div`
   align-items: center;
   gap: 1em;
 `;
+const FileButton = styled.button``;
 
 export const App: FC = () => {
   const [printing, setPrinting] = useState(false);
@@ -69,15 +70,72 @@ export const App: FC = () => {
   const onSelectPrintMode = useCallback(() => {
     setPrinting(true);
   }, []);
+  const onImportFile = useCallback(async () => {
+    // @ts-ignore
+    const [newHandle] = await window.showOpenFilePicker({
+      types: [
+        {
+          description: 'Resume File',
+          accept: { 'application/json': ['.rdresume'] },
+        },
+      ],
+    });
+    const file = await newHandle.getFile();
+    const json = await file.text();
+
+    setResume(JSON.parse(json));
+  }, [setResume]);
+  const onExportFile = useCallback(async () => {
+    // @ts-ignore
+    const newHandle = await window.showSaveFilePicker({
+      suggestedName: 'Resume.rdresume',
+      types: [
+        {
+          description: 'Resume File',
+          accept: { 'application/json': ['.rdresume'] },
+        },
+      ],
+    });
+    const writableStream = await newHandle.createWritable();
+    await writableStream.write(JSON.stringify(resume));
+    await writableStream.close();
+  }, [resume]);
 
   useEffect(() => {
     RESUME_SERVICE.update(MAIN_RESUME_ITEM, resume);
   }, [resume]);
 
+  useEffect(() => {
+    let metaKey = false;
+
+    const handleMetaKeyDown = (event: KeyboardEvent) => {
+      metaKey = event.key === 'Meta';
+      console.log(event.key);
+    };
+    const handleMetaKeyUp = (event: KeyboardEvent) => {
+      if ((event.ctrlKey || metaKey) && event.key === 's') {
+        event.preventDefault();
+        onExportFile();
+      }
+
+      metaKey = event.key !== 'Meta';
+    };
+
+    window.addEventListener('keydown', handleMetaKeyDown);
+    window.addEventListener('keyup', handleMetaKeyUp);
+
+    return () => {
+      window.removeEventListener('keydown', handleMetaKeyDown);
+      window.removeEventListener('keyup', handleMetaKeyUp);
+    };
+  }, [onExportFile]);
+
   return (
     <AppBase>
       <GlobalStyle />
       <HeaderBox>
+        <FileButton onClick={onImportFile}>Import</FileButton>
+        <FileButton onClick={onExportFile}>Export</FileButton>
         <button onClick={onSelectBuildMode}>Build</button>
         <button onClick={onSelectPrintMode}>Print</button>
       </HeaderBox>
