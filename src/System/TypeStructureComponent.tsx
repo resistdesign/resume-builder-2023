@@ -21,10 +21,23 @@ import {
   LayoutContainerProps,
   LayoutControls,
 } from './Layout';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const LayoutForm = styled(Form)<LayoutContainerProps>`
   ${(p) => getLayoutContainerCSS(p)}
+`;
+
+type OpenFormButtonBaseProps = {
+  $gridArea?: string;
+};
+
+const OpenFormButtonBase = styled.button<OpenFormButtonBaseProps>`
+  ${(p) =>
+    p.$gridArea
+      ? css`
+          grid-area: ${p.$gridArea};
+        `
+      : ''}
 `;
 
 type OpenFormButtonProps = {
@@ -39,9 +52,9 @@ const OpenFormButton: FC<OpenFormButtonProps> = ({ name, label, onOpenForm }) =>
   }, [name, onOpenForm]);
 
   return (
-    <button type="button" onClick={onOpenFormInternal}>
+    <OpenFormButtonBase type="button" $gridArea={name} onClick={onOpenFormInternal}>
       Edit {label}
-    </button>
+    </OpenFormButtonBase>
   );
 };
 
