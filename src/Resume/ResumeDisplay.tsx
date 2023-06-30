@@ -76,9 +76,22 @@ const QuadDate = styled.div`
   border-bottom: 0.05em solid black;
 `;
 const QuadDetails = styled.div`
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: flex-start;
+  padding: 0.5em;
   border-right: 0.05em solid black;
 `;
-const QuadSkills = styled.div``;
+const QuadSkills = styled.div`
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0.5em;
+`;
 const References = styled.div`
   flex: 0 0 auto;
   display: flex;
