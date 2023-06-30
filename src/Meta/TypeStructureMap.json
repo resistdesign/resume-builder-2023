@@ -2047,10 +2047,10 @@
     "comments": [],
     "tags": {
       "layout": {
-        "value": "  name\n  description\n  phone email\n  address"
+        "value": "  name\n  description\n  phone email\n  address\n  socialNetworks"
       },
       "displayLayout": {
-        "value": "  name name address address\n  description description address address\n  phone email address address"
+        "value": "  name name address address\n  description description address address\n  phone email address address\n  socialNetworks socialNetworks address address"
       },
       "label": {
         "value": "Person"

@@ -8,10 +8,12 @@ import { SocialNetwork } from './SocialNetwork';
  *   description
  *   phone email
  *   address
+ *   socialNetworks
  * @displayLayout
  *   name name address address
  *   description description address address
  *   phone email address address
+ *   socialNetworks socialNetworks address address
  * @label Person
  * @itemName `name`
  * */
