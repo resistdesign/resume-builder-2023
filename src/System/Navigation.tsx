@@ -1,4 +1,4 @@
-import React, { FC, MouseEvent as ReactMouseEvent, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { FC, MouseEvent as ReactMouseEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { getLocalJSON, LocalJSON } from './Storage/LocalJSON';
 
@@ -96,6 +96,7 @@ export type NavigationBreadcrumbsProps = {
 };
 
 export const NavigationBreadcrumbs: FC<NavigationBreadcrumbsProps> = ({ trail, onChange }) => {
+  const listRef = useRef<HTMLDivElement>(null);
   const onGoToBreadcrumb = useCallback(
     (event: ReactMouseEvent<HTMLButtonElement>) => {
       const {
@@ -109,8 +110,12 @@ export const NavigationBreadcrumbs: FC<NavigationBreadcrumbsProps> = ({ trail, o
     [trail, onChange]
   );
 
+  useEffect(() => {
+    listRef.current?.lastElementChild?.scrollIntoView();
+  }, [trail]);
+
   return (
-    <BreadcrumbBox>
+    <BreadcrumbBox ref={listRef}>
       {trail.length > 0 ? (
         <BreadcrumbButton type="button" value={-1} onClick={onGoToBreadcrumb}>
           Home
