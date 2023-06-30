@@ -3,6 +3,11 @@ import { Resume } from '../Types/Resume';
 import styled from 'styled-components';
 import HashMatrix, { HashMatrixPathPartType } from '../System/ValueProcessing/HashMatrix';
 
+const getFormattedDate = (isoDateString: string): string => {
+  const date = new Date(isoDateString);
+  return new Intl.DateTimeFormat('en-US').format(date);
+};
+
 const ResumeDisplayBase = styled.div`
   flex: 1 1 auto;
   display: flex;
@@ -137,7 +142,7 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({
               <br />
               {getValue('subject/phone')}
             </QuadName>
-            <QuadDate>{getValue('date')}</QuadDate>
+            <QuadDate>{getFormattedDate(getValue('date'))}</QuadDate>
             <QuadDetails>Details</QuadDetails>
             <QuadSkills>Skills</QuadSkills>
           </Quad>
