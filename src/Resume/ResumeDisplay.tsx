@@ -1,4 +1,4 @@
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Display } from '../System/Display';
 
 const DisplayResetCSS = css`
@@ -9,6 +9,8 @@ const DisplayResetCSS = css`
 `;
 
 export const ResumeDisplay = styled(Display)`
+  ${DisplayResetCSS}
+
   display: grid;
   grid-template:
     'subject subject subject date'
@@ -18,9 +20,13 @@ export const ResumeDisplay = styled(Display)`
     'references references references references';
   gap: 1em;
 
-  ${DisplayResetCSS}
   & div {
     ${DisplayResetCSS}
+  }
+
+  & .display-object-name {
+    display: grid;
+    grid-template: 'first middle last';
   }
 
   & > .display-object-subject {
