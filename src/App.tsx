@@ -109,7 +109,7 @@ export const App: FC = () => {
     let metaKey = false;
 
     const handleMetaKeyDown = (event: KeyboardEvent) => {
-      metaKey = event.key === 'Meta';
+      metaKey = metaKey || event.key === 'Meta';
     };
     const handleMetaKeyUp = (event: KeyboardEvent) => {
       if ((event.ctrlKey || metaKey) && event.key === 's') {
@@ -117,7 +117,7 @@ export const App: FC = () => {
         onExportFile();
       }
 
-      metaKey = event.key !== 'Meta';
+      metaKey = event.key === 'Meta' ? false : metaKey;
     };
 
     window.addEventListener('keydown', handleMetaKeyDown);
