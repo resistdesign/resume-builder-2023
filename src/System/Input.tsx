@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useCallback, useMemo } from 'react';
+import React, { ChangeEvent, FC, FormEvent, useCallback, useMemo } from 'react';
 import { TypeStructure } from './TypeParsing/TypeUtils';
 import { getUUID } from './IdUtils';
 import styled from 'styled-components';
@@ -11,6 +11,7 @@ export const TYPE_TO_INPUT_TYPE_MAP = {
   DateTime: 'datetime-local',
   LongText: 'textarea',
   Rating: 'number',
+  Color: 'color',
   any: 'text',
 };
 
@@ -25,7 +26,6 @@ const RatingBase = styled.fieldset`
   border: 0.05em solid var(--form-element-border-color);
   box-sizing: border-box;
 `;
-
 const RatingStar = styled.input`
   color: var(--form-element-color);
 
@@ -66,7 +66,7 @@ export const Input: FC<InputProps> = ({
     }
   }, [options]);
   const onChangeInternal = useCallback(
-    (event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    (event: FormEvent<HTMLInputElement> | ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
       if (onChange) {
         const { target } = event;
         const { checked, value: inputValue } = target as any;
@@ -89,13 +89,13 @@ export const Input: FC<InputProps> = ({
   const styleObj = useMemo(() => ({ gridArea: name }), [name]);
 
   return type === TYPE_TO_INPUT_TYPE_MAP.Rating ? (
-    <RatingBase>
+    <RatingBase disabled={readonly}>
       <legend>{label}</legend>
-      <RatingStar type="radio" name={name} value={1} checked={cleanValue >= 1} onChange={onChangeInternal} />
-      <RatingStar type="radio" name={name} value={2} checked={cleanValue >= 2} onChange={onChangeInternal} />
-      <RatingStar type="radio" name={name} value={3} checked={cleanValue >= 3} onChange={onChangeInternal} />
-      <RatingStar type="radio" name={name} value={4} checked={cleanValue >= 4} onChange={onChangeInternal} />
-      <RatingStar type="radio" name={name} value={5} checked={cleanValue >= 5} onChange={onChangeInternal} />
+      <RatingStar type="radio" readOnly value={1} checked={cleanValue >= 1} onClick={onChangeInternal} />
+      <RatingStar type="radio" readOnly value={2} checked={cleanValue >= 2} onClick={onChangeInternal} />
+      <RatingStar type="radio" readOnly value={3} checked={cleanValue >= 3} onClick={onChangeInternal} />
+      <RatingStar type="radio" readOnly value={4} checked={cleanValue >= 4} onClick={onChangeInternal} />
+      <RatingStar type="radio" readOnly value={5} checked={cleanValue >= 5} onClick={onChangeInternal} />
     </RatingBase>
   ) : type === TYPE_TO_INPUT_TYPE_MAP.boolean ? (
     <input
