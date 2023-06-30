@@ -73,7 +73,7 @@ const FileButton = styled.button``;
 
 export const App: FC = () => {
   const [printing, setPrinting] = useState(DEFAULT_MODE);
-  const [zoomScale, setZoomScale] = useState(1);
+  const [zoomScale, setZoomScale] = useState(DEFAULT_ZOOM);
   const [resume, setResume] = useState(DEFAULT_RESUME);
   const onSelectBuildMode = useCallback(() => {
     setPrinting(false);
