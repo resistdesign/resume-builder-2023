@@ -282,6 +282,7 @@ export enum TAG_TYPES {
   label = 'label',
   inline = 'inline',
   layout = 'layout',
+  displayLayout = 'displayLayout',
   itemName = 'itemName',
   options = 'options',
   optionsType = 'optionsType',

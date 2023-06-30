@@ -2247,7 +2247,14 @@
   },
   "Resume": {
     "comments": [],
-    "tags": {},
+    "tags": {
+      "label": {
+        "value": "Resume"
+      },
+      "displayLayout": {
+        "value": "subject date\nobjective\nemployment education\nreferences"
+      }
+    },
     "name": "Resume",
     "type": "Resume",
     "literal": true,

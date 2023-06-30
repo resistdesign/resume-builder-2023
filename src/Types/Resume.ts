@@ -3,6 +3,14 @@ import { Employment } from './Employment';
 import { Education } from './Education';
 import { LongText } from '../System/HelperTypes';
 
+/**
+ * @label Resume
+ * @displayLayout
+ * subject date
+ * objective
+ * employment education
+ * references
+ * */
 export type Resume = {
   /**
    * @label Subject
