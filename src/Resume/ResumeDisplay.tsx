@@ -53,9 +53,22 @@ const Quad = styled.div`
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-template-rows: 1fr 4fr;
+  font-size: 9pt;
 `;
-const QuadName = styled.div``;
-const QuadDate = styled.div``;
+const QuadName = styled.div`
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+`;
+const QuadDate = styled.div`
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+`;
 const QuadDetails = styled.div``;
 const QuadSkills = styled.div``;
 const References = styled.div`
