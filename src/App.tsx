@@ -110,7 +110,6 @@ export const App: FC = () => {
 
     const handleMetaKeyDown = (event: KeyboardEvent) => {
       metaKey = event.key === 'Meta';
-      console.log(event.key);
     };
     const handleMetaKeyUp = (event: KeyboardEvent) => {
       if ((event.ctrlKey || metaKey) && event.key === 's') {
