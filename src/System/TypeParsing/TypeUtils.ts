@@ -205,12 +205,12 @@ export const getCleanTypeStructure = (
     const { comments: mappedTypeStructureComments = [], tags: mappedTypeStructureTags = {} } =
       mappedTypeStructure || {};
     const mergedTypeStructure: TypeStructure = {
-      ...typeStructure,
       ...mappedTypeStructure,
+      ...typeStructure,
       name,
       typeAlias: mappedTypeStructure ? type : typeAlias,
-      comments: [...comments, ...mappedTypeStructureComments],
-      tags: { ...tags, ...mappedTypeStructureTags },
+      comments: [...mappedTypeStructureComments, ...comments],
+      tags: { ...mappedTypeStructureTags, ...tags },
     };
     const typeForMatching = useMappedWithNamespace ? cleanTypeWithNamespace : cleanType;
     const cleanMappedType = getCleanType(mappedTypeStructure?.type || '', mappedTypeStructure?.namespace);
