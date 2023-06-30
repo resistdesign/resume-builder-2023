@@ -4,7 +4,10 @@ import TSM from '././Meta/TypeStructureMap.json';
 import { Application } from './System/Application';
 import styled, { createGlobalStyle } from 'styled-components';
 import { getLocalJSON, LocalJSON } from './System/Storage/LocalJSON';
+import { Display } from './System/Display';
+import { getTypeStructureByName } from './System/TypeParsing/TypeUtils';
 
+const RESUME_ENTRY_TYPE_NAME = 'Resume';
 const RESUME_ITEM_PREFIX = 'Resume';
 const MAIN_RESUME_ITEM = 'Default';
 const RESUME_SERVICE: LocalJSON = getLocalJSON(RESUME_ITEM_PREFIX);
@@ -77,9 +80,13 @@ export const App: FC = () => {
         <button onClick={onSelectPrintMode}>Print</button>
       </HeaderBox>
       {!printing ? (
-        <Application typeStructureMap={TSM} value={resume} entryType="Resume" onChange={setResume} />
+        <Application typeStructureMap={TSM} value={resume} entryType={RESUME_ENTRY_TYPE_NAME} onChange={setResume} />
       ) : (
-        <div>Printing...</div>
+        <Display
+          typeStructure={getTypeStructureByName(RESUME_ENTRY_TYPE_NAME, TSM)}
+          typeStructureMap={TSM}
+          value={resume}
+        />
       )}
     </AppBase>
   );
