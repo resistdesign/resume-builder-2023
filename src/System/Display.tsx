@@ -10,6 +10,7 @@ import {
   TypeStructureMap,
 } from './TypeParsing/TypeUtils';
 import { getTypeStructureLayoutGridTemplate, LayoutBox } from './Layout';
+import { DataTypeMap } from './HelperTypes';
 
 const DisplayBase = styled(LayoutBox)`
   flex: 1 1 auto;
@@ -27,7 +28,7 @@ type DisplayProps = {
 };
 
 export const DisplayObject: FC<DisplayProps> = ({ typeStructure, typeStructureMap, value = {} }) => {
-  const { name = '', content = [] } = typeStructure;
+  const { name = '', type, content = [] } = typeStructure;
   const displayLayout = useMemo(() => {
     const dL = getTagValue(TAG_TYPES.displayLayout, typeStructure);
 
@@ -79,8 +80,11 @@ export const Display: FC<DisplayProps> = ({ typeStructure, typeStructureMap, val
 
     return getMergedTypeStructure(tS, typeStructure) || tS;
   }, [typeStructure]);
-  const { multiple = false } = cleanTypeStructure;
-  const typeStructureIsPrimitive = useMemo(() => getTypeStructureIsPrimitive(cleanTypeStructure), [cleanTypeStructure]);
+  const { type, multiple = false } = cleanTypeStructure;
+  const typeStructureIsPrimitive = useMemo(
+    () => type in DataTypeMap || getTypeStructureIsPrimitive(cleanTypeStructure),
+    [type, cleanTypeStructure]
+  );
 
   return multiple && !isItem ? (
     <DisplayArray typeStructure={cleanTypeStructure} typeStructureMap={typeStructureMap} value={value} />
