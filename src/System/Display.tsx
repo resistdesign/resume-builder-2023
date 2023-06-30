@@ -8,10 +8,11 @@ import {
   TypeStructure,
   TypeStructureMap,
 } from './TypeParsing/TypeUtils';
-import { LayoutBox } from './Layout';
+import { getTypeStructureLayoutGridTemplate, LayoutBox } from './Layout';
 
 const DisplayBase = styled(LayoutBox)`
   flex: 1 1 auto;
+  overflow: hidden;
 `;
 const DisplayObjectBase = styled(DisplayBase)``;
 const DisplayArrayBase = styled(DisplayBase)``;
@@ -29,11 +30,16 @@ export const DisplayObject: FC<DisplayProps> = ({ typeStructure, typeStructureMa
   const displayLayout = useMemo(() => {
     const dL = getTagValue(TAG_TYPES.displayLayout, typeStructure);
 
-    return typeof dL === 'string' ? dL : undefined;
+    return typeof dL === 'string' ? getTypeStructureLayoutGridTemplate(dL) : undefined;
   }, [typeStructure]);
 
   return (
-    <DisplayObjectBase className={`display-object-${name}`} $gridTemplate={displayLayout} $gridArea={name}>
+    <DisplayObjectBase
+      className={`display-object-${name}`}
+      $isGrid={!!displayLayout}
+      $gridTemplate={displayLayout}
+      $gridArea={name}
+    >
       {content.map((item: any, index: number) => {
         const { name } = item;
 

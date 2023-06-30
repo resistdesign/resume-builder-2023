@@ -6,7 +6,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import { getLocalJSON, LocalJSON } from './System/Storage/LocalJSON';
 import { Display } from './System/Display';
 import { getTypeStructureByName, TypeStructureMap } from './System/TypeParsing/TypeUtils';
-import {LayoutBox} from "./System/Layout";
+import { LayoutBox } from './System/Layout';
 
 const TYPE_STRUCTURE_MAP: TypeStructureMap = TSM as any;
 const RESUME_ENTRY_TYPE_NAME = 'Resume';
@@ -90,11 +90,13 @@ export const App: FC = () => {
         />
       ) : (
         <LayoutBox $allowShrink>
-          <Display
+          <LayoutBox $allowShrink={false}>
+            <Display
               typeStructure={getTypeStructureByName(RESUME_ENTRY_TYPE_NAME, TYPE_STRUCTURE_MAP)}
               typeStructureMap={TYPE_STRUCTURE_MAP}
               value={resume}
-          />
+            />
+          </LayoutBox>
         </LayoutBox>
       )}
     </AppBase>
