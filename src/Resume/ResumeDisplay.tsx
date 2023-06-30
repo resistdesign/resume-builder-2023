@@ -75,7 +75,9 @@ const QuadDate = styled.div`
   padding: 0.5em;
   border-bottom: 0.05em solid black;
 `;
-const QuadDetails = styled.div``;
+const QuadDetails = styled.div`
+  border-right: 0.05em solid black;
+`;
 const QuadSkills = styled.div``;
 const References = styled.div`
   flex: 0 0 auto;
