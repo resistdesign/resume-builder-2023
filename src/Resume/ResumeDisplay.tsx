@@ -24,7 +24,7 @@ const ResumeDocument = styled.div<{ $zoomScale?: number }>`
   padding: 0;
   margin: auto;
   gap: 0;
-  transform-origin: center center;
+  transform-origin: ${p => typeof p.$zoomScale === 'number' && p.$zoomScale > 1 ? 'top left' : 'center center'};
   transform: scale(${(p) => p.$zoomScale ?? 1});
 
   @media screen and (max-width: 768px) {
