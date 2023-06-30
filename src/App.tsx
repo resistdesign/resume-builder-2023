@@ -121,14 +121,10 @@ export const App: FC = () => {
 
       if ((event.ctrlKey || metaKey) && event.key === 's') {
         event.preventDefault();
+        onExportFile();
       }
     };
     const handleMetaKeyUp = (event: KeyboardEvent) => {
-      if ((event.ctrlKey || metaKey) && event.key === 's') {
-        event.preventDefault();
-        onExportFile();
-      }
-
       metaKey = event.key === 'Meta' ? false : metaKey;
     };
 
