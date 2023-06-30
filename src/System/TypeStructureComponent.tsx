@@ -10,7 +10,7 @@ import {
   TypeStructure,
   TypeStructureMap,
 } from './TypeParsing/TypeUtils';
-import { Input, TYPE_TO_INPUT_TYPE_MAP } from './Input';
+import { Input } from './Input';
 import { Form } from './Form';
 import { NavigateBackHandler, NavigateToHandler } from './Navigation';
 import HashMatrix from './ValueProcessing/HashMatrix';
@@ -91,7 +91,6 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
     literal: typeStructureLiteral = false,
     readonly = false,
   } = cleanTypeStructure;
-  const inputType = TYPE_TO_INPUT_TYPE_MAP[typeStructureType];
   const {
     [TAG_TYPES.label]: typeStructureLabel = undefined,
     [TAG_TYPES.inline]: typeStructureInline = undefined,
@@ -222,9 +221,8 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
                 tS
               );
               const inputLabel = typeof tSLabel === 'string' ? tSLabel : tSName;
-              const inpType = typeof tSType === 'string' ? TYPE_TO_INPUT_TYPE_MAP[tSType] : undefined;
               const tSTypeIsTypeStructure = typeof tSType === 'string' && !!typeStructureMap[tSType];
-              const useInputType = inpType || !tSTypeIsTypeStructure;
+              const useInputType = !tSTypeIsTypeStructure;
 
               if (tSLiteral || tSInline || useInputType) {
                 return (
@@ -300,7 +298,7 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
         name={typeStructureName}
         label={`${typeStructureLabel ?? ''}`}
         value={value}
-        type={inputType}
+        type={typeStructureType}
         onChange={onChange}
         options={typeStructureOptions}
         allowCustomValue={!!typeStructureAllowCustomValue}

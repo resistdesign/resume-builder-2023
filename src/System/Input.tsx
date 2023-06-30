@@ -3,7 +3,7 @@ import { TypeStructure } from './TypeParsing/TypeUtils';
 import { getUUID } from './IdUtils';
 import styled from 'styled-components';
 
-export const TYPE_TO_INPUT_TYPE_MAP = {
+const TYPE_TO_INPUT_TYPE_MAP = {
   string: 'text',
   number: 'number',
   boolean: 'checkbox',
@@ -14,6 +14,9 @@ export const TYPE_TO_INPUT_TYPE_MAP = {
   Color: 'color',
   any: 'text',
 };
+
+const getInputTypeForTypeStructureType = (type: string) =>
+  TYPE_TO_INPUT_TYPE_MAP[type as keyof typeof TYPE_TO_INPUT_TYPE_MAP] || 'text';
 
 const RatingBase = styled.fieldset`
   flex: 0 0 auto;
@@ -64,6 +67,7 @@ export const Input: FC<InputProps> = ({
   allowCustomValue,
   readonly = false,
 }: InputProps) => {
+  const convertedType = getInputTypeForTypeStructureType(type);
   const inputUUID = useMemo(() => getUUID(), []);
   const optionsList = useMemo(() => {
     if (Array.isArray(options)) {
@@ -80,42 +84,52 @@ export const Input: FC<InputProps> = ({
         const { target } = event;
         const { checked, value: inputValue } = target as any;
         const newValue =
-          type === TYPE_TO_INPUT_TYPE_MAP.boolean
+          convertedType === TYPE_TO_INPUT_TYPE_MAP.boolean
             ? checked ?? false
-            : type === TYPE_TO_INPUT_TYPE_MAP.Rating
+            : convertedType === TYPE_TO_INPUT_TYPE_MAP.Rating
             ? parseInt(inputValue, 10)
             : inputValue;
 
         onChange(name, newValue);
       }
     },
-    [name, type, value, onChange]
+    [name, convertedType, value, onChange]
   );
   const cleanValue = useMemo(
-    () => (type === TYPE_TO_INPUT_TYPE_MAP.boolean ? value ?? false : value ?? ''),
-    [type, value]
+    () => (convertedType === TYPE_TO_INPUT_TYPE_MAP.boolean ? value ?? false : value ?? ''),
+    [convertedType, value]
   );
   const styleObj = useMemo(() => ({ gridArea: name }), [name]);
 
-  return type === TYPE_TO_INPUT_TYPE_MAP.Rating ? (
+  return convertedType === TYPE_TO_INPUT_TYPE_MAP.Rating ? (
     <RatingBase disabled={readonly}>
       <legend>{label}</legend>
-      <RatingStarContainer><RatingStar type="radio" readOnly value={1} checked={cleanValue >= 1} onClick={onChangeInternal} /></RatingStarContainer>
-      <RatingStarContainer><RatingStar type="radio" readOnly value={2} checked={cleanValue >= 2} onClick={onChangeInternal} /></RatingStarContainer>
-      <RatingStarContainer><RatingStar type="radio" readOnly value={3} checked={cleanValue >= 3} onClick={onChangeInternal} /></RatingStarContainer>
-      <RatingStarContainer><RatingStar type="radio" readOnly value={4} checked={cleanValue >= 4} onClick={onChangeInternal} /></RatingStarContainer>
-      <RatingStarContainer><RatingStar type="radio" readOnly value={5} checked={cleanValue >= 5} onClick={onChangeInternal} /></RatingStarContainer>
+      <RatingStarContainer>
+        <RatingStar type="radio" readOnly value={1} checked={cleanValue >= 1} onClick={onChangeInternal} />
+      </RatingStarContainer>
+      <RatingStarContainer>
+        <RatingStar type="radio" readOnly value={2} checked={cleanValue >= 2} onClick={onChangeInternal} />
+      </RatingStarContainer>
+      <RatingStarContainer>
+        <RatingStar type="radio" readOnly value={3} checked={cleanValue >= 3} onClick={onChangeInternal} />
+      </RatingStarContainer>
+      <RatingStarContainer>
+        <RatingStar type="radio" readOnly value={4} checked={cleanValue >= 4} onClick={onChangeInternal} />
+      </RatingStarContainer>
+      <RatingStarContainer>
+        <RatingStar type="radio" readOnly value={5} checked={cleanValue >= 5} onClick={onChangeInternal} />
+      </RatingStarContainer>
     </RatingBase>
-  ) : type === TYPE_TO_INPUT_TYPE_MAP.boolean ? (
+  ) : convertedType === TYPE_TO_INPUT_TYPE_MAP.boolean ? (
     <input
       readOnly={readonly}
       placeholder={label}
-      type={type}
+      type={convertedType}
       checked={!!cleanValue}
       onChange={onChangeInternal}
       style={styleObj}
     />
-  ) : type === TYPE_TO_INPUT_TYPE_MAP.LongText ? (
+  ) : convertedType === TYPE_TO_INPUT_TYPE_MAP.LongText ? (
     <textarea
       readOnly={readonly}
       placeholder={label}
@@ -138,7 +152,7 @@ export const Input: FC<InputProps> = ({
       <input
         readOnly={readonly}
         placeholder={label}
-        type={type}
+        type={convertedType}
         value={`${cleanValue}`}
         onChange={onChangeInternal}
         style={styleObj}
