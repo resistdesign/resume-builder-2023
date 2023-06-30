@@ -59,6 +59,10 @@ const HeaderBox = styled.div`
   justify-content: stretch;
   align-items: center;
   gap: 1em;
+
+  @media print {
+    display: none;
+  }
 `;
 const FileButton = styled.button``;
 
