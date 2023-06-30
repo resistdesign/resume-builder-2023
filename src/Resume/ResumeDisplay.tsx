@@ -1,7 +1,7 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC, useCallback, useMemo } from 'react';
 import { Resume } from '../Types/Resume';
 import styled from 'styled-components';
-import HashMatrix from '../System/ValueProcessing/HashMatrix';
+import HashMatrix, { HashMatrixPathPartType } from '../System/ValueProcessing/HashMatrix';
 
 const ResumeDisplayBase = styled.div`
   flex: 1 1 auto;
@@ -54,6 +54,10 @@ const Quad = styled.div`
   grid-template-columns: 2fr 1fr;
   grid-template-rows: 1fr 4fr;
 `;
+const QuadName = styled.div``;
+const QuadDate = styled.div``;
+const QuadDetails = styled.div``;
+const QuadSkills = styled.div``;
 const References = styled.div`
   flex: 0 0 auto;
   display: flex;
@@ -73,6 +77,10 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({
   zoomScale = 1,
 }) => {
   const r = useMemo(() => new HashMatrix({ hashMatrix: resume }), [resume]);
+  const getValue = useCallback(
+    (path: HashMatrixPathPartType, fallbackValue?: any) => r.getPath(path) ?? fallbackValue,
+    [r]
+  );
 
   return (
     <ResumeDisplayBase>
@@ -82,14 +90,22 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({
         <div>&nbsp;</div>
         <div>&nbsp;</div>
         <CenterBody>
-          <Title>{r.getPath('objective')}</Title>
+          <Title>{getValue('objective')}</Title>
           <Quad>
-            <div>Name</div>
-            <div>Date</div>
-            <div>Details</div>
-            <div>Skills</div>
+            <QuadName>
+              {getValue('subject/name/first')}
+              {getValue('subject/name/middle')}
+              {getValue('subject/name/last')}
+              <br />
+              {getValue('subject/email')}
+              <br />
+              {getValue('subject/phone')}
+            </QuadName>
+            <QuadDate>{getValue('date')}</QuadDate>
+            <QuadDetails>Details</QuadDetails>
+            <QuadSkills>Skills</QuadSkills>
           </Quad>
-          <References>{r.getPath('references').toString()}</References>
+          <References>{getValue('references').toString()}</References>
         </CenterBody>
         <div>&nbsp;</div>
         <div>&nbsp;</div>
