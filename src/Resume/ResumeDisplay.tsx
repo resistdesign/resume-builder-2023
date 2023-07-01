@@ -6,6 +6,8 @@ import { Person } from '../Types/Person';
 import { Skill } from '../Types/Skill';
 import { SocialNetwork } from '../Types/SocialNetwork';
 import { Education } from '../Types/Education';
+import { Employment } from '../Types/Employment';
+import { Project } from '../Types/Project';
 
 type FormattedDateParts = {
   year: string | number;
@@ -199,6 +201,48 @@ const SideBoxCaption = styled.div`
   line-height: 1em;
 `;
 
+type FormattedProjectProps = {
+  project: Project;
+};
+
+const FormattedProject: FC<FormattedProjectProps> = ({ project }) => {
+  const { name = '', description = '' } = project;
+
+  return (
+    <div>
+      <div>{name}</div>
+      <div>{description}</div>
+    </div>
+  );
+};
+
+type FormattedEmploymentProps = {
+  employment: Employment;
+};
+
+const FormattedEmployment: FC<FormattedEmploymentProps> = ({ employment }) => {
+  const { company = '', position = '', startDate = '', endDate = '', projects = [] } = employment;
+  const { month: startMonth, year: startYear } = useMemo(() => getFormattedDateParts(startDate as string), [startDate]);
+  const { month: endMonth, year: endYear } = useMemo(() => getFormattedDateParts(endDate as string), [endDate]);
+
+  return (
+    <div>
+      <div>
+        <div>{company}</div>
+        <div>
+          {startMonth}/{startYear}-{endMonth}/{endYear}
+        </div>
+      </div>
+      <div>{position}</div>
+      <div>
+        {projects.map((project, index) => (
+          <FormattedProject key={index} project={project} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
 type FormattedDateProps = {
   isoDateString: string;
 };
@@ -373,7 +417,11 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({
             <QuadDate>
               <FormattedDate isoDateString={getValue('date')} />
             </QuadDate>
-            <QuadDetails>Employment Area...</QuadDetails>
+            <QuadDetails>
+              {getValue<Employment[]>('employment', []).map((employment, ind) => (
+                <FormattedEmployment key={ind} employment={employment} />
+              ))}
+            </QuadDetails>
             <QuadSkills>
               <SideBox>
                 {getValue<SocialNetwork[]>('subject/socialNetworks', []).map((soc, ind) => (
