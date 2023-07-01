@@ -2,6 +2,7 @@ import React, { FC, useCallback, useMemo } from 'react';
 import { Resume } from '../Types/Resume';
 import styled from 'styled-components';
 import HashMatrix, { HashMatrixPathPartType } from '../System/ValueProcessing/HashMatrix';
+import { Person } from '../Types/Person';
 
 const ResumeDisplayBase = styled.div`
   flex: 1 1 auto;
@@ -109,6 +110,7 @@ const References = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  flex-wrap: wrap;
   font-size: 9pt;
 `;
 
@@ -131,6 +133,46 @@ const FormattedDate: FC<FormattedDateProps> = ({ isoDateString }) => {
   );
 };
 
+type FormattedReferenceProps = {
+  reference: Person;
+};
+
+const FormattedReference: FC<FormattedReferenceProps> = ({ reference }) => {
+  const {
+    name: { first: firstName = '', middle: middleName = '', last: lastName = '' } = {} as any,
+    description,
+    email = '',
+    phone = '',
+    address: { city = '', state = '', country = '' } = {} as any,
+    socialNetworks = [],
+  } = reference;
+
+  return (
+    <div>
+      <NameEmphasized>
+        {firstName}&nbsp;{middleName}
+        {middleName ? <>&nbsp;</> : undefined}
+        {lastName}
+      </NameEmphasized>
+      <div>{description}</div>
+      <div>{email}</div>
+      <div>{phone}</div>
+      <div>
+        {city},&nbsp;{state}&nbsp;{country}
+      </div>
+      <div>
+        {socialNetworks.map(({ name, url }, ind) => (
+          <div key={ind}>
+            <div>
+              {name}&nbsp;{url}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 export type ResumeDisplayProps = {
   resume: Resume;
   zoomScale?: number;
@@ -143,7 +185,8 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({
 }) => {
   const r = useMemo(() => new HashMatrix({ hashMatrix: resume, pathDelimiter: '/' }), [resume]);
   const getValue = useCallback(
-    (path: HashMatrixPathPartType, fallbackValue?: any) => r.getPath(path) ?? fallbackValue,
+    <ReturnType extends any = any>(path: HashMatrixPathPartType, fallbackValue?: any): ReturnType =>
+      r.getPath(path) ?? fallbackValue,
     [r]
   );
 
@@ -174,7 +217,11 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({
             <QuadDetails>Details</QuadDetails>
             <QuadSkills>Skills</QuadSkills>
           </Quad>
-          <References>{getValue('references').toString()}</References>
+          <References>
+            {getValue<Person[]>('references', []).map((reference, ind) => (
+              <FormattedReference key={ind} reference={reference} />
+            ))}
+          </References>
         </CenterBody>
         <div>&nbsp;</div>
         <div>&nbsp;</div>
