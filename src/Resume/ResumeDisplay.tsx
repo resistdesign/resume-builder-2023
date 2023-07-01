@@ -43,6 +43,7 @@ const ResumeDocument = styled.div<{ $zoomScale?: number }>`
 
   @media print {
     border: none;
+    box-shadow: none;
   }
 `;
 const CenterBody = styled.div`
