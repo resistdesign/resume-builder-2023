@@ -78,7 +78,17 @@ const HeaderBox = styled.div`
     display: none;
   }
 `;
-const FileButton = styled.button``;
+const TopControlButton = styled.button``;
+const TopControlButtonIcon = styled.svg`
+  width: 1em;
+  height: 1em;
+  margin: 0.25em;
+`;
+const TopControlButtonLabel = styled.span`
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+`;
 const PrintLayoutBox = styled(LayoutBox)`
   flex: 1 1 auto;
   overflow: hidden;
@@ -169,10 +179,20 @@ export const App: FC = () => {
       <GlobalStyle />
       <HeaderBox>
         <LogoImage src={Logo} />
-        <FileButton onClick={onImportFile}>Import</FileButton>
-        <FileButton onClick={onExportFile}>Export</FileButton>
-        <button onClick={onSelectBuildMode}>Build</button>
-        <button onClick={onSelectPrintMode}>Print</button>
+        <TopControlButton onClick={onImportFile}>
+          <TopControlButtonIcon viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+            <path fill="white" d="M24 24H0L24 0z" />
+          </TopControlButtonIcon>
+          <TopControlButtonLabel>&nbsp;Import</TopControlButtonLabel>
+        </TopControlButton>
+        <TopControlButton onClick={onExportFile}>
+          <TopControlButtonIcon viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+            <path fill="white" d="M24 0V24L0 0z" />
+          </TopControlButtonIcon>
+          <TopControlButtonLabel>&nbsp;Export</TopControlButtonLabel>
+        </TopControlButton>
+        <TopControlButton onClick={onSelectBuildMode}>Build</TopControlButton>
+        <TopControlButton onClick={onSelectPrintMode}>Print</TopControlButton>
       </HeaderBox>
       {!printing ? (
         <Application
