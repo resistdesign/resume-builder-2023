@@ -181,6 +181,9 @@ const SideBox = styled.div`
   align-items: flex-start;
   gap: 0.5em;
 `;
+const SideBoxItem = styled.div`
+  margin-bottom: 1em;
+`;
 const SideBoxTitle = styled.div`
   font-weight: bold;
   font-size: 9pt;
@@ -231,7 +234,7 @@ const FormattedEducation: FC<FormattedEducationProps> = ({ education }) => {
   );
 
   return (
-    <div>
+    <SideBoxItem>
       <SideBoxTitle>
         {establishment}&nbsp;&nbsp;{startMonth}/{startYear}-{endMonth}/{endYear}
       </SideBoxTitle>
@@ -243,7 +246,7 @@ const FormattedEducation: FC<FormattedEducationProps> = ({ education }) => {
           <SideBoxCaption key={index}>{achievement}</SideBoxCaption>
         ))}
       </div>
-    </div>
+    </SideBoxItem>
   );
 };
 
