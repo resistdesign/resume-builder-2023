@@ -115,7 +115,7 @@ const References = styled.div`
   align-items: stretch;
   flex-wrap: wrap;
   font-size: 7pt;
-  padding: 1em 0;
+  padding: 2em 0 0 0;
 `;
 const ReferenceDivide = styled.div`
   flex: 0 0 auto;
