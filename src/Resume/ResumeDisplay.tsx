@@ -120,7 +120,6 @@ const QuadName = styled.div`
 const NameEmphasized = styled.div`
   font-weight: bold;
   font-size: 16pt;
-  line-height: 1em;
 `;
 const NameEmphasizedSmall = styled(NameEmphasized)`
   font-size: 9pt;
@@ -136,7 +135,7 @@ const QuadDate = styled.div`
 `;
 const DateYear = styled.div`
   font-size: 24pt;
-  line-height: 1em;
+  line-height: 1.25em;
 `;
 const QuadDetails = styled.div`
   flex: 0 0 auto;
