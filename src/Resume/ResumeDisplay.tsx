@@ -206,7 +206,7 @@ const DetailsBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 0.5em;
 `;
 const DetailsBoxItem = styled.div`
@@ -227,6 +227,9 @@ const DetailsBoxTitle = styled.div`
   justify-content: stretch;
   align-items: center;
   gap: 1em;
+`;
+const DetailsBoxSubTitle = styled(DetailsBoxTitle)`
+  font-weight: normal;
 `;
 const DetailsBoxTitleText = styled.div`
   flex: 0 0 auto;
@@ -283,7 +286,7 @@ const FormattedEmployment: FC<FormattedEmploymentProps> = ({ employment }) => {
           {startMonth}/{startYear}-{endMonth}/{endYear}
         </DetailsBoxTitleText>
       </DetailsBoxTitle>
-      <DetailsBoxTitle>{position}</DetailsBoxTitle>
+      <DetailsBoxSubTitle>{position}</DetailsBoxSubTitle>
       <DetailsBoxCaption>
         {projects.map((project, index) => (
           <FormattedProject key={index} project={project} />
