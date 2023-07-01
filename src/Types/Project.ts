@@ -1,4 +1,3 @@
-import { Skill } from './Skill';
 import { NotableConcept } from './NotableConcept';
 
 export type Project = {
@@ -10,11 +9,6 @@ export type Project = {
    * @label Description
    * */
   description: string;
-  /**
-   * @label Skills
-   * @itemName `description`
-   * */
-  skills: Skill[];
   /**
    * @label Notable Concepts
    * @itemName `description`

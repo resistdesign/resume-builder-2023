@@ -2224,22 +2224,6 @@
         "comments": [],
         "tags": {
           "label": {
-            "value": "Skills"
-          },
-          "itemName": {
-            "value": "`description`"
-          }
-        },
-        "name": "skills",
-        "type": "Skill",
-        "multiple": 1,
-        "optional": false,
-        "readonly": false
-      },
-      {
-        "comments": [],
-        "tags": {
-          "label": {
             "value": "Notable Concepts"
           },
           "itemName": {
@@ -2298,6 +2282,22 @@
         },
         "name": "date",
         "type": "Date",
+        "optional": false,
+        "readonly": false
+      },
+      {
+        "comments": [],
+        "tags": {
+          "label": {
+            "value": "Skills"
+          },
+          "itemName": {
+            "value": "`description`"
+          }
+        },
+        "name": "skills",
+        "type": "Skill",
+        "multiple": 1,
         "optional": false,
         "readonly": false
       },

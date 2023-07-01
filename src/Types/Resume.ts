@@ -2,6 +2,7 @@ import { Person } from './Person';
 import { Employment } from './Employment';
 import { Education } from './Education';
 import { LongText } from '../System/HelperTypes';
+import { Skill } from './Skill';
 
 /**
  * @label Resume
@@ -19,6 +20,11 @@ export type Resume = {
    * @label Date
    * */
   date: Date;
+  /**
+   * @label Skills
+   * @itemName `description`
+   * */
+  skills: Skill[];
   /**
    * @label Employment
    * @itemName `company`
