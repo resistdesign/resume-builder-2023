@@ -40,6 +40,10 @@ const ResumeDocument = styled.div<{ $zoomScale?: number }>`
   @media screen and (max-width: 768px) {
     transform-origin: top left;
   }
+
+  @media print {
+    border: none;
+  }
 `;
 const CenterBody = styled.div`
   flex: 0 0 auto;
