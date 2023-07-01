@@ -113,6 +113,9 @@ const References = styled.div`
   flex-wrap: wrap;
   font-size: 9pt;
 `;
+const GridCellHolder = styled.div`
+  flex: 0 0 auto;
+`;
 
 type FormattedDateProps = {
   isoDateString: string;
@@ -193,10 +196,10 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({
   return (
     <ResumeDisplayBase>
       <ResumeDocument $zoomScale={zoomScale}>
-        <div>&nbsp;</div>
-        <div>&nbsp;</div>
-        <div>&nbsp;</div>
-        <div>&nbsp;</div>
+        <GridCellHolder>&nbsp;</GridCellHolder>
+        <GridCellHolder>&nbsp;</GridCellHolder>
+        <GridCellHolder>&nbsp;</GridCellHolder>
+        <GridCellHolder>&nbsp;</GridCellHolder>
         <CenterBody>
           <Title>{getValue('objective')}</Title>
           <Quad>
@@ -223,10 +226,10 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({
             ))}
           </References>
         </CenterBody>
-        <div>&nbsp;</div>
-        <div>&nbsp;</div>
-        <div>&nbsp;</div>
-        <div>&nbsp;</div>
+        <GridCellHolder>&nbsp;</GridCellHolder>
+        <GridCellHolder>&nbsp;</GridCellHolder>
+        <GridCellHolder>&nbsp;</GridCellHolder>
+        <GridCellHolder>&nbsp;</GridCellHolder>
       </ResumeDocument>
     </ResumeDisplayBase>
   );
