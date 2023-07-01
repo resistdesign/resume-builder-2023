@@ -143,9 +143,6 @@ const FormattedReferenceBase = styled.div`
 const GridCellHolder = styled.div`
   flex: 0 0 auto;
 `;
-const SectionTitle = styled.div`
-  color: lightgray;
-`;
 const SideBox = styled.div`
   font-size: 7pt;
   padding: 0.5em;
@@ -294,21 +291,16 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({
             <QuadDate>
               <FormattedDate isoDateString={getValue('date')} />
             </QuadDate>
-            <QuadDetails>
-              <SectionTitle>Employment</SectionTitle>
-            </QuadDetails>
+            <QuadDetails>Employment Area...</QuadDetails>
             <QuadSkills>
-              <SectionTitle>Social</SectionTitle>
               <SideBox>
                 {getValue<SocialNetwork[]>('subject/socialNetworks', []).map((soc, ind) => (
                   <FormattedSocialNetwork key={ind} socialNetwork={soc} />
                 ))}
               </SideBox>
               <br />
-              <SectionTitle>Education</SectionTitle>
               <SideBox></SideBox>
               <br />
-              <SectionTitle>Skills</SectionTitle>
               <SideBox>
                 {getValue<Skill[]>('skills', []).map((skill, ind) => (
                   <FormattedSkill key={ind} skill={skill} />
