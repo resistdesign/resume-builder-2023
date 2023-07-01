@@ -113,7 +113,7 @@ const QuadName = styled.div`
   text-align: right;
   padding: 0.5em;
   border-right: 0.05em dashed grey;
-  border-bottom: 0.05em solid black;
+  border-bottom: 0.05em solid grey;
 `;
 const NameEmphasized = styled.div`
   font-weight: bold;
@@ -130,7 +130,7 @@ const QuadDate = styled.div`
   justify-content: flex-end;
   align-items: flex-start;
   padding: 0.5em;
-  border-bottom: 0.05em solid black;
+  border-bottom: 0.05em solid grey;
 `;
 const DateYear = styled.div`
   font-size: 24pt;
@@ -165,7 +165,7 @@ const References = styled.div`
 const FormattedReferenceBase = styled.div`
   flex: 0 0 auto;
   margin-bottom: 2em;
-  border-left: 0.05em solid gray;
+  border-left: 0.05em solid grey;
   padding-left: 1em;
   margin-right: 1em;
 `;
