@@ -120,6 +120,10 @@ const References = styled.div`
   font-size: 7pt;
   padding: 2em 0 0 0;
 `;
+const FormattedReferenceBase = styled.div`
+  flex: 0 0 auto;
+  margin-bottom: 1em;
+`;
 const ReferenceDivide = styled.div`
   flex: 0 0 auto;
   width: 0;
@@ -169,7 +173,7 @@ const FormattedReference: FC<FormattedReferenceProps> = ({ reference }) => {
   } = reference;
 
   return (
-    <div>
+    <FormattedReferenceBase>
       <NameEmphasizedSmall>
         {firstName}&nbsp;{middleName}
         {middleName ? <>&nbsp;</> : undefined}
@@ -194,7 +198,7 @@ const FormattedReference: FC<FormattedReferenceProps> = ({ reference }) => {
           </div>
         ))}
       </div>
-    </div>
+    </FormattedReferenceBase>
   );
 };
 
