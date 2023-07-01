@@ -239,8 +239,12 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({
             <QuadDate>
               <FormattedDate isoDateString={getValue('date')} />
             </QuadDate>
-            <QuadDetails>Details</QuadDetails>
-            <QuadSkills>Skills</QuadSkills>
+            <QuadDetails>Employment</QuadDetails>
+            <QuadSkills>
+              Skills
+              <br />
+              Education
+            </QuadSkills>
           </Quad>
           <GridCellHolder>
             <References>
