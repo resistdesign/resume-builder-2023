@@ -181,19 +181,12 @@ const SideBox = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 0.5em;
+  gap: 1em;
 `;
-const SideBoxItem = styled.div`
-  margin-bottom: 1em;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-`;
+const SideBoxItem = styled.div``;
 const SideBoxTitle = styled.div`
   font-weight: bold;
   font-size: 9pt;
-  line-height: 1em;
   white-space: nowrap;
 `;
 const SideBoxCaption = styled.div`
@@ -207,19 +200,12 @@ const DetailsBox = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
-  gap: 0.5em;
+  gap: 1em;
 `;
-const DetailsBoxItem = styled.div`
-  margin-bottom: 1em;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-`;
+const DetailsBoxItem = styled.div``;
 const DetailsBoxTitle = styled.div`
   font-weight: bold;
   font-size: 9pt;
-  line-height: 1em;
   white-space: nowrap;
 
   display: flex;
@@ -288,6 +274,7 @@ const FormattedEmployment: FC<FormattedEmploymentProps> = ({ employment }) => {
         </DetailsBoxTitleText>
       </DetailsBoxTitle>
       <DetailsBoxSubTitle>{position}</DetailsBoxSubTitle>
+      <br />
       <DetailsBoxCaption>
         {projects.map((project, index) => (
           <FormattedProject key={index} project={project} />
