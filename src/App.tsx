@@ -10,6 +10,14 @@ import { LayoutBox } from './System/Layout';
 import { fileOpen, fileSave } from 'browser-fs-access';
 import { ResumeDisplay } from './Resume/ResumeDisplay';
 import { Resume } from './Types/Resume';
+// @ts-ignore
+import Logo from 'url:./Assets/Images/Trans Zap Logo.png';
+
+const LogoImage = styled.img`
+  flex: 0 0 auto;
+  height: 3em;
+  border-radius: var(--border-radius);
+`;
 
 const TYPE_STRUCTURE_MAP: TypeStructureMap = TSM as any;
 const RESUME_ENTRY_TYPE_NAME = 'Resume';
@@ -160,6 +168,7 @@ export const App: FC = () => {
     <AppBase>
       <GlobalStyle />
       <HeaderBox>
+        <LogoImage src={Logo} />
         <FileButton onClick={onImportFile}>Import</FileButton>
         <FileButton onClick={onExportFile}>Export</FileButton>
         <button onClick={onSelectBuildMode}>Build</button>
