@@ -102,7 +102,7 @@ const References = styled.div`
 `;
 
 const getFormattedDate = (isoDateString: string): ReactNode => {
-  const date = new Date(isoDateString);
+  const date = new Date(`${isoDateString}T12:00:00.000Z`);
   const year = date.getFullYear();
   const month = date.toLocaleString('default', { month: 'long' });
   const day = date.getDate();
