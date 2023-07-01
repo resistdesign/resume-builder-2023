@@ -135,7 +135,7 @@ const QuadDate = styled.div`
 `;
 const DateYear = styled.div`
   font-size: 24pt;
-  line-height: 1.25em;
+  line-height: 1.275em;
 `;
 const QuadDetails = styled.div`
   flex: 0 0 auto;
