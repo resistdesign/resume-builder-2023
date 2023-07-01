@@ -66,7 +66,7 @@ const QuadName = styled.div`
   align-items: flex-end;
   text-align: right;
   padding: 0.5em;
-  border-right: 0.05em solid black;
+  border-right: 0.05em dotted black;
   border-bottom: 0.05em solid black;
 `;
 const NameEmphasized = styled.div`
@@ -97,7 +97,7 @@ const QuadDetails = styled.div`
   justify-content: stretch;
   align-items: flex-start;
   padding: 0.5em;
-  border-right: 0.05em solid black;
+  border-right: 0.05em dotted black;
 `;
 const QuadSkills = styled.div`
   flex: 0 0 auto;
