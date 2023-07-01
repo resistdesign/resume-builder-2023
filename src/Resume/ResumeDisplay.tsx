@@ -51,6 +51,8 @@ const Title = styled.div`
   font-size: 18pt;
   line-height: 1em;
   font-weight: bold;
+
+  white-space: pre-wrap;
 `;
 const Quad = styled.div`
   flex: 0 0 auto;
