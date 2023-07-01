@@ -5,6 +5,22 @@ import HashMatrix, { HashMatrixPathPartType } from '../System/ValueProcessing/Ha
 import { Person } from '../Types/Person';
 import { Skill } from '../Types/Skill';
 import { SocialNetwork } from '../Types/SocialNetwork';
+import { Education } from '../Types/Education';
+
+type FormattedDateParts = {
+  year: number;
+  month: string;
+  day: number;
+};
+
+const getFormattedDateParts = (isoDateString: string): FormattedDateParts => {
+  const date = new Date(`${isoDateString}T12:00:00.000Z`);
+  const year = date.getFullYear();
+  const month = date.toLocaleString('default', { month: 'long' });
+  const day = date.getDate();
+
+  return { year, month, day };
+};
 
 const ResumeDisplayBase = styled.div`
   flex: 1 1 auto;
@@ -158,10 +174,7 @@ type FormattedDateProps = {
 };
 
 const FormattedDate: FC<FormattedDateProps> = ({ isoDateString }) => {
-  const date = new Date(`${isoDateString}T12:00:00.000Z`);
-  const year = date.getFullYear();
-  const month = date.toLocaleString('default', { month: 'long' });
-  const day = date.getDate();
+  const { year, month, day } = useMemo(() => getFormattedDateParts(isoDateString), [isoDateString]);
 
   return (
     <>
@@ -169,6 +182,39 @@ const FormattedDate: FC<FormattedDateProps> = ({ isoDateString }) => {
       <div>{month}</div>
       <div>{day}</div>
     </>
+  );
+};
+
+type FormattedEducationProps = {
+  education: Education;
+};
+
+const FormattedEducation: FC<FormattedEducationProps> = ({ education }) => {
+  const {
+    establishment = '',
+    startDate = '',
+    endDate = '',
+    program = '',
+    credentialType = '',
+    achievements = [],
+  } = education;
+  const { month: startMonth, year: startYear } = useMemo(() => getFormattedDateParts(startDate as string), [startDate]);
+  const { month: endMonth, year: endYear } = useMemo(() => getFormattedDateParts(endDate as string), [endDate]);
+
+  return (
+    <div>
+      <div>
+        {establishment}&nbsp;&nbsp;${startMonth}/${startYear}-${endMonth}/${endYear}
+      </div>
+      <div>
+        {program}&nbsp;&nbsp;{credentialType}
+      </div>
+      <div>
+        {achievements.map((achievement, index) => (
+          <div key={index}>{achievement}</div>
+        ))}
+      </div>
+    </div>
   );
 };
 
@@ -299,7 +345,11 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({
                 ))}
               </SideBox>
               <br />
-              <SideBox></SideBox>
+              <SideBox>
+                {getValue<Education[]>('education', []).map((education, ind) => (
+                  <FormattedEducation key={ind} education={education} />
+                ))}
+              </SideBox>
               <br />
               <SideBox>
                 {getValue<Skill[]>('skills', []).map((skill, ind) => (
