@@ -471,13 +471,11 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({
                   <FormattedSocialNetwork key={ind} socialNetwork={soc} />
                 ))}
               </SideBox>
-              <br />
               <SideBox>
                 {getValue<Education[]>('education', []).map((education, ind) => (
                   <FormattedEducation key={ind} education={education} />
                 ))}
               </SideBox>
-              <br />
               <SideBox>
                 {getValue<Skill[]>('skills', []).map((skill, ind) => (
                   <FormattedSkill key={ind} skill={skill} />
