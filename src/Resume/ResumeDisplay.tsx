@@ -228,6 +228,11 @@ const DetailsBoxCaption = styled.div`
   font-size: 6pt;
   line-height: 1em;
 `;
+const ProjectItem = styled.div``;
+const ProjectTitle = styled.div``;
+const ProjectDescription = styled.div``;
+const ProjectNotableConcepts = styled.div``;
+const ProjectNotableConceptItem = styled.div``;
 
 type FormattedProjectProps = {
   project: Project;
@@ -237,15 +242,15 @@ const FormattedProject: FC<FormattedProjectProps> = ({ project }) => {
   const { name = '', description = '', notableConcepts = [] } = project;
 
   return (
-    <div>
-      <div>{name}</div>
-      <div>{description}</div>
-      <div>
+    <ProjectItem>
+      <ProjectTitle>{name}</ProjectTitle>
+      <ProjectDescription>{description}</ProjectDescription>
+      <ProjectNotableConcepts>
         {notableConcepts.map(({ description }, index) => (
-          <div key={index}>{description}</div>
+          <ProjectNotableConceptItem key={index}>{description}</ProjectNotableConceptItem>
         ))}
-      </div>
-    </div>
+      </ProjectNotableConcepts>
+    </ProjectItem>
   );
 };
 
@@ -274,7 +279,6 @@ const FormattedEmployment: FC<FormattedEmploymentProps> = ({ employment }) => {
         </DetailsBoxTitleText>
       </DetailsBoxTitle>
       <DetailsBoxSubTitle>{position}</DetailsBoxSubTitle>
-      <br />
       <DetailsBoxCaption>
         {projects.map((project, index) => (
           <FormattedProject key={index} project={project} />
