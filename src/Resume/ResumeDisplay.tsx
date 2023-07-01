@@ -230,6 +230,7 @@ const DetailsBoxTitle = styled.div`
 `;
 const DetailsBoxSubTitle = styled(DetailsBoxTitle)`
   font-weight: normal;
+  font-size: 7pt;
 `;
 const DetailsBoxTitleText = styled.div`
   flex: 0 0 auto;
