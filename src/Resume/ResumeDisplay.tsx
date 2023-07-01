@@ -49,7 +49,7 @@ const Title = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   font-size: 18pt;
-  line-height: 1em;
+  line-height: 1.2em;
   font-weight: bold;
 
   white-space: pre-wrap;
