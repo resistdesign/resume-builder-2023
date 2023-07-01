@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useCallback, useMemo } from 'react';
+import React, { FC, useCallback, useMemo } from 'react';
 import { Resume } from '../Types/Resume';
 import styled from 'styled-components';
 import HashMatrix, { HashMatrixPathPartType } from '../System/ValueProcessing/HashMatrix';
@@ -112,7 +112,11 @@ const References = styled.div`
   font-size: 9pt;
 `;
 
-const getFormattedDate = (isoDateString: string): ReactNode => {
+type FormattedDateProps = {
+  isoDateString: string;
+};
+
+const FormattedDate: FC<FormattedDateProps> = ({ isoDateString }) => {
   const date = new Date(`${isoDateString}T12:00:00.000Z`);
   const year = date.getFullYear();
   const month = date.toLocaleString('default', { month: 'long' });
@@ -164,7 +168,9 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({
               <br />
               {getValue('subject/phone')}
             </QuadName>
-            <QuadDate>{getFormattedDate(getValue('date'))}</QuadDate>
+            <QuadDate>
+              <FormattedDate isoDateString={getValue('date')} />
+            </QuadDate>
             <QuadDetails>Details</QuadDetails>
             <QuadSkills>Skills</QuadSkills>
           </Quad>
