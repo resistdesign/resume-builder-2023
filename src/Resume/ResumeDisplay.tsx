@@ -3,6 +3,20 @@ import { Resume } from '../Types/Resume';
 import styled from 'styled-components';
 import HashMatrix, { HashMatrixPathPartType } from '../System/ValueProcessing/HashMatrix';
 import { Person } from '../Types/Person';
+import { Skill } from '../Types/Skill';
+import { Employment } from '../Types/Employment';
+
+const getSkills = (employment: Employment[] = []) =>
+  employment.reduce((acc, emp) => {
+    const { projects = [] } = emp;
+    const skills = projects.reduce((acc2, proj) => {
+      const { skills: skills2 = [] } = proj;
+
+      return [...acc2, ...skills2];
+    }, [] as Skill[]);
+
+    return [...acc, ...skills];
+  }, [] as Skill[]);
 
 const ResumeDisplayBase = styled.div`
   flex: 1 1 auto;
@@ -214,6 +228,21 @@ const FormattedReference: FC<FormattedReferenceProps> = ({ reference }) => {
   );
 };
 
+type FormattedSkillProps = {
+  skill: Skill;
+};
+
+const FormattedSkill: FC<FormattedSkillProps> = ({ skill }) => {
+  const { description, rating = 0 } = skill;
+
+  return (
+    <div>
+      <div>{description}</div>
+      <div>{new Array(parseInt(`${rating}`, 10) || 0).fill('★').join(' ')}</div>
+    </div>
+  );
+};
+
 export type ResumeDisplayProps = {
   resume: Resume;
   zoomScale?: number;
@@ -261,6 +290,10 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({
             <QuadDetails>Employment</QuadDetails>
             <QuadSkills>
               Skills
+              <br />
+              {getSkills(getValue('employment', [])).map((skill, ind) => (
+                <FormattedSkill key={ind} skill={skill} />
+              ))}
               <br />
               Education
             </QuadSkills>
