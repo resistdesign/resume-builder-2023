@@ -123,13 +123,13 @@ const References = styled.div`
 `;
 const FormattedReferenceBase = styled.div`
   flex: 0 0 auto;
-  margin-bottom: 1em;
+  margin-bottom: 2em;
 `;
 const ReferenceDivide = styled.div`
   flex: 0 0 auto;
   width: 0;
   height: auto;
-  margin: 0 1em 1em 1em;
+  margin: 0 1em 2em 1em;
   border-right: 0.05em solid gray;
 
   &:last-child {
