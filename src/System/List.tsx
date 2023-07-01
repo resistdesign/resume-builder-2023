@@ -223,7 +223,7 @@ export const List: FC<ListProps> = ({
               </>
             ) : (
               <>
-                <button onClick={onDeselectAllItems}>Deselect All</button>
+                {selectedIndices.length > 0 ? <button onClick={onDeselectAllItems}>Deselect All</button> : undefined}
                 <button onClick={onSetItemsAreMoving}>Move Item(s)</button>
                 <button onClick={onBegineDelete}>Delete Item(s)</button>
               </>
