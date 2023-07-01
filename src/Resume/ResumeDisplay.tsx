@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import HashMatrix, { HashMatrixPathPartType } from '../System/ValueProcessing/HashMatrix';
 import { Person } from '../Types/Person';
 import { Skill } from '../Types/Skill';
+import { SocialNetwork } from '../Types/SocialNetwork';
 
 const ResumeDisplayBase = styled.div`
   flex: 1 1 auto;
@@ -227,6 +228,22 @@ const FormattedReference: FC<FormattedReferenceProps> = ({ reference }) => {
   );
 };
 
+type FormattedSocialNetworkProps = {
+  socialNetwork: SocialNetwork;
+};
+
+const FormattedSocialNetwork: FC<FormattedSocialNetworkProps> = ({ socialNetwork }) => {
+  const { name = '', url = '' } = socialNetwork;
+
+  return (
+    <div>
+      <a href={url} target="_blank">
+        {name}
+      </a>
+    </div>
+  );
+};
+
 type FormattedSkillProps = {
   skill: Skill;
 };
@@ -290,15 +307,22 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({
               <SectionTitle>Employment</SectionTitle>
             </QuadDetails>
             <QuadSkills>
+              <SectionTitle>Social</SectionTitle>
+              <SideBox>
+                {getValue<SocialNetwork[]>('subject/socialNetworks', []).map((soc, ind) => (
+                  <FormattedSocialNetwork key={ind} socialNetwork={soc} />
+                ))}
+              </SideBox>
+              <br />
+              <SectionTitle>Education</SectionTitle>
+              <SideBox></SideBox>
+              <br />
               <SectionTitle>Skills</SectionTitle>
               <SideBox>
                 {getValue<Skill[]>('skills', []).map((skill, ind) => (
                   <FormattedSkill key={ind} skill={skill} />
                 ))}
               </SideBox>
-              <br />
-              <SectionTitle>Education</SectionTitle>
-              <SideBox></SideBox>
             </QuadSkills>
           </Quad>
           <GridCellHolder>
