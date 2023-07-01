@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useMemo } from 'react';
+import React, { FC, Fragment, useCallback, useMemo } from 'react';
 import { Resume } from '../Types/Resume';
 import styled from 'styled-components';
 import HashMatrix, { HashMatrixPathPartType } from '../System/ValueProcessing/HashMatrix';
@@ -112,9 +112,21 @@ const References = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: center;
+  align-items: stretch;
   flex-wrap: wrap;
   font-size: 7pt;
+  padding: 1em 0;
+`;
+const ReferenceDivide = styled.div`
+  flex: 0 0 auto;
+  width: 0;
+  height: auto;
+  margin: 0 1em;
+  border-right: 0.05em solid gray;
+
+  &:last-child {
+    border-right: none;
+  }
 `;
 const GridCellHolder = styled.div`
   flex: 0 0 auto;
@@ -161,9 +173,12 @@ const FormattedReference: FC<FormattedReferenceProps> = ({ reference }) => {
         {lastName}
       </NameEmphasizedSmall>
       <div>{description}</div>
-      <a href={`mailto:${email}`}>{email}</a>
-      <br />
-      <a href={`tel:${phone}`}>{phone}</a>
+      <div>
+        <a href={`mailto:${email}`}>{email}</a>
+      </div>
+      <div>
+        <a href={`tel:${phone}`}>{phone}</a>
+      </div>
       <div>
         {city},&nbsp;{state}&nbsp;{country}
       </div>
@@ -214,9 +229,12 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({
                 {getValue('subject/name/middle') && <>&nbsp;</>}
                 {getValue('subject/name/last')}
               </NameEmphasized>
-              <a href={`mailto:${getValue('subject/email')}`}>{getValue('subject/email')}</a>
-              <br />
-              <a href={`tel:${getValue('subject/phone')}`}>{getValue('subject/phone')}</a>
+              <div>
+                <a href={`mailto:${getValue('subject/email')}`}>{getValue('subject/email')}</a>
+              </div>
+              <div>
+                <a href={`tel:${getValue('subject/phone')}`}>{getValue('subject/phone')}</a>
+              </div>
             </QuadName>
             <QuadDate>
               <FormattedDate isoDateString={getValue('date')} />
@@ -224,11 +242,16 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({
             <QuadDetails>Details</QuadDetails>
             <QuadSkills>Skills</QuadSkills>
           </Quad>
-          <References>
-            {getValue<Person[]>('references', []).map((reference, ind) => (
-              <FormattedReference key={ind} reference={reference} />
-            ))}
-          </References>
+          <GridCellHolder>
+            <References>
+              {getValue<Person[]>('references', []).map((reference, ind) => (
+                <Fragment key={ind}>
+                  <FormattedReference reference={reference} />
+                  <ReferenceDivide />
+                </Fragment>
+              ))}
+            </References>
+          </GridCellHolder>
         </CenterBody>
         <GridCellHolder>&nbsp;</GridCellHolder>
         <GridCellHolder>&nbsp;</GridCellHolder>
