@@ -44,6 +44,8 @@ const ResumeDocument = styled.div<{ $zoomScale?: number }>`
   @media print {
     border: none;
     box-shadow: none;
+    background-color: unset;
+    margin: -1em;
   }
 `;
 const CenterBody = styled.div`
