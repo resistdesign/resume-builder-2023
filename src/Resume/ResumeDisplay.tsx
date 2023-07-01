@@ -221,6 +221,18 @@ const DetailsBoxTitle = styled.div`
   font-size: 9pt;
   line-height: 1em;
   white-space: nowrap;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: center;
+  gap: 1em;
+`;
+const DetailsBoxTitleText = styled.div`
+  flex: 0 0 auto;
+`;
+const DetailsBoxTitleSpacer = styled.div`
+  flex: 1 1 auto;
 `;
 const DetailsBoxCaption = styled.div`
   font-size: 6pt;
@@ -253,14 +265,23 @@ type FormattedEmploymentProps = {
 
 const FormattedEmployment: FC<FormattedEmploymentProps> = ({ employment }) => {
   const { company = '', position = '', startDate = '', endDate = '', projects = [] } = employment;
-  const { month: startMonth, year: startYear } = useMemo(() => getFormattedDateParts(startDate as string), [startDate]);
-  const { month: endMonth, year: endYear } = useMemo(() => getFormattedDateParts(endDate as string), [endDate]);
+  const { month: startMonth, year: startYear } = useMemo(
+    () => getFormattedDateParts(startDate as string, true, true),
+    [startDate]
+  );
+  const { month: endMonth, year: endYear } = useMemo(
+    () => getFormattedDateParts(endDate as string, true, true),
+    [endDate]
+  );
 
   return (
     <DetailsBoxItem>
       <DetailsBoxTitle>
-        {company}
-        {startMonth}/{startYear}-{endMonth}/{endYear}
+        <DetailsBoxTitleText>{company}</DetailsBoxTitleText>
+        <DetailsBoxTitleSpacer />
+        <DetailsBoxTitleText>
+          {startMonth}/{startYear}-{endMonth}/{endYear}
+        </DetailsBoxTitleText>
       </DetailsBoxTitle>
       <DetailsBoxTitle>{position}</DetailsBoxTitle>
       <DetailsBoxCaption>
