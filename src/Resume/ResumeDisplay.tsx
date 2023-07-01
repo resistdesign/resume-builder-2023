@@ -183,6 +183,10 @@ const SideBox = styled.div`
 `;
 const SideBoxItem = styled.div`
   margin-bottom: 1em;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 `;
 const SideBoxTitle = styled.div`
   font-weight: bold;
