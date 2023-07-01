@@ -28,6 +28,7 @@ const ResumeDocument = styled.div<{ $zoomScale?: number }>`
   gap: 0;
   transform-origin: ${(p) => (typeof p.$zoomScale === 'number' && p.$zoomScale > 1 ? 'top left' : 'center center')};
   transform: scale(${(p) => p.$zoomScale ?? 1});
+  overflow: hidden;
 
   color: black;
   font-family: 'readex_proregular', sans-serif;
@@ -40,7 +41,7 @@ const CenterBody = styled.div`
   flex: 0 0 auto;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 3fr 1fr;
+  grid-template-rows: 1fr 3fr 2fr;
 `;
 const Title = styled.div`
   flex: 0 0 auto;
@@ -128,7 +129,7 @@ const ReferenceDivide = styled.div`
   flex: 0 0 auto;
   width: 0;
   height: auto;
-  margin: 0 1em;
+  margin: 0 1em 1em 0;
   border-right: 0.05em solid gray;
 
   &:last-child {
