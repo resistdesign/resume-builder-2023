@@ -12,6 +12,10 @@ const ResumeDisplayBase = styled.div`
   align-items: stretch;
   overflow: auto;
   object-fit: contain;
+
+  @media print {
+    overflow: hidden;
+  }
 `;
 const ResumeDocument = styled.div<{ $zoomScale?: number }>`
   flex: 0 0 auto;
