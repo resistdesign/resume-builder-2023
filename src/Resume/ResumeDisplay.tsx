@@ -200,18 +200,49 @@ const SideBoxCaption = styled.div`
   font-size: 6pt;
   line-height: 1em;
 `;
+const DetailsBox = styled.div`
+  font-size: 7pt;
+  padding: 0.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.5em;
+`;
+const DetailsBoxItem = styled.div`
+  margin-bottom: 1em;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
+const DetailsBoxTitle = styled.div`
+  font-weight: bold;
+  font-size: 9pt;
+  line-height: 1em;
+  white-space: nowrap;
+`;
+const DetailsBoxCaption = styled.div`
+  font-size: 6pt;
+  line-height: 1em;
+`;
 
 type FormattedProjectProps = {
   project: Project;
 };
 
 const FormattedProject: FC<FormattedProjectProps> = ({ project }) => {
-  const { name = '', description = '' } = project;
+  const { name = '', description = '', notableConcepts = [] } = project;
 
   return (
     <div>
       <div>{name}</div>
       <div>{description}</div>
+      <div>
+        {notableConcepts.map(({ description }, index) => (
+          <div key={index}>{description}</div>
+        ))}
+      </div>
     </div>
   );
 };
@@ -226,20 +257,18 @@ const FormattedEmployment: FC<FormattedEmploymentProps> = ({ employment }) => {
   const { month: endMonth, year: endYear } = useMemo(() => getFormattedDateParts(endDate as string), [endDate]);
 
   return (
-    <div>
-      <div>
-        <div>{company}</div>
-        <div>
-          {startMonth}/{startYear}-{endMonth}/{endYear}
-        </div>
-      </div>
-      <div>{position}</div>
-      <div>
+    <DetailsBoxItem>
+      <DetailsBoxTitle>
+        {company}
+        {startMonth}/{startYear}-{endMonth}/{endYear}
+      </DetailsBoxTitle>
+      <DetailsBoxTitle>{position}</DetailsBoxTitle>
+      <DetailsBoxCaption>
         {projects.map((project, index) => (
           <FormattedProject key={index} project={project} />
         ))}
-      </div>
-    </div>
+      </DetailsBoxCaption>
+    </DetailsBoxItem>
   );
 };
 
@@ -418,9 +447,11 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({
               <FormattedDate isoDateString={getValue('date')} />
             </QuadDate>
             <QuadDetails>
-              {getValue<Employment[]>('employment', []).map((employment, ind) => (
-                <FormattedEmployment key={ind} employment={employment} />
-              ))}
+              <DetailsBox>
+                {getValue<Employment[]>('employment', []).map((employment, ind) => (
+                  <FormattedEmployment key={ind} employment={employment} />
+                ))}
+              </DetailsBox>
             </QuadDetails>
             <QuadSkills>
               <SideBox>
