@@ -46,7 +46,9 @@ const Title = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
-  font-size: 36pt;
+  font-size: 18pt;
+  line-height: 1em;
+  font-weight: bold;
 `;
 const Quad = styled.div`
   flex: 0 0 auto;
