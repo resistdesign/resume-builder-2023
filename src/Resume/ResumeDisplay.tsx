@@ -169,7 +169,12 @@ const SectionTitle = styled.div`
 `;
 const SideBox = styled.div`
   font-size: 7pt;
-  margin-left: 0.5em;
+  padding: 0.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.5em;
 `;
 
 type FormattedDateProps = {
