@@ -174,6 +174,12 @@ export const List: FC<ListProps> = ({
     },
     [items, onChangeInternal, onCleanupMovingItems, selectedIndices]
   );
+  const onSelectAllItems = useCallback(() => {
+    setSelectedIndices(items.map((_, index) => index));
+  }, [items, setSelectedIndices]);
+  const onDeselectAllItems = useCallback(() => {
+    setSelectedIndices([]);
+  }, [setSelectedIndices]);
 
   return (
     <LayoutBox $allowShrink>
@@ -217,6 +223,7 @@ export const List: FC<ListProps> = ({
               </>
             ) : (
               <>
+                <button onClick={onDeselectAllItems}>Deselect All</button>
                 <button onClick={onSetItemsAreMoving}>Move Item(s)</button>
                 <button onClick={onBegineDelete}>Delete Item(s)</button>
               </>
@@ -225,6 +232,7 @@ export const List: FC<ListProps> = ({
         ) : undefined}
         {itemsAreMoving ? undefined : (
           <>
+            <button onClick={onSelectAllItems}>Select All</button>
             <button onClick={onAddItem}>+ Add Item</button>
             <button onClick={onNavigateBack}>Done</button>
           </>
