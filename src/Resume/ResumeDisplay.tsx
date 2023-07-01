@@ -183,6 +183,9 @@ const SideBox = styled.div`
   align-items: flex-start;
   gap: 1em;
 `;
+const SocialSideBox = styled(SideBox)`
+  flex-direction: row;
+`;
 const SideBoxItem = styled.div``;
 const SideBoxTitle = styled.div`
   font-weight: bold;
@@ -191,7 +194,7 @@ const SideBoxTitle = styled.div`
 `;
 const SideBoxCaption = styled.div`
   font-size: 6pt;
-  line-height: 1em;
+  color: grey;
 `;
 const DetailsBox = styled.div`
   font-size: 7pt;
@@ -217,6 +220,7 @@ const DetailsBoxTitle = styled.div`
 const DetailsBoxSubTitle = styled(DetailsBoxTitle)`
   font-weight: normal;
   font-size: 7pt;
+  margin-bottom: 0.5em;
 `;
 const DetailsBoxTitleText = styled.div`
   flex: 0 0 auto;
@@ -224,11 +228,8 @@ const DetailsBoxTitleText = styled.div`
 const DetailsBoxTitleSpacer = styled.div`
   flex: 1 1 auto;
 `;
-const DetailsBoxCaption = styled.div`
+const Projects = styled.div`
   font-size: 6pt;
-  line-height: 1em;
-`;
-const Projects = styled(DetailsBoxCaption)`
   flex: 1 0 auto;
   display: flex;
   flex-direction: column;
@@ -239,6 +240,7 @@ const Projects = styled(DetailsBoxCaption)`
 const ProjectItem = styled.div``;
 const ProjectTitle = styled.div`
   font-weight: bold;
+  font-size: 7pt;
 `;
 const ProjectDescription = styled.div``;
 const ProjectNotableConcepts = styled.div`
@@ -246,11 +248,12 @@ const ProjectNotableConcepts = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  gap: 1em;
   flex-wrap: wrap;
+  color: grey;
 `;
 const ProjectNotableConceptItem = styled.div`
   font-style: italic;
+  margin-right: 1em;
 `;
 
 type FormattedProjectProps = {
@@ -489,11 +492,11 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({
               </DetailsBox>
             </QuadDetails>
             <QuadSkills>
-              <SideBox>
+              <SocialSideBox>
                 {getValue<SocialNetwork[]>('subject/socialNetworks', []).map((soc, ind) => (
                   <FormattedSocialNetwork key={ind} socialNetwork={soc} />
                 ))}
-              </SideBox>
+              </SocialSideBox>
               <SideBox>
                 {getValue<Education[]>('education', []).map((education, ind) => (
                   <FormattedEducation key={ind} education={education} />
