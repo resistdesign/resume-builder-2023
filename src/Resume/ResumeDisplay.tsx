@@ -162,6 +162,7 @@ const FormattedReference: FC<FormattedReferenceProps> = ({ reference }) => {
       </NameEmphasizedSmall>
       <div>{description}</div>
       <a href={`mailto:${email}`}>{email}</a>
+      <br />
       <a href={`tel:${phone}`}>{phone}</a>
       <div>
         {city},&nbsp;{state}&nbsp;{country}
