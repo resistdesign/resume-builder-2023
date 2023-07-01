@@ -161,15 +161,17 @@ const FormattedReference: FC<FormattedReferenceProps> = ({ reference }) => {
         {lastName}
       </NameEmphasizedSmall>
       <div>{description}</div>
-      <div>{email}</div>
-      <div>{phone}</div>
+      <a href={`mailto:${email}`}>{email}</a>
+      <a href={`tel:${phone}`}>{phone}</a>
       <div>
         {city},&nbsp;{state}&nbsp;{country}
       </div>
       <div>
         {socialNetworks.map(({ name, url }, ind) => (
           <div key={ind}>
-            <a href={url}>{name}</a>
+            <a href={url} target="_blank">
+              {name}
+            </a>
           </div>
         ))}
       </div>
@@ -211,9 +213,9 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({
                 {getValue('subject/name/middle') && <>&nbsp;</>}
                 {getValue('subject/name/last')}
               </NameEmphasized>
-              {getValue('subject/email')}
+              <a href={`mailto:${getValue('subject/email')}`}>{getValue('subject/email')}</a>
               <br />
-              {getValue('subject/phone')}
+              <a href={`tel:${getValue('subject/phone')}`}>{getValue('subject/phone')}</a>
             </QuadName>
             <QuadDate>
               <FormattedDate isoDateString={getValue('date')} />
