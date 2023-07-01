@@ -74,6 +74,9 @@ const NameEmphasized = styled.div`
   font-size: 12pt;
   margin-bottom: -0.1em;
 `;
+const NameEmphasizedSmall = styled(NameEmphasized)`
+  font-size: 9pt;
+`;
 const QuadDate = styled.div`
   flex: 0 0 auto;
   display: flex;
@@ -111,7 +114,7 @@ const References = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
-  font-size: 9pt;
+  font-size: 7pt;
 `;
 const GridCellHolder = styled.div`
   flex: 0 0 auto;
@@ -152,11 +155,11 @@ const FormattedReference: FC<FormattedReferenceProps> = ({ reference }) => {
 
   return (
     <div>
-      <NameEmphasized>
+      <NameEmphasizedSmall>
         {firstName}&nbsp;{middleName}
         {middleName ? <>&nbsp;</> : undefined}
         {lastName}
-      </NameEmphasized>
+      </NameEmphasizedSmall>
       <div>{description}</div>
       <div>{email}</div>
       <div>{phone}</div>
@@ -166,9 +169,7 @@ const FormattedReference: FC<FormattedReferenceProps> = ({ reference }) => {
       <div>
         {socialNetworks.map(({ name, url }, ind) => (
           <div key={ind}>
-            <div>
-              {name}&nbsp;{url}
-            </div>
+            <a href={url}>{name}</a>
           </div>
         ))}
       </div>
