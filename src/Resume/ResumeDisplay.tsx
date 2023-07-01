@@ -142,8 +142,8 @@ const QuadDetails = styled.div`
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
-  justify-content: stretch;
-  align-items: flex-start;
+  justify-content: flex-start;
+  align-items: stretch;
   padding: 0.5em;
   border-right: 0.05em dashed grey;
 `;
