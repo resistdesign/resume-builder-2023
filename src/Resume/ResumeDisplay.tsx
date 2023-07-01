@@ -41,7 +41,7 @@ const CenterBody = styled.div`
   flex: 0 0 auto;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 3fr 2fr;
+  grid-template-rows: 1fr 5fr 2fr;
 `;
 const Title = styled.div`
   flex: 0 0 auto;
@@ -75,8 +75,8 @@ const QuadName = styled.div`
 `;
 const NameEmphasized = styled.div`
   font-weight: bold;
-  font-size: 12pt;
-  margin-bottom: -0.1em;
+  font-size: 16pt;
+  line-height: 1em;
 `;
 const NameEmphasizedSmall = styled(NameEmphasized)`
   font-size: 9pt;
@@ -129,7 +129,7 @@ const ReferenceDivide = styled.div`
   flex: 0 0 auto;
   width: 0;
   height: auto;
-  margin: 0 1em 1em 0;
+  margin: 0 1em 1em 1em;
   border-right: 0.05em solid gray;
 
   &:last-child {
