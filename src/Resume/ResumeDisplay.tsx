@@ -4,19 +4,6 @@ import styled from 'styled-components';
 import HashMatrix, { HashMatrixPathPartType } from '../System/ValueProcessing/HashMatrix';
 import { Person } from '../Types/Person';
 import { Skill } from '../Types/Skill';
-import { Employment } from '../Types/Employment';
-
-const getSkills = (employment: Employment[] = []) =>
-  employment.reduce((acc, emp) => {
-    const { projects = [] } = emp;
-    const skills = projects.reduce((acc2, proj) => {
-      const { skills: skills2 = [] } = proj;
-
-      return [...acc2, ...skills2];
-    }, [] as Skill[]);
-
-    return [...acc, ...skills];
-  }, [] as Skill[]);
 
 const ResumeDisplayBase = styled.div`
   flex: 1 1 auto;
@@ -305,7 +292,7 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({
             <QuadSkills>
               <SectionTitle>Skills</SectionTitle>
               <SideBox>
-                {getSkills(getValue('employment', [])).map((skill, ind) => (
+                {getValue<Skill[]>('skills', []).map((skill, ind) => (
                   <FormattedSkill key={ind} skill={skill} />
                 ))}
               </SideBox>
