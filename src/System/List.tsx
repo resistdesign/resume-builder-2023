@@ -95,8 +95,8 @@ export const List: FC<ListProps> = ({
   }, [setTryingToDeleteSelectedItems]);
   const [itemsAreMoving, setItemsAreMoving] = useState(false);
   const getItemLabel = useCallback(
-    (item: any): string =>
-      (getValueLabel(item, typeStructure, typeStructureMap) || '').trim() || `${items.indexOf(item) + 1}`,
+    (item: any, index: number): string =>
+      (getValueLabel(item, typeStructure, typeStructureMap) || '').trim() || `${index + 1}`,
     [typeStructure, typeStructureMap, items]
   );
   const onChangeInternal = useCallback(
@@ -127,7 +127,7 @@ export const List: FC<ListProps> = ({
         const item = items?.[index];
 
         onNavigateToPath({
-          label: getItemLabel(item),
+          label: getItemLabel(item, index),
           path: [index],
           isListItem: true,
         });
@@ -198,7 +198,7 @@ export const List: FC<ListProps> = ({
                   selected={selectedIndices.includes(index)}
                 />
               )}
-              <ItemLabelBase>{getItemLabel(item)}</ItemLabelBase>
+              <ItemLabelBase>{getItemLabel(item, index)}</ItemLabelBase>
               <SelectItemButton index={index} onSelectItem={onOpenItem}>
                 Open
               </SelectItemButton>
