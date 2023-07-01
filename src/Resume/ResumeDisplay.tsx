@@ -164,6 +164,13 @@ const ReferenceDivide = styled.div`
 const GridCellHolder = styled.div`
   flex: 0 0 auto;
 `;
+const SectionTitle = styled.div`
+  color: lightgray;
+`;
+const SideBox = styled.div`
+  font-size: 7pt;
+  margin-left: 0.5em;
+`;
 
 type FormattedDateProps = {
   isoDateString: string;
@@ -287,15 +294,19 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({
             <QuadDate>
               <FormattedDate isoDateString={getValue('date')} />
             </QuadDate>
-            <QuadDetails>Employment</QuadDetails>
+            <QuadDetails>
+              <SectionTitle>Employment</SectionTitle>
+            </QuadDetails>
             <QuadSkills>
-              Skills
+              <SectionTitle>Skills</SectionTitle>
+              <SideBox>
+                {getSkills(getValue('employment', [])).map((skill, ind) => (
+                  <FormattedSkill key={ind} skill={skill} />
+                ))}
+              </SideBox>
               <br />
-              {getSkills(getValue('employment', [])).map((skill, ind) => (
-                <FormattedSkill key={ind} skill={skill} />
-              ))}
-              <br />
-              Education
+              <SectionTitle>Education</SectionTitle>
+              <SideBox></SideBox>
             </QuadSkills>
           </Quad>
           <GridCellHolder>
