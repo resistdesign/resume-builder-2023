@@ -8,15 +8,28 @@ import { SocialNetwork } from '../Types/SocialNetwork';
 import { Education } from '../Types/Education';
 
 type FormattedDateParts = {
-  year: number;
-  month: string;
+  year: string | number;
+  month: string | number;
   day: number;
 };
 
-const getFormattedDateParts = (isoDateString: string): FormattedDateParts => {
+const padNumber = (num: number, pad: number = 2): string => {
+  let str = num.toString();
+  while (str.length < pad) {
+    str = '0' + str;
+  }
+
+  return str;
+};
+
+const getFormattedDateParts = (
+  isoDateString: string,
+  monthAsNumber: boolean = false,
+  shortYear: boolean = false
+): FormattedDateParts => {
   const date = new Date(`${isoDateString}T12:00:00.000Z`);
-  const year = date.getFullYear();
-  const month = date.toLocaleString('default', { month: 'long' });
+  const year = shortYear ? padNumber(date.getFullYear() % 100) : date.getFullYear();
+  const month = monthAsNumber ? date.getMonth() + 1 : date.toLocaleString('default', { month: 'long' });
   const day = date.getDate();
 
   return { year, month, day };
@@ -168,6 +181,16 @@ const SideBox = styled.div`
   align-items: flex-start;
   gap: 0.5em;
 `;
+const SideBoxTitle = styled.div`
+  font-weight: bold;
+  font-size: 9pt;
+  line-height: 1em;
+  white-space: nowrap;
+`;
+const SideBoxCaption = styled.div`
+  font-size: 6pt;
+  line-height: 1em;
+`;
 
 type FormattedDateProps = {
   isoDateString: string;
@@ -198,20 +221,26 @@ const FormattedEducation: FC<FormattedEducationProps> = ({ education }) => {
     credentialType = '',
     achievements = [],
   } = education;
-  const { month: startMonth, year: startYear } = useMemo(() => getFormattedDateParts(startDate as string), [startDate]);
-  const { month: endMonth, year: endYear } = useMemo(() => getFormattedDateParts(endDate as string), [endDate]);
+  const { month: startMonth, year: startYear } = useMemo(
+    () => getFormattedDateParts(startDate as string, true, true),
+    [startDate]
+  );
+  const { month: endMonth, year: endYear } = useMemo(
+    () => getFormattedDateParts(endDate as string, true, true),
+    [endDate]
+  );
 
   return (
     <div>
-      <div>
+      <SideBoxTitle>
         {establishment}&nbsp;&nbsp;{startMonth}/{startYear}-{endMonth}/{endYear}
-      </div>
+      </SideBoxTitle>
       <div>
         {program}&nbsp;&nbsp;{credentialType}
       </div>
       <div>
         {achievements.map((achievement, index) => (
-          <div key={index}>{achievement}</div>
+          <SideBoxCaption key={index}>{achievement}</SideBoxCaption>
         ))}
       </div>
     </div>
