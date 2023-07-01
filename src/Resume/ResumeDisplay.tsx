@@ -228,11 +228,30 @@ const DetailsBoxCaption = styled.div`
   font-size: 6pt;
   line-height: 1em;
 `;
+const Projects = styled(DetailsBoxCaption)`
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 1em;
+`;
 const ProjectItem = styled.div``;
-const ProjectTitle = styled.div``;
+const ProjectTitle = styled.div`
+  font-weight: bold;
+`;
 const ProjectDescription = styled.div``;
-const ProjectNotableConcepts = styled.div``;
-const ProjectNotableConceptItem = styled.div``;
+const ProjectNotableConcepts = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1em;
+  flex-wrap: wrap;
+`;
+const ProjectNotableConceptItem = styled.div`
+  font-style: italic;
+`;
 
 type FormattedProjectProps = {
   project: Project;
@@ -279,11 +298,11 @@ const FormattedEmployment: FC<FormattedEmploymentProps> = ({ employment }) => {
         </DetailsBoxTitleText>
       </DetailsBoxTitle>
       <DetailsBoxSubTitle>{position}</DetailsBoxSubTitle>
-      <DetailsBoxCaption>
+      <Projects>
         {projects.map((project, index) => (
           <FormattedProject key={index} project={project} />
         ))}
-      </DetailsBoxCaption>
+      </Projects>
     </DetailsBoxItem>
   );
 };
