@@ -71,6 +71,7 @@ const QuadName = styled.div`
 const NameEmphasized = styled.div`
   font-weight: bold;
   font-size: 12pt;
+  margin-bottom: -0.1em;
 `;
 const QuadDate = styled.div`
   flex: 0 0 auto;
