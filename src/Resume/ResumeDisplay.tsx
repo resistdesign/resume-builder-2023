@@ -66,6 +66,10 @@ const QuadName = styled.div`
   border-right: 0.05em solid black;
   border-bottom: 0.05em solid black;
 `;
+const NameEmphasized = styled.div`
+  font-weight: bold;
+  font-size: 12pt;
+`;
 const QuadDate = styled.div`
   flex: 0 0 auto;
   display: flex;
@@ -74,6 +78,10 @@ const QuadDate = styled.div`
   align-items: flex-start;
   padding: 0.5em;
   border-bottom: 0.05em solid black;
+`;
+const DateYear = styled.div`
+  font-size: 24pt;
+  line-height: 1em;
 `;
 const QuadDetails = styled.div`
   flex: 0 0 auto;
@@ -109,7 +117,7 @@ const getFormattedDate = (isoDateString: string): ReactNode => {
 
   return (
     <>
-      <div>{year}</div>
+      <DateYear>{year}</DateYear>
       <div>{month}</div>
       <div>{day}</div>
     </>
@@ -143,11 +151,12 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({
           <Title>{getValue('objective')}</Title>
           <Quad>
             <QuadName>
-              {getValue('subject/name/first')}&nbsp;
-              {getValue('subject/name/middle')}
-              {getValue('subject/name/middle') && <>&nbsp;</>}
-              {getValue('subject/name/last')}
-              <br />
+              <NameEmphasized>
+                {getValue('subject/name/first')}&nbsp;
+                {getValue('subject/name/middle')}
+                {getValue('subject/name/middle') && <>&nbsp;</>}
+                {getValue('subject/name/last')}
+              </NameEmphasized>
               {getValue('subject/email')}
               <br />
               {getValue('subject/phone')}
