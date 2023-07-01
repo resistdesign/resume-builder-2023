@@ -204,7 +204,7 @@ const FormattedEducation: FC<FormattedEducationProps> = ({ education }) => {
   return (
     <div>
       <div>
-        {establishment}&nbsp;&nbsp;${startMonth}/${startYear}-${endMonth}/${endYear}
+        {establishment}&nbsp;&nbsp;{startMonth}/{startYear}-{endMonth}/{endYear}
       </div>
       <div>
         {program}&nbsp;&nbsp;{credentialType}
