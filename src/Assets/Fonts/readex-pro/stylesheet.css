@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'readex_proregular';
+    src: url('readexpro-variablefont_hexpwght.woff2') format('woff2'),
+    url('readexpro-variablefont_hexpwght.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}

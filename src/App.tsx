@@ -1,4 +1,5 @@
 import '@picocss/pico/css/pico.min.css';
+import './Assets/Fonts/readex-pro/stylesheet.css';
 import React, { FC, useCallback, useEffect, useState } from 'react';
 import TSM from '././Meta/TypeStructureMap.json';
 import { Application } from './System/Application';
