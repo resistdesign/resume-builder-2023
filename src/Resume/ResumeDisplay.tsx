@@ -126,9 +126,8 @@ const QuadSkills = styled.div`
 `;
 const References = styled.div`
   flex: 0 0 auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: stretch;
   flex-wrap: wrap;
   font-size: 7pt;
@@ -137,17 +136,9 @@ const References = styled.div`
 const FormattedReferenceBase = styled.div`
   flex: 0 0 auto;
   margin-bottom: 2em;
-`;
-const ReferenceDivide = styled.div`
-  flex: 0 0 auto;
-  width: 0;
-  height: auto;
-  margin: 0 1em 2em 1em;
-  border-right: 0.05em solid gray;
-
-  &:last-child {
-    border-right: none;
-  }
+  border-left: 0.05em solid gray;
+  padding-left: 1em;
+  margin-right: 1em;
 `;
 const GridCellHolder = styled.div`
   flex: 0 0 auto;
@@ -330,7 +321,6 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({
               {getValue<Person[]>('references', []).map((reference, ind) => (
                 <Fragment key={ind}>
                   <FormattedReference reference={reference} />
-                  <ReferenceDivide />
                 </Fragment>
               ))}
             </References>
