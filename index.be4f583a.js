@@ -71,7 +71,7 @@ function e(e,t,n,r){Object.defineProperty(e,t,{get:n,set:r,enumerable:!0,configu
   ${e=>e.$gridArea?tB`
           grid-area: ${e.$gridArea};
         `:""}
-`,t7=({name:e,label:t,onOpenForm:n})=>{let r=(0,s.useCallback)(()=>{n(e)},[e,n]);return(0,o.jsxs)(t9,{type:"button",$gridArea:e,onClick:r,children:["Edit ",t]})},ne=({typeStructureMap:e,typeStructure:t,value:n,onChange:r,onNavigateToPath:a,onNavigateBack:l,navigationPathPrefix:i=[],topLevel:u=!1,isEntryPoint:c=!1})=>{let p=(0,s.useMemo)(()=>{let{type:n=""}=t,r=d(n,e);return{...r,...t}},[e,t]),h=(0,s.useMemo)(()=>{let{content:e=[]}=p;return e.length>0},[p]),y=(0,s.useMemo)(()=>{let{contentNames:e}=p;return f(e,p)},[p]),{name:g="",type:v,content:x=[],readonly:k=!1}=y,{[eA.label]:C,[eA.layout]:O,[eA.options]:E,[eA.optionsType]:P,[eA.allowCustomValue]:N}=(0,s.useMemo)(()=>w([eA.label,eA.inline,eA.layout,eA.options,eA.optionsType,eA.allowCustomValue],y),[y]),_=(0,s.useMemo)(()=>"string"==typeof E?E.split("\n").map(e=>e.split(",")).flat().map(e=>e.trim()):P&&"string"==typeof P?d(P,e):void 0,[E,P,e]),j=(0,s.useMemo)(()=>"string"==typeof O,[O]),[T,M]=(0,s.useState)(n),L=(0,s.useMemo)(()=>new Date().getTime(),[n]),I=(0,s.useMemo)(()=>new Date().getTime(),[T]),z=(0,s.useMemo)(()=>L>I?n:T,[n,T,L,I]),R=(0,s.useMemo)(()=>z!==n,[z,n]),D=(0,s.useMemo)(()=>u?"":g,[u,g]),A=(0,s.useCallback)(()=>{r(D,z),l&&l()},[u,D,z,l]),F=(0,s.useCallback)(()=>{M(n)},[n]),$=(0,s.useCallback)(()=>{l&&l()},[l]),U=(0,s.useCallback)((e,t)=>{M(t)},[M]),H=(0,s.useCallback)((e,t)=>{let n={...z,[e]:t};M(n),(!u||c)&&r(D,n)},[z,M,u,c,r,D]),B=(0,s.useCallback)((t=[])=>{if(a){let n=new t0({hashMatrix:z}).getPath(t),r=m(t,y,e),{multiple:l}=r,o=b(eA.label,r);a({label:l?"string"==typeof o?o:"":S(n,r,e),path:[...i,...t]})}},[a,i,z,y,e]),V=(0,s.useCallback)(e=>{B([e])},[B]),W=u?t8:t5,Q=(0,s.useMemo)(()=>({...u?{onSubmit:A}:{},$gridArea:u?void 0:g}),[u,A,u,g]),G=(0,s.useMemo)(()=>({$isGrid:j,$gridTemplate:t1(O,u)}),[j,O,u]),K=(0,s.useMemo)(()=>(0,o.jsxs)(o.Fragment,{children:[u&&!c&&R?(0,o.jsxs)(t6,{children:[(0,o.jsx)("button",{style:{flex:"1 0 auto",width:"auto"},type:"button",onClick:$,children:"Cancel"}),(0,o.jsx)("button",{style:{flex:"1 0 auto",width:"auto"},type:"button",onClick:F,children:"Reset"}),(0,o.jsx)("button",{style:{flex:"1 0 auto",width:"auto"},type:"submit",children:"Submit"})]}):void 0,!u||c||R?void 0:(0,o.jsx)(t6,{children:(0,o.jsx)("button",{style:{flex:"1 0 auto",width:"auto"},type:"button",onClick:$,children:"Done"})})]}),[u,c,R,$,F,A]);if(h)return(0,o.jsxs)(W,{...Q,$allowShrink:u,children:[(0,o.jsx)(t5,{$allowShrink:u,children:(0,o.jsx)(t5,{...G,$allowShrink:!1,children:x.map(t=>{let{name:n,literal:r=!1,type:l,multiple:i}=t,{[eA.inline]:s,[eA.label]:u}=w([eA.inline,eA.label],t),c="string"==typeof u?u:n,f="string"==typeof l&&!!e[l];return!i&&(r||s||!f)?(0,o.jsx)(ne,{typeStructureMap:e,typeStructure:t,value:z?.[n],onChange:H,onNavigateToPath:a,navigationPathPrefix:[n]},n):(0,o.jsx)(t7,{name:n,label:c,onOpenForm:V},n)})})}),K]});{let e=(0,o.jsx)(tZ,{name:g,label:`${C??""}`,value:u?z:n,type:v,onChange:u?U:r,options:_,allowCustomValue:!!N,readonly:k},g);return u?(0,o.jsxs)(t8,{$allowShrink:!1,onSubmit:A,children:[e,K]}):e}};var s=l("acw62");const nt={},nn=tV.button`
+`,t7=({disabled:e=!1,name:t,label:n,onOpenForm:r})=>{let a=(0,s.useCallback)(()=>{r(t)},[t,r]);return(0,o.jsxs)(t9,{disabled:e,type:"button",$gridArea:t,onClick:a,children:["Edit ",n]})},ne=({typeStructureMap:e,typeStructure:t,value:n,onChange:r,onNavigateToPath:a,onNavigateBack:l,navigationPathPrefix:i=[],topLevel:u=!1,isEntryPoint:c=!1})=>{let p=(0,s.useMemo)(()=>{let{type:n=""}=t,r=d(n,e);return{...r,...t}},[e,t]),h=(0,s.useMemo)(()=>{let{content:e=[]}=p;return e.length>0},[p]),y=(0,s.useMemo)(()=>{let{contentNames:e}=p;return f(e,p)},[p]),{name:g="",type:v,content:x=[],readonly:k=!1}=y,{[eA.label]:C,[eA.layout]:O,[eA.options]:E,[eA.optionsType]:P,[eA.allowCustomValue]:N}=(0,s.useMemo)(()=>w([eA.label,eA.inline,eA.layout,eA.options,eA.optionsType,eA.allowCustomValue],y),[y]),_=(0,s.useMemo)(()=>"string"==typeof E?E.split("\n").map(e=>e.split(",")).flat().map(e=>e.trim()):P&&"string"==typeof P?d(P,e):void 0,[E,P,e]),j=(0,s.useMemo)(()=>"string"==typeof O,[O]),[T,M]=(0,s.useState)(n),L=(0,s.useMemo)(()=>new Date().getTime(),[n]),I=(0,s.useMemo)(()=>new Date().getTime(),[T]),z=(0,s.useMemo)(()=>L>I?n:T,[n,T,L,I]),R=(0,s.useMemo)(()=>z!==n,[z,n]),D=(0,s.useMemo)(()=>u?"":g,[u,g]),A=(0,s.useCallback)(()=>{r(D,z),l&&l()},[u,D,z,l]),F=(0,s.useCallback)(()=>{M(n)},[n]),$=(0,s.useCallback)(()=>{l&&l()},[l]),U=(0,s.useCallback)((e,t)=>{M(t)},[M]),H=(0,s.useCallback)((e,t)=>{let n={...z,[e]:t};M(n),(!u||c)&&r(D,n)},[z,M,u,c,r,D]),B=(0,s.useCallback)((t=[])=>{if(a){let n=new t0({hashMatrix:z}).getPath(t),r=m(t,y,e),{multiple:l}=r,o=b(eA.label,r);a({label:l?"string"==typeof o?o:"":S(n,r,e),path:[...i,...t]})}},[a,i,z,y,e]),V=(0,s.useCallback)(e=>{B([e])},[B]),W=u?t8:t5,Q=(0,s.useMemo)(()=>({...u?{onSubmit:A}:{},$gridArea:u?void 0:g}),[u,A,u,g]),G=(0,s.useMemo)(()=>({$isGrid:j,$gridTemplate:t1(O,u)}),[j,O,u]),K=(0,s.useMemo)(()=>(0,o.jsxs)(o.Fragment,{children:[u&&!c&&R?(0,o.jsxs)(t6,{children:[(0,o.jsx)("button",{style:{flex:"1 0 auto",width:"auto"},type:"button",onClick:$,children:"Cancel"}),(0,o.jsx)("button",{style:{flex:"1 0 auto",width:"auto"},type:"button",onClick:F,children:"Reset"}),(0,o.jsx)("button",{style:{flex:"1 0 auto",width:"auto"},type:"submit",children:"Submit"})]}):void 0,!u||c||R?void 0:(0,o.jsx)(t6,{children:(0,o.jsx)("button",{style:{flex:"1 0 auto",width:"auto"},type:"button",onClick:$,children:"Done"})})]}),[u,c,R,$,F,A]);if(h)return(0,o.jsxs)(W,{...Q,$allowShrink:u,children:[(0,o.jsx)(t5,{$allowShrink:u,children:(0,o.jsx)(t5,{...G,$allowShrink:!1,children:x.map(t=>{let{name:n,literal:r=!1,type:l,multiple:i}=t,{[eA.inline]:s,[eA.label]:u}=w([eA.inline,eA.label],t),c="string"==typeof u?u:n,f="string"==typeof l&&!!e[l];return!i&&(r||s||!f)?(0,o.jsx)(ne,{typeStructureMap:e,typeStructure:t,value:z?.[n],onChange:H,onNavigateToPath:a,navigationPathPrefix:[n]},n):(0,o.jsx)(t7,{disabled:R,name:n,label:c,onOpenForm:V},n)})})}),K]});{let e=(0,o.jsx)(tZ,{name:g,label:`${C??""}`,value:u?z:n,type:v,onChange:u?U:r,options:_,allowCustomValue:!!N,readonly:k},g);return u?(0,o.jsxs)(t8,{$allowShrink:!1,onSubmit:A,children:[e,K]}):e}};var s=l("acw62");const nt={},nn=tV.button`
   background-color: #a41e1e;
 `,nr=tV.button`
   flex: 0 0 auto;
@@ -238,6 +238,7 @@ function e(e,t,n,r){Object.defineProperty(e,t,{get:n,set:r,enumerable:!0,configu
   justify-content: flex-start;
   align-items: flex-start;
   padding: 0.5em;
+  gap: 1em;
 `,nZ=tV.div`
   flex: 0 0 auto;
   display: grid;
@@ -261,17 +262,15 @@ function e(e,t,n,r){Object.defineProperty(e,t,{get:n,set:r,enumerable:!0,configu
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 1em;
-`,n2=tV(n1)`
-  flex-direction: row;
-`,n3=tV.div``,n4=tV.div`
+  gap: 0.5em;
+`,n2=tV.div``,n3=tV.div`
   font-weight: bold;
   font-size: 9pt;
   white-space: nowrap;
-`,n5=tV.div`
+`,n4=tV.div`
   font-size: 6pt;
   color: grey;
-`,n6=tV.div`
+`,n5=tV.div`
   font-size: 7pt;
   padding: 0.5em;
   display: flex;
@@ -279,7 +278,7 @@ function e(e,t,n,r){Object.defineProperty(e,t,{get:n,set:r,enumerable:!0,configu
   justify-content: flex-start;
   align-items: stretch;
   gap: 1em;
-`,n8=tV.div``,n9=tV.div`
+`,n6=tV.div``,n8=tV.div`
   font-weight: bold;
   font-size: 9pt;
   white-space: nowrap;
@@ -289,15 +288,15 @@ function e(e,t,n,r){Object.defineProperty(e,t,{get:n,set:r,enumerable:!0,configu
   justify-content: stretch;
   align-items: center;
   gap: 1em;
-`,n7=tV(n9)`
+`,n9=tV(n8)`
   font-weight: normal;
   font-size: 7pt;
   margin-bottom: 0.5em;
-`,re=tV.div`
+`,n7=tV.div`
   flex: 0 0 auto;
-`,rt=tV.div`
+`,re=tV.div`
   flex: 1 1 auto;
-`,rn=tV.div`
+`,rt=tV.div`
   font-size: 6pt;
   flex: 1 0 auto;
   display: flex;
@@ -305,24 +304,24 @@ function e(e,t,n,r){Object.defineProperty(e,t,{get:n,set:r,enumerable:!0,configu
   justify-content: flex-start;
   align-items: stretch;
   gap: 1em;
-`,rr=tV.div``,ra=tV.div`
+`,rn=tV.div``,rr=tV.div`
   font-weight: bold;
   font-size: 7pt;
-`,rl=tV.div``,ro=tV.div`
+`,ra=tV.div``,rl=tV.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
   color: grey;
-`,ri=tV.div`
+`,ro=tV.div`
   font-style: italic;
   margin-right: 1em;
-`,rs=({project:e})=>{let{name:t="",description:n="",notableConcepts:r=[]}=e;return(0,o.jsxs)(rr,{children:[(0,o.jsx)(ra,{children:t}),(0,o.jsx)(rl,{children:n}),(0,o.jsx)(ro,{children:r.map(({description:e},t)=>(0,o.jsx)(ri,{children:e},t))})]})},ru=({employment:e})=>{let{company:t="",position:n="",startDate:r="",endDate:a="",projects:l=[]}=e,{month:i,year:u}=(0,s.useMemo)(()=>nA(r,!0,!0),[r]),{month:c,year:f}=(0,s.useMemo)(()=>nA(a,!0,!0),[a]);return(0,o.jsxs)(n8,{children:[(0,o.jsxs)(n9,{children:[(0,o.jsx)(re,{children:t}),(0,o.jsx)(rt,{}),(0,o.jsxs)(re,{children:[i,"/",u,"-",c,"/",f]})]}),(0,o.jsx)(n7,{children:n}),(0,o.jsx)(rn,{children:l.map((e,t)=>(0,o.jsx)(rs,{project:e},t))})]})},rc=({isoDateString:e})=>{let{year:t,month:n,day:r}=(0,s.useMemo)(()=>nA(e),[e]);return(0,o.jsxs)(o.Fragment,{children:[(0,o.jsx)(nY,{children:t}),(0,o.jsx)("div",{children:n}),(0,o.jsx)("div",{children:r})]})},rf=({education:e})=>{let{establishment:t="",startDate:n="",endDate:r="",program:a="",credentialType:l="",achievements:i=[]}=e,{month:u,year:c}=(0,s.useMemo)(()=>nA(n,!0,!0),[n]),{month:f,year:d}=(0,s.useMemo)(()=>nA(r,!0,!0),[r]);return(0,o.jsxs)(n3,{children:[(0,o.jsxs)(n4,{children:[t,"\xa0\xa0",u,"/",c,"-",f,"/",d]}),(0,o.jsxs)("div",{children:[a,"\xa0\xa0",l]}),(0,o.jsx)("div",{children:i.map((e,t)=>(0,o.jsx)(n5,{children:e},t))})]})},rd=({reference:e})=>{let{name:{first:t="",middle:n="",last:r=""}={},description:a,email:l="",phone:i="",address:{city:s="",state:u="",country:c=""}={},socialNetworks:f=[]}=e;return(0,o.jsxs)(nJ,{children:[(0,o.jsxs)(nG,{children:[t,"\xa0",n,n?(0,o.jsx)(o.Fragment,{children:"\xa0"}):void 0,r]}),(0,o.jsx)("div",{children:a}),(0,o.jsx)("div",{children:(0,o.jsx)("a",{href:`mailto:${l}`,children:l})}),(0,o.jsx)("div",{children:(0,o.jsx)("a",{href:`tel:${i}`,children:i})}),(0,o.jsxs)("div",{children:[s,",\xa0",u,"\xa0",c]}),(0,o.jsx)("div",{children:f.map(({name:e,url:t},n)=>(0,o.jsx)("div",{children:(0,o.jsx)("a",{href:t,target:"_blank",children:e})},n))})]})},rp=({socialNetwork:e})=>{let{name:t="",url:n=""}=e;return(0,o.jsx)("div",{children:(0,o.jsx)("a",{href:n,target:"_blank",children:t})})},rm=({skill:e})=>{let{description:t,rating:n=0}=e;return(0,o.jsxs)("div",{children:[(0,o.jsx)("div",{children:t}),(0,o.jsx)("div",{children:Array(parseInt(`${n}`,10)||0).fill("★").join(" ")})]})},rh=({resume:e={},zoomScale:t=1})=>{let n=(0,s.useMemo)(()=>new t0({hashMatrix:e,pathDelimiter:"/"}),[e]),r=(0,s.useCallback)((e,t)=>n.getPath(e)??t,[n]);return(0,o.jsx)(nF,{children:(0,o.jsx)(n$,{$zoomScale:t,children:(0,o.jsxs)(nU,{$zoomScale:t,children:[(0,o.jsx)(n0,{children:"\xa0"}),(0,o.jsx)(n0,{children:"\xa0"}),(0,o.jsx)(n0,{children:"\xa0"}),(0,o.jsx)(n0,{children:"\xa0"}),(0,o.jsxs)(nH,{children:[(0,o.jsx)(nB,{children:r("objective")}),(0,o.jsxs)(nV,{children:[(0,o.jsxs)(nW,{children:[(0,o.jsxs)(nQ,{children:[r("subject/name/first"),"\xa0",r("subject/name/middle"),r("subject/name/middle")&&(0,o.jsx)(o.Fragment,{children:"\xa0"}),r("subject/name/last")]}),(0,o.jsx)("div",{children:(0,o.jsx)("a",{href:`mailto:${r("subject/email")}`,children:r("subject/email")})}),(0,o.jsx)("div",{children:(0,o.jsx)("a",{href:`tel:${r("subject/phone")}`,children:r("subject/phone")})})]}),(0,o.jsx)(nK,{children:(0,o.jsx)(rc,{isoDateString:r("date")})}),(0,o.jsx)(nq,{children:(0,o.jsx)(n6,{children:r("employment",[]).map((e,t)=>(0,o.jsx)(ru,{employment:e},t))})}),(0,o.jsxs)(nX,{children:[(0,o.jsx)(n2,{children:r("subject/socialNetworks",[]).map((e,t)=>(0,o.jsx)(rp,{socialNetwork:e},t))}),(0,o.jsx)(n1,{children:r("education",[]).map((e,t)=>(0,o.jsx)(rf,{education:e},t))}),(0,o.jsx)(n1,{children:r("skills",[]).map((e,t)=>(0,o.jsx)(rm,{skill:e},t))})]})]}),(0,o.jsx)(n0,{children:(0,o.jsx)(nZ,{children:r("references",[]).map((e,t)=>(0,o.jsx)(s.Fragment,{children:(0,o.jsx)(rd,{reference:e})},t))})})]}),(0,o.jsx)(n0,{children:"\xa0"}),(0,o.jsx)(n0,{children:"\xa0"}),(0,o.jsx)(n0,{children:"\xa0"}),(0,o.jsx)(n0,{children:"\xa0"})]})})})};var ry={};ry=new URL(l("27Lyk").resolve("jN0i4"),import.meta.url).toString();const rg=tV.img`
+`,ri=({project:e})=>{let{name:t="",description:n="",notableConcepts:r=[]}=e;return(0,o.jsxs)(rn,{children:[(0,o.jsx)(rr,{children:t}),n?(0,o.jsx)(ra,{children:n}):void 0,(0,o.jsx)(rl,{children:r.map(({description:e},t)=>(0,o.jsx)(ro,{children:e},t))})]})},rs=({employment:e})=>{let{company:t="",position:n="",startDate:r="",endDate:a="",projects:l=[]}=e,{month:i,year:u}=(0,s.useMemo)(()=>nA(r,!0,!0),[r]),{month:c,year:f}=(0,s.useMemo)(()=>nA(a,!0,!0),[a]);return(0,o.jsxs)(n6,{children:[(0,o.jsxs)(n8,{children:[(0,o.jsx)(n7,{children:t}),(0,o.jsx)(re,{}),(0,o.jsxs)(n7,{children:[i,"/",u,"-",c,"/",f]})]}),(0,o.jsx)(n9,{children:n}),(0,o.jsx)(rt,{children:l.map((e,t)=>(0,o.jsx)(ri,{project:e},t))})]})},ru=({isoDateString:e})=>{let{year:t,month:n,day:r}=(0,s.useMemo)(()=>nA(e),[e]);return(0,o.jsxs)(o.Fragment,{children:[(0,o.jsx)(nY,{children:t}),(0,o.jsx)("div",{children:n}),(0,o.jsx)("div",{children:r})]})},rc=({education:e})=>{let{establishment:t="",startDate:n="",endDate:r="",program:a="",credentialType:l="",achievements:i=[]}=e,{month:u,year:c}=(0,s.useMemo)(()=>nA(n,!0,!0),[n]),{month:f,year:d}=(0,s.useMemo)(()=>nA(r,!0,!0),[r]);return(0,o.jsxs)(n2,{children:[(0,o.jsxs)(n3,{children:[t,"\xa0\xa0",u,"/",c,"-",f,"/",d]}),(0,o.jsxs)("div",{children:[a,"\xa0\xa0",l]}),(0,o.jsx)("div",{children:i.map((e,t)=>(0,o.jsx)(n4,{children:e},t))})]})},rf=({reference:e})=>{let{name:{first:t="",middle:n="",last:r=""}={},description:a,email:l="",phone:i="",address:{city:s="",state:u="",country:c=""}={},socialNetworks:f=[]}=e;return(0,o.jsxs)(nJ,{children:[(0,o.jsxs)(nG,{children:[t,"\xa0",n,n?(0,o.jsx)(o.Fragment,{children:"\xa0"}):void 0,r]}),(0,o.jsx)("div",{children:a}),(0,o.jsx)("div",{children:(0,o.jsx)("a",{href:`mailto:${l}`,children:l})}),(0,o.jsx)("div",{children:(0,o.jsx)("a",{href:`tel:${i}`,children:i})}),(0,o.jsxs)("div",{children:[s,",\xa0",u,"\xa0",c]}),(0,o.jsx)("div",{children:f.map(({name:e,url:t},n)=>(0,o.jsx)("div",{children:(0,o.jsx)("a",{href:t,target:"_blank",children:e})},n))})]})},rd=({socialNetwork:e})=>{let{name:t="",url:n=""}=e;return(0,o.jsxs)("div",{children:[(0,o.jsx)("a",{href:n,target:"_blank",children:t}),(0,o.jsx)("div",{children:n})]})},rp=({skill:e})=>{let{description:t,rating:n=0}=e;return(0,o.jsxs)("div",{children:[(0,o.jsx)("div",{children:t}),(0,o.jsx)("div",{children:Array(parseInt(`${n}`,10)||0).fill("★").join(" ")})]})},rm=({resume:e={},zoomScale:t=1})=>{let n=(0,s.useMemo)(()=>new t0({hashMatrix:e,pathDelimiter:"/"}),[e]),r=(0,s.useCallback)((e,t)=>n.getPath(e)??t,[n]);return(0,o.jsx)(nF,{children:(0,o.jsx)(n$,{$zoomScale:t,children:(0,o.jsxs)(nU,{$zoomScale:t,children:[(0,o.jsx)(n0,{children:"\xa0"}),(0,o.jsx)(n0,{children:"\xa0"}),(0,o.jsx)(n0,{children:"\xa0"}),(0,o.jsx)(n0,{children:"\xa0"}),(0,o.jsxs)(nH,{children:[(0,o.jsx)(nB,{children:r("objective")}),(0,o.jsxs)(nV,{children:[(0,o.jsxs)(nW,{children:[(0,o.jsxs)(nQ,{children:[r("subject/name/first"),"\xa0",r("subject/name/middle"),r("subject/name/middle")&&(0,o.jsx)(o.Fragment,{children:"\xa0"}),r("subject/name/last")]}),(0,o.jsx)("div",{children:(0,o.jsx)("a",{href:`mailto:${r("subject/email")}`,children:r("subject/email")})}),(0,o.jsx)("div",{children:(0,o.jsx)("a",{href:`tel:${r("subject/phone")}`,children:r("subject/phone")})})]}),(0,o.jsx)(nK,{children:(0,o.jsx)(ru,{isoDateString:r("date")})}),(0,o.jsx)(nq,{children:(0,o.jsx)(n5,{children:r("employment",[]).map((e,t)=>(0,o.jsx)(rs,{employment:e},t))})}),(0,o.jsxs)(nX,{children:[(0,o.jsx)(n1,{children:r("subject/socialNetworks",[]).map((e,t)=>(0,o.jsx)(rd,{socialNetwork:e},t))}),(0,o.jsx)(n1,{children:r("education",[]).map((e,t)=>(0,o.jsx)(rc,{education:e},t))}),(0,o.jsx)(n1,{children:r("skills",[]).map((e,t)=>(0,o.jsx)(rp,{skill:e},t))})]})]}),(0,o.jsx)(n0,{children:(0,o.jsx)(nZ,{children:r("references",[]).map((e,t)=>(0,o.jsx)(s.Fragment,{children:(0,o.jsx)(rf,{reference:e})},t))})})]}),(0,o.jsx)(n0,{children:"\xa0"}),(0,o.jsx)(n0,{children:"\xa0"}),(0,o.jsx)(n0,{children:"\xa0"}),(0,o.jsx)(n0,{children:"\xa0"})]})})})};var rh={};rh=new URL(l("27Lyk").resolve("jN0i4"),import.meta.url).toString();const ry=tV.img`
   flex: 0 0 auto;
   height: 3em;
   border-radius: var(--border-radius);
-`,rv=t(u),rb="Default",rw=nu("Resume"),rx=rw.read(rb)||{},rS="Default",rk=nu("Mode"),rC=rk.read(rS)||!1,rO="Default",rE=nu("Zoom"),rP=rE.read(rO)??1,rN=(function(e){for(var n=[],r=1;r<arguments.length;r++)n[r-1]=arguments[r];var a=tB.apply(void 0,N([e],n,!1)),l="sc-global-".concat(eR(eV(JSON.stringify(a))>>>0)),o=new tW(a,l),i=function(e){var n=tN(),r=t(s).useContext(tA),a=t(s).useRef(n.styleSheet.allocateGSInstance(l)).current;return n.styleSheet.server&&u(a,e,n.styleSheet,r,n.stylis),(t(s).useInsertionEffect||t(s).useLayoutEffect)(function(){if(!n.styleSheet.server)return u(a,e,n.styleSheet,r,n.stylis),function(){return o.removeStyles(a,n.styleSheet)}},[a,e,n.styleSheet,r,n.stylis]),null};function u(e,t,n,r,a){if(o.isStatic)o.renderStyles(e,eE,n,a);else{var l=P(P({},t),{theme:e_(t,r,i.defaultProps)});o.renderStyles(e,l,n,a)}}return t(s).memo(i)})`
+`,rg=t(u),rv="Default",rb=nu("Resume"),rw=rb.read(rv)||{},rx="Default",rS=nu("Mode"),rk=rS.read(rx)||!1,rC="Default",rO=nu("Zoom"),rE=rO.read(rC)??1,rP=(function(e){for(var n=[],r=1;r<arguments.length;r++)n[r-1]=arguments[r];var a=tB.apply(void 0,N([e],n,!1)),l="sc-global-".concat(eR(eV(JSON.stringify(a))>>>0)),o=new tW(a,l),i=function(e){var n=tN(),r=t(s).useContext(tA),a=t(s).useRef(n.styleSheet.allocateGSInstance(l)).current;return n.styleSheet.server&&u(a,e,n.styleSheet,r,n.stylis),(t(s).useInsertionEffect||t(s).useLayoutEffect)(function(){if(!n.styleSheet.server)return u(a,e,n.styleSheet,r,n.stylis),function(){return o.removeStyles(a,n.styleSheet)}},[a,e,n.styleSheet,r,n.stylis]),null};function u(e,t,n,r,a){if(o.isStatic)o.renderStyles(e,eE,n,a);else{var l=P(P({},t),{theme:e_(t,r,i.defaultProps)});o.renderStyles(e,l,n,a)}}return t(s).memo(i)})`
   input,
   label,
   button {
@@ -332,7 +331,7 @@ function e(e,t,n,r){Object.defineProperty(e,t,{get:n,set:r,enumerable:!0,configu
   input[type="checkbox"] {
     margin-bottom: -0.5em;
   }
-`,r_=tV.div`
+`,rN=tV.div`
   flex: 1 0 auto;
   display: flex;
   flex-direction: column;
@@ -347,7 +346,7 @@ function e(e,t,n,r){Object.defineProperty(e,t,{get:n,set:r,enumerable:!0,configu
   padding: 1em;
 
   overflow: hidden;
-`,rj=tV.div`
+`,r_=tV.div`
   flex: 0 0 auto;
   display: flex;
   flex-direction: row;
@@ -358,16 +357,16 @@ function e(e,t,n,r){Object.defineProperty(e,t,{get:n,set:r,enumerable:!0,configu
   @media print {
     display: none;
   }
-`,rT=tV.button``,rM=tV.svg`
+`,rj=tV.button``,rT=tV.svg`
   width: 1em;
   height: 1em;
   margin: 0.25em;
-`,rL=tV.span`
+`,rM=tV.span`
   @media screen and (max-width: 768px) {
     display: none;
   }
-`,rI=tV(t5)`
+`,rL=tV(t5)`
   flex: 1 1 auto;
   overflow: hidden;
-`,rz=document.getElementById("react-root");rz&&eD(rz).render((0,o.jsx)(()=>{let[e,n]=(0,s.useState)(rC),[r,a]=(0,s.useState)(rP),[l,i]=(0,s.useState)(rx),u=(0,s.useCallback)(()=>{n(!1)},[]),c=(0,s.useCallback)(()=>{n(!0)},[]),f=(0,s.useCallback)(async()=>{try{let e=await nO({mimeTypes:["application/json"],extensions:[".rdresume"]}),t=await e.text(),n=JSON.parse(t);i(n)}catch(e){}},[i]),d=(0,s.useCallback)(async()=>{try{let e=JSON.stringify(l,null,2),t=new Blob([e],{type:"application/json"});await nP(t,{fileName:"Resume.rdresume",extensions:[".rdresume"]})}catch(e){}},[l]),p=(0,s.useCallback)(e=>{a(parseFloat(`${e.target.value}`))},[a]);return(0,s.useEffect)(()=>{rw.update(rb,l)},[l]),(0,s.useEffect)(()=>{rk.update(rS,e)},[e]),(0,s.useEffect)(()=>{rE.update(rO,r)},[r]),(0,s.useEffect)(()=>{let e=!1,t=t=>{e=e||"Meta"===t.key,(t.ctrlKey||e)&&"s"===t.key&&(t.preventDefault(),d())},n=t=>{e="Meta"!==t.key&&e};return window.addEventListener("keydown",t),window.addEventListener("keyup",n),()=>{window.removeEventListener("keydown",t),window.removeEventListener("keyup",n)}},[d]),(0,o.jsxs)(r_,{children:[(0,o.jsx)(rN,{}),(0,o.jsxs)(rj,{children:[(0,o.jsx)(rg,{src:t(ry)}),(0,o.jsxs)(rT,{onClick:f,children:[(0,o.jsx)(rM,{viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg",fill:"#000000",children:(0,o.jsx)("path",{fill:"white",d:"M24 24H0L24 0z"})}),(0,o.jsx)(rL,{children:"\xa0Import"})]}),(0,o.jsxs)(rT,{onClick:d,children:[(0,o.jsx)(rM,{viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg",fill:"#000000",children:(0,o.jsx)("path",{fill:"white",d:"M24 0V24L0 0z"})}),(0,o.jsx)(rL,{children:"\xa0Export"})]}),(0,o.jsx)(rT,{onClick:u,children:"Build"}),(0,o.jsx)(rT,{onClick:c,children:"Print"})]}),e?(0,o.jsxs)(o.Fragment,{children:[(0,o.jsx)(rj,{children:(0,o.jsxs)("select",{value:r,onChange:p,children:[(0,o.jsx)("option",{value:.25,children:"25%"}),(0,o.jsx)("option",{value:.5,children:"50%"}),(0,o.jsx)("option",{value:.75,children:"75%"}),(0,o.jsx)("option",{value:1,children:"100%"}),(0,o.jsx)("option",{value:1.25,children:"125%"}),(0,o.jsx)("option",{value:1.5,children:"150%"}),(0,o.jsx)("option",{value:1.75,children:"175%"}),(0,o.jsx)("option",{value:2,children:"200%"})]})}),(0,o.jsx)(rI,{$allowShrink:!0,children:(0,o.jsx)(rI,{$allowShrink:!1,children:(0,o.jsx)(rh,{resume:l,zoomScale:r})})})]}):(0,o.jsx)(nS,{typeStructureMap:rv,value:l,entryType:"Resume",onChange:i,keepNavigationHistory:!0})]})},{}));
-//# sourceMappingURL=index.9fff1561.js.map
+`,rI=document.getElementById("react-root");rI&&eD(rI).render((0,o.jsx)(()=>{let[e,n]=(0,s.useState)(rk),[r,a]=(0,s.useState)(rE),[l,i]=(0,s.useState)(rw),u=(0,s.useCallback)(()=>{n(!1)},[]),c=(0,s.useCallback)(()=>{n(!0)},[]),f=(0,s.useCallback)(async()=>{try{let e=await nO({mimeTypes:["application/json"],extensions:[".rdresume"]}),t=await e.text(),n=JSON.parse(t);i(n)}catch(e){}},[i]),d=(0,s.useCallback)(async()=>{try{let e=JSON.stringify(l,null,2),t=new Blob([e],{type:"application/json"});await nP(t,{fileName:"Resume.rdresume",extensions:[".rdresume"]})}catch(e){}},[l]),p=(0,s.useCallback)(e=>{a(parseFloat(`${e.target.value}`))},[a]);return(0,s.useEffect)(()=>{rb.update(rv,l)},[l]),(0,s.useEffect)(()=>{rS.update(rx,e)},[e]),(0,s.useEffect)(()=>{rO.update(rC,r)},[r]),(0,s.useEffect)(()=>{let e=!1,t=t=>{e=e||"Meta"===t.key,(t.ctrlKey||e)&&"s"===t.key&&(t.preventDefault(),d())},n=t=>{e="Meta"!==t.key&&e};return window.addEventListener("keydown",t),window.addEventListener("keyup",n),()=>{window.removeEventListener("keydown",t),window.removeEventListener("keyup",n)}},[d]),(0,o.jsxs)(rN,{children:[(0,o.jsx)(rP,{}),(0,o.jsxs)(r_,{children:[(0,o.jsx)(ry,{src:t(rh)}),(0,o.jsxs)(rj,{onClick:f,children:[(0,o.jsx)(rT,{viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg",fill:"#000000",children:(0,o.jsx)("path",{fill:"white",d:"M24 24H0L24 0z"})}),(0,o.jsx)(rM,{children:"\xa0Import"})]}),(0,o.jsxs)(rj,{onClick:d,children:[(0,o.jsx)(rT,{viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg",fill:"#000000",children:(0,o.jsx)("path",{fill:"white",d:"M24 0V24L0 0z"})}),(0,o.jsx)(rM,{children:"\xa0Export"})]}),(0,o.jsx)(rj,{onClick:u,children:"Build"}),(0,o.jsx)(rj,{onClick:c,children:"Print"})]}),e?(0,o.jsxs)(o.Fragment,{children:[(0,o.jsx)(r_,{children:(0,o.jsxs)("select",{value:r,onChange:p,children:[(0,o.jsx)("option",{value:.25,children:"25%"}),(0,o.jsx)("option",{value:.5,children:"50%"}),(0,o.jsx)("option",{value:.75,children:"75%"}),(0,o.jsx)("option",{value:1,children:"100%"}),(0,o.jsx)("option",{value:1.25,children:"125%"}),(0,o.jsx)("option",{value:1.5,children:"150%"}),(0,o.jsx)("option",{value:1.75,children:"175%"}),(0,o.jsx)("option",{value:2,children:"200%"})]})}),(0,o.jsx)(rL,{$allowShrink:!0,children:(0,o.jsx)(rL,{$allowShrink:!1,children:(0,o.jsx)(rm,{resume:l,zoomScale:r})})})]}):(0,o.jsx)(nS,{typeStructureMap:rg,value:l,entryType:"Resume",onChange:i,keepNavigationHistory:!0})]})},{}));
+//# sourceMappingURL=index.be4f583a.js.map
