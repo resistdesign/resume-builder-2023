@@ -41,8 +41,8 @@ const ResumeDisplayBase = styled.div`
   flex: 1 1 auto;
   display: flex;
   flex-direction: row;
-  justify-content: stretch;
-  align-items: stretch;
+  justify-content: center;
+  align-items: center;
   overflow: auto;
 
   @media print {
