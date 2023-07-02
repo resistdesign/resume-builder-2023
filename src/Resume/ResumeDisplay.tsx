@@ -53,8 +53,8 @@ const ResumeDocumentZoomContainer = styled.div<{ $zoomScale?: number }>`
   flex: 0 0 auto;
   display: flex;
   flex-direction: row;
-  justify-content: stretch;
-  align-items: stretch;
+  justify-content: flex-start;
+  align-items: flex-start;
   overflow: hidden;
   background-color: white;
   border: 1px solid black;
@@ -70,6 +70,8 @@ const ResumeDocumentZoomContainer = styled.div<{ $zoomScale?: number }>`
     box-shadow: none;
     background-color: unset;
     margin: -1em;
+    width: 8.5in;
+    height: 11in;
   }
 `;
 const ResumeDocument = styled.div<{ $zoomScale?: number }>`
@@ -80,11 +82,15 @@ const ResumeDocument = styled.div<{ $zoomScale?: number }>`
   width: 8.5in;
   height: 11in;
   padding: 0;
-  margin: auto;
+  margin: 0;
   gap: 0;
   transform-origin: top left;
   transform: scale(${(p) => p.$zoomScale ?? 1});
   overflow: hidden;
+
+  @media print {
+    transform: none;
+  }
 `;
 const CenterBody = styled.div`
   flex: 0 0 auto;
