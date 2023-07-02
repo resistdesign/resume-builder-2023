@@ -166,6 +166,7 @@ const QuadSkills = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   padding: 0.5em;
+  gap: 1em;
 `;
 const References = styled.div`
   flex: 0 0 auto;
@@ -193,10 +194,7 @@ const SideBox = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 1em;
-`;
-const SocialSideBox = styled(SideBox)`
-  flex-direction: row;
+  gap: 0.5em;
 `;
 const SideBoxItem = styled.div``;
 const SideBoxTitle = styled.div`
@@ -278,7 +276,7 @@ const FormattedProject: FC<FormattedProjectProps> = ({ project }) => {
   return (
     <ProjectItem>
       <ProjectTitle>{name}</ProjectTitle>
-      <ProjectDescription>{description}</ProjectDescription>
+      {description ? <ProjectDescription>{description}</ProjectDescription> : undefined}
       <ProjectNotableConcepts>
         {notableConcepts.map(({ description }, index) => (
           <ProjectNotableConceptItem key={index}>{description}</ProjectNotableConceptItem>
@@ -433,6 +431,7 @@ const FormattedSocialNetwork: FC<FormattedSocialNetworkProps> = ({ socialNetwork
       <a href={url} target="_blank">
         {name}
       </a>
+      <div>{url}</div>
     </div>
   );
 };
@@ -505,11 +504,11 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({
                 </DetailsBox>
               </QuadDetails>
               <QuadSkills>
-                <SocialSideBox>
+                <SideBox>
                   {getValue<SocialNetwork[]>('subject/socialNetworks', []).map((soc, ind) => (
                     <FormattedSocialNetwork key={ind} socialNetwork={soc} />
                   ))}
-                </SocialSideBox>
+                </SideBox>
                 <SideBox>
                   {getValue<Education[]>('education', []).map((education, ind) => (
                     <FormattedEducation key={ind} education={education} />

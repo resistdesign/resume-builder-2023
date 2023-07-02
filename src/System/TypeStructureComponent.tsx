@@ -41,18 +41,19 @@ const OpenFormButtonBase = styled.button<OpenFormButtonBaseProps>`
 `;
 
 type OpenFormButtonProps = {
+  disabled?: boolean;
   name: string;
   label: string;
   onOpenForm: (name: string) => void;
 };
 
-const OpenFormButton: FC<OpenFormButtonProps> = ({ name, label, onOpenForm }) => {
+const OpenFormButton: FC<OpenFormButtonProps> = ({ disabled = false, name, label, onOpenForm }) => {
   const onOpenFormInternal = useCallback(() => {
     onOpenForm(name);
   }, [name, onOpenForm]);
 
   return (
-    <OpenFormButtonBase type="button" $gridArea={name} onClick={onOpenFormInternal}>
+    <OpenFormButtonBase disabled={disabled} type="button" $gridArea={name} onClick={onOpenFormInternal}>
       Edit {label}
     </OpenFormButtonBase>
   );
@@ -303,7 +304,15 @@ export const TypeStructureComponent: FC<TypeStructureComponentProps> = ({
                   />
                 );
               } else {
-                return <OpenFormButton key={tSName} name={tSName} label={inputLabel} onOpenForm={onOpenForm} />;
+                return (
+                  <OpenFormButton
+                    key={tSName}
+                    disabled={hasChanges}
+                    name={tSName}
+                    label={inputLabel}
+                    onOpenForm={onOpenForm}
+                  />
+                );
               }
             })}
           </LayoutBox>
