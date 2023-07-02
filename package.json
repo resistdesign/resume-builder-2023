@@ -7,7 +7,8 @@
   "scripts": {
     "start": "parcel & yarn watch 'yarn build-types-meta' ./src/Types && killall -9 node",
     "build": "yarn build-types-meta && parcel build",
-    "build-types-meta": "ts-node ./scripts/build-types-meta.ts"
+    "build-types-meta": "ts-node ./scripts/build-types-meta.ts",
+    "deploy": "yarn build && cp ./CNAME ./dist/CNAME"
   },
   "devDependencies": {
     "@parcel/transformer-inline-string": "2.9.2",
