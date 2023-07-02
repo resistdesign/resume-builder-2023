@@ -41,8 +41,8 @@ const ResumeDisplayBase = styled.div`
   flex: 1 1 auto;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  justify-content: stretch;
+  align-items: stretch;
   overflow: auto;
 
   @media print {
@@ -61,6 +61,8 @@ const ResumeDocumentZoomContainer = styled.div<{ $zoomScale?: number }>`
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
   color: black;
   font-family: 'readex_proregular', sans-serif;
+  padding: 0;
+  margin: auto;
 
   width: ${(p) => (p.$zoomScale ? `${8.5 * p.$zoomScale}in` : '8.5in')};
   height: ${(p) => (p.$zoomScale ? `${11 * p.$zoomScale}in` : '11in')};
