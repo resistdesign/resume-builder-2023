@@ -463,7 +463,7 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({
 
   return (
     <ResumeDisplayBase>
-      <ResumeDocumentZoomContainer>
+      <ResumeDocumentZoomContainer $zoomScale={zoomScale}>
         <ResumeDocument $zoomScale={zoomScale}>
           <GridCellHolder>&nbsp;</GridCellHolder>
           <GridCellHolder>&nbsp;</GridCellHolder>
