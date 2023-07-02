@@ -44,35 +44,26 @@ const ResumeDisplayBase = styled.div`
   justify-content: stretch;
   align-items: stretch;
   overflow: auto;
-  object-fit: contain;
 
   @media print {
     overflow: hidden;
   }
 `;
-const ResumeDocument = styled.div<{ $zoomScale?: number }>`
+const ResumeDocumentZoomContainer = styled.div<{ $zoomScale?: number }>`
   flex: 0 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
-  grid-template-rows: 1fr 5fr 1fr;
-  border: 1px solid black;
-  background-color: white;
-  width: 8.5in;
-  height: 11in;
-  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
-  padding: 0;
-  margin: auto;
-  gap: 0;
-  transform-origin: ${(p) => (typeof p.$zoomScale === 'number' && p.$zoomScale > 1 ? 'top left' : 'center center')};
-  transform: scale(${(p) => p.$zoomScale ?? 1});
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: stretch;
   overflow: hidden;
-
+  background-color: white;
+  border: 1px solid black;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
   color: black;
   font-family: 'readex_proregular', sans-serif;
 
-  @media screen and (max-width: 768px) {
-    transform-origin: top left;
-  }
+  width: ${(p) => (p.$zoomScale ? `${8.5 * p.$zoomScale}in` : '8.5in')};
+  height: ${(p) => (p.$zoomScale ? `${11 * p.$zoomScale}in` : '11in')};
 
   @media print {
     border: none;
@@ -80,6 +71,20 @@ const ResumeDocument = styled.div<{ $zoomScale?: number }>`
     background-color: unset;
     margin: -1em;
   }
+`;
+const ResumeDocument = styled.div<{ $zoomScale?: number }>`
+  flex: 0 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 10fr 1fr;
+  grid-template-rows: 1fr 5fr 1fr;
+  width: 8.5in;
+  height: 11in;
+  padding: 0;
+  margin: auto;
+  gap: 0;
+  transform-origin: top left;
+  transform: scale(${(p) => p.$zoomScale ?? 1});
+  overflow: hidden;
 `;
 const CenterBody = styled.div`
   flex: 0 0 auto;
@@ -458,71 +463,73 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({
 
   return (
     <ResumeDisplayBase>
-      <ResumeDocument $zoomScale={zoomScale}>
-        <GridCellHolder>&nbsp;</GridCellHolder>
-        <GridCellHolder>&nbsp;</GridCellHolder>
-        <GridCellHolder>&nbsp;</GridCellHolder>
-        <GridCellHolder>&nbsp;</GridCellHolder>
-        <CenterBody>
-          <Title>{getValue('objective')}</Title>
-          <Quad>
-            <QuadName>
-              <NameEmphasized>
-                {getValue('subject/name/first')}&nbsp;
-                {getValue('subject/name/middle')}
-                {getValue('subject/name/middle') && <>&nbsp;</>}
-                {getValue('subject/name/last')}
-              </NameEmphasized>
-              <div>
-                <a href={`mailto:${getValue('subject/email')}`}>{getValue('subject/email')}</a>
-              </div>
-              <div>
-                <a href={`tel:${getValue('subject/phone')}`}>{getValue('subject/phone')}</a>
-              </div>
-            </QuadName>
-            <QuadDate>
-              <FormattedDate isoDateString={getValue('date')} />
-            </QuadDate>
-            <QuadDetails>
-              <DetailsBox>
-                {getValue<Employment[]>('employment', []).map((employment, ind) => (
-                  <FormattedEmployment key={ind} employment={employment} />
+      <ResumeDocumentZoomContainer>
+        <ResumeDocument $zoomScale={zoomScale}>
+          <GridCellHolder>&nbsp;</GridCellHolder>
+          <GridCellHolder>&nbsp;</GridCellHolder>
+          <GridCellHolder>&nbsp;</GridCellHolder>
+          <GridCellHolder>&nbsp;</GridCellHolder>
+          <CenterBody>
+            <Title>{getValue('objective')}</Title>
+            <Quad>
+              <QuadName>
+                <NameEmphasized>
+                  {getValue('subject/name/first')}&nbsp;
+                  {getValue('subject/name/middle')}
+                  {getValue('subject/name/middle') && <>&nbsp;</>}
+                  {getValue('subject/name/last')}
+                </NameEmphasized>
+                <div>
+                  <a href={`mailto:${getValue('subject/email')}`}>{getValue('subject/email')}</a>
+                </div>
+                <div>
+                  <a href={`tel:${getValue('subject/phone')}`}>{getValue('subject/phone')}</a>
+                </div>
+              </QuadName>
+              <QuadDate>
+                <FormattedDate isoDateString={getValue('date')} />
+              </QuadDate>
+              <QuadDetails>
+                <DetailsBox>
+                  {getValue<Employment[]>('employment', []).map((employment, ind) => (
+                    <FormattedEmployment key={ind} employment={employment} />
+                  ))}
+                </DetailsBox>
+              </QuadDetails>
+              <QuadSkills>
+                <SocialSideBox>
+                  {getValue<SocialNetwork[]>('subject/socialNetworks', []).map((soc, ind) => (
+                    <FormattedSocialNetwork key={ind} socialNetwork={soc} />
+                  ))}
+                </SocialSideBox>
+                <SideBox>
+                  {getValue<Education[]>('education', []).map((education, ind) => (
+                    <FormattedEducation key={ind} education={education} />
+                  ))}
+                </SideBox>
+                <SideBox>
+                  {getValue<Skill[]>('skills', []).map((skill, ind) => (
+                    <FormattedSkill key={ind} skill={skill} />
+                  ))}
+                </SideBox>
+              </QuadSkills>
+            </Quad>
+            <GridCellHolder>
+              <References>
+                {getValue<Person[]>('references', []).map((reference, ind) => (
+                  <Fragment key={ind}>
+                    <FormattedReference reference={reference} />
+                  </Fragment>
                 ))}
-              </DetailsBox>
-            </QuadDetails>
-            <QuadSkills>
-              <SocialSideBox>
-                {getValue<SocialNetwork[]>('subject/socialNetworks', []).map((soc, ind) => (
-                  <FormattedSocialNetwork key={ind} socialNetwork={soc} />
-                ))}
-              </SocialSideBox>
-              <SideBox>
-                {getValue<Education[]>('education', []).map((education, ind) => (
-                  <FormattedEducation key={ind} education={education} />
-                ))}
-              </SideBox>
-              <SideBox>
-                {getValue<Skill[]>('skills', []).map((skill, ind) => (
-                  <FormattedSkill key={ind} skill={skill} />
-                ))}
-              </SideBox>
-            </QuadSkills>
-          </Quad>
-          <GridCellHolder>
-            <References>
-              {getValue<Person[]>('references', []).map((reference, ind) => (
-                <Fragment key={ind}>
-                  <FormattedReference reference={reference} />
-                </Fragment>
-              ))}
-            </References>
-          </GridCellHolder>
-        </CenterBody>
-        <GridCellHolder>&nbsp;</GridCellHolder>
-        <GridCellHolder>&nbsp;</GridCellHolder>
-        <GridCellHolder>&nbsp;</GridCellHolder>
-        <GridCellHolder>&nbsp;</GridCellHolder>
-      </ResumeDocument>
+              </References>
+            </GridCellHolder>
+          </CenterBody>
+          <GridCellHolder>&nbsp;</GridCellHolder>
+          <GridCellHolder>&nbsp;</GridCellHolder>
+          <GridCellHolder>&nbsp;</GridCellHolder>
+          <GridCellHolder>&nbsp;</GridCellHolder>
+        </ResumeDocument>
+      </ResumeDocumentZoomContainer>
     </ResumeDisplayBase>
   );
 };
