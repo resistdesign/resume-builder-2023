@@ -357,7 +357,13 @@ function e(e,t,n,r){Object.defineProperty(e,t,{get:n,set:r,enumerable:!0,configu
   @media print {
     display: none;
   }
-`,rj=tV.button``,rT=tV.svg`
+`,rj=tV.button`
+  flex: 1 0 auto;
+
+  @media screen and (max-width: 768px) {
+    padding: 0.5em;
+  }
+`,rT=tV.svg`
   width: 1em;
   height: 1em;
   margin: 0.25em;
@@ -369,4 +375,4 @@ function e(e,t,n,r){Object.defineProperty(e,t,{get:n,set:r,enumerable:!0,configu
   flex: 1 1 auto;
   overflow: hidden;
 `,rI=document.getElementById("react-root");rI&&eD(rI).render((0,o.jsx)(()=>{let[e,n]=(0,s.useState)(rk),[r,a]=(0,s.useState)(rE),[l,i]=(0,s.useState)(rw),u=(0,s.useCallback)(()=>{n(!1)},[]),c=(0,s.useCallback)(()=>{n(!0)},[]),f=(0,s.useCallback)(async()=>{try{let e=await nO({mimeTypes:["application/json"],extensions:[".rdresume"]}),t=await e.text(),n=JSON.parse(t);i(n)}catch(e){}},[i]),d=(0,s.useCallback)(async()=>{try{let e=JSON.stringify(l,null,2),t=new Blob([e],{type:"application/json"});await nP(t,{fileName:"Resume.rdresume",extensions:[".rdresume"]})}catch(e){}},[l]),p=(0,s.useCallback)(e=>{a(parseFloat(`${e.target.value}`))},[a]);return(0,s.useEffect)(()=>{rb.update(rv,l)},[l]),(0,s.useEffect)(()=>{rS.update(rx,e)},[e]),(0,s.useEffect)(()=>{rO.update(rC,r)},[r]),(0,s.useEffect)(()=>{let e=!1,t=t=>{e=e||"Meta"===t.key,(t.ctrlKey||e)&&"s"===t.key&&(t.preventDefault(),d())},n=t=>{e="Meta"!==t.key&&e};return window.addEventListener("keydown",t),window.addEventListener("keyup",n),()=>{window.removeEventListener("keydown",t),window.removeEventListener("keyup",n)}},[d]),(0,o.jsxs)(rN,{children:[(0,o.jsx)(rP,{}),(0,o.jsxs)(r_,{children:[(0,o.jsx)(ry,{src:t(rh)}),(0,o.jsxs)(rj,{onClick:f,children:[(0,o.jsx)(rT,{viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg",fill:"#000000",children:(0,o.jsx)("path",{fill:"white",d:"M24 24H0L24 0z"})}),(0,o.jsx)(rM,{children:"\xa0Import"})]}),(0,o.jsxs)(rj,{onClick:d,children:[(0,o.jsx)(rT,{viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg",fill:"#000000",children:(0,o.jsx)("path",{fill:"white",d:"M24 0V24L0 0z"})}),(0,o.jsx)(rM,{children:"\xa0Export"})]}),(0,o.jsx)(rj,{onClick:u,children:"Build"}),(0,o.jsx)(rj,{onClick:c,children:"Print"})]}),e?(0,o.jsxs)(o.Fragment,{children:[(0,o.jsx)(r_,{children:(0,o.jsxs)("select",{value:r,onChange:p,children:[(0,o.jsx)("option",{value:.25,children:"25%"}),(0,o.jsx)("option",{value:.5,children:"50%"}),(0,o.jsx)("option",{value:.75,children:"75%"}),(0,o.jsx)("option",{value:1,children:"100%"}),(0,o.jsx)("option",{value:1.25,children:"125%"}),(0,o.jsx)("option",{value:1.5,children:"150%"}),(0,o.jsx)("option",{value:1.75,children:"175%"}),(0,o.jsx)("option",{value:2,children:"200%"})]})}),(0,o.jsx)(rL,{$allowShrink:!0,children:(0,o.jsx)(rL,{$allowShrink:!1,children:(0,o.jsx)(rm,{resume:l,zoomScale:r})})})]}):(0,o.jsx)(nS,{typeStructureMap:rg,value:l,entryType:"Resume",onChange:i,keepNavigationHistory:!0})]})},{}));
-//# sourceMappingURL=index.be4f583a.js.map
+//# sourceMappingURL=index.72b9667a.js.map
