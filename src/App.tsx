@@ -1,4 +1,4 @@
-import '@picocss/pico/css/pico.min.css';
+import '@picocss/pico';
 import './Assets/Fonts/readex-pro/stylesheet.css';
 import React, { FC, useCallback, useEffect, useState } from 'react';
 import TSM from '././Meta/TypeStructureMap.json';
@@ -9,7 +9,6 @@ import { TypeStructureMap } from './System/TypeParsing/TypeUtils';
 import { LayoutBox } from './System/Layout';
 import { fileOpen, fileSave } from 'browser-fs-access';
 import { ResumeDisplay } from './Resume/ResumeDisplay';
-import { Resume } from './Types/Resume';
 // @ts-ignore
 import Logo from 'url:./Assets/Images/Trans Zap Logo.png';
 
@@ -78,7 +77,13 @@ const HeaderBox = styled.div`
     display: none;
   }
 `;
-const TopControlButton = styled.button``;
+const TopControlButton = styled.button`
+  flex: 1 0 auto;
+
+  @media screen and (max-width: 768px) {
+    padding: 0.5em;
+  }
+`;
 const TopControlButtonIcon = styled.svg`
   width: 1em;
   height: 1em;
