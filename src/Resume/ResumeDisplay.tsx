@@ -44,10 +44,8 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({ resume = {} as Resume })
   const md = useMemo(() => mdResume(resume), [resume]);
 
   return (
-    <ResumeDisplayBase
-      dangerouslySetInnerHTML={{
-        __html: Marked.parse(md),
-      }}
-    />
+    <ResumeDisplayBase>
+      <div dangerouslySetInnerHTML={{ __html: Marked.parse(md) }} />
+    </ResumeDisplayBase>
   );
 };
