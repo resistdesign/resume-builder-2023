@@ -1,6 +1,7 @@
 import React, { FC, useMemo } from 'react';
 import { Resume } from '../Types/Resume';
 import styled from 'styled-components';
+import { mdResume } from './MD/Resume';
 
 type FormattedDateParts = {
   year: string | number;
@@ -39,7 +40,7 @@ export type ResumeDisplayProps = {
 };
 
 export const ResumeDisplay: FC<ResumeDisplayProps> = ({ resume = {} as Resume }) => {
-  const md = useMemo(() => {}, [resume]);
+  const md = useMemo(() => mdResume(resume), [resume]);
 
   return <ResumeDisplayBase></ResumeDisplayBase>;
 };
