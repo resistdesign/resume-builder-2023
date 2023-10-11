@@ -139,7 +139,7 @@ ${e}
 ${n}
 
 ${o.map(e=>nA(e)).join("\n")}
-`,n$=tV.pre``,nU=({resume:e={}})=>{let t=(0,s.useMemo)(()=>nF(e).split("\n\n").filter(e=>e.length>0),[e]);return(0,o.jsx)(n$,{children:(0,o.jsx)("code",{children:t})})};var nH={};nH=new URL(l("27Lyk").resolve("jN0i4"),import.meta.url).toString();const nB=tV.img`
+`,n$=tV.pre``,nU=({resume:e={}})=>{let t=(0,s.useMemo)(()=>nF(e),[e]);return(0,o.jsx)(n$,{children:(0,o.jsx)("code",{children:t})})};var nH={};nH=new URL(l("27Lyk").resolve("jN0i4"),import.meta.url).toString();const nB=tV.img`
   flex: 0 0 auto;
   height: 3em;
   border-radius: var(--border-radius);
@@ -197,4 +197,4 @@ ${o.map(e=>nA(e)).join("\n")}
   flex: 1 1 auto;
   overflow: hidden;
 `,n4=document.getElementById("react-root");n4&&eD(n4).render((0,o.jsx)(()=>{let[e,n]=(0,s.useState)(nq),[r,a]=(0,s.useState)(nG),l=(0,s.useCallback)(()=>{n(!1)},[]),i=(0,s.useCallback)(()=>{n(!0)},[]),u=(0,s.useCallback)(async()=>{try{let e=await nO({mimeTypes:["application/json"],extensions:[".rdresume"]}),t=await e.text(),n=JSON.parse(t);a(n)}catch(e){}},[a]),c=(0,s.useCallback)(async()=>{try{let e=JSON.stringify(r,null,2),t=new Blob([e],{type:"application/json"});await nP(t,{fileName:"Resume.rdresume",extensions:[".rdresume"]})}catch(e){}},[r]);return(0,s.useEffect)(()=>{nQ.update(nW,r)},[r]),(0,s.useEffect)(()=>{nY.update(nK,e)},[e]),(0,s.useEffect)(()=>{let e=!1,t=t=>{e=e||"Meta"===t.key,(t.ctrlKey||e)&&"s"===t.key&&(t.preventDefault(),c())},n=t=>{e="Meta"!==t.key&&e};return window.addEventListener("keydown",t),window.addEventListener("keyup",n),()=>{window.removeEventListener("keydown",t),window.removeEventListener("keyup",n)}},[c]),(0,o.jsxs)(nJ,{children:[(0,o.jsx)(nX,{}),(0,o.jsxs)(nZ,{children:[(0,o.jsx)(nB,{src:t(nH)}),(0,o.jsxs)(n0,{onClick:u,children:[(0,o.jsx)(n1,{viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg",fill:"#000000",children:(0,o.jsx)("path",{fill:"white",d:"M24 24H0L24 0z"})}),(0,o.jsx)(n2,{children:"\xa0Import"})]}),(0,o.jsxs)(n0,{onClick:c,children:[(0,o.jsx)(n1,{viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg",fill:"#000000",children:(0,o.jsx)("path",{fill:"white",d:"M24 0V24L0 0z"})}),(0,o.jsx)(n2,{children:"\xa0Export"})]}),(0,o.jsx)(n0,{onClick:l,children:"Build"}),(0,o.jsx)(n0,{onClick:i,children:"Print"})]}),e?(0,o.jsx)(o.Fragment,{children:(0,o.jsx)(n3,{$allowShrink:!0,children:(0,o.jsx)(n3,{$allowShrink:!1,children:(0,o.jsx)(nU,{resume:r})})})}):(0,o.jsx)(nk,{typeStructureMap:nV,value:r,entryType:"Resume",onChange:a,keepNavigationHistory:!0})]})},{}));
-//# sourceMappingURL=index.a6a17469.js.map
+//# sourceMappingURL=index.e7ee21c1.js.map
