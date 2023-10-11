@@ -33,7 +33,7 @@ const getFormattedDateParts = (
   return { year, month, day };
 };
 
-const ResumeDisplayBase = styled.div``;
+const ResumeDisplayBase = styled.pre``;
 
 export type ResumeDisplayProps = {
   resume?: Resume;
@@ -42,5 +42,9 @@ export type ResumeDisplayProps = {
 export const ResumeDisplay: FC<ResumeDisplayProps> = ({ resume = {} as Resume }) => {
   const md = useMemo(() => mdResume(resume), [resume]);
 
-  return <ResumeDisplayBase>{md}</ResumeDisplayBase>;
+  return (
+    <ResumeDisplayBase>
+      <code>{md}</code>
+    </ResumeDisplayBase>
+  );
 };
