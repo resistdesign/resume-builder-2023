@@ -34,7 +34,9 @@ const getFormattedDateParts = (
   return { year, month, day };
 };
 
-const ResumeDisplayBase = styled.div``;
+const ResumeDisplayBase = styled.div`
+  overflow: auto;
+`;
 
 export type ResumeDisplayProps = {
   resume?: Resume;
