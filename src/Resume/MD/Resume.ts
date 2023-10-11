@@ -1,6 +1,7 @@
 import { Resume } from '../../Types/Resume';
 import { Person } from '../../Types/Person';
 import { mdPerson } from './Person';
+import { mdSkillTable } from './Skill';
 
 // TODO: Remaining info.
 
@@ -17,6 +18,8 @@ export const mdResume = (
 ) => `
 ${mdPerson(subject)}
 ${date}
+
+${mdSkillTable(skills)}
 
 ${objective}
 
