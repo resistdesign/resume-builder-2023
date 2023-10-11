@@ -2,7 +2,6 @@ import React, { FC, useMemo } from 'react';
 import { Resume } from '../Types/Resume';
 import styled from 'styled-components';
 import { mdResume } from './MD/Resume';
-import Marked from 'marked';
 
 type FormattedDateParts = {
   year: string | number;
@@ -34,9 +33,7 @@ const getFormattedDateParts = (
   return { year, month, day };
 };
 
-const ResumeDisplayBase = styled.div`
-  overflow: auto;
-`;
+const ResumeDisplayBase = styled.pre``;
 
 export type ResumeDisplayProps = {
   resume?: Resume;
@@ -47,7 +44,7 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({ resume = {} as Resume })
 
   return (
     <ResumeDisplayBase>
-      <div dangerouslySetInnerHTML={{ __html: Marked.parse(md) }} />
+      <code>{md}</code>
     </ResumeDisplayBase>
   );
 };
