@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import { Resume } from '../Types/Resume';
 import styled from 'styled-components';
 
@@ -24,7 +24,9 @@ const getFormattedDateParts = (
 ): FormattedDateParts => {
   const date = new Date(`${isoDateString}T12:00:00.000Z`);
   const year = shortYear ? padNumber(date.getFullYear() % 100) : date.getFullYear();
-  const month = monthAsNumber ? date.getMonth() + 1 : date.toLocaleString('default', { month: 'long' });
+  const month = monthAsNumber
+    ? date.getMonth() + 1
+    : date.toLocaleString('default', { month: 'long' });
   const day = date.getDate();
 
   return { year, month, day };
@@ -37,5 +39,7 @@ export type ResumeDisplayProps = {
 };
 
 export const ResumeDisplay: FC<ResumeDisplayProps> = ({ resume = {} as Resume }) => {
+  const md = useMemo(() => {}, [resume]);
+
   return <ResumeDisplayBase></ResumeDisplayBase>;
 };
