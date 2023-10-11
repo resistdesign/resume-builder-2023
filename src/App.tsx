@@ -28,10 +28,6 @@ const MODE_PREFIX = 'Mode';
 const MAIN_MODE = 'Default';
 const MODE_SERVICE: LocalJSON = getLocalJSON(MODE_PREFIX);
 const DEFAULT_MODE = MODE_SERVICE.read(MAIN_MODE) || false;
-const ZOOM_PREFIX = 'Zoom';
-const MAIN_ZOOM = 'Default';
-const ZOOM_SERVICE: LocalJSON = getLocalJSON(ZOOM_PREFIX);
-const DEFAULT_ZOOM = ZOOM_SERVICE.read(MAIN_ZOOM) ?? 1;
 
 const GlobalStyle: FC = createGlobalStyle`
   input,
@@ -44,10 +40,6 @@ const GlobalStyle: FC = createGlobalStyle`
     margin-bottom: -0.5em;
   }
 ` as any;
-
-// TODO: i18n.
-// TODO: Printing.
-// TODO: Form titles and sub-sections.
 
 const AppBase = styled.div`
   flex: 1 0 auto;
@@ -101,7 +93,6 @@ const PrintLayoutBox = styled(LayoutBox)`
 
 export const App: FC = () => {
   const [printing, setPrinting] = useState(DEFAULT_MODE);
-  const [zoomScale, setZoomScale] = useState(DEFAULT_ZOOM);
   const [resume, setResume] = useState(DEFAULT_RESUME);
   const onSelectBuildMode = useCallback(() => {
     setPrinting(false);
@@ -136,12 +127,6 @@ export const App: FC = () => {
       // Ignore.
     }
   }, [resume]);
-  const onZoomScaleChange = useCallback(
-    (event: React.ChangeEvent<HTMLSelectElement>) => {
-      setZoomScale(parseFloat(`${event.target.value}`));
-    },
-    [setZoomScale]
-  );
 
   useEffect(() => {
     RESUME_SERVICE.update(MAIN_RESUME_ITEM, resume);
@@ -150,10 +135,6 @@ export const App: FC = () => {
   useEffect(() => {
     MODE_SERVICE.update(MAIN_MODE, printing);
   }, [printing]);
-
-  useEffect(() => {
-    ZOOM_SERVICE.update(MAIN_ZOOM, zoomScale);
-  }, [zoomScale]);
 
   useEffect(() => {
     let metaKey = false;
@@ -209,21 +190,9 @@ export const App: FC = () => {
         />
       ) : (
         <>
-          <HeaderBox>
-            <select value={zoomScale} onChange={onZoomScaleChange}>
-              <option value={0.25}>25%</option>
-              <option value={0.5}>50%</option>
-              <option value={0.75}>75%</option>
-              <option value={1}>100%</option>
-              <option value={1.25}>125%</option>
-              <option value={1.5}>150%</option>
-              <option value={1.75}>175%</option>
-              <option value={2}>200%</option>
-            </select>
-          </HeaderBox>
           <PrintLayoutBox $allowShrink>
             <PrintLayoutBox $allowShrink={false}>
-              <ResumeDisplay resume={resume} zoomScale={zoomScale} />
+              <ResumeDisplay resume={resume} />
             </PrintLayoutBox>
           </PrintLayoutBox>
         </>
