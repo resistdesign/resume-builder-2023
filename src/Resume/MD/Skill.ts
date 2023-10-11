@@ -4,7 +4,8 @@ const getSkillTableHeader = () => {
   const description = 'Description';
   const rating = 'Rating';
 
-  return `| ${description} | ${rating} |`;
+  return `| ${description} | ${rating} |
+| --- | --- |`;
 };
 
 const getStarRating = (rating: number) => {
