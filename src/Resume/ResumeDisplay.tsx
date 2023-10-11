@@ -42,5 +42,5 @@ export type ResumeDisplayProps = {
 export const ResumeDisplay: FC<ResumeDisplayProps> = ({ resume = {} as Resume }) => {
   const md = useMemo(() => mdResume(resume), [resume]);
 
-  return <ResumeDisplayBase></ResumeDisplayBase>;
+  return <ResumeDisplayBase>{md}</ResumeDisplayBase>;
 };
