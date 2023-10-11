@@ -40,7 +40,13 @@ export type ResumeDisplayProps = {
 };
 
 export const ResumeDisplay: FC<ResumeDisplayProps> = ({ resume = {} as Resume }) => {
-  const md = useMemo(() => mdResume(resume), [resume]);
+  const md = useMemo(
+    () =>
+      mdResume(resume)
+        .split('\n')
+        .filter((line) => line.length > 0),
+    [resume]
+  );
 
   return (
     <ResumeDisplayBase>
