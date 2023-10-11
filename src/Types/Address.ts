@@ -2,7 +2,7 @@ export type Address = {
   /**
    * @label Line 1
    */
-  line1: string;
+  line1?: string;
   /**
    * @label Line 2
    */
@@ -10,21 +10,21 @@ export type Address = {
   /**
    * @label City
    */
-  city: string;
+  city?: string;
   /**
    * @label State / Province
    * @optionsType StateOptions
    * @allowCustomValue
    */
-  state: string;
+  state?: string;
   /**
    * @label Country
    * @optionsType CountryOptions
    * @allowCustomValue
    */
-  country: string;
+  country?: string;
   /**
    * @label Zip
    */
-  zip: string;
+  zip?: string;
 };

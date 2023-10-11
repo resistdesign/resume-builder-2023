@@ -6,15 +6,15 @@ export type Education = {
   /**
    * @label Program
    */
-  program: string;
+  program?: string;
   /**
    * @label Start Date
    */
-  startDate: Date;
+  startDate: Date | string;
   /**
    * @label End Date
    */
-  endDate: Date;
+  endDate: Date | string;
   /**
    * @label Credential Type
    * @options
@@ -28,9 +28,9 @@ export type Education = {
    *  PHD
    * @allowCustomValue
    * */
-  credentialType: string;
+  credentialType?: string;
   /**
    * @label Achievements
    */
-  achievements: string[];
+  achievements?: string[];
 };

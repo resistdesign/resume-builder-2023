@@ -19,7 +19,7 @@ export type Resume = {
   /**
    * @label Date
    * */
-  date: Date;
+  date: Date | string;
   /**
    * @label Skills
    * @itemName `description`

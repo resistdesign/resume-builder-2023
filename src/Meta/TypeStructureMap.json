@@ -16,7 +16,7 @@
             "value": "Line 1"
           }
         },
-        "optional": false,
+        "optional": true,
         "readonly": false
       },
       {
@@ -42,7 +42,7 @@
             "value": "City"
           }
         },
-        "optional": false,
+        "optional": true,
         "readonly": false
       },
       {
@@ -61,7 +61,7 @@
             "value": true
           }
         },
-        "optional": false,
+        "optional": true,
         "readonly": false
       },
       {
@@ -80,7 +80,7 @@
             "value": true
           }
         },
-        "optional": false,
+        "optional": true,
         "readonly": false
       },
       {
@@ -93,7 +93,7 @@
             "value": "Zip"
           }
         },
-        "optional": false,
+        "optional": true,
         "readonly": false
       }
     ]
@@ -1880,7 +1880,7 @@
             "value": "Program"
           }
         },
-        "optional": false,
+        "optional": true,
         "readonly": false
       },
       {
@@ -1891,7 +1891,23 @@
           }
         },
         "name": "startDate",
-        "type": "Date",
+        "type": "Education.startDate",
+        "varietyType": true,
+        "content": [
+          {
+            "comments": [],
+            "tags": {},
+            "name": "startDate",
+            "type": "Date"
+          },
+          {
+            "name": "startDate",
+            "type": "string",
+            "literal": true,
+            "comments": [],
+            "tags": {}
+          }
+        ],
         "optional": false,
         "readonly": false
       },
@@ -1903,7 +1919,23 @@
           }
         },
         "name": "endDate",
-        "type": "Date",
+        "type": "Education.endDate",
+        "varietyType": true,
+        "content": [
+          {
+            "comments": [],
+            "tags": {},
+            "name": "endDate",
+            "type": "Date"
+          },
+          {
+            "name": "endDate",
+            "type": "string",
+            "literal": true,
+            "comments": [],
+            "tags": {}
+          }
+        ],
         "optional": false,
         "readonly": false
       },
@@ -1923,7 +1955,7 @@
             "value": true
           }
         },
-        "optional": false,
+        "optional": true,
         "readonly": false
       },
       {
@@ -1937,7 +1969,7 @@
         "type": "string",
         "literal": true,
         "multiple": 1,
-        "optional": false,
+        "optional": true,
         "readonly": false
       }
     ]
@@ -1983,7 +2015,23 @@
           }
         },
         "name": "startDate",
-        "type": "Date",
+        "type": "Employment.startDate",
+        "varietyType": true,
+        "content": [
+          {
+            "comments": [],
+            "tags": {},
+            "name": "startDate",
+            "type": "Date"
+          },
+          {
+            "name": "startDate",
+            "type": "string",
+            "literal": true,
+            "comments": [],
+            "tags": {}
+          }
+        ],
         "optional": false,
         "readonly": false
       },
@@ -1995,7 +2043,23 @@
           }
         },
         "name": "endDate",
-        "type": "Date",
+        "type": "Employment.endDate",
+        "varietyType": true,
+        "content": [
+          {
+            "comments": [],
+            "tags": {},
+            "name": "endDate",
+            "type": "Date"
+          },
+          {
+            "name": "endDate",
+            "type": "string",
+            "literal": true,
+            "comments": [],
+            "tags": {}
+          }
+        ],
         "optional": false,
         "readonly": false
       },
@@ -2012,7 +2076,7 @@
         "name": "projects",
         "type": "Project",
         "multiple": 1,
-        "optional": false,
+        "optional": true,
         "readonly": false
       }
     ]
@@ -2097,7 +2161,7 @@
                 "value": "Middle Name"
               }
             },
-            "optional": false,
+            "optional": true,
             "readonly": false
           },
           {
@@ -2127,7 +2191,7 @@
             "value": "Description"
           }
         },
-        "optional": false,
+        "optional": true,
         "readonly": false
       },
       {
@@ -2139,7 +2203,7 @@
         },
         "name": "phone",
         "type": "TelephoneNumber",
-        "optional": false,
+        "optional": true,
         "readonly": false
       },
       {
@@ -2217,7 +2281,7 @@
             "value": "Description"
           }
         },
-        "optional": false,
+        "optional": true,
         "readonly": false
       },
       {
@@ -2233,7 +2297,7 @@
         "name": "notableConcepts",
         "type": "NotableConcept",
         "multiple": 1,
-        "optional": false,
+        "optional": true,
         "readonly": false
       }
     ]
@@ -2281,7 +2345,23 @@
           }
         },
         "name": "date",
-        "type": "Date",
+        "type": "Resume.date",
+        "varietyType": true,
+        "content": [
+          {
+            "comments": [],
+            "tags": {},
+            "name": "date",
+            "type": "Date"
+          },
+          {
+            "name": "date",
+            "type": "string",
+            "literal": true,
+            "comments": [],
+            "tags": {}
+          }
+        ],
         "optional": false,
         "readonly": false
       },

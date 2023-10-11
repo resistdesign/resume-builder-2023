@@ -8,10 +8,10 @@ export type Project = {
   /**
    * @label Description
    * */
-  description: string;
+  description?: string;
   /**
    * @label Notable Concepts
    * @itemName `description`
    * */
-  notableConcepts: NotableConcept[];
+  notableConcepts?: NotableConcept[];
 };

@@ -26,7 +26,7 @@ export type Person = {
     /**
      * @label Middle Name
      */
-    middle: string;
+    middle?: string;
     /**
      * @label Last Name
      */
@@ -35,11 +35,11 @@ export type Person = {
   /**
    * @label Description
    */
-  description: string;
+  description?: string;
   /**
    * @label Phone
    */
-  phone: TelephoneNumber;
+  phone?: TelephoneNumber;
   /**
    * @label Email
    */
