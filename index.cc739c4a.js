@@ -133,6 +133,7 @@ function e(e,t,n,r){Object.defineProperty(e,t,{get:n,set:r,enumerable:!0,configu
   grid-row: 1 / 2;
   background-color: lightgray;
   border-radius: 0.5em;
+  padding: 0.25in;
 `,nF=tV(nA)`
   grid-column: 1 / 7;
   grid-row: 1 / 2;
@@ -142,20 +143,24 @@ function e(e,t,n,r){Object.defineProperty(e,t,{get:n,set:r,enumerable:!0,configu
   grid-row: 2 / 9;
   background-color: yellow;
 `,nU=tV(nA)`
+  grid-column: 5 / 7;
+  grid-row: 2 / 9;
+  background-color: lime;
+`,nH=tV(nA)`
   grid-column: 1 / 7;
   grid-row: 9 / 10;
-  background-color: green;
-`,nH=({resume:e={}})=>(0,o.jsxs)(nD,{children:[(0,o.jsx)(nF,{children:"Header"}),(0,o.jsx)(n$,{children:"Display Area"}),(0,o.jsx)(nU,{children:"Footer"})]}),nB=tV.div`
+  background-color: purple;
+`,nB=({resume:e={}})=>(0,o.jsxs)(nD,{children:[(0,o.jsx)(nF,{children:"Header"}),(0,o.jsx)(n$,{children:"Display Area"}),(0,o.jsx)(nU,{children:"Side Area"}),(0,o.jsx)(nH,{children:"Footer"})]}),nV=tV.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   overflow: auto;
-`,nV=({resume:e={}})=>(0,o.jsx)(nB,{children:(0,o.jsx)(nH,{resume:e})});var nW={};nW=new URL(l("27Lyk").resolve("jN0i4"),import.meta.url).toString();const nQ=tV.img`
+`,nW=({resume:e={}})=>(0,o.jsx)(nV,{children:(0,o.jsx)(nB,{resume:e})});var nQ={};nQ=new URL(l("27Lyk").resolve("jN0i4"),import.meta.url).toString();const nG=tV.img`
   flex: 0 0 auto;
   height: 3em;
   border-radius: var(--border-radius);
-`,nG=t(u),nK="Default",nY=nu("Resume"),nq=nY.read(nK)||{},nX="Default",nJ=nu("Mode"),nZ=nJ.read(nX)||!1,n0=(function(e){for(var n=[],r=1;r<arguments.length;r++)n[r-1]=arguments[r];var a=tB.apply(void 0,N([e],n,!1)),l="sc-global-".concat(ej(eV(JSON.stringify(a))>>>0)),o=new tW(a,l),i=function(e){var n=tN(),r=t(s).useContext(tA),a=t(s).useRef(n.styleSheet.allocateGSInstance(l)).current;return n.styleSheet.server&&u(a,e,n.styleSheet,r,n.stylis),(t(s).useInsertionEffect||t(s).useLayoutEffect)(function(){if(!n.styleSheet.server)return u(a,e,n.styleSheet,r,n.stylis),function(){return o.removeStyles(a,n.styleSheet)}},[a,e,n.styleSheet,r,n.stylis]),null};function u(e,t,n,r,a){if(o.isStatic)o.renderStyles(e,eE,n,a);else{var l=P(P({},t),{theme:e_(t,r,i.defaultProps)});o.renderStyles(e,l,n,a)}}return t(s).memo(i)})`
+`,nK=t(u),nY="Default",nq=nu("Resume"),nX=nq.read(nY)||{},nJ="Default",nZ=nu("Mode"),n0=nZ.read(nJ)||!1,n1=(function(e){for(var n=[],r=1;r<arguments.length;r++)n[r-1]=arguments[r];var a=tB.apply(void 0,N([e],n,!1)),l="sc-global-".concat(ej(eV(JSON.stringify(a))>>>0)),o=new tW(a,l),i=function(e){var n=tN(),r=t(s).useContext(tA),a=t(s).useRef(n.styleSheet.allocateGSInstance(l)).current;return n.styleSheet.server&&u(a,e,n.styleSheet,r,n.stylis),(t(s).useInsertionEffect||t(s).useLayoutEffect)(function(){if(!n.styleSheet.server)return u(a,e,n.styleSheet,r,n.stylis),function(){return o.removeStyles(a,n.styleSheet)}},[a,e,n.styleSheet,r,n.stylis]),null};function u(e,t,n,r,a){if(o.isStatic)o.renderStyles(e,eE,n,a);else{var l=P(P({},t),{theme:e_(t,r,i.defaultProps)});o.renderStyles(e,l,n,a)}}return t(s).memo(i)})`
   input,
   label,
   button {
@@ -165,7 +170,7 @@ function e(e,t,n,r){Object.defineProperty(e,t,{get:n,set:r,enumerable:!0,configu
   input[type="checkbox"] {
     margin-bottom: -0.5em;
   }
-`,n1=tV.div`
+`,n2=tV.div`
   flex: 1 0 auto;
   display: flex;
   flex-direction: column;
@@ -180,7 +185,7 @@ function e(e,t,n,r){Object.defineProperty(e,t,{get:n,set:r,enumerable:!0,configu
   padding: 1em;
 
   overflow: hidden;
-`,n2=tV.div`
+`,n3=tV.div`
   flex: 0 0 auto;
   display: flex;
   flex-direction: row;
@@ -191,22 +196,22 @@ function e(e,t,n,r){Object.defineProperty(e,t,{get:n,set:r,enumerable:!0,configu
   @media print {
     display: none;
   }
-`,n3=tV.button`
+`,n4=tV.button`
   flex: 1 0 auto;
 
   @media screen and (max-width: 768px) {
     padding: 0.5em;
   }
-`,n4=tV.svg`
+`,n5=tV.svg`
   width: 1em;
   height: 1em;
   margin: 0.25em;
-`,n5=tV.span`
+`,n6=tV.span`
   @media screen and (max-width: 768px) {
     display: none;
   }
-`,n6=tV(t5)`
+`,n8=tV(t5)`
   flex: 1 1 auto;
   overflow: hidden;
-`,n8=document.getElementById("react-root");n8&&eD(n8).render((0,o.jsx)(()=>{let[e,n]=(0,s.useState)(nZ),[r,a]=(0,s.useState)(nq),l=(0,s.useCallback)(()=>{n(!1)},[]),i=(0,s.useCallback)(()=>{n(!0)},[]),u=(0,s.useCallback)(async()=>{try{let e=await nO({mimeTypes:["application/json"],extensions:[".rdresume"]}),t=await e.text(),n=JSON.parse(t);a(n)}catch(e){}},[a]),c=(0,s.useCallback)(async()=>{try{let e=JSON.stringify(r,null,2),t=new Blob([e],{type:"application/json"});await nP(t,{fileName:"Resume.rdresume",extensions:[".rdresume"]})}catch(e){}},[r]);return(0,s.useEffect)(()=>{nY.update(nK,r)},[r]),(0,s.useEffect)(()=>{nJ.update(nX,e)},[e]),(0,s.useEffect)(()=>{let e=!1,t=t=>{e=e||"Meta"===t.key,(t.ctrlKey||e)&&"s"===t.key&&(t.preventDefault(),c())},n=t=>{e="Meta"!==t.key&&e};return window.addEventListener("keydown",t),window.addEventListener("keyup",n),()=>{window.removeEventListener("keydown",t),window.removeEventListener("keyup",n)}},[c]),(0,o.jsxs)(n1,{children:[(0,o.jsx)(n0,{}),(0,o.jsxs)(n2,{children:[(0,o.jsx)(nQ,{src:t(nW)}),(0,o.jsxs)(n3,{onClick:u,children:[(0,o.jsx)(n4,{viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg",fill:"#000000",children:(0,o.jsx)("path",{fill:"white",d:"M24 24H0L24 0z"})}),(0,o.jsx)(n5,{children:"\xa0Import"})]}),(0,o.jsxs)(n3,{onClick:c,children:[(0,o.jsx)(n4,{viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg",fill:"#000000",children:(0,o.jsx)("path",{fill:"white",d:"M24 0V24L0 0z"})}),(0,o.jsx)(n5,{children:"\xa0Export"})]}),(0,o.jsx)(n3,{onClick:l,children:"Build"}),(0,o.jsx)(n3,{onClick:i,children:"Print"})]}),e?(0,o.jsx)(o.Fragment,{children:(0,o.jsx)(n6,{$allowShrink:!0,children:(0,o.jsx)(n6,{$allowShrink:!1,children:(0,o.jsx)(nV,{resume:r})})})}):(0,o.jsx)(nk,{typeStructureMap:nG,value:r,entryType:"Resume",onChange:a,keepNavigationHistory:!0})]})},{}));
-//# sourceMappingURL=index.c2c7faf5.js.map
+`,n9=document.getElementById("react-root");n9&&eD(n9).render((0,o.jsx)(()=>{let[e,n]=(0,s.useState)(n0),[r,a]=(0,s.useState)(nX),l=(0,s.useCallback)(()=>{n(!1)},[]),i=(0,s.useCallback)(()=>{n(!0)},[]),u=(0,s.useCallback)(async()=>{try{let e=await nO({mimeTypes:["application/json"],extensions:[".rdresume"]}),t=await e.text(),n=JSON.parse(t);a(n)}catch(e){}},[a]),c=(0,s.useCallback)(async()=>{try{let e=JSON.stringify(r,null,2),t=new Blob([e],{type:"application/json"});await nP(t,{fileName:"Resume.rdresume",extensions:[".rdresume"]})}catch(e){}},[r]);return(0,s.useEffect)(()=>{nq.update(nY,r)},[r]),(0,s.useEffect)(()=>{nZ.update(nJ,e)},[e]),(0,s.useEffect)(()=>{let e=!1,t=t=>{e=e||"Meta"===t.key,(t.ctrlKey||e)&&"s"===t.key&&(t.preventDefault(),c())},n=t=>{e="Meta"!==t.key&&e};return window.addEventListener("keydown",t),window.addEventListener("keyup",n),()=>{window.removeEventListener("keydown",t),window.removeEventListener("keyup",n)}},[c]),(0,o.jsxs)(n2,{children:[(0,o.jsx)(n1,{}),(0,o.jsxs)(n3,{children:[(0,o.jsx)(nG,{src:t(nQ)}),(0,o.jsxs)(n4,{onClick:u,children:[(0,o.jsx)(n5,{viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg",fill:"#000000",children:(0,o.jsx)("path",{fill:"white",d:"M24 24H0L24 0z"})}),(0,o.jsx)(n6,{children:"\xa0Import"})]}),(0,o.jsxs)(n4,{onClick:c,children:[(0,o.jsx)(n5,{viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg",fill:"#000000",children:(0,o.jsx)("path",{fill:"white",d:"M24 0V24L0 0z"})}),(0,o.jsx)(n6,{children:"\xa0Export"})]}),(0,o.jsx)(n4,{onClick:l,children:"Build"}),(0,o.jsx)(n4,{onClick:i,children:"Print"})]}),e?(0,o.jsx)(o.Fragment,{children:(0,o.jsx)(n8,{$allowShrink:!0,children:(0,o.jsx)(n8,{$allowShrink:!1,children:(0,o.jsx)(nW,{resume:r})})})}):(0,o.jsx)(nk,{typeStructureMap:nK,value:r,entryType:"Resume",onChange:a,keepNavigationHistory:!0})]})},{}));
+//# sourceMappingURL=index.cc739c4a.js.map
