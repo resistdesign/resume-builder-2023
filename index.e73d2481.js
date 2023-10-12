@@ -128,6 +128,7 @@ function e(e,t,n,r){Object.defineProperty(e,t,{get:n,set:r,enumerable:!0,configu
   gap: 0.25in;
   padding: 0.25in;
   width: 8.5in;
+  background-color: white;
 `,nA=tV.div`
   grid-column: 1 / 2;
   grid-row: 1 / 2;
@@ -214,4 +215,4 @@ function e(e,t,n,r){Object.defineProperty(e,t,{get:n,set:r,enumerable:!0,configu
   flex: 1 1 auto;
   overflow: hidden;
 `,n9=document.getElementById("react-root");n9&&eD(n9).render((0,o.jsx)(()=>{let[e,n]=(0,s.useState)(n0),[r,a]=(0,s.useState)(nX),l=(0,s.useCallback)(()=>{n(!1)},[]),i=(0,s.useCallback)(()=>{n(!0)},[]),u=(0,s.useCallback)(async()=>{try{let e=await nO({mimeTypes:["application/json"],extensions:[".rdresume"]}),t=await e.text(),n=JSON.parse(t);a(n)}catch(e){}},[a]),c=(0,s.useCallback)(async()=>{try{let e=JSON.stringify(r,null,2),t=new Blob([e],{type:"application/json"});await nP(t,{fileName:"Resume.rdresume",extensions:[".rdresume"]})}catch(e){}},[r]);return(0,s.useEffect)(()=>{nq.update(nY,r)},[r]),(0,s.useEffect)(()=>{nZ.update(nJ,e)},[e]),(0,s.useEffect)(()=>{let e=!1,t=t=>{e=e||"Meta"===t.key,(t.ctrlKey||e)&&"s"===t.key&&(t.preventDefault(),c())},n=t=>{e="Meta"!==t.key&&e};return window.addEventListener("keydown",t),window.addEventListener("keyup",n),()=>{window.removeEventListener("keydown",t),window.removeEventListener("keyup",n)}},[c]),(0,o.jsxs)(n2,{children:[(0,o.jsx)(n1,{}),(0,o.jsxs)(n3,{children:[(0,o.jsx)(nG,{src:t(nQ)}),(0,o.jsxs)(n4,{onClick:u,children:[(0,o.jsx)(n5,{viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg",fill:"#000000",children:(0,o.jsx)("path",{fill:"white",d:"M24 24H0L24 0z"})}),(0,o.jsx)(n6,{children:"\xa0Import"})]}),(0,o.jsxs)(n4,{onClick:c,children:[(0,o.jsx)(n5,{viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg",fill:"#000000",children:(0,o.jsx)("path",{fill:"white",d:"M24 0V24L0 0z"})}),(0,o.jsx)(n6,{children:"\xa0Export"})]}),(0,o.jsx)(n4,{onClick:l,children:"Build"}),(0,o.jsx)(n4,{onClick:i,children:"Print"})]}),e?(0,o.jsx)(o.Fragment,{children:(0,o.jsx)(n8,{$allowShrink:!0,children:(0,o.jsx)(n8,{$allowShrink:!1,children:(0,o.jsx)(nW,{resume:r})})})}):(0,o.jsx)(nk,{typeStructureMap:nK,value:r,entryType:"Resume",onChange:a,keepNavigationHistory:!0})]})},{}));
-//# sourceMappingURL=index.cc739c4a.js.map
+//# sourceMappingURL=index.e73d2481.js.map
