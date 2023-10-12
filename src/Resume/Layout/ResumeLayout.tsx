@@ -9,6 +9,7 @@ export const ResumeBase = styled.div`
   gap: 0.25in;
   padding: 0.25in;
   width: 8.5in;
+  background-color: white;
 `;
 export const DemoPanel = styled.div`
   grid-column: 1 / 2;
