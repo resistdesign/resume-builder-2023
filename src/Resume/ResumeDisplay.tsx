@@ -33,7 +33,12 @@ const getFormattedDateParts = (
   return { year, month, day };
 };
 
-const ResumeDisplayBase = styled.pre``;
+const ResumeDisplayBase = styled.pre`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+`;
 
 export type ResumeDisplayProps = {
   resume?: Resume;
