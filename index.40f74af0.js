@@ -153,7 +153,14 @@ function e(e,t,n,r){Object.defineProperty(e,t,{get:n,set:r,enumerable:!0,configu
   align-items: center;
   justify-content: flex-start;
   overflow: auto;
-`,nV=({resume:e={}})=>(0,o.jsx)(nB,{children:(0,o.jsx)(nH,{resume:e})});var nW={};nW=new URL(l("27Lyk").resolve("jN0i4"),import.meta.url).toString();const nQ=tV.img`
+`,nV=({resume:e={}})=>(0,o.jsx)(nB,{children:(0,o.jsx)(nH,{resume:e})});console.log(((e="")=>{let t=e.split("\n"),n=[],r=[],a="";for(let e=0;e<t.length;e++){let l=t[e];if(e===t.length-1)a+=`
+grid-template-columns: ${l};`;else{let e=l.split(",");n.push(e[0]),r.push(e[1])}}return a+`
+grid-template-areas: ${n.filter(e=>!!(e&&e.trim())).join(" ")};
+grid-template-rows: ${r.filter(e=>!!(e&&e.trim())).join(" ")};`})(`
+header header, 2fr
+side body, 5fr
+footer footer, 1fr
+`));var nW={};nW=new URL(l("27Lyk").resolve("jN0i4"),import.meta.url).toString();const nQ=tV.img`
   flex: 0 0 auto;
   height: 3em;
   border-radius: var(--border-radius);
@@ -211,4 +218,4 @@ function e(e,t,n,r){Object.defineProperty(e,t,{get:n,set:r,enumerable:!0,configu
   flex: 1 1 auto;
   overflow: hidden;
 `,n8=document.getElementById("react-root");n8&&eD(n8).render((0,o.jsx)(()=>{let[e,n]=(0,s.useState)(nZ),[r,a]=(0,s.useState)(nq),l=(0,s.useCallback)(()=>{n(!1)},[]),i=(0,s.useCallback)(()=>{n(!0)},[]),u=(0,s.useCallback)(async()=>{try{let e=await nO({mimeTypes:["application/json"],extensions:[".rdresume"]}),t=await e.text(),n=JSON.parse(t);a(n)}catch(e){}},[a]),c=(0,s.useCallback)(async()=>{try{let e=JSON.stringify(r,null,2),t=new Blob([e],{type:"application/json"});await nP(t,{fileName:"Resume.rdresume",extensions:[".rdresume"]})}catch(e){}},[r]);return(0,s.useEffect)(()=>{nY.update(nK,r)},[r]),(0,s.useEffect)(()=>{nJ.update(nX,e)},[e]),(0,s.useEffect)(()=>{let e=!1,t=t=>{e=e||"Meta"===t.key,(t.ctrlKey||e)&&"s"===t.key&&(t.preventDefault(),c())},n=t=>{e="Meta"!==t.key&&e};return window.addEventListener("keydown",t),window.addEventListener("keyup",n),()=>{window.removeEventListener("keydown",t),window.removeEventListener("keyup",n)}},[c]),(0,o.jsxs)(n1,{children:[(0,o.jsx)(n0,{}),(0,o.jsxs)(n2,{children:[(0,o.jsx)(nQ,{src:t(nW)}),(0,o.jsxs)(n3,{onClick:u,children:[(0,o.jsx)(n4,{viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg",fill:"#000000",children:(0,o.jsx)("path",{fill:"white",d:"M24 24H0L24 0z"})}),(0,o.jsx)(n5,{children:"\xa0Import"})]}),(0,o.jsxs)(n3,{onClick:c,children:[(0,o.jsx)(n4,{viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg",fill:"#000000",children:(0,o.jsx)("path",{fill:"white",d:"M24 0V24L0 0z"})}),(0,o.jsx)(n5,{children:"\xa0Export"})]}),(0,o.jsx)(n3,{onClick:l,children:"Build"}),(0,o.jsx)(n3,{onClick:i,children:"Print"})]}),e?(0,o.jsx)(o.Fragment,{children:(0,o.jsx)(n6,{$allowShrink:!0,children:(0,o.jsx)(n6,{$allowShrink:!1,children:(0,o.jsx)(nV,{resume:r})})})}):(0,o.jsx)(nk,{typeStructureMap:nG,value:r,entryType:"Resume",onChange:a,keepNavigationHistory:!0})]})},{}));
-//# sourceMappingURL=index.ec955acc.js.map
+//# sourceMappingURL=index.40f74af0.js.map
