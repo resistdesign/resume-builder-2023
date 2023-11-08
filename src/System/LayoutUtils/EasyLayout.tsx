@@ -1,5 +1,5 @@
 import { FC, PropsWithChildren } from 'react';
-import styled from 'styled-components';
+import styled, { IStyledComponent } from 'styled-components';
 
 export type FCWithChildren = FC<PropsWithChildren>;
 
@@ -9,6 +9,19 @@ export type LayoutComponents = {
   layout: FCWithChildren;
   areas: ComponentMap;
 };
+
+function isComponent(x: any): x is FCWithChildren | IStyledComponent<any, any> {
+  return (
+    typeof x === 'function' ||
+    (typeof x === 'object' &&
+      x !== null &&
+      ('propTypes' in x ||
+        'contextTypes' in x ||
+        'defaultProps' in x ||
+        'displayName' in x ||
+        'styledComponentId' in x))
+  );
+}
 
 const getPascalCaseAreaName = (area: string): string => {
   return area
@@ -119,7 +132,7 @@ const getLayoutComponentsWithExtend = (
 };
 
 export const getLayoutComponents: GetLayoutComponentsSignature = (layoutTemplate) => {
-  if (typeof layoutTemplate === 'function') {
+  if (isComponent(layoutTemplate)) {
     return ((lT: TemplateStringsArray) => {
       return getLayoutComponentsWithExtend(lT, layoutTemplate);
     }) as any;
