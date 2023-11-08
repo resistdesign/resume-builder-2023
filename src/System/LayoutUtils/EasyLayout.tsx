@@ -1,11 +1,24 @@
 import { FC } from 'react';
+import styled from 'styled-components';
 
 export type ComponentMap = Record<string, FC>;
+
+export type LayoutComponents = {
+  layout: FC;
+  areas: ComponentMap;
+};
+
+const getPascalCaseAreaName = (area: string): string => {
+  return area
+    .split('-')
+    .map((a) => a[0].toUpperCase() + a.slice(1))
+    .join('');
+};
 
 const convertLayoutToCSS = (
   layout: string = ''
 ): {
-  areas: string[];
+  areasList: string[];
   css: string;
 } => {
   const lines = layout.split('\n');
@@ -42,30 +55,46 @@ const convertLayoutToCSS = (
     css += `\ngrid-template-rows: ${rows.filter((r) => !!(r && r.trim())).join(' ')};`;
   }
 
-  const areas: string[] = areaRows.reduce(
-    (acc, a) => [
-      ...acc,
-      ...a
-        .split(' ')
-        .map((a) => a && a.trim())
-        .filter((a) => !!a),
-    ],
-    [] as string[]
+  const areasList: string[] = Object.keys(
+    areaRows
+      .reduce(
+        (acc, a) => [
+          ...acc,
+          ...a
+            .split(' ')
+            .map((a) => a && a.trim())
+            .filter((a) => !!a),
+        ],
+        [] as string[]
+      )
+      .reduce((acc, a) => ({ ...acc, [a]: true }), {})
   );
 
   return {
-    areas,
+    areasList,
     css,
   };
 };
 
-export const getLayoutComponents = (layout: TemplateStringsArray): ComponentMap => {
-  let compMap: ComponentMap = {};
-  const { areas, css } = convertLayoutToCSS(layout.join('')) as any;
+export const getLayoutComponents = (layoutTemplate: TemplateStringsArray): LayoutComponents => {
+  const { areasList, css } = convertLayoutToCSS(layoutTemplate.join(''));
+  const layout = styled.div`
+    ${css}
+  `;
+  const areas: ComponentMap = areasList.reduce((acc, area) => {
+    const pascalCaseAreaName = getPascalCaseAreaName(area);
+    const component = styled.div`
+      grid-area: ${area};
+    `;
+
+    return {
+      ...acc,
+      [pascalCaseAreaName]: component,
+    };
+  }, {} as ComponentMap);
 
   return {
-    ...compMap,
+    layout,
     areas,
-    css,
   };
 };
