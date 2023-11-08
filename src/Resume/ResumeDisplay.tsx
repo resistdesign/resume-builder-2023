@@ -48,7 +48,7 @@ export type ResumeDisplayProps = {
 const {
   layout: Layout,
   areas: { Header, Side, Body, Footer },
-} = getLayoutComponents(ResumeDisplayBase)`
+} = getLayoutComponents(ResumeDisplayBase, styled.div`color: blue;`)`
 header header, 2fr
 side body, 5fr
 footer footer, 1fr
