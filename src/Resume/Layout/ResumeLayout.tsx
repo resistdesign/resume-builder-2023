@@ -33,11 +33,6 @@ export const SideArea = styled(DemoPanel)`
   grid-row: 2 / 9;
   background-color: lime;
 `;
-export const Footer = styled(DemoPanel)`
-  grid-column: 1 / 7;
-  grid-row: 9 / 10;
-  background-color: purple;
-`;
 
 export type ResumeProps = {
   resume?: Resume;
@@ -49,7 +44,6 @@ export const ResumeLayout: FC<ResumeProps> = ({ resume = {} as Resume }) => {
       <Header>Header</Header>
       <DisplayArea>Display Area</DisplayArea>
       <SideArea>Side Area</SideArea>
-      <Footer>Footer</Footer>
     </ResumeBase>
   );
 };
