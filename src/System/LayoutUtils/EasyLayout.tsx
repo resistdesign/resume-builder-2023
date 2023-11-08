@@ -4,27 +4,38 @@ export type ComponentMap = Record<string, FC>;
 
 export const convertLayoutToCSS = (layout: string = ''): string => {
   const lines = layout.split('\n');
-  const areas = [];
-  const rows = [];
 
+  let areas: string[] = [];
+  let rows: string[] = [];
   let css = '';
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
 
-    if (i === lines.length - 1) {
+    if (line.indexOf('\\') === 0) {
       // Column Widths
-      css += `\ngrid-template-columns: ${line};`;
+      css += `\ngrid-template-columns: ${line.split('\\').join('').trim()};`;
     } else {
-      const parts = line.split(',');
+      const parts = line.split(',').map((p) => p && p.trim());
 
-      areas.push(parts[0]);
-      rows.push(parts[1]);
+      if (parts[0]) {
+        areas = [...areas, parts[0]];
+
+        if (parts[1]) {
+          rows = [...rows, parts[1]];
+        }
+      }
     }
   }
 
-  css += `\ngrid-template-areas: ${areas.filter((a) => !!(a && a.trim())).join(' ')};`;
-  css += `\ngrid-template-rows: ${rows.filter((r) => !!(r && r.trim())).join(' ')};`;
+  css += `\ngrid-template-areas:\n${areas
+    .filter((a) => !!(a && a.trim()))
+    .map((a) => `  "${a}"`)
+    .join('\n')};`;
+
+  if (rows.length) {
+    css += `\ngrid-template-rows: ${rows.filter((r) => !!(r && r.trim())).join(' ')};`;
+  }
 
   return css;
 };
