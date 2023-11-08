@@ -53,9 +53,3 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({ resume = {} as Resume })
     </ResumeDisplayBase>
   );
 };
-
-console.log(convertLayoutToCSS(`
-header header, 2fr
-side body, 5fr
-footer footer, 1fr
-`));
