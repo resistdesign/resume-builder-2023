@@ -48,11 +48,46 @@ export type ResumeDisplayProps = {
 const {
   layout: Layout,
   areas: { Header, Side, Body, Footer },
-} = getLayoutComponents(ResumeDisplayBase, styled.div`color: blue;`)`
+} = getLayoutComponents(
+  ResumeDisplayBase,
+  styled.div`
+    background-color: blue;
+  `
+)`
 header header, 2fr
 side body, 5fr
 footer footer, 1fr
 \\ 1fr 6fr
+`;
+const {
+  layout: BodyLayout,
+  areas: { BodyTop, BodyMiddle, BodyBottom },
+} = getLayoutComponents(
+  styled(Body)`
+    gap: 1em;
+  `,
+  styled.div`
+    background-color: red;
+  `
+)`
+body-top, 1fr
+body-middle, 3fr
+body-bottom, 1fr
+\\ 1fr
+`;
+const {
+  layout: BodyMiddleLayout,
+  areas: { BodyMiddleLeft, BodyMiddleCenter, BodyMiddleRight },
+} = getLayoutComponents(
+  styled(BodyMiddle)`
+    gap: 1em;
+  `,
+  styled.div`
+    background-color: green;
+  `
+)`
+body-middle-left body-middle-center body-middle-right, 1fr
+\\ 1fr 3fr 1fr
 `;
 
 export const ResumeDisplay: FC<ResumeDisplayProps> = ({ resume = {} as Resume }) => {
@@ -60,7 +95,15 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({ resume = {} as Resume })
     <Layout>
       <Header>Header</Header>
       <Side>Side</Side>
-      <Body>Body</Body>
+      <BodyLayout>
+        <BodyTop>Body Top</BodyTop>
+        <BodyMiddleLayout>
+          <BodyMiddleLeft>Body Middle Left</BodyMiddleLeft>
+          <BodyMiddleCenter>Body Middle Center</BodyMiddleCenter>
+          <BodyMiddleRight>Body Middle Right</BodyMiddleRight>
+        </BodyMiddleLayout>
+        <BodyBottom>Body Bottom</BodyBottom>
+      </BodyLayout>
       <Footer>Footer</Footer>
     </Layout>
   );
