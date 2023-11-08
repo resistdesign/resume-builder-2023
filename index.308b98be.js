@@ -131,7 +131,7 @@ grid-template-rows: ${r.filter(e=>!!(e&&e.trim())).join(" ")};`);let l=Object.ke
   align-items: center;
   justify-content: flex-start;
   overflow: auto;
-`,{layout:nU,areas:{Header:nH,Side:nB,Body:nV,Footer:nW}}=((e,...t)=>{let r=e.reduce((e,n,r)=>{let a=t[r-1];return`${e}${n}${void 0===a?"":a}`},""),{areasList:a,css:l}=nF(r),o=n$?tW(n$):tW.div,i=o`
+`,{layout:nU,areas:{Header:nH,Side:nB,Body:nV,Footer:nW}}=(n=tW.div`color: blue;`,(e,...t)=>{let r=e.reduce((e,n,r)=>{let a=t[r-1];return`${e}${n}${void 0===a?"":a}`},""),{areasList:a,css:l}=nF(r),o=n$?tW(n$):tW.div,i=o`
     display: grid;
     ${l}
   `,s=a.reduce((e,t)=>{let r=nA(t),a=n?tW(n):tW.div,l=a`
@@ -199,4 +199,4 @@ footer footer, 1fr
   flex: 1 1 auto;
   overflow: hidden;
 `,n7=document.getElementById("react-root");n7&&eA(n7).render((0,i.jsx)(()=>{let[e,n]=(0,u.useState)(n1),[r,a]=(0,u.useState)(nJ),l=(0,u.useCallback)(()=>{n(!1)},[]),o=(0,u.useCallback)(()=>{n(!0)},[]),s=(0,u.useCallback)(async()=>{try{let e=await nE({mimeTypes:["application/json"],extensions:[".rdresume"]}),t=await e.text(),n=JSON.parse(t);a(n)}catch(e){}},[a]),c=(0,u.useCallback)(async()=>{try{let e=JSON.stringify(r,null,2),t=new Blob([e],{type:"application/json"});await nN(t,{fileName:"Resume.rdresume",extensions:[".rdresume"]})}catch(e){}},[r]);return(0,u.useEffect)(()=>{nX.update(nq,r)},[r]),(0,u.useEffect)(()=>{n0.update(nZ,e)},[e]),(0,u.useEffect)(()=>{let e=!1,t=t=>{e=e||"Meta"===t.key,(t.ctrlKey||e)&&"s"===t.key&&(t.preventDefault(),c())},n=t=>{e="Meta"!==t.key&&e};return window.addEventListener("keydown",t),window.addEventListener("keyup",n),()=>{window.removeEventListener("keydown",t),window.removeEventListener("keyup",n)}},[c]),(0,i.jsxs)(n3,{children:[(0,i.jsx)(n2,{}),(0,i.jsxs)(n4,{children:[(0,i.jsx)(nK,{src:t(nG)}),(0,i.jsxs)(n5,{onClick:s,children:[(0,i.jsx)(n6,{viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg",fill:"#000000",children:(0,i.jsx)("path",{fill:"white",d:"M24 24H0L24 0z"})}),(0,i.jsx)(n8,{children:"\xa0Import"})]}),(0,i.jsxs)(n5,{onClick:c,children:[(0,i.jsx)(n6,{viewBox:"0 0 24 24",xmlns:"http://www.w3.org/2000/svg",fill:"#000000",children:(0,i.jsx)("path",{fill:"white",d:"M24 0V24L0 0z"})}),(0,i.jsx)(n8,{children:"\xa0Export"})]}),(0,i.jsx)(n5,{onClick:l,children:"Build"}),(0,i.jsx)(n5,{onClick:o,children:"Print"})]}),e?(0,i.jsx)(i.Fragment,{children:(0,i.jsx)(n9,{$allowShrink:!0,children:(0,i.jsx)(n9,{$allowShrink:!1,children:(0,i.jsx)(nQ,{resume:r})})})}):(0,i.jsx)(nC,{typeStructureMap:nY,value:r,entryType:"Resume",onChange:a,keepNavigationHistory:!0})]})},{}));
-//# sourceMappingURL=index.2545e06e.js.map
+//# sourceMappingURL=index.308b98be.js.map
