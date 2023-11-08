@@ -1,10 +1,12 @@
-import { FC } from 'react';
+import { FC, PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
-export type ComponentMap = Record<string, FC>;
+export type FCWithChildren = FC<PropsWithChildren>;
+
+export type ComponentMap = Record<string, FCWithChildren>;
 
 export type LayoutComponents = {
-  layout: FC;
+  layout: FCWithChildren;
   areas: ComponentMap;
 };
 

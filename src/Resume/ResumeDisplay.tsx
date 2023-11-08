@@ -46,17 +46,26 @@ export type ResumeDisplayProps = {
   resume?: Resume;
 };
 
-export const ResumeDisplay: FC<ResumeDisplayProps> = ({ resume = {} as Resume }) => {
-  return (
-    <ResumeDisplayBase>
-      <ResumeLayout resume={resume} />
-    </ResumeDisplayBase>
-  );
-};
-
-console.log(getLayoutComponents`
+const {
+  layout: Layout,
+  areas: { Header, Side, Body, Footer },
+} = getLayoutComponents`
 header header, 2fr
 side body, 5fr
 footer footer, 1fr
 \\ 1fr 6fr
-`);
+`;
+
+export const ResumeDisplay: FC<ResumeDisplayProps> = ({ resume = {} as Resume }) => {
+  return (
+    <ResumeDisplayBase>
+      <ResumeLayout resume={resume} />
+      <Layout>
+        <Header>Header</Header>
+        <Side>Side</Side>
+        <Body>Body</Body>
+        <Footer>Footer</Footer>
+      </Layout>
+    </ResumeDisplayBase>
+  );
+};
