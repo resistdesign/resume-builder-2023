@@ -1,5 +1,5 @@
 import { FC, PropsWithChildren } from 'react';
-import styled, { IStyledComponent } from 'styled-components';
+import styled from 'styled-components';
 
 export type FCWithChildren = FC<PropsWithChildren>;
 
@@ -9,19 +9,6 @@ export type LayoutComponents = {
   layout: FCWithChildren;
   areas: ComponentMap;
 };
-
-function isComponent(x: any): x is FCWithChildren | IStyledComponent<any, any> {
-  return (
-    typeof x === 'function' ||
-    (typeof x === 'object' &&
-      x !== null &&
-      ('propTypes' in x ||
-        'contextTypes' in x ||
-        'defaultProps' in x ||
-        'displayName' in x ||
-        'styledComponentId' in x))
-  );
-}
 
 const getPascalCaseAreaName = (area: string): string => {
   return area
@@ -91,52 +78,39 @@ const convertLayoutToCSS = (
   };
 };
 
-export type GetLayoutComponentsLayoutTemplateArgument = TemplateStringsArray | FCWithChildren;
-export type GetLayoutComponentsBaseSignature = (
-  layoutTemplate: TemplateStringsArray
-) => LayoutComponents;
-export type GetLayoutComponentsReturnType<LayoutTempType> =
-  LayoutTempType extends TemplateStringsArray ? LayoutComponents : GetLayoutComponentsBaseSignature;
-export type GetLayoutComponentsSignature = <
-  LayoutTempType extends GetLayoutComponentsLayoutTemplateArgument
->(
-  layoutTemplate: LayoutTempType
-) => GetLayoutComponentsReturnType<LayoutTempType>;
+export const getLayoutComponents = (
+  extendFrom?: FCWithChildren,
+  areasExtendFrom?: FCWithChildren
+): ((layoutTemplate: TemplateStringsArray, ...expressions: any[]) => LayoutComponents) => {
+  return (layoutTemplate, ...expressions) => {
+    const mergedTemplate = layoutTemplate.reduce((acc, l, ind) => {
+      const expr = expressions[ind - 1];
+      const exprStr = typeof expr === 'undefined' ? '' : expr;
 
-const getLayoutComponentsWithExtend = (
-  layoutTemplate: TemplateStringsArray,
-  extendFrom?: FCWithChildren
-): LayoutComponents => {
-  const { areasList, css } = convertLayoutToCSS(layoutTemplate.join(''));
-  const layout = styled.div`
+      return `${acc}${l}${exprStr}`;
+    }, '');
+    const { areasList, css } = convertLayoutToCSS(mergedTemplate);
+    const baseLayoutComp = extendFrom ? styled(extendFrom) : styled.div;
+    const layout = baseLayoutComp`
     display: grid;
     ${css}
   `;
-  const areas: ComponentMap = areasList.reduce((acc, area) => {
-    const pascalCaseAreaName = getPascalCaseAreaName(area);
-    const baseCompFunc = extendFrom ? styled(extendFrom) : styled.div;
-    const component = baseCompFunc`
+    const areas: ComponentMap = areasList.reduce((acc, area) => {
+      const pascalCaseAreaName = getPascalCaseAreaName(area);
+      const baseCompFunc = areasExtendFrom ? styled(areasExtendFrom) : styled.div;
+      const component = baseCompFunc`
       grid-area: ${area};
     `;
 
+      return {
+        ...acc,
+        [pascalCaseAreaName]: component,
+      };
+    }, {} as ComponentMap);
+
     return {
-      ...acc,
-      [pascalCaseAreaName]: component,
+      layout,
+      areas,
     };
-  }, {} as ComponentMap);
-
-  return {
-    layout,
-    areas,
   };
-};
-
-export const getLayoutComponents: GetLayoutComponentsSignature = (layoutTemplate) => {
-  if (isComponent(layoutTemplate)) {
-    return ((lT: TemplateStringsArray) => {
-      return getLayoutComponentsWithExtend(lT, layoutTemplate);
-    }) as any;
-  } else {
-    return getLayoutComponentsWithExtend(layoutTemplate);
-  }
 };
