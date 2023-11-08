@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Resume } from '../Types/Resume';
 import styled from 'styled-components';
 import { ResumeLayout } from './Layout/ResumeLayout';
-import {convertLayoutToCSS} from "../System/LayoutUtils/EasyLayout";
+import { getLayoutComponents } from '../System/LayoutUtils/EasyLayout';
 
 type FormattedDateParts = {
   year: string | number;
@@ -53,3 +53,10 @@ export const ResumeDisplay: FC<ResumeDisplayProps> = ({ resume = {} as Resume })
     </ResumeDisplayBase>
   );
 };
+
+console.log(getLayoutComponents`
+header header, 2fr
+side body, 5fr
+footer footer, 1fr
+\\ 1fr 6fr
+`);

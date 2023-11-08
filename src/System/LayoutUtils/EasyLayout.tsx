@@ -2,10 +2,15 @@ import { FC } from 'react';
 
 export type ComponentMap = Record<string, FC>;
 
-export const convertLayoutToCSS = (layout: string = ''): string => {
+const convertLayoutToCSS = (
+  layout: string = ''
+): {
+  areas: string[];
+  css: string;
+} => {
   const lines = layout.split('\n');
 
-  let areas: string[] = [];
+  let areaRows: string[] = [];
   let rows: string[] = [];
   let css = '';
 
@@ -19,7 +24,7 @@ export const convertLayoutToCSS = (layout: string = ''): string => {
       const parts = line.split(',').map((p) => p && p.trim());
 
       if (parts[0]) {
-        areas = [...areas, parts[0]];
+        areaRows = [...areaRows, parts[0]];
 
         if (parts[1]) {
           rows = [...rows, parts[1]];
@@ -28,7 +33,7 @@ export const convertLayoutToCSS = (layout: string = ''): string => {
     }
   }
 
-  css += `\ngrid-template-areas:\n${areas
+  css += `\ngrid-template-areas:\n${areaRows
     .filter((a) => !!(a && a.trim()))
     .map((a) => `  "${a}"`)
     .join('\n')};`;
@@ -37,13 +42,30 @@ export const convertLayoutToCSS = (layout: string = ''): string => {
     css += `\ngrid-template-rows: ${rows.filter((r) => !!(r && r.trim())).join(' ')};`;
   }
 
-  return css;
+  const areas: string[] = areaRows.reduce(
+    (acc, a) => [
+      ...acc,
+      ...a
+        .split(' ')
+        .map((a) => a && a.trim())
+        .filter((a) => !!a),
+    ],
+    [] as string[]
+  );
+
+  return {
+    areas,
+    css,
+  };
 };
 
-// TODO: const getLayoutAreas = (layout: string = ''): string[] => {};
-
-export const getLayoutComponents = (layout: string = ''): ComponentMap => {
+export const getLayoutComponents = (layout: TemplateStringsArray): ComponentMap => {
   let compMap: ComponentMap = {};
+  const { areas, css } = convertLayoutToCSS(layout.join('')) as any;
 
-  return compMap;
+  return {
+    ...compMap,
+    areas,
+    css,
+  };
 };
