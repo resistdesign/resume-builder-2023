@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { Resume } from '../Types/Resume';
 import styled from 'styled-components';
-import { ResumeLayout } from './Layout/ResumeLayout';
 import { getLayoutComponents } from '../System/LayoutUtils/EasyLayout';
 
 type FormattedDateParts = {
@@ -49,7 +48,7 @@ export type ResumeDisplayProps = {
 const {
   layout: Layout,
   areas: { Header, Side, Body, Footer },
-} = getLayoutComponents`
+} = getLayoutComponents(ResumeDisplayBase)`
 header header, 2fr
 side body, 5fr
 footer footer, 1fr
@@ -58,14 +57,11 @@ footer footer, 1fr
 
 export const ResumeDisplay: FC<ResumeDisplayProps> = ({ resume = {} as Resume }) => {
   return (
-    <ResumeDisplayBase>
-      <ResumeLayout resume={resume} />
-      <Layout>
-        <Header>Header</Header>
-        <Side>Side</Side>
-        <Body>Body</Body>
-        <Footer>Footer</Footer>
-      </Layout>
-    </ResumeDisplayBase>
+    <Layout>
+      <Header>Header</Header>
+      <Side>Side</Side>
+      <Body>Body</Body>
+      <Footer>Footer</Footer>
+    </Layout>
   );
 };

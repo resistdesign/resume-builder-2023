@@ -78,14 +78,31 @@ const convertLayoutToCSS = (
   };
 };
 
-export const getLayoutComponents = (layoutTemplate: TemplateStringsArray): LayoutComponents => {
+export type GetLayoutComponentsLayoutTemplateArgument = TemplateStringsArray | FCWithChildren;
+export type GetLayoutComponentsBaseSignature = (
+  layoutTemplate: TemplateStringsArray
+) => LayoutComponents;
+export type GetLayoutComponentsReturnType<LayoutTempType> =
+  LayoutTempType extends TemplateStringsArray ? LayoutComponents : GetLayoutComponentsBaseSignature;
+export type GetLayoutComponentsSignature = <
+  LayoutTempType extends GetLayoutComponentsLayoutTemplateArgument
+>(
+  layoutTemplate: LayoutTempType
+) => GetLayoutComponentsReturnType<LayoutTempType>;
+
+const getLayoutComponentsWithExtend = (
+  layoutTemplate: TemplateStringsArray,
+  extendFrom?: FCWithChildren
+): LayoutComponents => {
   const { areasList, css } = convertLayoutToCSS(layoutTemplate.join(''));
   const layout = styled.div`
+    display: grid;
     ${css}
   `;
   const areas: ComponentMap = areasList.reduce((acc, area) => {
     const pascalCaseAreaName = getPascalCaseAreaName(area);
-    const component = styled.div`
+    const baseCompFunc = extendFrom ? styled(extendFrom) : styled.div;
+    const component = baseCompFunc`
       grid-area: ${area};
     `;
 
@@ -99,4 +116,14 @@ export const getLayoutComponents = (layoutTemplate: TemplateStringsArray): Layou
     layout,
     areas,
   };
+};
+
+export const getLayoutComponents: GetLayoutComponentsSignature = (layoutTemplate) => {
+  if (typeof layoutTemplate === 'function') {
+    return ((lT: TemplateStringsArray) => {
+      return getLayoutComponentsWithExtend(lT, layoutTemplate);
+    }) as any;
+  } else {
+    return getLayoutComponentsWithExtend(layoutTemplate);
+  }
 };
